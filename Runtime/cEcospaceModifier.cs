@@ -1,7 +1,7 @@
 ﻿using EwECore;
 using EwEPlugin;
 using EwERunConsole.Instructions;
-using EwERunConsoleBridge;
+using EwEBridge.Ecospace;
 using EwEUtils.Core;
 
 namespace EwERunConsole.Runtime
@@ -16,10 +16,10 @@ namespace EwERunConsole.Runtime
         public cEcospaceModifier(cCore core, cEwEConfiguration config, cEcospaceRunInstructions runmodel) : base(core, "ecospace", config, runmodel)
         {
             // Establish plug-in callbacks to alter ecospace mid-run
-            IPlugin? pi = GetPlugin(typeof(cEcospaceCallbackPluginPoint));
+            IPlugin? pi = GetPlugin(typeof(cEcospaceBridgePlugin));
             if (pi != null)
             {
-                cEcospaceCallbackPluginPoint ppt = (cEcospaceCallbackPluginPoint)pi;
+                cEcospaceBridgePlugin ppt = (cEcospaceBridgePlugin)pi;
                 ppt.BridgeCallback = BridgeCallback;
             }
         }
@@ -158,9 +158,9 @@ namespace EwERunConsole.Runtime
         /// <param name="e"></param>
         /// <param name="iTime"></param>
         /// -------------------------------------------------------------------
-        protected void BridgeCallback(cEcospaceCallbackPluginPoint.EventType e, int iTime)
+        protected void BridgeCallback(cEcospaceBridgePlugin.EventType e, int iTime)
         {
-            if (e == cEcospaceCallbackPluginPoint.EventType.BeginTimeStep)
+            if (e == cEcospaceBridgePlugin.EventType.BeginTimeStep)
             {
                 // Print out time tracking
                 if ((iTime - 1) % cCore.N_MONTHS == 0)
