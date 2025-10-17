@@ -27,8 +27,10 @@
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.2" />
+    <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.5" />
     <PackageReference Include="Eii.Ecopath.EwEPlugin" Version="6.7.3" />
     <PackageReference Include="Eii.Ecopath.EwEUtils" Version="6.7.2" />
+    <PackageReference Include="Eii.Ecopath.Plugins-stdf" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
