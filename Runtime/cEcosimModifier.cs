@@ -1,7 +1,7 @@
 ﻿using EwECore;
 using EwEPlugin;
 using EwERunConsole.Instructions;
-using EwERunConsoleBridge;
+using EwEBridge.Ecosim;
 
 namespace EwERunConsole.Runtime
 { 
@@ -11,10 +11,10 @@ namespace EwERunConsole.Runtime
         {
             // Create a plug-in bridge to be able to intervene into the
             // running Ecosim model during tmie stepping
-            IPlugin? pi = GetPlugin(typeof(cEcosimCallbackPluginPoint));
+            IPlugin? pi = GetPlugin(typeof(EwEBridge.Ecosim.cEcosimBridgePlugin));
             if (pi != null)
             {
-                cEcosimCallbackPluginPoint ppt = (cEcosimCallbackPluginPoint)pi;
+                cEcosimBridgePlugin ppt = (cEcosimBridgePlugin)pi;
                 ppt.BridgeCallback = BridgeCallback;
             }
         }
@@ -34,9 +34,9 @@ namespace EwERunConsole.Runtime
         }
 
         // Plug-in callback for making specific modifications.
-        protected void BridgeCallback (cEcosimCallbackPluginPoint.EventType e, int iTime)
+        protected void BridgeCallback (cEcosimBridgePlugin.EventType e, int iTime)
         {
-            if (e== cEcosimCallbackPluginPoint.EventType.BeginTimeStep)
+            if (e== cEcosimBridgePlugin.EventType.BeginTimeStep)
             {
                 cEcosimDatastructures ds = this.Core.EcosimDataStructures;
 
