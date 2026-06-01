@@ -1,0 +1,169 @@
+{
+    // =========================================================================
+    // EwERunConsole example configuration file
+    //
+    // Usage:
+    //   EwERunConsole --runinfofile example_runinfo.json --output C:\Output
+    //
+    // Notes:
+    // - All file paths are relative to the folder containing this JSON file.
+    // - Scenario indices are one-based. Set to -1 (or omit) to skip a model.
+    // - "Changes" entries are applied at the given Date or TimeStep. Date can
+    //   be "start", or any parseable date string e.g. "1-1-2025".
+    //   If both Date and TimeStep are provided, TimeStep takes precedence.
+    // =========================================================================
+
+    // -------------------------------------------------------------------------
+    // Global EwE configuration
+    // -------------------------------------------------------------------------
+    "Configuration": {
+
+        // Path to the EwE model file (.eiixml). Required.
+        "ModelFile": "MyModel.eiixml",
+
+        // Path to the external spatial-temporal data configuration file (.xml).
+        // Leave empty if not used.
+        "ExtDataConfigFile": "MyModel_extdata.xml",
+
+        // Whether saved output files include a descriptive header. Default: false.
+        "SaveWithHeader": true,
+
+        // One-based index of the Ecosim scenario to load and run.
+        // Set to -1 to skip Ecosim (and Ecospace) entirely.
+        "EcosimScenario": 1,
+
+        // One-based index of the Ecosim time series dataset to apply.
+        // Set to -1 (or 0) to run without a time series.
+        "EcosimTimeseries": 1,
+
+        // One-based index of the Ecospace scenario to load and run.
+        // Set to -1 to skip Ecospace.
+        "EcospaceScenario": 1,
+
+        // One-based index of the Ecotracer scenario to load and run.
+        // Set to -1 to skip Ecotracer.
+        "EcotracerScenario": -1,
+
+        // Number of years to run the simulation for.
+        // Set to -1 to use the model default.
+        "RunYears": 50
+    },
+
+    // -------------------------------------------------------------------------
+    // Ecosim run settings
+    // -------------------------------------------------------------------------
+    "EcosimRun": {
+
+        // First calendar year for which Ecosim output is saved.
+        // Set to 0 to start saving from the beginning of the run.
+        "SaveFirstYear": 2000,
+
+        // Save output annually (true) or monthly (false).
+        "SaveAnnual": false,
+
+        // List of string snippets matching CSV result writer names to enable.
+        // Leave empty [] to disable all CSV output.
+        "SaveContentCSV": [ "biomass", "catch", "mortality" ],
+
+        // Dynamic parameter changes applied at specific moments during the run.
+        "Changes": [
+            {
+                // "start" applies this change at the very first time step.
+                "Date": "start",
+                "Modifications": {
+                    "ecosim.group[2].pb": 1.5
+                }
+            },
+            {
+                // Apply a change at a specific calendar date.
+                "Date": "1-1-2030",
+                "Modifications": {
+                    "ecosim.fleet[1].effort": 0.5
+                }
+            }
+        ]
+    },
+
+    // -------------------------------------------------------------------------
+    // Ecospace run settings
+    // -------------------------------------------------------------------------
+    "EcospaceRun": {
+
+        // Number of spin-up years to run before the main simulation.
+        // Set to -1 (or 0) to disable spin-up.
+        "RunSpinupYears": 10,
+
+        // Run mode: true = IBM (Individual-Based Model),
+        //           false = Multi-stanza (default).
+        "UseIBM": false,
+
+        // Number of CPU threads to allocate to Ecospace solvers.
+        // Set to -1 to use the model default.
+        "MaxCores": 8,
+
+        // Minimum habitat capacity value used when no capacity is defined.
+        // Set to 0 to disable habitat capacity gradient corrections entirely.
+        // Set to -1 to use the model default.
+        "MinHabCap": 0.01,
+
+        // First calendar year for which Ecospace output is saved.
+        "SaveFirstYear": 2000,
+
+        // Save output annually (true) or monthly (false).
+        "SaveAnnual": true,
+
+        // List of string snippets matching ESRI ASCII map (.asc) writer names
+        // to enable. Leave empty [] to disable all ASC output.
+        "SaveContentASC": [ "biomass", "catch", "effort" ],
+
+        // List of string snippets matching CSV result writer names to enable.
+        // Leave empty [] to disable all CSV output.
+        "SaveContentCSV": [],
+
+        // Dynamic parameter changes applied at specific moments during the run.
+        "Changes": [
+            {
+                // Clear MPA 1 at the start of the run.
+                "Date": "start",
+                "Modifications": {
+                    "ecospace.mpa[1].map.fill": 0
+                }
+            },
+            {
+                // Load a new MPA map at a specific date.
+                "Date": "1-1-2025",
+                "Modifications": {
+                    "ecospace.mpa[1].map.load": "mpa_2025.asc"
+                }
+            },
+            {
+                // Apply multiple changes at once using an explicit time step
+                // instead of a date. TimeStep overrides Date when non-zero.
+                "TimeStep": 360,
+                "Date": "",
+                "Modifications": {
+                    "ecospace.mpa[2].map.fill": 1,
+                    "ecospace.fleet[1].effort": 0.8
+                }
+            }
+        ]
+    },
+
+    // -------------------------------------------------------------------------
+    // Ecotracer run settings (only used when EcotracerScenario > 0)
+    // -------------------------------------------------------------------------
+    "EcotracerRun": {
+
+        // Run Ecotracer coupled to Ecosim.
+        "RunWithEcosim": false,
+
+        // Run Ecotracer coupled to Ecospace.
+        "RunWithEcospace": false,
+
+        // List of string snippets matching CSV result writer names to enable.
+        "SaveContentCSV": [ "concentration" ],
+
+        // Dynamic parameter changes (same format as Ecosim/Ecospace above).
+        "Changes": []
+    }
+}

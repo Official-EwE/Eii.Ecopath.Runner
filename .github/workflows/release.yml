@@ -1,0 +1,90 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v1
+        with:
+          versionSpec: '6.4.0'
+
+      - name: Run GitVersion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v4.1.0
+        with:
+          overrideConfig: |
+            workflow=TrunkBased/preview1
+            commit-message-incrementing=Enabled
+            tag-prefix=v
+            increment=Patch
+
+      - name: Show version
+        run: echo "Building version ${{ steps.gitversion.outputs.semVer }}"
+
+      # Ensure that the github-Official-EwE NuGet source is configured. The standard GITHUB_TOKEN is used. It's automatically created by GitHub Actions and is available as 'github.toke'
+      # So you don't have to pass it to this action explicitly. (because 'secrets', and subsequently 'secrets.GITHUB_TOKEN' is not accessible in reusable workflows)
+      - name: Ensure github-Official-EwE NuGet source
+        run: |
+          if dotnet nuget list source | grep -q "github-Official-EwE"; then
+            dotnet nuget remove source github-Official-EwE
+          fi
+          dotnet nuget add source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+            --name "github-Official-EwE" \
+            --username ${{ github.repository_owner }} \
+            --password ${{ github.token }} \
+            --store-password-in-clear-text
+        shell: bash
+
+      - name: List NuGet data sources
+        run: dotnet nuget list source --format detailed
+        shell: bash
+
+      - name: Restore
+        run: dotnet restore Eii.Ecopath.RunConsole/EwERunConsole.csproj
+
+      - name: Publish
+        run: >
+          dotnet publish Eii.Ecopath.RunConsole/EwERunConsole.csproj
+          --configuration Release
+          --runtime win-x64
+          --self-contained false
+          --output publish/EwERunConsole
+          /p:Version=${{ steps.gitversion.outputs.semVer }}
+          /p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }}
+          /p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }}
+
+      - name: Create ZIP
+        shell: pwsh
+        run: >
+          Compress-Archive
+          -Path publish/EwERunConsole/*
+          -DestinationPath EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.gitversion.outputs.semVer }}
+          name: EwERunConsole v${{ steps.gitversion.outputs.semVer }}
+          body: Automated release of EwERunConsole version ${{ steps.gitversion.outputs.semVer }}.
+          files: EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
