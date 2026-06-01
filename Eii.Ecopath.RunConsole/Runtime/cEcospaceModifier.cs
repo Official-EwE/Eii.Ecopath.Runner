@@ -28,15 +28,15 @@ namespace EwERunConsole.Runtime
 
         #endregion // Construction / destruction
 
-        protected cEcospaceRunInstructions MyRunModel => (cEcospaceRunInstructions)this.RunModel;
+        protected cEcospaceRunInstructions MyRunModel => (cEcospaceRunInstructions)RunModel;
         private int _nts;
 
         #region Runtime overrides 
 
         public override void ConfigureAutosave()
         {
-            cEcospaceModelParameters parms = this.Core.EcospaceModelParameters;
-            cEcospaceDataStructures ds = this.Core.EcospaceDataStructures;
+            cEcospaceModelParameters parms = Core.EcospaceModelParameters;
+            cEcospaceDataStructures ds = Core.EcospaceDataStructures;
 
             Console.WriteLine("Ecospace {0} result writer(s)", parms.nResultWriters);
             for (int i = 0; i < parms.nResultWriters; i++)
@@ -47,7 +47,7 @@ namespace EwERunConsole.Runtime
                 string n = wr.GetType().Name.ToLower();
                 if (IsASCWriter(n))
                 {
-                    foreach (var vn in this.MyRunModel.SaveContentASC)
+                    foreach (var vn in MyRunModel.SaveContentASC)
                     {
                         if (n.Contains(vn.ToLower()))
                             bEnable = true;
@@ -55,7 +55,7 @@ namespace EwERunConsole.Runtime
                 }
                 else if (IsCSVWriter(n))
                 {
-                    foreach (var vn in this.MyRunModel.SaveContentCSV)
+                    foreach (var vn in MyRunModel.SaveContentCSV)
                     {
                         if (n.Contains(vn.ToLower()))
                             bEnable = true;
@@ -77,14 +77,14 @@ namespace EwERunConsole.Runtime
 
         public override bool Run()
         {
-            this.RunSuccess = true;
+            RunSuccess = true;
 
-            cEcospaceDataStructures ds = this.Core.EcospaceDataStructures;
+            cEcospaceDataStructures ds = Core.EcospaceDataStructures;
 
             // Disable unnecessary data caching - Ecospace won't be saved after
             ds.PreserveLayerData = false;
             // Reroute spatial log folder
-            this.Core.SpatialOperationLog.LogFilePath = this.Core.OutputPath;
+            Core.SpatialOperationLog.LogFilePath = Core.OutputPath;
 
             _nts = ds.nTimeStepsPerYear;
 
@@ -108,36 +108,36 @@ namespace EwERunConsole.Runtime
                 Console.WriteLine("Ecospace habitat corrections = {0}", ds.MinHabCap);
             }
 
-            if (this.MyRunModel.MaxCores > 0)
+            if (MyRunModel.MaxCores > 0)
             {
-                ds.nEffortDistThreads = this.MyRunModel.MaxCores;
-                ds.nSpaceSolverThreads = this.MyRunModel.MaxCores;
-                ds.nGridSolverThreads = this.MyRunModel.MaxCores;
-                ds.nIBMMovementSolverThreads = this.MyRunModel.MaxCores;
+                ds.nEffortDistThreads = MyRunModel.MaxCores;
+                ds.nSpaceSolverThreads = MyRunModel.MaxCores;
+                ds.nGridSolverThreads = MyRunModel.MaxCores;
+                ds.nIBMMovementSolverThreads = MyRunModel.MaxCores;
                 Console.WriteLine("Ecospace #threads = {0}", ds.nEffortDistThreads);
             }
 
-            ds.UseIBM = this.MyRunModel.UseIBM;
+            ds.UseIBM = MyRunModel.UseIBM;
             ds.NewMultiStanza = !ds.UseIBM;
             Console.WriteLine("Ecospace runmode = {0}", ds.UseIBM ? "ibm" : "multi-stanza");
 
             // Check data connections
-            Console.WriteLine("Ecospace no. ext data connections = {0}", this.Core.SpatialDataConnectionManager.NumConnectedAdapters);
+            Console.WriteLine("Ecospace no. ext data connections = {0}", Core.SpatialDataConnectionManager.NumConnectedAdapters);
             Console.WriteLine();
             Console.WriteLine("Start run");
 
             // Capture Ecospace STDF messages
             cMessageHandler mh = new cMessageHandler(CoreMessageHandler, eCoreComponentType.External, eMessageType.GISOperation, new SynchronizationContext());
-            this.Core.Messages.AddMessageHandler(mh);
+            Core.Messages.AddMessageHandler(mh);
 
             // Go for it - added delegate to meet the requirements of the API 
             cCore.EcoSpaceInterfaceDelegate dgt = new cCore.EcoSpaceInterfaceDelegate(EcospaceDummyCallback);
-            this.RunSuccess &= this.Core.RunEcospace(ref dgt, false);
+            RunSuccess &= Core.RunEcospace(ref dgt, false);
 
             Console.WriteLine("End run");
 
             // Clean up
-            this.Core.Messages.RemoveMessageHandler(mh);
+            Core.Messages.RemoveMessageHandler(mh);
 
             // Done
             return RunSuccess;
@@ -145,7 +145,7 @@ namespace EwERunConsole.Runtime
 
         protected override int DateToTimeStep(DateTime date)
         {
-            return this.Core.AbsoluteTimeToEcospaceTimestep(date);
+            return Core.AbsoluteTimeToEcospaceTimestep(date);
         }
 
         #endregion // Runtime overrides
@@ -167,14 +167,14 @@ namespace EwERunConsole.Runtime
                 // Print out time tracking
                 if ((iTime - 1) % cCore.N_MONTHS == 0)
                 {
-                    cEcospaceDataStructures ds = this.Core.EcospaceDataStructures;
+                    cEcospaceDataStructures ds = Core.EcospaceDataStructures;
                     Console.WriteLine("{0}{1}{2}", 
                         Core.EcospaceTimestepToAbsoluteTime(iTime).Year, 
                         ds.bInSpinUp ? " (spin-up)" : "", 
                         (iTime == ds.FirstOutputTimeStep) ? " autosaving starting" : "");
                 }
 
-                this.RunSuccess &= this.Apply(iTime);
+                RunSuccess &= Apply(iTime);
             }
         }
 

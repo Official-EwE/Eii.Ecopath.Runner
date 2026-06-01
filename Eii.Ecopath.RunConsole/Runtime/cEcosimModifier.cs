@@ -27,9 +27,9 @@ namespace EwERunConsole.Runtime
 
         public override bool Run()
         {
-            this.RunSuccess = true;
+            RunSuccess = true;
             // Go for it
-            this.RunSuccess &= this.Core.RunEcosim();
+            RunSuccess &= Core.RunEcosim();
             // Done
             return RunSuccess;
         }
@@ -39,21 +39,21 @@ namespace EwERunConsole.Runtime
         {
             if (e== cEcosimBridgePlugin.EventType.BeginTimeStep)
             {
-                cEcosimDatastructures ds = this.Core.EcosimDataStructures;
+                cEcosimDatastructures ds = Core.EcosimDataStructures;
 
                 // Print out time tracking
                 if ((iTime - 1) % ds.NumStepsPerYear == 0)
                 {
                     Console.WriteLine("{0}",
-                        (int) this.Core.EcosimFirstYear() + ((iTime - 1) / ds.NumStepsPerYear));
+                        (int) Core.EcosimFirstYear() + ((iTime - 1) / ds.NumStepsPerYear));
                 }
-                this.RunSuccess &= this.Apply(iTime);
+                RunSuccess &= Apply(iTime);
             }
         }
 
         protected override int DateToTimeStep(DateTime date)
         {
-            return this.Core.AbsoluteTimeToEcosimTimestep(date);
+            return Core.AbsoluteTimeToEcosimTimestep(date);
         }
     }
 }

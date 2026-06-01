@@ -12,8 +12,8 @@ namespace EwERunConsole.Instructions
         // --------------------------------------------------------------------
         public cEcotracerRunInstructions()
         {
-            this.SaveContentCSV = new List<string>();
-            this.Changes = new List<cModificationsAtT>();
+            SaveContentCSV = new List<string>();
+            Changes = new List<cModificationsAtT>();
         }
 
         public bool RunWithEcosim { get; set; } = false;
