@@ -15,9 +15,9 @@ namespace EwERunConsole.Instructions
     {
         public cModificationsAtT()
         {
-            this.Date = "?";
-            this.TimeStep = 0;
-            this.modifications = new Dictionary<string, object>();
+            Date = "?";
+            TimeStep = 0;
+            modifications = new Dictionary<string, object>();
         }
 
         // --------------------------------------------------------------------

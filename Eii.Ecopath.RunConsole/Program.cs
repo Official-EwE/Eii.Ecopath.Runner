@@ -44,7 +44,7 @@ class Program
         using (var cc = new cConsoleCopy(Path.Combine(outputfolder, "EwERunConsole_log.txt")))
         {
             Console.WriteLine("==========================================================================");
-            Console.WriteLine("EwERunConsole version {0}", cAssemblyUtils.GetVersion());
+            Console.WriteLine("EwERunConsole version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
             Console.WriteLine("EwE Core version {0}", cAssemblyUtils.GetVersion(cAssemblyUtils.GetAssemblyName(typeof(cCore))));
             Console.WriteLine("==========================================================================");
             Console.WriteLine();

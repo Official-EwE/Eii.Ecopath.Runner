@@ -19,11 +19,11 @@ namespace EwERunConsole.Instructions
         // --------------------------------------------------------------------
         public cEwERunInstructions()
         {
-            this.Configuration = new cEwEConfiguration();
-            this.EcopathRun = new cEcopathRunInstructions();
-            this.EcosimRun = new cEcosimRunInstructions();
-            this.EcospaceRun = new cEcospaceRunInstructions();
-            this.EcotracerRun = new cEcotracerRunInstructions();
+            Configuration = new cEwEConfiguration();
+            EcopathRun = new cEcopathRunInstructions();
+            EcosimRun = new cEcosimRunInstructions();
+            EcospaceRun = new cEcospaceRunInstructions();
+            EcotracerRun = new cEcotracerRunInstructions();
         }
 
         // --------------------------------------------------------------------

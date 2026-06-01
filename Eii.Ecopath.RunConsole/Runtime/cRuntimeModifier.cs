@@ -44,17 +44,17 @@ namespace EwERunConsole.Runtime
         // --------------------------------------------------------------------
         public cRuntimeModifier(cCore core, string root, cEwEConfiguration config, IModelRunInstructions runmodel)
         {
-            this.Core = core;
-            this.Root = root;
-            this.Configuration = config;
-            this.RunModel = runmodel;
-            this.Changes = new Dictionary<int, cModificationsAtT>();  
+            Core = core;
+            Root = root;
+            Configuration = config;
+            RunModel = runmodel;
+            Changes = new Dictionary<int, cModificationsAtT>();  
 
             // Parse and complete information in the requrest changes, and organize
             // them in an internal dictionary for ease of processing.
-            this.CompleteAndPrepareChanges();
+            CompleteAndPrepareChanges();
             // Generic configuration of autosaving
-            this.ConfigureAutosave();
+            ConfigureAutosave();
         }
 
         #region Execution 
@@ -90,11 +90,11 @@ namespace EwERunConsole.Runtime
         // --------------------------------------------------------------------
         private void CompleteAndPrepareChanges()
         {
-            foreach (cModificationsAtT c in this.RunModel.Changes)
+            foreach (cModificationsAtT c in RunModel.Changes)
             {
                 int iTimeStep = c.TimeStep;
                 if (iTimeStep == 0) iTimeStep = ParseDate(c.Date);
-                this.Changes[iTimeStep] = c;
+                Changes[iTimeStep] = c;
             }
         }
 
@@ -110,21 +110,21 @@ namespace EwERunConsole.Runtime
             bool bSucces = true;
 
             // Are there changes for this specific time step?
-            if (this.Changes.ContainsKey(iTime))
+            if (Changes.ContainsKey(iTime))
             {
                 // #Yes: grab it and pop it off the list.
-                cModificationsAtT c = this.Changes[iTime];
-                this.Changes.Remove(iTime);
+                cModificationsAtT c = Changes[iTime];
+                Changes.Remove(iTime);
 
                 Debug.Assert(c != null);
 
                 // Instantiate code automation tree
-                cEwERootNode om = new cEwERootNode(this.Core); 
+                cEwERootNode om = new cEwERootNode(Core); 
                 // Process all changes
                 foreach (string key in c.modifications.Keys)
                 {
                     // Apply change at the current Root. Keys are processed in lower case
-                    if (om.Invoke(this.Root, key.ToLower(), c.modifications[key]))
+                    if (om.Invoke(Root, key.ToLower(), c.modifications[key]))
                         Console.WriteLine("TS {0,4}: Applied {1}({2})", iTime, key, c.modifications[key]);
                     else
                         bSucces = false;
@@ -175,7 +175,7 @@ namespace EwERunConsole.Runtime
         // --------------------------------------------------------------------
         public IPlugin? GetPlugin(Type t)
         {
-            cPluginManager pm = this.Core.PluginManager;
+            cPluginManager pm = Core.PluginManager;
             List<IPlugin> plugins = (List<IPlugin>)pm.GetPlugins(t);
             if (plugins.Count > 0)
                 return plugins[0];

@@ -13,29 +13,29 @@ namespace EwERunConsole.Automation
 
         public cEcopathNode ecopath()
         {
-            return new cEcopathNode(this.Core);
+            return new cEcopathNode(Core);
         }
 
         public cEcosimNode ecosim()
         {
-            return new cEcosimNode(this.Core, this.Core.EcosimModelParameters);
+            return new cEcosimNode(Core, Core.EcosimModelParameters);
         }
 
         public cEcospaceNode ecospace()
         {
-            return new cEcospaceNode(this.Core, this.Core.EcospaceModelParameters);
+            return new cEcospaceNode(Core, Core.EcospaceModelParameters);
         }
 
         [AutomationIgnore]
         public string[] AutomationTree()
         {
-            return [.. this.ListAutomationTree()];
+            return [.. ListAutomationTree()];
         }
 
         [AutomationIgnore]
         public string[] AutomationPaths()
         {
-            return [.. this.ListAutomationPaths()];
+            return [.. ListAutomationPaths()];
         }
     }
 }

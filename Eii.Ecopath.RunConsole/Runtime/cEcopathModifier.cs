@@ -24,9 +24,9 @@ namespace EwERunConsole.Runtime
 
         public override bool Run()
         {
-            this.RunSuccess = this.Apply(FirstTimeStep);
-            this.RunSuccess &= this.Core.RunEcopath();
-            return this.RunSuccess;
+            RunSuccess = Apply(FirstTimeStep);
+            RunSuccess &= Core.RunEcopath();
+            return RunSuccess;
         }
     }
 }
