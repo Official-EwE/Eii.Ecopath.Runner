@@ -8,8 +8,8 @@ namespace EwERunConsole.Runtime
 {
     internal class cEcosimModifier : cRuntimeModifier
     {
-        private List<cEcosimResultWriter.eResultTypes> m_autosaveresults = new List<cEcosimResultWriter.eResultTypes>();
-        private bool m_bSaveAnnual = false;
+        private List<cEcosimResultWriter.eResultTypes> m_autosaveresults = [];
+        private bool m_bSaveAnnual;
 
         public cEcosimModifier(cCore core, cEwEConfiguration config, cEcosimRunInstructions runmodel) : base(core, "ecosim", config, runmodel)
         {
