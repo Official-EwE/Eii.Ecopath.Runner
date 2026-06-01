@@ -1,14 +1,17 @@
 ﻿using EwEBridge.Ecosim;
 using EwECore;
+using EwECore.Ecosim;
 using EwECore.Plugins;
 using EwERunConsole.Instructions;
+using Microsoft.VisualBasic;
 using System;
+using System.Collections.Generic;
 
 namespace EwERunConsole.Runtime
 {
     internal class cEcosimModifier : cRuntimeModifier
     {
-        private List<cEcosimResultWriter.eResultTypes> m_autosaveresults = new List<cEcosimResultWriter.eResultTypes>();
+        private List<cEcosimResultWriter.eResultTypes> m_autosaveresults = [];
         private bool m_bSaveAnnual = false;
 
         public cEcosimModifier(cCore core, cEwEConfiguration config, cEcosimRunInstructions runmodel) : base(core, "ecosim", config, runmodel)
@@ -49,7 +52,7 @@ namespace EwERunConsole.Runtime
             cEcosimResultWriter wr = new cEcosimResultWriter(this.Core);
             if (m_autosaveresults.Count > 0)
             {
-                wr.WriteResults("", m_autosaveresults.ToArray(), m_bSaveAnnual ? EwEUtils.Core.TriState.False : EwEUtils.Core.TriState.True, true);
+                wr.WriteResults("", m_autosaveresults.ToArray(), m_bSaveAnnual ? TriState.False : TriState.True, true);
             }
         }
 
@@ -74,7 +77,7 @@ namespace EwERunConsole.Runtime
                 if ((iTime - 1) % ds.NumStepsPerYear == 0)
                 {
                     Console.WriteLine("{0}",
-                        (int) Core.EcosimFirstYear() + ((iTime - 1) / ds.NumStepsPerYear));
+                        (int)Core.EcosimFirstYear() + ((iTime - 1) / ds.NumStepsPerYear));
                 }
                 RunSuccess &= Apply(iTime);
             }
