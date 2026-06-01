@@ -92,6 +92,9 @@
     <None Update="Testdata\AnchovyBayTemperature\sst_2019-04.asc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="~Documentation\EwERunConsole_help.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
