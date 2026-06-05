@@ -2,7 +2,7 @@
   "profiles": {
     "EwERunConsole": {
       "commandName": "Project",
-      "commandLineArgs": "--i \"Testdata\\AnchovyBay_runinfo.json\" --o \"Testoutput\""
+      "commandLineArgs": "--i \"Testdata\\VLIZ_runinfo.json\" --o \"Testoutput\""
     },
     "Cesc testing": {
       "commandName": "Project",

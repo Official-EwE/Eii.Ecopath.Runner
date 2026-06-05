@@ -1,0 +1,15 @@
+{
+  "Configuration": {
+    "ModelFile": "SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml",
+    "EcosimScenario": 1,
+    "EcosimTimeseries": 0,
+    "EcospaceScenario": 0,
+    "SaveWithHeader": true,
+    "ExtDataConfigFile": "",
+    "RunYears": 50
+  },
+  "EcosimRun": {
+    "SaveContentCSV": [ "biomass", "catch", "effort" ],
+    "SaveAnnual": false
+   }
+}
