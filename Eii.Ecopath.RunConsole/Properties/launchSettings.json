@@ -2,11 +2,11 @@
   "profiles": {
     "EwERunConsole": {
       "commandName": "Project",
-      "commandLineArgs": "--i \"Testdata\\AnchovyBay_runinfo.json\" --o \"Testoutput\""
+      "commandLineArgs": "--i \"Testdata\\VLIZ\\VLIZ_runinfo.json\" --o \"Testoutput\\VLIZ\""
     },
-    "Cesc testing": {
+    "AnchovyBay": {
       "commandName": "Project",
-      "commandLineArgs": "--i \"D:/Cesc test setup/data/AnchovyBay_runinfo.json\" --o \"D:/Cesc test setup/output\" --t"
+      "commandLineArgs": "--i \"Testdata\\AnchovyBay\\AnchovyBay_runinfo.json\" --o \"Testoutput\\AnchovyBay\""
     }
   }
 }
