@@ -2,7 +2,10 @@
 using EwECore;
 using EwERunConsole.Instructions;
 using EwERunConsole.Runtime;
+using EwEUtils.Logging;
 using EwEUtils.Utilities;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,8 +17,27 @@ class Program
 {
     public static int Main(string[] args)
     {
+        string logFolder = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "EwERunConsole", "Logs");
+
+        // Configure Serilog
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Verbose()
+            .WriteTo.File($"{logFolder}\\log-.txt", outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {Message:lj}{NewLine}{Exception}", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+
+        //Initialize LoggerFactory (to be used by the EwE Core and other components)
+        LoggingContext.LoggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddSerilog();
+        });
+
+        // Initialize logger after LoggerFactory is created
+        var m_logger = LoggingContext.LoggerFactory.CreateLogger("EwERunConsole");
+
         ParserResult<CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
-            .WithParsed(options => { ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands); })
+            .WithParsed(options => { ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, m_logger); })
             .WithNotParsed(errors => { Complain(errors); });
 
         return 1;
@@ -26,7 +48,7 @@ class Program
     /// </summary>
     /// <param name="runinfofile"></param>
     /// <param name="outputfolder"></param>
-    static void ParseInstructions(string runinfofile, string? outputfolder, bool showtree, bool showcommands)
+    static void ParseInstructions(string runinfofile, string? outputfolder, bool showtree, bool showcommands, Microsoft.Extensions.Logging.ILogger logger)
     {
         cEwERunInstructions? info;
 
