@@ -8,7 +8,7 @@ namespace EwERunConsole.Instructions
     /// would want to configure.
     /// </summary>
     // ------------------------------------------------------------------------
-    internal class cEwEConfiguration
+    public class cEwEConfiguration
     {
         // --------------------------------------------------------------------
         /// <summary>

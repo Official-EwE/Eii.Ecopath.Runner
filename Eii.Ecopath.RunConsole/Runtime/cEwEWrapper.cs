@@ -17,7 +17,7 @@ namespace EwERunConsole.Runtime
     /// for the different EwE models.
     /// </summary>
     /// -----------------------------------------------------------------------
-    internal class cEwEEngine
+    public class cEwEEngine
     {
         #region Private vars
 

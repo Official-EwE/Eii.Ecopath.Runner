@@ -8,7 +8,7 @@ namespace EwERunConsole.Instructions
     /// like to make to Ecospace.
     /// </summary>
     // --------------------------------------------------------------------
-    internal class cEcospaceRunInstructions : IModelRunInstructions
+    public class cEcospaceRunInstructions : IModelRunInstructions
     {
         public cEcospaceRunInstructions()
         {

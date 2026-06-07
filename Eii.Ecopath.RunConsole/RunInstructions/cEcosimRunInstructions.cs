@@ -3,7 +3,7 @@
 
 namespace EwERunConsole.Instructions
 {
-    internal class cEcosimRunInstructions : IModelRunInstructions
+    public class cEcosimRunInstructions : IModelRunInstructions
     {
         // --------------------------------------------------------------------
         /// <summary>
