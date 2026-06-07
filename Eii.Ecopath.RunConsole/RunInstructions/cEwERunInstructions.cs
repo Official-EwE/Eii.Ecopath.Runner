@@ -10,7 +10,7 @@ namespace EwERunConsole.Instructions
     /// JSON text file provided by the user.
     /// </summary>
     // ------------------------------------------------------------------------
-    internal class cEwERunInstructions
+    public class cEwERunInstructions
     {
         // --------------------------------------------------------------------
         /// <summary>

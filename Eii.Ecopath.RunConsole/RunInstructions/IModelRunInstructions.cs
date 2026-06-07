@@ -9,7 +9,7 @@ namespace EwERunConsole.Instructions
     /// a running EwE model or search routine.
     /// </summary>
     // --------------------------------------------------------------------
-    internal interface IModelRunInstructions
+    public interface IModelRunInstructions
     {
         List<string> SaveContentCSV { get; set; }
         List<cModificationsAtT> Changes { get; set; }

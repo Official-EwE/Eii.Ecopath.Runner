@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunApi", "Eii.Ecopath.RunApi\EwERunApi.csproj", "{1804679E-733C-452F-1D53-9AEF3CD9A74A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,14 @@ Global
 		{3C7D7623-803E-6FD0-7C97-8470E2663399}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3C7D7623-803E-6FD0-7C97-8470E2663399}.Release|x64.ActiveCfg = Release|x64
 		{3C7D7623-803E-6FD0-7C97-8470E2663399}.Release|x64.Build.0 = Release|x64
+		{1804679E-733C-452F-1D53-9AEF3CD9A74A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1804679E-733C-452F-1D53-9AEF3CD9A74A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1804679E-733C-452F-1D53-9AEF3CD9A74A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1804679E-733C-452F-1D53-9AEF3CD9A74A}.Debug|x64.Build.0 = Debug|Any CPU
+		{1804679E-733C-452F-1D53-9AEF3CD9A74A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1804679E-733C-452F-1D53-9AEF3CD9A74A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1804679E-733C-452F-1D53-9AEF3CD9A74A}.Release|x64.ActiveCfg = Release|Any CPU
+		{1804679E-733C-452F-1D53-9AEF3CD9A74A}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
