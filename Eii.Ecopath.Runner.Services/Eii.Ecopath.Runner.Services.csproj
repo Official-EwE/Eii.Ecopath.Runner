@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.9" />
+    <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.87" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Eii.Ecopath.Runner.Datamodel\Eii.Ecopath.Runner.Datamodel.csproj" />
+  </ItemGroup>
+
+</Project>
