@@ -43,7 +43,16 @@
     <None Update="Anchovy Bay Spatial.eiixml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Testdata\AnchovyBay\AnchovyBay.eiixml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Testdata\AnchovyBay\AnchovyBay_extdata.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Testdata\AnchovyBay\AnchovyBay_runinfo.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Testdata\AnchovyBay\MPA_test.asc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Testdata\AnchovyBay_runinfo.json">

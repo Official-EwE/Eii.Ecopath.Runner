@@ -1,12 +1,12 @@
 {
   "profiles": {
-    "EwERunConsole": {
-      "commandName": "Project",
-      "commandLineArgs": "--i \"Testdata\\VLIZ\\VLIZ_runinfo.json\" --o \"Testoutput\\VLIZ\""
-    },
     "AnchovyBay": {
       "commandName": "Project",
       "commandLineArgs": "--i \"Testdata\\AnchovyBay\\AnchovyBay_runinfo.json\" --o \"Testoutput\\AnchovyBay\""
+    },
+    "VLIZ": {
+      "commandName": "Project",
+      "commandLineArgs": "--i \"Testdata\\VLIZ\\VLIZ_runinfo.json\" --o \"Testoutput\\VLIZ\""
     }
   }
 }
