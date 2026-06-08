@@ -1,0 +1,45 @@
+{
+  "Configuration": {
+    "ModelFile": "AnchovyBay.eiixml",
+    "EcosimScenario": 1,
+    "EcosimTimeseries": 0,
+    "EcospaceScenario": 1,
+    "SaveWithHeader": true,
+    "ExtDataConfigFile": "AnchovyBay_extdata.xml",
+    "RunYears": 50
+  },
+  "EcosimRun": {
+    "SaveContentCSV": [ "biomass", "catch" ],
+    "SaveAnnual": false,
+    "Changes": [
+      {
+        "Date": "start",
+        "Modifications": {
+          "ecosim.forcing[3].fill": [ 1 ]
+        }
+      }
+    ]
+  },
+  "EcospaceRun": {
+    "RunSpinupYears": 10,
+    "UseIBM": true,
+    "SaveFirstYear": 2005,
+    "SaveAnnual": true,
+    "SaveContentAsc": [ "biomass", "catch", "effort" ],
+    "SaveContentCsv": [ "xyz" ],
+    "Changes": [
+      {
+        "Date": "start",
+        "Modifications": {
+          "ecospace.mpa[1].map.fill": 0
+        }
+      },
+      {
+        "Date": "1-1-2025",
+        "Modifications": {
+          "ecospace.mpa[1].map.load": "mpa_test.asc"
+        }
+      }
+    ]
+  }
+}
