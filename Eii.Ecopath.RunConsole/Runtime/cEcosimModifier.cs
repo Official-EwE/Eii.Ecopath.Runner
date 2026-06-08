@@ -52,7 +52,9 @@ namespace EwERunConsole.Runtime
             cEcosimResultWriter wr = new cEcosimResultWriter(this.Core);
             if (m_autosaveresults.Count > 0)
             {
-                wr.WriteResults("", m_autosaveresults.ToArray(), m_bSaveAnnual ? TriState.False : TriState.True, true);
+                string path = this.Core.get_DefaultOutputPath(eAutosaveTypes.EcosimResults);
+                wr.WriteResults(path, null, m_bSaveAnnual ? TriState.False : TriState.True, false);
+                Console.WriteLine("Ecosim wrote output to {0}", path);
             }
         }
 
