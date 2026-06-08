@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -37,6 +37,7 @@ jobs:
 
       - name: Show version
         run: echo "Building version ${{ steps.gitversion.outputs.semVer }}"
+        shell: bash
 
       # Ensure that the github-Official-EwE NuGet source is configured. The standard GITHUB_TOKEN is used. It's automatically created by GitHub Actions and is available as 'github.toke'
       # So you don't have to pass it to this action explicitly. (because 'secrets', and subsequently 'secrets.GITHUB_TOKEN' is not accessible in reusable workflows)
@@ -58,6 +59,7 @@ jobs:
 
       - name: Restore
         run: dotnet restore Eii.Ecopath.Runner.Console/EwERunConsole.csproj
+        shell: bash
 
       - name: Publish
         run: >
@@ -69,13 +71,12 @@ jobs:
           /p:Version=${{ steps.gitversion.outputs.semVer }}
           /p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }}
           /p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }}
+        shell: bash
 
       - name: Create ZIP
-        shell: pwsh
+        shell: bash
         run: >
-          Compress-Archive
-          -Path publish/EwERunConsole/*
-          -DestinationPath EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip
+          zip -r EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip publish/EwERunConsole/*
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
