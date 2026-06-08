@@ -30,7 +30,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v4.1.0
         with:
           overrideConfig: |
-            workflow=TrunkBased
+            workflow=TrunkBased/v1
             tag-prefix=v
             commit-message-incrementing=MergeMessageOnly
 
