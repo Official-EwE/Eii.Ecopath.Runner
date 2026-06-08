@@ -55,3 +55,4 @@ nunit-*.xml
 /.vs/Eii.Ecopath.RunConsole.slnx/v18
 /.vs/EwERunConsole
 /.vs
+/Eii.Ecopath.RunConsole/EwERunConsole.csproj.user
