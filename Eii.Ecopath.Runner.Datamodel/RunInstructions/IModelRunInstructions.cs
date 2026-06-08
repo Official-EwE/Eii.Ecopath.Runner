@@ -1,0 +1,17 @@
+﻿
+using System.Collections.Generic;
+
+namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
+{
+    // --------------------------------------------------------------------
+    /// <summary>
+    /// Interface for describing the changes that a user may want to make to
+    /// a running EwE model or search routine.
+    /// </summary>
+    // --------------------------------------------------------------------
+    public interface IModelRunInstructions
+    {
+        List<string> SaveContentCSV { get; set; }
+        List<cModificationsAtT> Changes { get; set; }
+    }
+}

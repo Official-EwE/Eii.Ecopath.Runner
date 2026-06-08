@@ -57,11 +57,11 @@ jobs:
         shell: bash
 
       - name: Restore
-        run: dotnet restore Eii.Ecopath.RunConsole/EwERunConsole.csproj
+        run: dotnet restore Eii.Ecopath.Runner.Console/EwERunConsole.csproj
 
       - name: Publish
         run: >
-          dotnet publish Eii.Ecopath.RunConsole/EwERunConsole.csproj
+          dotnet publish Eii.Ecopath.Runner.Console/EwERunConsole.csproj
           --configuration Release
           --runtime win-x64
           --self-contained false
