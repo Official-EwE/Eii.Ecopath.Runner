@@ -61,6 +61,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             RunSuccess = true;
             // Go for it
             RunSuccess &= Core.RunEcosim();
+            DoAutosave();
             // Done
             return RunSuccess;
         }
@@ -80,12 +81,6 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                         (int)Core.EcosimFirstYear() + ((iTime - 1) / ds.NumStepsPerYear));
                 }
                 RunSuccess &= Apply(iTime);
-            }
-
-            if (e == cEcosimBridgePlugin.EventType.EndTimeStepPost)
-            {
-                if (iTime == ds.NTimes)
-                    DoAutosave();
             }
         }
 

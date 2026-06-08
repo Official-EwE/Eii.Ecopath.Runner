@@ -1,5 +1,4 @@
 ﻿using EwECore;
-using System;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -24,6 +23,12 @@ namespace Eii.Ecopath.Runner.Services.Automation
             cFishingEffortShapeManger man = this.Core.FishingEffortShapeManager;
             cShapeData[] shapes = (cShapeData[])man.Shapes;
             return new cForcingFunctionNode(this.Core, shapes[iFleet]);
+        }
+
+        /// <see cref="fishingmortality(int)"/>
+        public cForcingFunctionNode? f(int iGroup)
+        {
+            return fishingmortality(iGroup);
         }
 
         public cForcingFunctionNode? fishingmortality(int iGroup)
