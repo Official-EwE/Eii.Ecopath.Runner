@@ -30,10 +30,9 @@ jobs:
         uses: gittools/actions/gitversion/execute@v4.1.0
         with:
           overrideConfig: |
-            workflow=TrunkBased/preview1
-            commit-message-incrementing=Enabled
+            workflow=TrunkBased
             tag-prefix=v
-            increment=Patch
+            commit-message-incrementing=MergeMessageOnly
 
       - name: Show version
         run: echo "Building version ${{ steps.gitversion.outputs.semVer }}"
@@ -75,8 +74,9 @@ jobs:
 
       - name: Create ZIP
         shell: bash
-        run: >
-          zip -r EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip publish/EwERunConsole/*
+        run: |
+          cd publish/EwERunConsole
+          zip -r ../../EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip .
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
