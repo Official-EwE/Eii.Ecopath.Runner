@@ -2,7 +2,7 @@
 
 namespace EwERunConsole.Instructions
 {
-    internal class cEcopathRunInstructions : IModelRunInstructions
+    public class cEcopathRunInstructions : IModelRunInstructions
     {
         // --------------------------------------------------------------------
         /// <summary>

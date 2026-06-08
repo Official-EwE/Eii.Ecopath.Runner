@@ -2,7 +2,7 @@
 
 namespace EwERunConsole.Instructions
 {
-    internal class cEcotracerRunInstructions : IModelRunInstructions
+    public class cEcotracerRunInstructions : IModelRunInstructions
     {
         // --------------------------------------------------------------------
         /// <summary>

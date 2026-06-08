@@ -11,7 +11,7 @@ namespace EwERunConsole.Instructions
     /// given EwE model at a given moment in time.
     /// </summary>
     // --------------------------------------------------------------------
-    internal class cModificationsAtT
+    public class cModificationsAtT
     {
         public cModificationsAtT()
         {
