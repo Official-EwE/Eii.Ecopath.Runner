@@ -6,6 +6,7 @@ using EwERunConsole.Instructions;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace EwERunConsole.Runtime
 {
@@ -53,7 +54,8 @@ namespace EwERunConsole.Runtime
             if (m_autosaveresults.Count > 0)
             {
                 string path = this.Core.get_DefaultOutputPath(eAutosaveTypes.EcosimResults);
-                wr.WriteResults(path, null, m_bSaveAnnual ? TriState.False : TriState.True, false);
+                Directory.CreateDirectory(path);
+                wr.WriteResults(path, m_autosaveresults.ToArray(), m_bSaveAnnual ? TriState.False : TriState.True, false);
                 Console.WriteLine("Ecosim wrote output to {0}", path);
             }
         }
@@ -61,8 +63,10 @@ namespace EwERunConsole.Runtime
         public override bool Run()
         {
             RunSuccess = true;
+
             // Go for it
             RunSuccess &= Core.RunEcosim();
+            DoAutosave();
             // Done
             return RunSuccess;
         }
@@ -74,7 +78,6 @@ namespace EwERunConsole.Runtime
 
             if (e == cEcosimBridgePlugin.EventType.BeginTimeStep)
             {
-
                 // Print out time tracking
                 if ((iTime - 1) % ds.NumStepsPerYear == 0)
                 {
@@ -82,12 +85,6 @@ namespace EwERunConsole.Runtime
                         (int)Core.EcosimFirstYear() + ((iTime - 1) / ds.NumStepsPerYear));
                 }
                 RunSuccess &= Apply(iTime);
-            }
-
-            if (e == cEcosimBridgePlugin.EventType.EndTimeStepPost)
-            {
-                if (iTime == ds.NTimes)
-                    DoAutosave();
             }
         }
 

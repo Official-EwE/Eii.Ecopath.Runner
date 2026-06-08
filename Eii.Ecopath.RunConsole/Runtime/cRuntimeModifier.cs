@@ -2,9 +2,9 @@
 using EwECore.Plugins;
 using EwERunConsole.Automation;
 using EwERunConsole.Instructions;
-using System.Diagnostics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace EwERunConsole.Runtime
 {
@@ -48,7 +48,7 @@ namespace EwERunConsole.Runtime
             Root = root;
             Configuration = config;
             RunModel = runmodel;
-            Changes = new Dictionary<int, cModificationsAtT>();  
+            Changes = new Dictionary<int, cModificationsAtT>();
 
             // Parse and complete information in the requrest changes, and organize
             // them in an internal dictionary for ease of processing.
@@ -119,13 +119,13 @@ namespace EwERunConsole.Runtime
                 Debug.Assert(c != null);
 
                 // Instantiate code automation tree
-                cEwERootNode om = new cEwERootNode(Core); 
+                cEwERootNode om = new cEwERootNode(Core);
                 // Process all changes
                 foreach (string key in c.modifications.Keys)
                 {
                     // Apply change at the current Root. Keys are processed in lower case
                     if (om.Invoke(Root, key.ToLower(), c.modifications[key]))
-                        Console.WriteLine("TS {0,4}: Applied {1}({2})", iTime, key, c.modifications[key]);
+                        Console.WriteLine("TS {0,4}: Applied {1}({2})", iTime, key, FormatModificationValue(c.modifications[key]));
                     else
                         bSucces = false;
                 }
@@ -180,6 +180,28 @@ namespace EwERunConsole.Runtime
             if (plugins.Count > 0)
                 return plugins[0];
             return null;
+        }
+
+
+        private static string FormatModificationValue(object value)
+        {
+            if (value == null)
+                return "";
+
+            if (value is string text)
+                return "\"" + text + "\"";
+
+            if (value is System.Collections.IEnumerable values && !(value is string))
+            {
+                List<string> parts = new List<string>();
+
+                foreach (object item in values)
+                    parts.Add(FormatModificationValue(item));
+
+                return "[" + string.Join(", ", parts) + "]";
+            }
+
+            return Convert.ToString(value, System.Globalization.CultureInfo.InvariantCulture);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace EwERunConsole.Automation
 {
     public class cEnvResponseFunctionNode : cFunctionNode
     {
-        public cEnvResponseFunctionNode(cCore core, cEnviroResponseFunction shapeData) : base(core, shapeData) 
+        public cEnvResponseFunctionNode(cCore core, cEnviroResponseFunction shapeData) : base(core, shapeData)
         {
         }
 
@@ -16,11 +16,11 @@ namespace EwERunConsole.Automation
             this.Shape.LockUpdates();
             fn.LeftBottom = leftbottom;
             fn.LeftTop = lefttop;
-            fn.RightTop = righttop; 
-            fn.RightBottom = rightbottom;  
+            fn.RightTop = righttop;
+            fn.RightBottom = rightbottom;
             this.RespFn.ResponseLeftLimit = leftbottom;
             this.RespFn.ResponseRightLimit = rightbottom;
-            this.setpoints(fn.Shape(1200));
+            this.setpoints(fn.Shape(1200), false);
             this.Shape.UnlockUpdates();
             return true;
         }

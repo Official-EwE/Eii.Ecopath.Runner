@@ -26,6 +26,12 @@ namespace EwERunConsole.Automation
             return new cForcingFunctionNode(this.Core, shapes[iFleet]);
         }
 
+        /// <see cref="fishingmortality(int)"/>
+        public cForcingFunctionNode? f(int iGroup)
+        {
+            return fishingmortality(iGroup);
+        }
+
         public cForcingFunctionNode? fishingmortality(int iGroup)
         {
             if ((iGroup < 1) | (iGroup > this.Core.nGroups))
@@ -39,7 +45,7 @@ namespace EwERunConsole.Automation
             return new cForcingFunctionNode(this.Core, shapes[iGroup]);
         }
 
-        public cEnvResponseFunctionNode? envresponse(int iIndex)
+        public cEnvResponseFunctionNode? foragingresponse(int iIndex)
         {
             cEnviroResponseShapeManager man = this.Core.EnviroResponseShapeManager;
             if ((iIndex < 1) | (iIndex > man.Count))
