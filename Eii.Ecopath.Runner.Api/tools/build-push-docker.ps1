@@ -29,7 +29,7 @@ $ProjectName = Split-Path $ProjectDir -Leaf
 Write-Host "Project Name (raw): '$ProjectName'"
 
 # Normalize: remove dashes and convert to lowercase
-$Normalized = $ProjectName -replace '-', ''
+$Normalized = $ProjectName -replace '-', '' -replace '\.', ''
 $Normalized = $Normalized.ToLowerInvariant()
 Write-Host "Normalized Name: '$Normalized'"
 
