@@ -27,4 +27,8 @@
     </None>
   </ItemGroup>
 
+  <Target Name="BuildPushDockerImage">
+    <Exec Command="powershell.exe -ExecutionPolicy Bypass -File &quot;$(MSBuildProjectDirectory)\tools\build-push-docker.ps1&quot;" />
+  </Target>
+
 </Project>
