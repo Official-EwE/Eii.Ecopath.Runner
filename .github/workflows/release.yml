@@ -31,9 +31,7 @@ jobs:
         with:
           overrideConfig: |
             workflow=TrunkBased/preview1
-            commit-message-incrementing=Enabled
             tag-prefix=v
-            increment=Patch
 
       - name: Show version
         run: echo "Building version ${{ steps.gitversion.outputs.semVer }}"
