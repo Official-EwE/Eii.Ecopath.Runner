@@ -20,6 +20,8 @@ namespace EwERunProcess
             if (string.IsNullOrEmpty(outputDirectory))
                 throw new InvalidOperationException("Environment variable OUTPUT_DIRECTORY is not set.");
 
+            if(!Directory.Exists(inputDirectory))
+                throw new DirectoryNotFoundException($"Input directory '{inputDirectory}' does not exist.");
             Directory.CreateDirectory(outputDirectory);
 
             var host = Host.CreateDefaultBuilder(args)
@@ -30,7 +32,7 @@ namespace EwERunProcess
                     {
                         var blobLogger = sp.GetRequiredService<ILogger<Program>>();
 
-                        // if AWS_ACCESS_KEY_ID is set, use S3BlobStore
+                        // if AWS_ACCESS_KEY_ID is set, use S3BlobStore. The AWS env vars are read in LoadVaultSecretsInEnvironmentVariables
                         if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID")))
                         {
                             blobLogger.LogInformation("Environment variable AWS_ACCESS_KEY_ID found. Using S3BlobStore");
@@ -45,7 +47,7 @@ namespace EwERunProcess
 
                         // Default local Filesystem
                         blobLogger.LogInformation("Using LocalBlobStore");
-                        return new LocalBlobStore(inputRoot: "Includes", outputRoot: "Output");
+                        return new LocalBlobStore(inputRoot: inputDirectory, outputRoot: outputDirectory);
                     });
                 })
                 .Build();
@@ -72,7 +74,7 @@ namespace EwERunProcess
             var logger = LoggingContext.LoggerFactory.CreateLogger<Program>();
             logger.LogInformation("EwERunProcess starting up.......................");
 
-            LoadVaultSecretsInEnvironmentVariables();
+            LoadVaultSecretsInEnvironmentVariables(configuration);
             logger.LogInformation("============================= Logging All Environment Variables =============================");
             foreach (System.Collections.DictionaryEntry envVar in Environment.GetEnvironmentVariables())
             {
@@ -92,10 +94,10 @@ namespace EwERunProcess
         /// Loads secrets from Vault into environment variables. Expects the following environment variables to be set to connect to Vault and locate the secrets:
         /// VAULT_ADDR, VAULT_TOKEN, VAULT_TOP_DIR, VAULT_RELATIVE_PATH, VAULT_MOUNT
         /// </summary>
-        public static void LoadVaultSecretsInEnvironmentVariables()
+        public static void LoadVaultSecretsInEnvironmentVariables(IConfiguration configuration)
         {
             var vaultAddr = Environment.GetEnvironmentVariable("VAULT_ADDR");
-            var vaultToken = Environment.GetEnvironmentVariable("VAULT_TOKEN");
+            var vaultToken = Environment.GetEnvironmentVariable("VAULT_TOKEN") ?? configuration["VAULT_TOKEN"];     // VAULT_TOKEN must be stored as a secret, so it isn't added to Git
             var vaultTopDir = Environment.GetEnvironmentVariable("VAULT_TOP_DIR");
             var vaultRelativePath = Environment.GetEnvironmentVariable("VAULT_RELATIVE_PATH");
             var vaultMount = Environment.GetEnvironmentVariable("VAULT_MOUNT");
@@ -109,7 +111,7 @@ namespace EwERunProcess
             var secretPath = $"{vaultTopDir}/{vaultRelativePath}";
             try
             {
-                var secret = vaultClient.V1.Secrets.KeyValue.V2.ReadSecretAsync(secretPath, mountPoint: vaultMount).Result;
+                var secret = vaultClient.V1.Secrets.KeyValue.V2.ReadSecretAsync(secretPath, mountPoint: vaultMount).ConfigureAwait(false).GetAwaiter().GetResult();
                 foreach (var kv in secret.Data.Data)
                 {
                     Environment.SetEnvironmentVariable(kv.Key, kv.Value.ToString());

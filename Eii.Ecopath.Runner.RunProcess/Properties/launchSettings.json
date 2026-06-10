@@ -3,9 +3,9 @@
     "Eii.Ecopath.Runner.RunProcess": {
       "commandName": "Project",
       "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
         "RUN_INFO_PATH": "etc/config/runinfo.json",
         "VAULT_ADDR": "https://vault.dive.edito.eu",
-        "VAULT_TOKEN": "hvs.CAESIEwkIJEYBGJ8XUpgcUS10u-RCoRwyvD89phhex2v9wGwGh4KHGh2cy5zOG1ianN6NXZpQ2p0TERNZG5JY1lmVmU",
         "VAULT_TOP_DIR": "rikkert",
         "VAULT_RELATIVE_PATH": "s3-credentials",
         "VAULT_MOUNT": "secret-kv",
