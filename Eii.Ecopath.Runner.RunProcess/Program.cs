@@ -1,6 +1,5 @@
 ﻿using Eii.BlobStore;
 using Eii.BlobStore.S3;
-using Eii.Ecopath.Runner.Datamodel.Utilities;
 using EwEUtils.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,79 +22,68 @@ namespace EwERunProcess
 
             Directory.CreateDirectory(outputDirectory);
 
-            IHost host;
-            ILogger<Program> logger;
-
-            using (new cConsoleCopy(Path.Combine(outputDirectory, "EwERunProcess_log.txt")))
-            {
-                host = Host.CreateDefaultBuilder(args)
-                    .ConfigureServices((context, services) =>
+            var host = Host.CreateDefaultBuilder(args)
+                .ConfigureServices((context, services) =>
+                {
+                    services.AddTransient<EwERunProcessService>();
+                    services.AddSingleton<IBlobStore>(sp =>
                     {
-                        services.AddTransient<EwERunProcessService>();
-                        services.AddSingleton<IBlobStore>(sp =>
+                        var blobLogger = sp.GetRequiredService<ILogger<Program>>();
+
+                        // if AWS_ACCESS_KEY_ID is set, use S3BlobStore
+                        if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID")))
                         {
-                            var blobLogger = sp.GetRequiredService<ILogger<Program>>();
+                            blobLogger.LogInformation("Environment variable AWS_ACCESS_KEY_ID found. Using S3BlobStore");
+                            return new S3BlobStore(
+                                Environment.GetEnvironmentVariable("AWS_S3_ENDPOINT"),
+                                Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID"),
+                                Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY"),
+                                Environment.GetEnvironmentVariable("AWS_BUCKET_NAME"),
+                                inputBasePrefix: $"ewerunprocess/{inputDirectory}", outputBasePrefix: $"ewerunprocess/{outputDirectory}",
+                                localInputRoot: inputDirectory, localOutputRoot: outputDirectory);
+                        }
 
-                            // if AWS_ACCESS_KEY_ID is set, use S3BlobStore
-                            if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID")))
-                            {
-                                blobLogger.LogInformation("Environment variable AWS_ACCESS_KEY_ID found. Using S3BlobStore");
-                                return new S3BlobStore(
-                                    Environment.GetEnvironmentVariable("AWS_S3_ENDPOINT"),
-                                    Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID"),
-                                    Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY"),
-                                    Environment.GetEnvironmentVariable("AWS_BUCKET_NAME"),
-                                    inputBasePrefix: $"ewerunprocess/{inputDirectory}", outputBasePrefix: $"ewerunprocess/{outputDirectory}",
-                                    localInputRoot: inputDirectory, localOutputRoot: outputDirectory);
-                            }
+                        // Default local Filesystem
+                        blobLogger.LogInformation("Using LocalBlobStore");
+                        return new LocalBlobStore(inputRoot: "Includes", outputRoot: "Output");
+                    });
+                })
+                .Build();
 
-                            // Default local Filesystem
-                            blobLogger.LogInformation("Using LocalBlobStore");
-                            return new LocalBlobStore(inputRoot: "Includes", outputRoot: "Output");
-                        });
-                    })
-                    .Build();
-
-                // Initialize LoggerFactory of EwE sources that don't get the ILogger via Dependency injection
-                var configuration = host.Services.GetRequiredService<IConfiguration>();
-                LoggingContext.LoggerFactory = LoggerFactory.Create(logBuilder =>
+            // Initialize LoggerFactory of EwE sources that don't get the ILogger via Dependency injection
+            var configuration = host.Services.GetRequiredService<IConfiguration>();
+            LoggingContext.LoggerFactory = LoggerFactory.Create(logBuilder =>
+            {
+                logBuilder.AddConfiguration(configuration.GetSection("Logging"));   // so you can add a 'Logging' section to the appsettings.json to configure logging
+                logBuilder.AddConsole(options =>
                 {
-                    logBuilder.AddConfiguration(configuration.GetSection("Logging"));   // so you can add a 'Logging' section to the appsettings.json to configure logging
-                    logBuilder.AddConsole(options =>
-                    {
-                        options.FormatterName = "systemd";
-                    });
-                    logBuilder.AddSimpleConsole(options =>
-                    {
-                        options.IncludeScopes = false;
-                        options.SingleLine = true;
-                        options.TimestampFormat = "HH:mm:ss ";
-                    });
-                    logBuilder.AddDebug();
+                    options.FormatterName = "systemd";
                 });
-
-                // Create a logger for the Program class
-                logger = LoggingContext.LoggerFactory.CreateLogger<Program>();
-                logger.LogInformation("EwERunProcess starting up.......................");
-
-                LoadVaultSecretsInEnvironmentVariables();
-                logger.LogInformation("============================= Logging All Environment Variables =============================");
-                foreach (System.Collections.DictionaryEntry envVar in Environment.GetEnvironmentVariables())
+                logBuilder.AddSimpleConsole(options =>
                 {
-                    logger.LogInformation("{Key}: {Value}", envVar.Key, envVar.Value);
-                }
-                logger.LogInformation("============================= End of Environment Variables =============================");
+                    options.IncludeScopes = false;
+                    options.SingleLine = true;
+                    options.TimestampFormat = "HH:mm:ss ";
+                });
+                logBuilder.AddDebug();
+            });
 
-                logger.LogInformation("EwERunProcess running.......................");
+            // Create a logger for the Program class
+            var logger = LoggingContext.LoggerFactory.CreateLogger<Program>();
+            logger.LogInformation("EwERunProcess starting up.......................");
 
-                var service = host.Services.GetRequiredService<EwERunProcessService>();
-                var result = await service.Run(inputDirectory, outputDirectory);
+            LoadVaultSecretsInEnvironmentVariables();
+            logger.LogInformation("============================= Logging All Environment Variables =============================");
+            foreach (System.Collections.DictionaryEntry envVar in Environment.GetEnvironmentVariables())
+            {
+                logger.LogInformation("{Key}: {Value}", envVar.Key, envVar.Value);
+            }
+            logger.LogInformation("============================= End of Environment Variables =============================");
 
-            } // cConsoleCopy disposed here — log file released before UploadDirectoryOrIgnoreAsync
+            logger.LogInformation("EwERunProcess running.......................");
 
-            var blobStore = host.Services.GetRequiredService<IBlobStore>();
-            var outputFiles = await blobStore.UploadDirectoryOrIgnoreAsync("", PathType.Output);
-            Console.WriteLine("Nr of output files: {0}", outputFiles.Count());
+            var service = host.Services.GetRequiredService<EwERunProcessService>();
+            var result = await service.Run(inputDirectory, outputDirectory);
 
             logger.LogInformation("EwERunProcess shutting down.......................");
         }
