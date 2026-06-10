@@ -4,10 +4,16 @@
       "commandName": "Project",
       "environmentVariables": {
         "RUN_INFO_PATH": "etc/config/runinfo.json",
-        "AWS_ACCESS_KEY_ID": "UY4MQRSPJF91V03QWPD0",
-        "AWS_SECRET_ACCESS_KEY": "FFTyMZriF1TFWZizIr65FOpxpLXZsaJksfmiiEKG",
+        "VAULT_ADDR": "https://vault.dive.edito.eu",
+        "VAULT_TOKEN": "hvs.CAESIEwkIJEYBGJ8XUpgcUS10u-RCoRwyvD89phhex2v9wGwGh4KHGh2cy5zOG1ianN6NXZpQ2p0TERNZG5JY1lmVmU",
+        "VAULT_TOP_DIR": "rikkert",
+        "VAULT_RELATIVE_PATH": "s3-credentials",
+        "VAULT_MOUNT": "secret-kv",
         "AWS_S3_ENDPOINT": "minio.dive.edito.eu",
-        "AWS_SESSION_TOKEN": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NLZXkiOiJVWTRNUVJTUEpGOTFWMDNRV1BEMCIsImFjciI6IjAiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJhdWQiOlsibWluaW8iLCJhY2NvdW50Il0sImF1dGhfdGltZSI6MTc4MDU4MTYyMiwiYXpwIjoib255eGlhLW1pbmlvIiwiZW1haWwiOiJyaWsua3JlZWZ0ZW5iZXJnQHNwaW5zb2Z0Lm5sIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImV4cCI6MTc4MTE3MTI5OCwiZmFtaWx5X25hbWUiOiJLcmVlZnRlbmJlcmciLCJnaXZlbl9uYW1lIjoiUmlrIiwiZ3JvdXBzIjpbIkVESVRPX1VTRVIiLCJzdXJpbWkiXSwiaWF0IjoxNzgxMDg0ODk4LCJpc3MiOiJodHRwczovL2F1dGguZGl2ZS5lZGl0by5ldS9hdXRoL3JlYWxtcy9kYXRhbGFiIiwianRpIjoiZmYzY2VmYTItOTY4YS00M2VhLWFlY2QtNGE1MDU2NWFiMjI0IiwibmFtZSI6IlJpayBLcmVlZnRlbmJlcmciLCJwb2xpY3kiOiJzdHNvbmx5IiwicHJlZmVycmVkX3VzZXJuYW1lIjoicmlra2VydCIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWRhdGFsYWIiLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19LCJtaW5pbyI6eyJyb2xlcyI6WyJzdHNvbmx5Il19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsInNlc3Npb25fc3RhdGUiOiJlYmY0ZGE3Zi00ZjExLTRjMjQtOTYyMS1iMTkzMDQ3NTMxNDgiLCJzaWQiOiJlYmY0ZGE3Zi00ZjExLTRjMjQtOTYyMS1iMTkzMDQ3NTMxNDgiLCJzdWIiOiIzMTJmZDE4MC1jYzVjLTQ1YmQtYTY4OS1hNDBjMDI4NmJjYjQiLCJ0eXAiOiJCZWFyZXIifQ.SrxiCvxR1Shj_jDW_B94RzvIY0WBKpYikIpa9KDMDmQYED8JmG0_qidO2dqFdGSKmW8ouYboReFDl5kPYQUSPw"
+        "AWS_DEFAULT_REGION": "waw3-1",
+        "AWS_BUCKET_NAME": "oidc-rikkert",
+        "INPUT_DIRECTORY": "testdata/anchovybay",
+        "OUTPUT_DIRECTORY": "testoutput/anchovybay"
       }
     },
     "Container (Dockerfile)": {

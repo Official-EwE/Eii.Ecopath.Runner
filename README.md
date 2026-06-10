@@ -39,4 +39,13 @@ flowchart TD
     G -- No --> K
     I -- No --> K
 
-    ```
+```
+
+# Eii.Ecopath.Runner.RunProcess
+
+When the Docker image is loaded after the Process API has started it, the runinfo JSON file stored a location stored in the `RUN_INFO_PATH` environment variable.
+
+This is for example: `/etc/config/runinfo.json`.
+This file is copied to the outputDirectory.
+
+Then it is deserialized into a `cEwERunInstructions` object, which is then passed to the `cEwEEngine` to orchestrate the run.
