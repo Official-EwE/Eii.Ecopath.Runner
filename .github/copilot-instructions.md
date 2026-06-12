@@ -59,7 +59,7 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
 - `cModificationsAtT` — parameter changes to inject at a specific date or time step.
 - `IModelRunInstructions` — interface implemented by all per-model instruction classes.
 - `JsonStrictConverter` — applied to each section; unknown JSON properties cause a reported error.
-- `cConsoleCopy` — tees console output to a log file.
+- `cConsoleCopy` — tees console output to a log file. **Note:** `cConsoleCopy` does NOT work reliably in Kubernetes. For writing console output to a log file in Kubernetes, use a different approach (e.g. a custom TextWriter or direct file writing) without `cConsoleCopy`.
 
 ### Services / runtime (`Eii.Ecopath.Runner.Services`)
 - `cEwEEngine` (`cEwEEngine.cs`) — instantiates `cCore`, loads plug-ins, and orchestrates the
@@ -100,6 +100,7 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
 - The token is passed to the Docker build as `--build-arg GITHUB_TOKEN` and is also used to
   authenticate `docker login ghcr.io` before pushing.
 - Never commit the token value to source control.
+- For Docker launch profiles in Visual Studio, use `containerRunArguments` to pass extra `docker run` arguments (such as volume bind mounts), NOT `additionalDockerRunArguments`.
 
 ## What to avoid
 - Do not use `this.` unless resolving a name collision.
