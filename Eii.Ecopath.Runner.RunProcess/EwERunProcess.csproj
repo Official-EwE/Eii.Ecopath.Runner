@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Eii.Ecopath.Runner.Services\Eii.Ecopath.Runner.Services.csproj" />
   </ItemGroup>
 
+  <Target Name="BuildPushDockerImage">
+    <Exec Command="powershell.exe -ExecutionPolicy Bypass -File &quot;$(MSBuildProjectDirectory)\tools\build-push-docker.ps1&quot;" />
+  </Target>
+    
 </Project>

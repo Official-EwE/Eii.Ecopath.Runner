@@ -17,7 +17,21 @@
       }
     },
     "Container (Dockerfile)": {
-      "commandName": "Docker"
+      "commandName": "Docker",
+      "containerRunArguments": "-v \"C:/Users/<username>/source/repos/Eii/Eii.Ecopath.Runner/Eii.Ecopath.Runner.RunProcess/testconfig:/etc/config:ro\"",
+        "environmentVariables": {
+            "INPUT_DIRECTORY": "testdata/anchovybay",
+            "OUTPUT_DIRECTORY": "testoutput/anchovybay",
+            "RUN_INFO_PATH": "/etc/config/runinfo.json",
+            "VAULT_TOKEN": "paste your token",
+            "VAULT_ADDR": "https://vault.dive.edito.eu",
+            "VAULT_TOP_DIR": "rikkert",
+            "VAULT_MOUNT": "secret-kv",
+            "VAULT_RELATIVE_PATH": "s3-credentials",
+            "AWS_BUCKET_NAME": "oidc-rikkert",
+            "AWS_S3_ENDPOINT": "minio.dive.edito.eu",
+            "AWS_DEFAULT_REGION": "waw3-1"
+        }
     }
   }
 }

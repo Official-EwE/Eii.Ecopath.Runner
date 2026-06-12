@@ -1,7 +1,8 @@
 ﻿using Eii.BlobStore;
 using Eii.Ecopath.Runner.Datamodel.RunInstructions;
-using Eii.Ecopath.Runner.Datamodel.Utilities;
 using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
+using EwEUtils.Utilities;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
@@ -35,10 +36,19 @@ namespace EwERunProcess
                 throw new InvalidOperationException($"Run info file '{runInfoPath}' cannot be found");
             }
 
+            // Log run info file contents to console
+            Console.WriteLine("Run info file contents:");
+            Console.WriteLine(File.ReadAllText(runInfoPath));
+
             // Copy run info file to input directory
             var runInfoDestPath = Path.Combine(inputDirectory, Path.GetFileName(runInfoPath));
             File.Copy(runInfoPath, runInfoDestPath, overwrite: true);
             m_logger.LogInformation("Copied run info file to '{0}'", runInfoDestPath);
+
+            // Also copy run info file to output directory for reference
+            var runInfoOutputPath = Path.Combine(outputDirectory, Path.GetFileName(runInfoPath));
+            File.Copy(runInfoPath, runInfoOutputPath, overwrite: true);
+            m_logger.LogInformation("Copied run info file to '{0}'", runInfoOutputPath);
 
             try
             {
@@ -78,20 +88,22 @@ namespace EwERunProcess
             // Pass output folder to the EwE engine
             runInstructions.OutputFolder = Path.GetFullPath(outputDirectory);
 
-            // Redirect console output to a log file in the output directory, so it can be uploaded to the blob store after the run. The log file is released after the using block, so it can be uploaded.
-            using (new cConsoleCopy(Path.Combine(outputDirectory, "EwERunProcess_log.txt")))
-            {
-                // Run the EwE engine
-                cEwEEngine engine = new cEwEEngine(runInstructions);
-                if (engine.Run())
-                    Console.WriteLine("Run completed");
-                else
-                    Console.WriteLine("! Run errors encountered");
-            } // cConsoleCopy disposed here — log file released before UploadDirectoryOrIgnoreAsync
+            Console.WriteLine("==========================================================================");
+            Console.WriteLine("EwERunProcess version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
+            Console.WriteLine("EwE Core version {0}", cAssemblyUtils.GetVersion(cAssemblyUtils.GetAssemblyName(typeof(cCore))));
+            Console.WriteLine("Executed on {0}", DateTime.Now);
+            Console.WriteLine("==========================================================================");
+            Console.WriteLine();
 
+            // Run the EwE engine
+            cEwEEngine engine = new cEwEEngine(runInstructions);
+            if (engine.Run())
+                Console.WriteLine("Run completed");
+            else
+                Console.WriteLine("! Run errors encountered");
 
             var outputFiles = await _blobStore.UploadDirectoryOrIgnoreAsync("", PathType.Output);
-            Console.WriteLine("Nr of output files: {0}", outputFiles.Count());
+                Console.WriteLine("Nr of output files: {0}", outputFiles.Count());
 
             return 1;
         }

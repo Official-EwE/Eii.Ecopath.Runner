@@ -12,6 +12,8 @@ namespace EwERunProcess
     {
         public static async Task Main(string[] args)
         {
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
             var inputDirectory = Environment.GetEnvironmentVariable("INPUT_DIRECTORY");
             var outputDirectory = Environment.GetEnvironmentVariable("OUTPUT_DIRECTORY");
 
@@ -20,8 +22,7 @@ namespace EwERunProcess
             if (string.IsNullOrEmpty(outputDirectory))
                 throw new InvalidOperationException("Environment variable OUTPUT_DIRECTORY is not set.");
 
-            if(!Directory.Exists(inputDirectory))
-                throw new DirectoryNotFoundException($"Input directory '{inputDirectory}' does not exist.");
+            Directory.CreateDirectory(inputDirectory);
             Directory.CreateDirectory(outputDirectory);
 
             var host = Host.CreateDefaultBuilder(args)
@@ -87,7 +88,8 @@ namespace EwERunProcess
             var service = host.Services.GetRequiredService<EwERunProcessService>();
             var result = await service.Run(inputDirectory, outputDirectory);
 
-            logger.LogInformation("EwERunProcess shutting down.......................");
+            stopwatch.Stop();
+            logger.LogInformation("EwERunProcess took {Duration} and is shutting down.......................", stopwatch.Elapsed);
         }
 
         /// <summary>
