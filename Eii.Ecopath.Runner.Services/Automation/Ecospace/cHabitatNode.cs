@@ -1,11 +1,12 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cHabitatNode : cEwECoreNode
     {
-        public cHabitatNode(cCore core, cEcospaceHabitat hab, ILogger logger): base(core, hab, logger)
+        public cHabitatNode(IcCoreService coreService, cEcospaceHabitat hab, ILogger logger): base(coreService, hab, logger)
         {
         }
         protected cEcospaceHabitat Habitat => (cEcospaceHabitat)this.CoreObj;
@@ -13,8 +14,8 @@ namespace Eii.Ecopath.Runner.Services.Automation
         // Accessor
         public cMapNode map()
         {
-            cEcospaceBasemap bm = this.Core.EcospaceBasemap;
-            return new cMapNode(this.Core, bm.get_LayerHabitat(this.CoreObj.Index), Logger);
+            cEcospaceBasemap bm = CoreService.EcospaceBasemap;
+            return new cMapNode(CoreService, bm.get_LayerHabitat(this.CoreObj.Index), Logger);
         }
 
     }

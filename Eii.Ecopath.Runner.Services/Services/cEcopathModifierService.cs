@@ -16,7 +16,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// Constructor.
         /// </summary>
         // --------------------------------------------------------------------
-        public cEcopathModifierService(cCoreService coreService, cNodeService nodeService, ILogger<cEcopathModifierService> logger)
+        public cEcopathModifierService(IcCoreService coreService, cNodeService nodeService, ILogger<cEcopathModifierService> logger)
             : base(coreService, nodeService, logger)
         {
         }
@@ -41,7 +41,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             CompleteAndPrepareChanges(mod);
             // ToDo: configure Ecopath settings
             bool runSuccess = Apply(mod, cRuntimeModifier.FirstTimeStep);
-            runSuccess &= Core.RunEcopath();
+            runSuccess &= _coreService.RunEcopath();
             return runSuccess;
         }
     }

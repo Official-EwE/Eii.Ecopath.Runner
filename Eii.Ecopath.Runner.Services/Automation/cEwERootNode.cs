@@ -1,4 +1,5 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
@@ -8,23 +9,23 @@ namespace Eii.Ecopath.Runner.Services.Automation
     /// </summary>
     public class cEwERootNode : cNode
     {
-        public cEwERootNode(cCore core, ILogger logger) : base(core, logger) 
+        public cEwERootNode(IcCoreService coreService, ILogger logger) : base(coreService, logger) 
         { 
         }
 
         public cEcopathNode ecopath()
         {
-            return new cEcopathNode(Core, Logger);
+            return new cEcopathNode(CoreService, Logger);
         }
 
         public cEcosimNode ecosim()
         {
-            return new cEcosimNode(Core, Core.EcosimModelParameters, Logger);
+            return new cEcosimNode(CoreService, CoreService.EcosimModelParameters, Logger);
         }
 
         public cEcospaceNode ecospace()
         {
-            return new cEcospaceNode(Core, Core.EcospaceModelParameters, Logger);
+            return new cEcospaceNode(CoreService, CoreService.EcospaceModelParameters, Logger);
         }
 
         [AutomationIgnore]

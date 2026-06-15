@@ -18,7 +18,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     {
         #region Private vars
 
-        private readonly cCoreService _coreService;
+        protected readonly IcCoreService _coreService;
         private readonly cNodeService _nodeService;
         protected readonly ILogger _logger;
 
@@ -32,19 +32,12 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <param name="nodeService">Automation-tree invocation service.</param>
         /// <param name="logger">Logger for this service.</param>
         // --------------------------------------------------------------------
-        protected cRuntimeModifierService(cCoreService coreService, cNodeService nodeService, ILogger logger)
+        protected cRuntimeModifierService(IcCoreService coreService, cNodeService nodeService, ILogger logger)
         {
             _coreService = coreService;
             _nodeService = nodeService;
             _logger = logger;
         }
-
-        // --------------------------------------------------------------------
-        /// <summary>
-        /// Convenience accessor for the shared <see cref="cCore"/> instance.
-        /// </summary>
-        // --------------------------------------------------------------------
-        protected cCore Core => _coreService.Core;
 
         #region Change processing
 
@@ -92,7 +85,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                     string lowerKey = key.ToLower();
                     object val = c.modifications[key];
                     // Apply change at the current Root. Keys are processed in lower case
-                    if (_nodeService.Invoke(Core, mod.Root, lowerKey, val))
+                    if (_nodeService.Invoke(_coreService, mod.Root, lowerKey, val))
                     {
                         string msg = $"TS {iTime,4}: Applied {key}({val})";
                         Console.WriteLine(msg);
@@ -151,7 +144,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         protected IPlugin? GetPlugin(Type t)
         {
-            cPluginManager pm = Core.PluginManager;
+            cPluginManager pm = _coreService.PluginManager;
             List<IPlugin> plugins = (List<IPlugin>)pm.GetPlugins(t);
             if (plugins.Count > 0)
                 return plugins[0];

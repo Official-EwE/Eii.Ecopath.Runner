@@ -20,7 +20,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// Constructor.
         /// </summary>
         // --------------------------------------------------------------------
-        public cEcospaceModifierService(cCoreService coreService, cNodeService nodeService, ILogger<cEcospaceModifierService> logger)
+        public cEcospaceModifierService(IcCoreService coreService, cNodeService nodeService, ILogger<cEcospaceModifierService> logger)
             : base(coreService, nodeService, logger)
         {
         }
@@ -30,7 +30,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         protected override int DateToTimeStep(DateTime date)
         {
-            return Core.AbsoluteTimeToEcospaceTimestep(date);
+            return _coreService.AbsoluteTimeToEcospaceTimestep(date);
         }
 
         // --------------------------------------------------------------------
@@ -46,12 +46,12 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
             CompleteAndPrepareChanges(mod);
 
-            cEcospaceDataStructures ds = Core.EcospaceDataStructures;
+            cEcospaceDataStructures ds = _coreService.EcospaceDataStructures;
 
             // Disable unnecessary data caching - Ecospace won't be saved after
             ds.PreserveLayerData = false;
             // Reroute spatial log folder
-            Core.SpatialOperationLog.LogFilePath = Core.OutputPath;
+            _coreService.SetSpatialLogFilePath(_coreService.OutputPath);
 
             if (mod.MyRunModel.RunSpinupYears > 0)
             {
@@ -93,7 +93,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             ConfigureAutosave(mod);
 
             // Check data connections
-            Console.WriteLine("Ecospace no. ext data connections = {0}", Core.SpatialDataConnectionManager.NumConnectedAdapters);
+            Console.WriteLine("Ecospace no. ext data connections = {0}", _coreService.SpatialDataConnectionManager.NumConnectedAdapters);
             Console.WriteLine();
             Console.WriteLine("Start run");
             _logger.LogInformation("Ecospace start run");
@@ -110,10 +110,10 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                         // Print out time tracking
                         if ((iTime - 1) % cCore.N_MONTHS == 0)
                         {
-                            cEcospaceDataStructures stepDs = Core.EcospaceDataStructures;
-                            int year = Core.EcospaceTimestepToAbsoluteTime(iTime).Year;
-                            string spinTag = stepDs.bInSpinUp ? " (spin-up)" : "";
-                            string saveTag = (iTime == stepDs.FirstOutputTimeStep) ? " autosaving starting" : "";
+                            cEcospaceDataStructures spinDs = _coreService.EcospaceDataStructures;
+                            int year = _coreService.EcospaceTimestepToAbsoluteTime(iTime).Year;
+                            string spinTag = spinDs.bInSpinUp ? " (spin-up)" : "";
+                            string saveTag = (iTime == spinDs.FirstOutputTimeStep) ? " autosaving starting" : "";
                             Console.WriteLine("{0}{1}{2}", year, spinTag, saveTag);
                             _logger.LogInformation("Ecospace year {Year}{SpinTag}{SaveTag}", year, spinTag, saveTag);
                         }
@@ -140,18 +140,18 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                 eCoreComponentType.External,
                 eMessageType.GISOperation,
                 new SynchronizationContext());
-            Core.Messages.AddMessageHandler(mh);
+            _coreService.AddMessageHandler(mh);
 
             // Go for it - added delegate to meet the requirements of the API
             cCore.EcoSpaceInterfaceDelegate dgt = new cCore.EcoSpaceInterfaceDelegate(
                 (ref cEcospaceTimestep spaceres) => { /* NOP */ });
-            runSuccess &= Core.RunEcospace(ref dgt, false);
+            runSuccess &= _coreService.RunEcospace(ref dgt, false);
 
             Console.WriteLine("End run");
             _logger.LogInformation("Ecospace end run");
 
             // Clean up
-            Core.Messages.RemoveMessageHandler(mh);
+            _coreService.RemoveMessageHandler(mh);
 
             return runSuccess;
         }
@@ -165,8 +165,8 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         private void ConfigureAutosave(cEcospaceModifier mod)
         {
-            cEcospaceModelParameters parms = Core.EcospaceModelParameters;
-            cEcospaceDataStructures ds = Core.EcospaceDataStructures;
+            cEcospaceModelParameters parms = _coreService.EcospaceModelParameters;
+            cEcospaceDataStructures cads = _coreService.EcospaceDataStructures;
 
             Console.WriteLine("Ecospace {0} result writer(s)", parms.nResultWriters);
             for (int i = 0; i < parms.nResultWriters; i++)
@@ -196,9 +196,9 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             }
 
             // Set autosave properties
-            ds.FirstOutputTimeStep = DateToTimeStep(new DateTime(Math.Max(Core.EcosimFirstYear(), mod.MyRunModel.SaveFirstYear), 1, 1));
-            ds.SaveAnnual = mod.MyRunModel.SaveAnnual;
-            Console.WriteLine("Ecospace writing output at time step {0}, {1}", ds.FirstOutputTimeStep, ds.SaveAnnual ? "annual" : "monthly");
+            cads.FirstOutputTimeStep = DateToTimeStep(new DateTime(Math.Max((int)_coreService.EcosimFirstYear(), mod.MyRunModel.SaveFirstYear), 1, 1));
+            cads.SaveAnnual = mod.MyRunModel.SaveAnnual;
+            Console.WriteLine("Ecospace writing output at time step {0}, {1}", cads.FirstOutputTimeStep, cads.SaveAnnual ? "annual" : "monthly");
         }
 
         #endregion // Internals

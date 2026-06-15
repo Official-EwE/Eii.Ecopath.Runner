@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddSingleton<cCoreService>();
+builder.Services.AddSingleton<IcCoreService, cCoreService>();
 builder.Services.AddTransient<cNodeService>();
 builder.Services.AddTransient<cEcopathModifierService>();
 builder.Services.AddTransient<cEcosimModifierService>();

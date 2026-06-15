@@ -1,4 +1,5 @@
 ﻿using Eii.Ecopath.Runner.Services.Automation;
+using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
 using Microsoft.Extensions.Logging;
 
@@ -6,7 +7,7 @@ namespace EwERuEii.Ecopath.Runner.ServicesnConsole.Automation
 {
     public class cMPANode : cEwECoreNode
     {
-        public cMPANode(cCore core, cEcospaceMPA mpa, ILogger logger) : base(core, mpa, logger) 
+        public cMPANode(IcCoreService coreService, cEcospaceMPA mpa, ILogger logger) : base(coreService, mpa, logger) 
         {
         }
 
@@ -14,8 +15,8 @@ namespace EwERuEii.Ecopath.Runner.ServicesnConsole.Automation
         // Accessor
         public cMapNode map()
         {
-            cEcospaceBasemap bm = this.Core.EcospaceBasemap;
-            return new cMapNode(this.Core, bm.get_LayerMPA(this.CoreObj.Index), Logger);
+            cEcospaceBasemap bm = CoreService.EcospaceBasemap;
+            return new cMapNode(CoreService, bm.get_LayerMPA(this.CoreObj.Index), Logger);
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using EwECore.Common;
 using Microsoft.Extensions.Logging;
 
@@ -26,7 +27,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="layer">the <see cref="cEcospaceLayer"/> to operate on.</param>
         /// <param name="logger">Logger for this node.</param>
         // --------------------------------------------------------------------
-        public cMapNode(cCore core, cEcospaceLayer layer, ILogger logger) : base(core, logger) 
+        public cMapNode(IcCoreService coreService, cEcospaceLayer layer, ILogger logger) : base(coreService, logger) 
         {
             this.Layer = layer;
         }
@@ -40,7 +41,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         // --------------------------------------------------------------------
         public bool fill(object value)
         {
-            cEcospaceBasemap bm = this.Core.EcospaceBasemap;
+            cEcospaceBasemap bm = CoreService.EcospaceBasemap;
             for (int ir = 1; ir <= bm.InRow; ir++)
                 for (int ic = 1; ic <= bm.InCol; ic++)
                 {

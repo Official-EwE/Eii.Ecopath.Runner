@@ -1,4 +1,5 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using EwECore.Common;
 using Microsoft.Extensions.Logging;
 
@@ -14,7 +15,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     {
         protected readonly cShapeData Shape;
 
-        public cFunctionNode(cCore core, cShapeData shape, ILogger logger) : base(core, logger)
+        public cFunctionNode(IcCoreService coreService, cShapeData shape, ILogger logger) : base(coreService, logger)
         {
             this.Shape = shape;
         }
@@ -81,7 +82,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             }
 
             // Obtain primitive
-            IShapeFunction fn = cShapeFunctionFactory.GetShapeFunction((long)shapetype, Core.PluginManager);
+            IShapeFunction fn = cShapeFunctionFactory.GetShapeFunction((long)shapetype, CoreService.PluginManager);
             if (fn == null)
             {
                 Logger.LogWarning("Unable to get shape function for type '{ShapeTypeName}'. Plugins may be absent", shapetypename);

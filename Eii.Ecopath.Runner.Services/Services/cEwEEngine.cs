@@ -18,8 +18,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     {
         #region Private vars
 
-        private cCore Core => _coreService.Core;
-        private readonly cCoreService _coreService;
+        private readonly IcCoreService _coreService;
         private readonly ILogger<cEwEEngine> _logger;
         private readonly cEcopathModifierService _copathSvc;
         private readonly cEcosimModifierService _cosimSvc;
@@ -37,7 +36,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         public cEwEEngine(
             ILogger<cEwEEngine> logger,
-            cCoreService coreService,
+            IcCoreService coreService,
             cEcopathModifierService copathSvc,
             cEcosimModifierService cosimSvc,
             cEcospaceModifierService cospaceSvc)
@@ -148,7 +147,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                         return false;
                 }
             }
-            cEwERootNode om = new cEwERootNode(Core, _logger);
+            cEwERootNode om = new cEwERootNode(_coreService, _logger);
             string[] info = { };
             if (bTree)
                 info = om.AutomationTree();
@@ -166,10 +165,10 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         private bool ConfigureEnvironment()
         {
             // Set save options
-            Core.OutputPath = Instructions.OutputFolder;
-            Core.SaveWithFileHeader = EwEConfig.SaveWithHeader;
-            Console.WriteLine("Output folder set to '{0}', write with headers {1}", Core.OutputPath, Core.SaveWithFileHeader);
-            _logger.LogInformation("Output folder set to '{OutputFolder}', write with headers {WithHeader}", Core.OutputPath, Core.SaveWithFileHeader);
+            _coreService.OutputPath = Instructions.OutputFolder;
+            _coreService.SaveWithFileHeader = EwEConfig.SaveWithHeader;
+            Console.WriteLine("Output folder set to '{0}', write with headers {1}", _coreService.OutputPath, _coreService.SaveWithFileHeader);
+            _logger.LogInformation("Output folder set to '{OutputFolder}', write with headers {WithHeader}", _coreService.OutputPath, _coreService.SaveWithFileHeader);
 
             // Set current directory
             string? workfolder = EwEConfig.WorkFolder;
@@ -190,10 +189,10 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             _logger.LogInformation("Working directory set to '{WorkFolder}'", workfolder);
 
             // Plug-ins
-            int n = Core.PluginManager.LoadPlugins(".", true);
+            int n = _coreService.PluginManager.LoadPlugins(".", true);
             Console.WriteLine("Loaded {0} plugin(s):", n);
             _logger.LogInformation("Loaded {PluginCount} plugin(s)", n);
-            foreach (var pa in Core.PluginManager.PluginAssemblies)
+            foreach (var pa in _coreService.PluginManager.PluginAssemblies)
                 Console.WriteLine("- {0} v{1}", Path.GetFileNameWithoutExtension(pa.Filename), pa.Version);
 
             return true;
@@ -209,19 +208,19 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             }
 
             // Load model (before loading spat temp data)
-            if (!Core.LoadModel(EwEConfig.ModelFile))
+            if (!_coreService.LoadModel(EwEConfig.ModelFile))
             {
                 Console.WriteLine("! Failed to load EwE model '{0}'", EwEConfig.ModelFile);
                 _logger.LogWarning("Failed to load EwE model '{ModelFile}'", EwEConfig.ModelFile);
                 return false;
             }
-            Console.WriteLine("Loaded EwE model '{0}'", Core.EwEModel.Name);
-            _logger.LogInformation("Loaded EwE model '{ModelName}'", Core.EwEModel.Name);
+            Console.WriteLine("Loaded EwE model '{0}'", _coreService.ModelName);
+            _logger.LogInformation("Loaded EwE model '{ModelName}'", _coreService.ModelName);
 
             // STDF config file
             if (!string.IsNullOrEmpty(EwEConfig.ExtDataConfigFile))
             {
-                cSpatialDataConnectionManager man = Core.SpatialDataConnectionManager;
+                cSpatialDataConnectionManager man = _coreService.SpatialDataConnectionManager;
                 cSpatialDataSetManager dsm = man.DatasetManager();
                 if (dsm.Load(EwEConfig.ExtDataConfigFile, true))
                 {
@@ -255,34 +254,34 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             // Get Ecosim scenario to run
             int iSim = Math.Max(EwEConfig.EcospaceScenario > 0 ? 1 : 0, EwEConfig.EcosimScenario);
 
-            if (iSim > Core.nEcosimScenarios)
+            if (iSim > _coreService.nEcosimScenarios)
             {
                 Console.WriteLine("! Requested Ecosim scenario #{0} does not exist", iSim);
                 _logger.LogWarning("Requested Ecosim scenario #{Scenario} does not exist", iSim);
                 return false;
             }
 
-            if (!Core.LoadEcosimScenario(iSim))
+            if (!_coreService.LoadEcosimScenario(iSim))
             {
                 Console.WriteLine("! Failed to load Ecosim scenario #{0}", iSim);
                 _logger.LogWarning("Failed to load Ecosim scenario #{Scenario}", iSim);
                 return false;
             }
 
-            Console.WriteLine("Loaded Ecosim scenario {0}: {1}", iSim, Core.get_EcosimScenarios(iSim).Name);
-            _logger.LogInformation("Loaded Ecosim scenario {Scenario}: {Name}", iSim, Core.get_EcosimScenarios(iSim).Name);
+            Console.WriteLine("Loaded Ecosim scenario {0}: {1}", iSim, _coreService.GetEcosimScenarioName(iSim));
+            _logger.LogInformation("Loaded Ecosim scenario {Scenario}: {Name}", iSim, _coreService.GetEcosimScenarioName(iSim));
 
             if (EwEConfig.EcosimTimeseries > 0)
             {
                 // Log this 
-                if (!Core.LoadTimeSeries(EwEConfig.EcosimTimeseries))
+                if (!_coreService.LoadTimeSeries(EwEConfig.EcosimTimeseries))
                 {
                     Console.WriteLine("! Failed to load Ecosim timeseries #{0}", EwEConfig.EcosimTimeseries);
                     _logger.LogWarning("Failed to load Ecosim timeseries #{Timeseries}", EwEConfig.EcosimTimeseries);
                     return false;
                 }
-                Console.WriteLine("Loaded Ecosim timeseries {0}: {1}", EwEConfig.EcosimTimeseries, Core.TimeSeriesDataset(EwEConfig.EcosimTimeseries).Name);
-                _logger.LogInformation("Loaded Ecosim timeseries {Timeseries}: {Name}", EwEConfig.EcosimTimeseries, Core.TimeSeriesDataset(EwEConfig.EcosimTimeseries).Name);
+                Console.WriteLine("Loaded Ecosim timeseries {0}: {1}", EwEConfig.EcosimTimeseries, _coreService.GetTimeSeriesDatasetName(EwEConfig.EcosimTimeseries));
+                _logger.LogInformation("Loaded Ecosim timeseries {Timeseries}: {Name}", EwEConfig.EcosimTimeseries, _coreService.GetTimeSeriesDatasetName(EwEConfig.EcosimTimeseries));
             }
             return true;
         }
@@ -294,17 +293,17 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
             if (EwEConfig.RunYears > 0)
             {
-                cEcoSimModelParameters parms = Core.EcosimModelParameters;
+                cEcoSimModelParameters parms = _coreService.EcosimModelParameters;
                 parms.NumberYears = EwEConfig.RunYears;
-                if (Core.nEcosimYears != EwEConfig.RunYears)
+                if (_coreService.nEcosimYears != EwEConfig.RunYears)
                 {
                     Console.WriteLine("! Failed to set Ecosim run years to {0}", EwEConfig.RunYears);
                     _logger.LogWarning("Failed to set Ecosim run years to {RunYears}", EwEConfig.RunYears);
                     return false;
                 }
             }
-            Console.WriteLine("Ecosim run years = {0}", Core.nEcosimYears);
-            _logger.LogInformation("Ecosim run years = {RunYears}", Core.nEcosimYears);
+            Console.WriteLine("Ecosim run years = {0}", _coreService.nEcosimYears);
+            _logger.LogInformation("Ecosim run years = {RunYears}", _coreService.nEcosimYears);
 
             cEcosimModifier mod = new cEcosimModifier(EwEConfig, Instructions.EcosimRun);
             if (!_cosimSvc.Run(mod))
@@ -323,21 +322,21 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             int iSpace = EwEConfig.EcospaceScenario;
 
             // Fail if the requested Ecospace scenario is not defined
-            if (iSpace > Core.nEcospaceScenarios)
+            if (iSpace > _coreService.nEcospaceScenarios)
             {
                 Console.WriteLine("! Requested Ecospace scenario #{0} does not exist", iSpace);
                 _logger.LogWarning("Requested Ecospace scenario #{Scenario} does not exist", iSpace);
                 return false;
             }
 
-            if (!Core.LoadEcospaceScenario(iSpace))
+            if (!_coreService.LoadEcospaceScenario(iSpace))
             {
                 Console.WriteLine("! Failed to load Ecospace scenario #{0}", iSpace);
                 _logger.LogWarning("Failed to load Ecospace scenario #{Scenario}", iSpace);
                 return false;
             }
-            Console.WriteLine("Loaded Ecospace scenario {0}: {1}", iSpace, Core.get_EcospaceScenarios(iSpace).Name);
-            _logger.LogInformation("Loaded Ecospace scenario {Scenario}: {Name}", iSpace, Core.get_EcospaceScenarios(iSpace).Name);
+            Console.WriteLine("Loaded Ecospace scenario {0}: {1}", iSpace, _coreService.GetEcospaceScenarioName(iSpace));
+            _logger.LogInformation("Loaded Ecospace scenario {Scenario}: {Name}", iSpace, _coreService.GetEcospaceScenarioName(iSpace));
             return true;
         }
 
@@ -346,19 +345,19 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             Console.WriteLine("Start Ecospace run");
             _logger.LogInformation("Start Ecospace run");
 
-            if (EwEConfig.RunYears > 0 & Core.nEcospaceYears != EwEConfig.RunYears)
+            if (EwEConfig.RunYears > 0 & _coreService.nEcospaceYears != EwEConfig.RunYears)
             {
-                cEcospaceModelParameters parms = Core.EcospaceModelParameters;
+                cEcospaceModelParameters parms = _coreService.EcospaceModelParameters;
                 parms.TotalTime = EwEConfig.RunYears;
-                if (Core.nEcospaceYears != EwEConfig.RunYears)
+                if (_coreService.nEcospaceYears != EwEConfig.RunYears)
                 {
                     Console.WriteLine("! Failed to set Ecospace run years to {0}", EwEConfig.RunYears);
                     _logger.LogWarning("Failed to set Ecospace run years to {RunYears}", EwEConfig.RunYears);
                     return false;
                 }
             }
-            Console.WriteLine("Ecospace run years = {0}", Core.nEcospaceYears);
-            _logger.LogInformation("Ecospace run years = {RunYears}", Core.nEcospaceYears);
+            Console.WriteLine("Ecospace run years = {0}", _coreService.nEcospaceYears);
+            _logger.LogInformation("Ecospace run years = {RunYears}", _coreService.nEcospaceYears);
 
             cEcospaceModifier mod = new cEcospaceModifier(EwEConfig, Instructions.EcospaceRun);
             if (!_cospaceSvc.Run(mod))

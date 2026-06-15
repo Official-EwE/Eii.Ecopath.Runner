@@ -1,4 +1,5 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
@@ -6,7 +7,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     public class cEcosimNode : cEwECoreNode
     {
 
-        public cEcosimNode(cCore core, cEcoSimModelParameters parms, ILogger logger) : base(core, parms, logger)
+        public cEcosimNode(IcCoreService coreService, cEcoSimModelParameters parms, ILogger logger) : base(coreService, parms, logger)
         {
         }
 
@@ -19,14 +20,14 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         public cForcingFunctionNode? effort(int iFleet)
         {
-            cFishingEffortShapeManger man = this.Core.FishingEffortShapeManager;
+            cFishingEffortShapeManger man = CoreService.FishingEffortShapeManager;
             if ((iFleet < 0) | (iFleet > man.Count))
             {
-                Logger.LogError("Ecosim Effort function {Fleet} invalid, must be fleet [1, {MaxFleet}]", iFleet, Core.nFleets);
+                Logger.LogError("Ecosim Effort function {Fleet} invalid, must be fleet [1, {MaxFleet}]", iFleet, CoreService.nFleets);
                 return null;
             }
             // Allow for the using the 0 fleet too
-            return new cForcingFunctionNode(this.Core, man.get_CoreItem(iFleet), Logger);
+            return new cForcingFunctionNode(CoreService, man.get_CoreItem(iFleet), Logger);
         }
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         public cForcingFunctionNode? effort(string name)
         {
-            cFishingEffortShapeManger man = this.Core.FishingEffortShapeManager;
+            cFishingEffortShapeManger man = CoreService.FishingEffortShapeManager;
             return effort(FindShape(name, man.Shapes));
         }
 
@@ -51,13 +52,13 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         public cForcingFunctionNode? fishingmortality(int iGroup)
         {
-            cFishingMortalityShapeManger man = this.Core.FishMortShapeManager;
+            cFishingMortalityShapeManger man = CoreService.FishMortShapeManager;
             if ((iGroup < 1) | (iGroup > man.Count))
             {
-                Logger.LogError("Ecosim F function {Group} invalid, must be group [1, {MaxGroup}]", iGroup, Core.nGroups);
+                Logger.LogError("Ecosim F function {Group} invalid, must be group [1, {MaxGroup}]", iGroup, CoreService.nGroups);
                 return null;
             }
-            return new cForcingFunctionNode(this.Core, man.get_CoreItem(iGroup), Logger);
+            return new cForcingFunctionNode(CoreService, man.get_CoreItem(iGroup), Logger);
         }
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <see cref="fishingmortality(int)"/>
         public cForcingFunctionNode? fishingmortality(string groupname)
         {
-            cFishingMortalityShapeManger man = this.Core.FishMortShapeManager;
+            cFishingMortalityShapeManger man = CoreService.FishMortShapeManager;
             return fishingmortality(FindShape(groupname, man.Shapes));
         }
 
@@ -106,14 +107,14 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <see cref="fishingmortality(int)"/>
         public cForcingFunctionNode? forcingfunction(int iIndex)
         {
-            cForcingFunctionShapeManager man = this.Core.ForcingShapeManager;
+            cForcingFunctionShapeManager man = CoreService.ForcingShapeManager;
             if ((iIndex < 1) | (iIndex > man.Count))
             {
                 Logger.LogError("Ecosim forcing function {Index} invalid, must be [1, {MaxIndex}]", iIndex, man.Count);
                 return null;
             }
 
-            return new cForcingFunctionNode(this.Core, man.get_CoreItem(iIndex), Logger);
+            return new cForcingFunctionNode(CoreService, man.get_CoreItem(iIndex), Logger);
         }
 
         /// <summary>
@@ -124,7 +125,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <see cref="fishingmortality(int)"/>
         public cForcingFunctionNode? forcingfunction(string name)
         {
-            cForcingFunctionShapeManager man = this.Core.ForcingShapeManager;
+            cForcingFunctionShapeManager man = CoreService.ForcingShapeManager;
             return forcingfunction(FindShape(name, man.Shapes));
         }
 

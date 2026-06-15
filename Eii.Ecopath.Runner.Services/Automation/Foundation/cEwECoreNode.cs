@@ -1,4 +1,5 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
@@ -11,7 +12,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     // --------------------------------------------------------------------
     public abstract class cEwECoreNode : cNode
     {
-        public cEwECoreNode(cCore core, cCoreInputOutputBase coreobj, ILogger logger) : base(core, logger)
+        public cEwECoreNode(IcCoreService coreService, cCoreInputOutputBase coreobj, ILogger logger) : base(coreService, logger)
         {
             this.CoreObj = coreobj;
         }

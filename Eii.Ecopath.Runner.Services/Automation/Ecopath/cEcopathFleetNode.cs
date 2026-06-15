@@ -1,11 +1,12 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcopathFleetNode : cEwECoreNode
     {
-        public cEcopathFleetNode(cCore core, cEcopathFleetInput fleet, ILogger logger) : base(core, fleet, logger)
+        public cEcopathFleetNode(IcCoreService coreService, cEcopathFleetInput fleet, ILogger logger) : base(coreService, fleet, logger)
         { 
         }
 
@@ -19,7 +20,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public bool values(int[] value_of)
         {
             bool bOK = true;
-            for (int i = 0; i < Math.Min(value_of.Length, this.Core.nGroups); i++)
+            for (int i = 0; i < Math.Min(value_of.Length, CoreService.nGroups); i++)
                 bOK &= this.value_of(value_of[i], i);
             return bOK;
         }
@@ -32,7 +33,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public bool landings(int[] landings_of)
         {
             bool bOK = true;
-            for (int i = 0; i < Math.Min(landings_of.Length, this.Core.nGroups); i++)
+            for (int i = 0; i < Math.Min(landings_of.Length, CoreService.nGroups); i++)
                 bOK &= this.landings_of(landings_of[i], i);
             return bOK;
         }
@@ -45,7 +46,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public bool discards(int[] discards_of)
         {
             bool bOK = true;
-            for (int i = 0; i < Math.Min(discards_of.Length, this.Core.nGroups); i++)
+            for (int i = 0; i < Math.Min(discards_of.Length, CoreService.nGroups); i++)
                 bOK &= this.discards_of(discards_of[i], i);
             return bOK;
         }

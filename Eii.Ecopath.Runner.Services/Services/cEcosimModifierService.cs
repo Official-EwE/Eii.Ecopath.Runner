@@ -21,7 +21,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// Constructor.
         /// </summary>
         // --------------------------------------------------------------------
-        public cEcosimModifierService(cCoreService coreService, cNodeService nodeService, ILogger<cEcosimModifierService> logger)
+        public cEcosimModifierService(IcCoreService coreService, cNodeService nodeService, ILogger<cEcosimModifierService> logger)
             : base(coreService, nodeService, logger)
         {
         }
@@ -31,7 +31,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         protected override int DateToTimeStep(DateTime date)
         {
-            return Core.AbsoluteTimeToEcosimTimestep(date);
+            return _coreService.AbsoluteTimeToEcosimTimestep(date);
         }
 
         // --------------------------------------------------------------------
@@ -57,12 +57,12 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                 {
                     if (e == cEcosimBridgePlugin.EventType.BeginTimeStep)
                     {
-                        cEcosimDatastructures ds = Core.EcosimDataStructures;
+                        cEcosimDatastructures ds = _coreService.EcosimDataStructures;
 
                         // Print out time tracking
                         if ((iTime - 1) % ds.NumStepsPerYear == 0)
                         {
-                            int year = (int)Core.EcosimFirstYear() + ((iTime - 1) / ds.NumStepsPerYear);
+                            int year = (int)_coreService.EcosimFirstYear() + ((iTime - 1) / ds.NumStepsPerYear);
                             Console.WriteLine("{0}", year);
                             _logger.LogInformation("Ecosim year {Year}", year);
                         }
@@ -72,7 +72,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             }
 
             // Go for it
-            runSuccess &= Core.RunEcosim();
+            runSuccess &= _coreService.RunEcosim();
             DoAutosave(autosaveResults, bSaveAnnual);
 
             return runSuccess;
@@ -112,10 +112,10 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         private void DoAutosave(List<cEcosimResultWriter.eResultTypes> autosaveResults, bool bSaveAnnual)
         {
-            cEcosimResultWriter wr = new cEcosimResultWriter(Core);
+            cEcosimResultWriter wr = new cEcosimResultWriter(_coreService.Core);
             if (autosaveResults.Count > 0)
             {
-                string path = Core.get_DefaultOutputPath(eAutosaveTypes.EcosimResults);
+                string path = _coreService.get_DefaultOutputPath(eAutosaveTypes.EcosimResults);
                 wr.WriteResults(path, null, bSaveAnnual ? TriState.False : TriState.True, false);
                 Console.WriteLine("Ecosim wrote output to {0}", path);
             }

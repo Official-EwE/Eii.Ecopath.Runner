@@ -1,4 +1,5 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,16 @@ namespace Eii.Ecopath.Runner.Services.Automation
     {
         #region Private vars
 
-        protected readonly cCore Core;
+        protected readonly IcCoreService CoreService;
         protected readonly ILogger Logger;
+        /// <summary>Escape hatch for the rare EwECore constructors that require a raw cCore.</summary>
+        protected cCore Core => CoreService.Core;
 
         #endregion
 
-        public cNode(cCore core, ILogger logger)
+        public cNode(IcCoreService coreService, ILogger logger)
         {
-            Core = core;
+            CoreService = coreService;
             Logger = logger;
         }
 
