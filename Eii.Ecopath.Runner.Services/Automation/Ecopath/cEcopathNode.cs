@@ -1,10 +1,11 @@
 ﻿using EwECore;
+using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcopathNode : cNode
     {
-        public cEcopathNode(cCore core) : base(core) 
+        public cEcopathNode(cCore core, ILogger logger) : base(core, logger) 
         {
         }
 
@@ -12,20 +13,20 @@ namespace Eii.Ecopath.Runner.Services.Automation
         {
             if ((iGroup < 1) | (iGroup > this.Core.nGroups))
             {
-                Console.WriteLine("! Ecopath Group {0} invalid, must be [1, {1}]", iGroup, this.Core.nGroups);
+                Logger.LogWarning("Ecopath Group {Group} invalid, must be [1, {Max}]", iGroup, this.Core.nGroups);
                 return null;
             }
-            return new cEcopathGroupNode(this.Core, this.Core.get_EcopathGroupInputs(iGroup));
+            return new cEcopathGroupNode(this.Core, this.Core.get_EcopathGroupInputs(iGroup), Logger);
         }
 
         public cEcopathFleetNode? fleet(int iFleet)
         {
             if ((iFleet < 1) | (iFleet > this.Core.nFleets))
             {
-                Console.WriteLine("! Ecopath Fleet {0} invalid, must be [1, {1}]", iFleet, this.Core.nFleets);
+                Logger.LogWarning("Ecopath Fleet {Fleet} invalid, must be [1, {Max}]", iFleet, this.Core.nFleets);
                 return null;
             }
-            return new cEcopathFleetNode(this.Core, this.Core.get_EcopathFleetInputs(iFleet));
+            return new cEcopathFleetNode(this.Core, this.Core.get_EcopathFleetInputs(iFleet), Logger);
         }
     }
 }

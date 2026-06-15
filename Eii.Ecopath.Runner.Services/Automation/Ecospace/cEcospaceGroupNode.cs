@@ -1,10 +1,11 @@
 ﻿using EwECore;
+using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcospaceGroupNode : cEwECoreNode
     {
-        public cEcospaceGroupNode(cCore core, cEcospaceGroupInput group) : base(core, group)
+        public cEcospaceGroupNode(cCore core, cEcospaceGroupInput group, ILogger logger) : base(core, group, logger)
         { 
         }
         protected cEcospaceGroupInput Group => (cEcospaceGroupInput)this.CoreObj;

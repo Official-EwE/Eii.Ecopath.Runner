@@ -1,4 +1,5 @@
 ﻿using EwECore;
+using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -10,7 +11,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     // --------------------------------------------------------------------
     public abstract class cEwECoreNode : cNode
     {
-        public cEwECoreNode(cCore core, cCoreInputOutputBase coreobj) : base(core)
+        public cEwECoreNode(cCore core, cCoreInputOutputBase coreobj, ILogger logger) : base(core, logger)
         {
             this.CoreObj = coreobj;
         }
@@ -26,7 +27,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             }
             catch (Exception ex)
             {
-                Console.WriteLine("! Automation error setting EwE variable {0} to {1}. {2}", var.ToString(), val, ex.Message);
+                Logger.LogWarning("Automation error setting EwE variable {Var} to {Val}. {Message}", var.ToString(), val, ex.Message);
                 return false;
             }
             return true;
@@ -41,7 +42,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             }
             catch (Exception ex)
             {
-                Console.WriteLine("! Automation error setting EwE variable {0}({1}) to {2}. {3}", var.ToString(), iIndex, val, ex.Message);
+                Logger.LogWarning("Automation error setting EwE variable {Var}({Index}) to {Val}. {Message}", var.ToString(), iIndex, val, ex.Message);
                 return false;
             }
             return true;

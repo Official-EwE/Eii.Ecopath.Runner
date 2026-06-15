@@ -1,12 +1,13 @@
 ﻿using EwECore;
 using System;
 using System.ComponentModel;
+using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcopathGroupNode : cEwECoreNode
     {
-        public cEcopathGroupNode(cCore core, cEcoPathGroupInput group) : base(core, group)
+        public cEcopathGroupNode(cCore core, cEcoPathGroupInput group, ILogger logger) : base(core, group, logger)
         {
         }
 

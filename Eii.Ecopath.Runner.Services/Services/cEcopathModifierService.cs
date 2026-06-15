@@ -1,3 +1,4 @@
+using Eii.Ecopath.Runner.Datamodel.Automation;
 using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Runtime
@@ -8,22 +9,24 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     /// <see cref="cEcopathModifier"/>.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cEcopathModifierService
+    public class cEcopathModifierService : cRuntimeModifierService
     {
-        #region Private vars
-
-        private readonly ILogger<cEcopathModifierService> _logger;
-
-        #endregion // Private vars
-
         // --------------------------------------------------------------------
         /// <summary>
         /// Constructor.
         /// </summary>
         // --------------------------------------------------------------------
-        public cEcopathModifierService(ILogger<cEcopathModifierService> logger)
+        public cEcopathModifierService(cCoreService coreService, cNodeService nodeService, ILogger<cEcopathModifierService> logger)
+            : base(coreService, nodeService, logger)
         {
-            _logger = logger;
+        }
+
+        // --------------------------------------------------------------------
+        /// <inheritdoc/>
+        // --------------------------------------------------------------------
+        protected override int DateToTimeStep(DateTime date)
+        {
+            return cRuntimeModifier.FirstTimeStep; // Bwahah!
         }
 
         // --------------------------------------------------------------------
@@ -35,8 +38,10 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         internal bool Run(cEcopathModifier mod)
         {
-            bool runSuccess = mod.Apply(cRuntimeModifier.FirstTimeStep);
-            runSuccess &= mod.Core.RunEcopath();
+            CompleteAndPrepareChanges(mod);
+            // ToDo: configure Ecopath settings
+            bool runSuccess = Apply(mod, cRuntimeModifier.FirstTimeStep);
+            runSuccess &= Core.RunEcopath();
             return runSuccess;
         }
     }

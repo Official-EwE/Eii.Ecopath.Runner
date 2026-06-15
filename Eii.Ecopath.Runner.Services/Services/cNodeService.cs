@@ -42,7 +42,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         internal bool Invoke(cCore core, string root, string key, object value)
         {
-            cEwERootNode om = new cEwERootNode(core);
+            cEwERootNode om = new cEwERootNode(core, _logger);
             bool bSuccess = om.Invoke(root, key, value);
             if (!bSuccess)
             {

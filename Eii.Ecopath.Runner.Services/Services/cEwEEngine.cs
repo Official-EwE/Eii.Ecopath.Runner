@@ -1,4 +1,5 @@
-﻿using Eii.Ecopath.Runner.Datamodel.RunInstructions;
+﻿using Eii.Ecopath.Runner.Datamodel.Automation;
+using Eii.Ecopath.Runner.Datamodel.RunInstructions;
 using Eii.Ecopath.Runner.Services.Automation;
 using EwECore;
 using EwECore.SpatialData;
@@ -17,10 +18,9 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     {
         #region Private vars
 
-        private readonly cCore Core;
+        private cCore Core => _coreService.Core;
+        private readonly cCoreService _coreService;
         private readonly ILogger<cEwEEngine> _logger;
-        private readonly ILoggerFactory _loggerFactory;
-        private readonly cNodeService _nodeService;
         private readonly cEcopathModifierService _copathSvc;
         private readonly cEcosimModifierService _cosimSvc;
         private readonly cEcospaceModifierService _cospaceSvc;
@@ -37,35 +37,19 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         public cEwEEngine(
             ILogger<cEwEEngine> logger,
-            ILoggerFactory loggerFactory,
-            cNodeService nodeService,
+            cCoreService coreService,
             cEcopathModifierService copathSvc,
             cEcosimModifierService cosimSvc,
             cEcospaceModifierService cospaceSvc)
         {
             _logger = logger;
-            _loggerFactory = loggerFactory;
-            _nodeService = nodeService;
+            _coreService = coreService;
             _copathSvc = copathSvc;
             _cosimSvc = cosimSvc;
             _cospaceSvc = cospaceSvc;
 
-            // Instantiate the EwE model and load plug-ins
-            Core = new cCore();
-            cPluginManager pi = new cPluginManager();
-            Core.PluginManager = pi;
-
             // Disable logging
             //cLog.VerboseLevel = eVerboseLevel.Disabled;
-        }
-
-        ~cEwEEngine()
-        {
-            if (Core != null)
-            {
-                Core.CloseModel();
-                Core.Dispose();
-            }
         }
 
         /// -------------------------------------------------------------------
@@ -164,7 +148,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                         return false;
                 }
             }
-            cEwERootNode om = new cEwERootNode(Core);
+            cEwERootNode om = new cEwERootNode(Core, _logger);
             string[] info = { };
             if (bTree)
                 info = om.AutomationTree();
@@ -256,7 +240,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
         private bool RunEcopath()
         {
-            cEcopathModifier mod = new cEcopathModifier(Core, EwEConfig, Instructions.EcopathRun, _nodeService, _loggerFactory.CreateLogger<cEcopathModifier>());
+            cEcopathModifier mod = new cEcopathModifier(EwEConfig, Instructions.EcopathRun);
             if (!_copathSvc.Run(mod))
             {
                 Console.WriteLine("! Failed to run Ecopath");
@@ -322,7 +306,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             Console.WriteLine("Ecosim run years = {0}", Core.nEcosimYears);
             _logger.LogInformation("Ecosim run years = {RunYears}", Core.nEcosimYears);
 
-            cEcosimModifier mod = new cEcosimModifier(Core, EwEConfig, Instructions.EcosimRun, _nodeService, _loggerFactory.CreateLogger<cEcosimModifier>());
+            cEcosimModifier mod = new cEcosimModifier(EwEConfig, Instructions.EcosimRun);
             if (!_cosimSvc.Run(mod))
             {
                 Console.WriteLine("! Failed to run Ecosim");
@@ -376,7 +360,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             Console.WriteLine("Ecospace run years = {0}", Core.nEcospaceYears);
             _logger.LogInformation("Ecospace run years = {RunYears}", Core.nEcospaceYears);
 
-            cEcospaceModifier mod = new cEcospaceModifier(Core, EwEConfig, Instructions.EcospaceRun, _nodeService, _loggerFactory.CreateLogger<cEcospaceModifier>());
+            cEcospaceModifier mod = new cEcospaceModifier(EwEConfig, Instructions.EcospaceRun);
             if (!_cospaceSvc.Run(mod))
             {
                 Console.WriteLine("! Failed to run Ecospace");

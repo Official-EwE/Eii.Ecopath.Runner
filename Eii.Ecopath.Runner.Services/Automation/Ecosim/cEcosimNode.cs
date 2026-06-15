@@ -1,11 +1,12 @@
 ﻿using EwECore;
+using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcosimNode : cEwECoreNode
     {
 
-        public cEcosimNode(cCore core, cEcoSimModelParameters parms) : base(core, parms)
+        public cEcosimNode(cCore core, cEcoSimModelParameters parms, ILogger logger) : base(core, parms, logger)
         {
         }
 
@@ -21,11 +22,11 @@ namespace Eii.Ecopath.Runner.Services.Automation
             cFishingEffortShapeManger man = this.Core.FishingEffortShapeManager;
             if ((iFleet < 0) | (iFleet > man.Count))
             {
-                Console.WriteLine("! Ecosim Effort function {0} invalid, must be fleet [1, {1}]", iFleet, this.Core.nFleets);
+                Logger.LogError("Ecosim Effort function {Fleet} invalid, must be fleet [1, {MaxFleet}]", iFleet, Core.nFleets);
                 return null;
             }
             // Allow for the using the 0 fleet too
-            return new cForcingFunctionNode(this.Core, man.get_CoreItem(iFleet));
+            return new cForcingFunctionNode(this.Core, man.get_CoreItem(iFleet), Logger);
         }
 
         /// <summary>
@@ -53,10 +54,10 @@ namespace Eii.Ecopath.Runner.Services.Automation
             cFishingMortalityShapeManger man = this.Core.FishMortShapeManager;
             if ((iGroup < 1) | (iGroup > man.Count))
             {
-                Console.WriteLine("! Ecosim F function {0} invalid, must be group [1, {1}]", iGroup, this.Core.nGroups);
+                Logger.LogError("Ecosim F function {Group} invalid, must be group [1, {MaxGroup}]", iGroup, Core.nGroups);
                 return null;
             }
-            return new cForcingFunctionNode(this.Core, man.get_CoreItem(iGroup));
+            return new cForcingFunctionNode(this.Core, man.get_CoreItem(iGroup), Logger);
         }
 
         /// <summary>
@@ -108,11 +109,11 @@ namespace Eii.Ecopath.Runner.Services.Automation
             cForcingFunctionShapeManager man = this.Core.ForcingShapeManager;
             if ((iIndex < 1) | (iIndex > man.Count))
             {
-                Console.WriteLine("! Ecosim forcing function {0} invalid, must be [1, {1}]", iIndex, man.Count);
+                Logger.LogError("Ecosim forcing function {Index} invalid, must be [1, {MaxIndex}]", iIndex, man.Count);
                 return null;
             }
 
-            return new cForcingFunctionNode(this.Core, man.get_CoreItem(iIndex));
+            return new cForcingFunctionNode(this.Core, man.get_CoreItem(iIndex), Logger);
         }
 
         /// <summary>

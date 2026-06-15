@@ -1,10 +1,11 @@
 ﻿using EwECore;
+using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcospaceEnvDriverNode : cEwECoreNode
     {
-        public cEcospaceEnvDriverNode(cCore core,  cEcospaceLayer driver) : base(core, driver) 
+        public cEcospaceEnvDriverNode(cCore core, cEcospaceLayer driver, ILogger logger) : base(core, driver, logger) 
         {
         }
 
@@ -13,7 +14,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         // Accessor
         public cMapNode map()
         {
-            return new cMapNode(this.Core, Driver);
+            return new cMapNode(this.Core, Driver, Logger);
         }
     }
 }

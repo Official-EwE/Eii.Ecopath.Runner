@@ -1,10 +1,11 @@
 ﻿using EwECore;
+using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcopathFleetNode : cEwECoreNode
     {
-        public cEcopathFleetNode(cCore core, cEcopathFleetInput fleet) : base(core, fleet)
+        public cEcopathFleetNode(cCore core, cEcopathFleetInput fleet, ILogger logger) : base(core, fleet, logger)
         { 
         }
 
