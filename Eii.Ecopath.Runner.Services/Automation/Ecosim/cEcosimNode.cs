@@ -21,7 +21,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             cFishingEffortShapeManger man = this.Core.FishingEffortShapeManager;
             if ((iFleet < 0) | (iFleet > man.Count))
             {
-                Console.WriteLine("! Ecosim Effort function {0} invalid, must be fleet [1, {1}]", iFleet, this.Core.nFleets);
+                Console.WriteLine("! Ecosim Effort function {0} invalid, must be fleet [0, {1}]", iFleet, this.Core.nFleets);
                 return null;
             }
             // Allow for the using the 0 fleet too
@@ -31,7 +31,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <summary>
         /// Accessor alias; get a Fishing Effort shape by fleet name.
         /// </summary>
-        /// <param name="iFleet">1-based fleet index. Supports fleet zero (all fleets)</param>
+        /// <param name="name">Fleet name.</param>
         /// <returns></returns>
         public cForcingFunctionNode? effort(string name)
         {
@@ -73,7 +73,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <summary>
         /// Accessor alias; get a Fishing Mortality shape by group name.
         /// </summary>
-        /// <param name="iFleet">1-based fleet index. Supports fleet zero (all fleets)</param>
+        /// <param name="groupname">Group name</param>
         /// <returns></returns>
         /// <see cref="fishingmortality(int)"/>
         public cForcingFunctionNode? f(string groupname)
@@ -84,7 +84,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <summary>
         /// Accessor alias; get a Fishing Mortality shape by group name.
         /// </summary>
-        /// <param name="iFleet">1-based fleet index. Supports fleet zero (all fleets)</param>
+        /// <param name="groupname">Group name</param>
         /// <returns></returns>
         /// <see cref="fishingmortality(int)"/>
         public cForcingFunctionNode? fishingmortality(string groupname)
@@ -131,7 +131,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <summary>
         /// Accessor alias; get a Forcing Function shape by index.
         /// </summary>
-        /// <param name="iIndex">one-based function index.</param>
+        /// <param name="iIndex">One-based function index.</param>
         /// <returns></returns>
         /// <see cref="forcingfunction(int)"/>
         public cForcingFunctionNode? ff(int iIndex)
