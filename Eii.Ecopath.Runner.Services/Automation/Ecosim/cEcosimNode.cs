@@ -31,7 +31,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <summary>
         /// Accessor alias; get a Fishing Effort shape by fleet name.
         /// </summary>
-        /// <param name="iFleet">1-based fleet index. Supports fleet zero (all fleets)</param>
+        /// <param name="name">Fleet name.</param>
         /// <returns></returns>
         public cForcingFunctionNode? effort(string name)
         {
