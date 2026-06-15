@@ -68,25 +68,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return true;
         }
 
-        // ----------------------------------------------------------------
-        /// <summary>
-        /// Set the function from an array of points, repeating the points 
-        /// pattern to the end of the shape
-        /// </summary>
-        /// <param name="points"></param>
-        /// <returns></returns>
-        // ----------------------------------------------------------------
-        public virtual bool fill(object[] points)
-        {
-            if (points == null) return false;
-            var floatArray = points.Select(x => (float)Convert.ChangeType(x, typeof(float))).ToArray();
-            this.Shape.LockUpdates();
-            setpoints(floatArray, true);
-            this.Shape.UnlockUpdates();
-            return true;
-        }
-
-        public bool Reshape(string shapetypename, float[] parameters)
+        public bool reshape(string shapetypename, float[] parameters)
         {
             eShapeFunctionType shapetype = eShapeFunctionType.NotSet;
 
@@ -112,7 +94,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
                 return false;
             }
 
-            for (int i = 0; i < Math.Min(parameters.Count(), fn.nParameters))
+            for (int i = 0; i < Math.Min(parameters.Count(), fn.nParameters); i++)
                 fn.set_ParamValue(i, parameters[i]);
 
             // Eeek
