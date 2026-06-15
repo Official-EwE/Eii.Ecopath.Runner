@@ -13,7 +13,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     {
         protected readonly cShapeData Shape;
 
-        public cFunctionNode(cCore core, cShapeData shape) :base(core)
+        public cFunctionNode(cCore core, cShapeData shape) : base(core)
         {
             this.Shape = shape;
         }
@@ -34,15 +34,36 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         // ----------------------------------------------------------------
         /// <summary>
-        /// Set the function from an array of points.
+        /// Set the function from an array of points for as many point values
+        /// that are provided.
         /// </summary>
         /// <param name="points"></param>
         /// <returns></returns>
         // ----------------------------------------------------------------
-        public bool reshape(float[] points)
+        public virtual bool set(object[] points)
         {
+            if (points == null) return false;
+            var floatArray = points.Select(x => (float)Convert.ChangeType(x, typeof(float))).ToArray();
             this.Shape.LockUpdates();
-            setpoints(points);
+            setpoints(floatArray, false);
+            this.Shape.UnlockUpdates();
+            return true;
+        }
+
+        // ----------------------------------------------------------------
+        /// <summary>
+        /// Set the function from an array of points, repeating the points 
+        /// pattern to the end of the shape
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        // ----------------------------------------------------------------
+        public virtual bool fill(object[] points)
+        {
+            if (points == null) return false;
+            var floatArray = points.Select(x => (float)Convert.ChangeType(x, typeof(float))).ToArray();
+            this.Shape.LockUpdates();
+            setpoints(floatArray, true);
             this.Shape.UnlockUpdates();
             return true;
         }
@@ -108,10 +129,18 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="points"></param>
         /// <returns></returns>
         // ----------------------------------------------------------------
-        protected bool setpoints(float[] points)
+        protected bool setpoints(float[] points, bool repeat)
         {
-            for (int i = 0; i<points.Length; i++)
-                this.Shape.set_ShapeData(i, points[i]);
+            int imax = this.Shape.nPoints;
+            int ilen = points.Length;
+            int istep = 0;
+
+            while (istep < imax && repeat ? true : istep < ilen)
+            {
+                this.Shape.set_ShapeData(istep, points[istep % ilen]);
+                istep++;
+            }
+
             return true;
         }
     }
