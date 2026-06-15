@@ -1,16 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>7f0b4e45-7964-4bd6-baeb-6eeb8938916e</UserSecretsId>
+    <Nullable>enable</Nullable>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>0d47d7a1-88c7-48dd-8746-f30586a2b1ff</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.8" />
+    <PackageReference Include="Eii.BlobStore.S3" Version="1.0.*" />
+    <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.*" />
+    <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.*" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.9" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.23.0" />
+    <PackageReference Include="VaultSharp" Version="1.17.5.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,17 +23,8 @@
     <ProjectReference Include="..\Eii.Ecopath.Runner.Services\Eii.Ecopath.Runner.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Testdata\AnchovyBay\AnchovyBay.eiixml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBay_extdata.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
   <Target Name="BuildPushDockerImage">
     <Exec Command="powershell.exe -ExecutionPolicy Bypass -File &quot;$(MSBuildProjectDirectory)\tools\build-push-docker.ps1&quot;" />
   </Target>
-
+    
 </Project>

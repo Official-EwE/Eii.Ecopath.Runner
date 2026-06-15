@@ -34,15 +34,36 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         // ----------------------------------------------------------------
         /// <summary>
-        /// Set the function from an array of points.
+        /// Set the function from an array of points for as many point values
+        /// that are provided.
         /// </summary>
         /// <param name="points"></param>
         /// <returns></returns>
         // ----------------------------------------------------------------
-        public bool reshape(float[] points)
+        public virtual bool set(object[] points)
         {
+            if (points == null) return false;
+            var floatArray = points.Select(x => (float)Convert.ChangeType(x, typeof(float))).ToArray();
             this.Shape.LockUpdates();
-            setpoints(points);
+            setpoints(floatArray, false);
+            this.Shape.UnlockUpdates();
+            return true;
+        }
+
+        // ----------------------------------------------------------------
+        /// <summary>
+        /// Set the function from an array of points, repeating the points 
+        /// pattern to the end of the shape
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        // ----------------------------------------------------------------
+        public virtual bool fill(object[] points)
+        {
+            if (points == null) return false;
+            var floatArray = points.Select(x => (float)Convert.ChangeType(x, typeof(float))).ToArray();
+            this.Shape.LockUpdates();
+            setpoints(floatArray, true);
             this.Shape.UnlockUpdates();
             return true;
         }

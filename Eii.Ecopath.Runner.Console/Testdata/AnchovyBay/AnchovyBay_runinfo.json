@@ -15,7 +15,7 @@
       {
         "Date": "start",
         "Modifications": {
-          "ecosim.forcing[3].fill": [ 1 ]
+          "ecosim.effort[3].fill": [ 1 ]
         }
       }
     ]
