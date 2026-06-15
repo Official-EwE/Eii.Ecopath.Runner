@@ -2,6 +2,7 @@
 using Eii.Ecopath.Runner.Services.Automation;
 using EwECore;
 using EwECore.Plugins;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 namespace Eii.Ecopath.Runner.Services.Runtime
@@ -16,12 +17,15 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     {
         #region Internal vars 
 
-        protected readonly cCore Core;
+        protected internal readonly cCore Core;
         protected readonly string Root;
         protected readonly IModelRunInstructions RunModel;
         protected readonly cEwEConfiguration Configuration;
         protected readonly Dictionary<int, cModificationsAtT> Changes;
         protected bool RunSuccess = true;
+
+        private readonly cNodeService _nodeService;
+        private readonly ILogger _logger;
 
         public const int FirstTimeStep = 1;
         public const int NoTimeStep = -1;
@@ -40,13 +44,15 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <param name="runmodel">The model-specific configuration and changes as 
         /// defined by the user.</param>
         // --------------------------------------------------------------------
-        public cRuntimeModifier(cCore core, string root, cEwEConfiguration config, IModelRunInstructions runmodel)
+        public cRuntimeModifier(cCore core, string root, cEwEConfiguration config, IModelRunInstructions runmodel, cNodeService nodeService, ILogger logger)
         {
             Core = core;
             Root = root;
             Configuration = config;
             RunModel = runmodel;
-            Changes = new Dictionary<int, cModificationsAtT>();  
+            Changes = new Dictionary<int, cModificationsAtT>();
+            _nodeService = nodeService;
+            _logger = logger;
 
             // Parse and complete information in the requrest changes, and organize
             // them in an internal dictionary for ease of processing.
@@ -64,15 +70,6 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// </summary>
         // --------------------------------------------------------------------
         public abstract void ConfigureAutosave();
-
-        // --------------------------------------------------------------------
-        /// <summary>
-        /// Perform the actual run of one of the EwE models (and possibly one of
-        /// the EwE searches too?)
-        /// </summary>
-        /// <returns>True if successful.</returns>
-        // --------------------------------------------------------------------
-        public abstract bool Run();
 
         #endregion // Execution
 
@@ -103,7 +100,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <param name="iTime">The time step to process</param>
         /// <returns></returns>
         // --------------------------------------------------------------------
-        protected bool Apply(int iTime)
+        internal bool Apply(int iTime)
         {
             bool bSucces = true;
 
@@ -116,14 +113,18 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
                 Debug.Assert(c != null);
 
-                // Instantiate code automation tree
-                cEwERootNode om = new cEwERootNode(Core); 
-                // Process all changes
+                // Process all changes via the injectable node service
                 foreach (string key in c.modifications.Keys)
                 {
+                    string lowerKey = key.ToLower();
+                    object val = c.modifications[key];
                     // Apply change at the current Root. Keys are processed in lower case
-                    if (om.Invoke(Root, key.ToLower(), c.modifications[key]))
-                        Console.WriteLine("TS {0,4}: Applied {1}({2})", iTime, key, c.modifications[key]);
+                    if (_nodeService.Invoke(Core, Root, lowerKey, val))
+                    {
+                        string msg = $"TS {iTime,4}: Applied {key}({val})";
+                        Console.WriteLine(msg);
+                        _logger.LogInformation(msg);
+                    }
                     else
                         bSucces = false;
                 }

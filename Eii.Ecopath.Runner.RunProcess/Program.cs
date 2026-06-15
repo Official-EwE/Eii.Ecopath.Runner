@@ -1,5 +1,6 @@
 ﻿using Eii.BlobStore;
 using Eii.BlobStore.S3;
+using Eii.Ecopath.Runner.Services.Runtime;
 using EwEUtils.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,11 @@ namespace EwERunProcess
                 .ConfigureServices((context, services) =>
                 {
                     services.AddTransient<EwERunProcessService>();
+                    services.AddTransient<cNodeService>();
+                    services.AddTransient<cEcopathModifierService>();
+                    services.AddTransient<cEcosimModifierService>();
+                    services.AddTransient<cEcospaceModifierService>();
+                    services.AddTransient<cEwEEngine>();
                     services.AddSingleton<IBlobStore>(sp =>
                     {
                         var blobLogger = sp.GetRequiredService<ILogger<Program>>();

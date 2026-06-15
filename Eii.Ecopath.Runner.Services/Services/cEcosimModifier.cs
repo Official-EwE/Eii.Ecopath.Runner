@@ -3,6 +3,7 @@ using EwEBridge.Ecosim;
 using EwECore;
 using EwECore.Ecosim;
 using EwECore.Plugins;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic;
 
 namespace Eii.Ecopath.Runner.Services.Runtime
@@ -12,19 +13,12 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         private List<cEcosimResultWriter.eResultTypes> m_autosaveresults = [];
         private bool m_bSaveAnnual = false;
 
-        public cEcosimModifier(cCore core, cEwEConfiguration config, cEcosimRunInstructions runmodel) : base(core, "ecosim", config, runmodel)
+        public cEcosimModifier(cCore core, cEwEConfiguration config, cEcosimRunInstructions runmodel, cNodeService nodeService, ILogger<cEcosimModifier> logger)
+            : base(core, "ecosim", config, runmodel, nodeService, logger)
         {
-            // Create a plug-in bridge to be able to intervene into the
-            // running Ecosim model during tmie stepping
-            IPlugin? pi = GetPlugin(typeof(EwEBridge.Ecosim.cEcosimBridgePlugin));
-            if (pi != null)
-            {
-                cEcosimBridgePlugin ppt = (cEcosimBridgePlugin)pi;
-                ppt.BridgeCallback = BridgeCallback;
-            }
         }
 
-        protected cEcosimRunInstructions MyRunModel => (cEcosimRunInstructions)this.RunModel;
+        internal cEcosimRunInstructions MyRunModel => (cEcosimRunInstructions)this.RunModel;
 
         public override void ConfigureAutosave()
         {
@@ -45,7 +39,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             }
         }
 
-        private void DoAutosave()
+        internal void DoAutosave()
         {
             cEcosimResultWriter wr = new cEcosimResultWriter(this.Core);
             if (m_autosaveresults.Count > 0)
@@ -53,34 +47,6 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                 string path = this.Core.get_DefaultOutputPath(eAutosaveTypes.EcosimResults);
                 wr.WriteResults(path, null, m_bSaveAnnual ? TriState.False : TriState.True, false);
                 Console.WriteLine("Ecosim wrote output to {0}", path);
-            }
-        }
-
-        public override bool Run()
-        {
-            RunSuccess = true;
-            // Go for it
-            RunSuccess &= Core.RunEcosim();
-            DoAutosave();
-            // Done
-            return RunSuccess;
-        }
-
-        // Plug-in callback for making specific modifications.
-        protected void BridgeCallback(cEcosimBridgePlugin.EventType e, int iTime)
-        {
-            cEcosimDatastructures ds = this.Core.EcosimDataStructures;
-
-            if (e == cEcosimBridgePlugin.EventType.BeginTimeStep)
-            {
-
-                // Print out time tracking
-                if ((iTime - 1) % ds.NumStepsPerYear == 0)
-                {
-                    Console.WriteLine("{0}",
-                        (int)Core.EcosimFirstYear() + ((iTime - 1) / ds.NumStepsPerYear));
-                }
-                RunSuccess &= Apply(iTime);
             }
         }
 
