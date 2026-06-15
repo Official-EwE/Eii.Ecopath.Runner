@@ -13,7 +13,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     {
         protected readonly cShapeData Shape;
 
-        public cFunctionNode(cCore core, cShapeData shape) :base(core)
+        public cFunctionNode(cCore core, cShapeData shape) : base(core)
         {
             this.Shape = shape;
         }
@@ -108,11 +108,20 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="points"></param>
         /// <returns></returns>
         // ----------------------------------------------------------------
-        protected bool setpoints(float[] points)
+        protected bool setpoints(float[] points, bool bRepeat)
         {
-            for (int i = 0; i<points.Length; i++)
-                this.Shape.set_ShapeData(i, points[i]);
+            if (points is null) return false;
+
+            int n = points.Length;
+            if (n == 0) return false;
+
+            int iMax = bRepeat ? this.Shape.nPoints : Math.Min(n, this.Shape.nPoints);
+
+            for (int i = 0; i < iMax; i++)
+                this.Shape.set_ShapeData(i, points[i % n]);
             return true;
         }
+
+        #endregion // Internal
     }
 }

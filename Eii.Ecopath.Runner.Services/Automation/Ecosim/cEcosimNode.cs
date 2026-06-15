@@ -1,5 +1,4 @@
 ﻿using EwECore;
-using System;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -202,5 +201,4 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         #endregion
     }
-}
 }
