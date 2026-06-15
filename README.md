@@ -130,9 +130,9 @@ The file is therefore available at `/etc/config/runinfo.json` — the value of `
 | `AWS_BUCKET_NAME` | `oidc-rikkert` | S3 bucket (derived from the Kubernetes namespace) |
 | `AWS_S3_ENDPOINT` | `minio.dive.edito.eu` | S3-compatible endpoint |
 | `AWS_DEFAULT_REGION` | `waw3-1` | S3 region |
-| `AWS_ACCESS_KEY_ID` | *(loaded from Vault)* | S3 credentials |
-| `AWS_SECRET_ACCESS_KEY` | *(loaded from Vault)* | S3 credentials |
-| `VAULT_ADDR` / `VAULT_TOKEN` / `VAULT_MOUNT` / `VAULT_TOP_DIR` / `VAULT_RELATIVE_PATH` | — | Vault connection for loading S3 credentials at startup |
+| `AWS_ACCESS_KEY_ID` | *(loaded from Process API call)* | S3 credentials |
+| `AWS_SECRET_ACCESS_KEY` | *(loaded from Process API call)* | S3 credentials |
+| `AWS_SESSION_TOKEN` | *(loaded from Process API call)* | S3 credentials |
 
 **3. runinfo.json is copied**
 
@@ -170,4 +170,31 @@ container. In `launchSettings.json`, use `containerRunArguments` (not `additiona
     "RUN_INFO_PATH": "/etc/config/runinfo.json"
   }
 }
+```
+
+
+## Copy de S3 files to local 
+To copy the files from S3 to you local machine you have to install a client. You can use any S3 client that supports the S3 protocol.
+Important is that the client can use temporary creadentials (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN) and that it can use a custom endpoint (AWS_S3_ENDPOINT).
+
+For example the MinIO CLI client: https://www.min.io/download/aistor-client
+
+Download the file "mc.exe" and put it in a folder that is in your PATH. Like C:\Program Files\MinIO\mc.exe
+
+### Set environment variables
+Go to https://datalab.dive.edito.eu/account/storage and select the "MC Client" in the dropdown at the bottom.
+Copy the export statement and modify it so it looks like this:
+`set MC_HOST_s3=https://9FMY3P1O3OBHMWJJYIKT:2sudlwiruYGrqJm+fGpAxE+lOI4q etc. etc.`
+
+Now the client is configured to use the correct endpoint and temporary credentials.
+
+### Use the MinIO client to copy files from S3 to local
+List the contents of the S3 bucket to verify that it works:
+```bash 
+mc ls s3/<bucket>/ewerunprocess/<INPUT_DIRECTORY>/
+```
+
+Then you can use the following command to copy the files from S3 to your local machine:
+```bash
+mc cp --recursive s3/<bucket>/ewerunprocess/<INPUT_DIRECTORY>/ <local_directory>
 ```

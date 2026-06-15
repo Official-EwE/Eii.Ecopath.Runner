@@ -33,7 +33,7 @@ namespace EwERunProcess
                     {
                         var blobLogger = sp.GetRequiredService<ILogger<Program>>();
 
-                        // if AWS_ACCESS_KEY_ID is set, use S3BlobStore. The AWS env vars are read in LoadVaultSecretsInEnvironmentVariables
+                        // if AWS_ACCESS_KEY_ID is set, use S3BlobStore. 
                         if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID")))
                         {
                             blobLogger.LogInformation("Environment variable AWS_ACCESS_KEY_ID found. Using S3BlobStore");
@@ -43,7 +43,8 @@ namespace EwERunProcess
                                 Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY"),
                                 Environment.GetEnvironmentVariable("AWS_BUCKET_NAME"),
                                 inputBasePrefix: $"ewerunprocess/{inputDirectory}", outputBasePrefix: $"ewerunprocess/{outputDirectory}",
-                                localInputRoot: inputDirectory, localOutputRoot: outputDirectory);
+                                localInputRoot: inputDirectory, localOutputRoot: outputDirectory,
+                                Environment.GetEnvironmentVariable("AWS_SESSION_TOKEN"));
                         }
 
                         // Default local Filesystem
@@ -75,7 +76,6 @@ namespace EwERunProcess
             var logger = LoggingContext.LoggerFactory.CreateLogger<Program>();
             logger.LogInformation("EwERunProcess starting up.......................");
 
-            LoadVaultSecretsInEnvironmentVariables(configuration);
             logger.LogInformation("============================= Logging All Environment Variables =============================");
             foreach (System.Collections.DictionaryEntry envVar in Environment.GetEnvironmentVariables())
             {
@@ -90,40 +90,6 @@ namespace EwERunProcess
 
             stopwatch.Stop();
             logger.LogInformation("EwERunProcess took {Duration} and is shutting down.......................", stopwatch.Elapsed);
-        }
-
-        /// <summary>
-        /// Loads secrets from Vault into environment variables. Expects the following environment variables to be set to connect to Vault and locate the secrets:
-        /// VAULT_ADDR, VAULT_TOKEN, VAULT_TOP_DIR, VAULT_RELATIVE_PATH, VAULT_MOUNT
-        /// </summary>
-        public static void LoadVaultSecretsInEnvironmentVariables(IConfiguration configuration)
-        {
-            var vaultAddr = Environment.GetEnvironmentVariable("VAULT_ADDR");
-            var vaultToken = Environment.GetEnvironmentVariable("VAULT_TOKEN") ?? configuration["VAULT_TOKEN"];     // VAULT_TOKEN must be stored as a secret, so it isn't added to Git
-            var vaultTopDir = Environment.GetEnvironmentVariable("VAULT_TOP_DIR");
-            var vaultRelativePath = Environment.GetEnvironmentVariable("VAULT_RELATIVE_PATH");
-            var vaultMount = Environment.GetEnvironmentVariable("VAULT_MOUNT");
-            if (string.IsNullOrEmpty(vaultAddr) || string.IsNullOrEmpty(vaultToken) || string.IsNullOrEmpty(vaultTopDir) || string.IsNullOrEmpty(vaultRelativePath) || string.IsNullOrEmpty(vaultMount))
-            {
-                Console.WriteLine("Vault Addr, Token, Top Dir, Relative Path, or Mount not set in environment variables. Skipping Vault loading.");
-                return;
-            }
-            var vaultClient = new VaultSharp.VaultClient(new VaultSharp.VaultClientSettings(vaultAddr, new VaultSharp.V1.AuthMethods.Token.TokenAuthMethodInfo(vaultToken)));
-            // Assuming secrets are stored under "secret/data/surimi"
-            var secretPath = $"{vaultTopDir}/{vaultRelativePath}";
-            try
-            {
-                var secret = vaultClient.V1.Secrets.KeyValue.V2.ReadSecretAsync(secretPath, mountPoint: vaultMount).ConfigureAwait(false).GetAwaiter().GetResult();
-                foreach (var kv in secret.Data.Data)
-                {
-                    Environment.SetEnvironmentVariable(kv.Key, kv.Value.ToString());
-                    Console.WriteLine($"Loaded secret '{kv.Key}' from Vault into environment variables.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error loading secrets from Vault: {ex.Message}");
-            }
         }
     }
 }
