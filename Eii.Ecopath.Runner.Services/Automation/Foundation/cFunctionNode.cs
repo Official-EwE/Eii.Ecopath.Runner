@@ -1,4 +1,5 @@
 ﻿using EwECore;
+using EwECore.Common;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -67,6 +68,42 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return true;
         }
 
+        public bool reshape(string shapetypename, float[] parameters)
+        {
+            eShapeFunctionType shapetype = eShapeFunctionType.NotSet;
+
+            // Parse shape shapetypename
+            if (!Enum.TryParse(shapetypename, out shapetype))
+            {
+                // LOG THIS: Unable to parse function shapetypename 
+                return false;
+            }
+
+            // Obtain primitive
+            IShapeFunction fn = cShapeFunctionFactory.GetShapeFunction((long)shapetype, Core.PluginManager);
+            if (fn == null)
+            {
+                // LOG THIS: Unable to get working shape type. Plugins may be absent
+                return false;
+            }
+
+            // Is compatible?
+            if (!fn.IsCompatible(this.Shape.DataType))
+            {
+                // LOG THIS: Shape is not compatible with provided primitive
+                return false;
+            }
+
+            for (int i = 0; i < Math.Min(parameters.Count(), fn.nParameters); i++)
+                fn.set_ParamValue(i, parameters[i]);
+
+            // Eeek
+            fn.Apply(this.Shape);
+            return true;
+        }
+
+        #region Internals
+
         // ----------------------------------------------------------------
         /// <summary>
         /// Internal point setter function.
@@ -74,19 +111,20 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="points"></param>
         /// <returns></returns>
         // ----------------------------------------------------------------
-        protected bool setpoints(float[] points, bool repeat)
+        protected bool setpoints(float[] points, bool bRepeat)
         {
-            int imax = this.Shape.nPoints;
-            int ilen = points.Length;
-            int istep = 0;
+            if (points is null) return false;
 
-            while (istep < imax && repeat ? true : istep < ilen)
-            {
-                this.Shape.set_ShapeData(istep, points[istep % ilen]);
-                istep++;
-            }
+            int n = points.Length;
+            if (n == 0) return false;
 
+            int iMax = bRepeat ? this.Shape.nPoints : Math.Min(n, this.Shape.nPoints);
+
+            for (int i = 0; i < iMax; i++)
+                this.Shape.set_ShapeData(i, points[i % n]);
             return true;
         }
+
+        #endregion // Internal
     }
 }

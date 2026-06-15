@@ -1,5 +1,4 @@
 ﻿using EwECore;
-using System;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -13,7 +12,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     {
         public cEwECoreNode(cCore core, cCoreInputOutputBase coreobj) : base(core)
         {
-            this.CoreObj = coreobj;   
+            this.CoreObj = coreobj;
         }
 
         protected readonly cCoreInputOutputBase CoreObj;
