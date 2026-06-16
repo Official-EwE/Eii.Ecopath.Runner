@@ -12,12 +12,14 @@ namespace EwERunProcess
     {
         private readonly ILogger<EwERunProcessService> m_logger;
         private readonly IBlobStore _blobStore;
+        private readonly cEwEEngine _engine;
         cEwERunInstructions? runInstructions;
 
-        public EwERunProcessService(ILogger<EwERunProcessService> logger, IBlobStore blobStore)
+        public EwERunProcessService(ILogger<EwERunProcessService> logger, IBlobStore blobStore, cEwEEngine engine)
         {
             m_logger = logger;
             _blobStore = blobStore;
+            _engine = engine;
         }
 
         internal async Task<int> Run(string inputDirectory, string outputDirectory)
@@ -96,8 +98,7 @@ namespace EwERunProcess
             Console.WriteLine();
 
             // Run the EwE engine
-            cEwEEngine engine = new cEwEEngine(runInstructions);
-            if (engine.Run())
+            if (_engine.Run(runInstructions))
                 Console.WriteLine("Run completed");
             else
                 Console.WriteLine("! Run errors encountered");

@@ -5,6 +5,7 @@ using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
 using EwEUtils.Logging;
 using EwEUtils.Utilities;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
@@ -28,17 +29,25 @@ class Program
             .WriteTo.File($"{logFolder}\\log-.txt", outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {Message:lj}{NewLine}{Exception}", rollingInterval: RollingInterval.Day)
             .CreateLogger();
 
-        //Initialize LoggerFactory (to be used by the EwE Core and other components)
-        LoggingContext.LoggerFactory = LoggerFactory.Create(builder =>
-        {
-            builder.AddSerilog();
-        });
+        // Build a DI service provider so all services receive ILogger<T> via injection
+        var services = new ServiceCollection();
+        services.AddLogging(b => b.AddSerilog(dispose: true));
+        services.AddSingleton<ICoreService, cCoreService>();
+        services.AddTransient<cNodeService>();
+        services.AddTransient<cEcopathModifierService>();
+        services.AddTransient<cEcosimModifierService>();
+        services.AddTransient<cEcospaceModifierService>();
+        services.AddTransient<cEwEEngine>();
+        var sp = services.BuildServiceProvider();
+
+        // Initialize LoggerFactory (to be used by EwE Core and other components that don't get ILogger via DI)
+        LoggingContext.LoggerFactory = sp.GetRequiredService<ILoggerFactory>();
 
         // Initialize logger after LoggerFactory is created
         var m_logger = LoggingContext.LoggerFactory.CreateLogger("EwERunConsole");
 
         ParserResult<CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
-            .WithParsed(options => { ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, m_logger); })
+            .WithParsed(options => { ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, m_logger, sp); })
             .WithNotParsed(errors => { Complain(errors); });
 
         return 1;
@@ -49,7 +58,7 @@ class Program
     /// </summary>
     /// <param name="runinfofile"></param>
     /// <param name="outputfolder"></param>
-    static void ParseInstructions(string runinfofile, string? outputfolder, bool showtree, bool showcommands, Microsoft.Extensions.Logging.ILogger logger)
+    static void ParseInstructions(string runinfofile, string? outputfolder, bool showtree, bool showcommands, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
     {
         cEwERunInstructions? info;
 
@@ -110,11 +119,11 @@ class Program
             info.OutputFolder = Path.GetFullPath(outputfolder);
 
             // Run the EwE engine
-            cEwEEngine engine = new cEwEEngine(info);
-            if (showtree | showcommands )
-                engine.WriteAutomationCapabilities(showtree);
-            else 
-                if (engine.Run())
+            cEwEEngine engine = sp.GetRequiredService<cEwEEngine>();
+            if (showtree | showcommands)
+                engine.WriteAutomationCapabilities(info, showtree);
+            else
+                if (engine.Run(info))
                     Console.WriteLine("Run completed");
                 else
                     Console.WriteLine("! Run errors encountered");

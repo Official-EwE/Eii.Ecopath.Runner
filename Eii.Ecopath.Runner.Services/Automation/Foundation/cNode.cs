@@ -1,8 +1,7 @@
-﻿using EwECore;
-using System;
-using System.Collections.Generic;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
+using Microsoft.Extensions.Logging;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
 
 namespace Eii.Ecopath.Runner.Services.Automation
@@ -17,14 +16,18 @@ namespace Eii.Ecopath.Runner.Services.Automation
     public class cNode
     {
         #region Private vars
-        
-        protected readonly cCore Core;
+
+        protected readonly ICoreService CoreService;
+        protected readonly ILogger Logger;
+        /// <summary>Escape hatch for the rare EwECore constructors that require a raw cCore.</summary>
+        protected cCore Core => CoreService.Core;
 
         #endregion
 
-        public cNode(cCore core)
+        public cNode(ICoreService coreService, ILogger logger)
         {
-            Core = core;
+            CoreService = coreService;
+            Logger = logger;
         }
 
         // --------------------------------------------------------------------
@@ -58,7 +61,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             }
             if (bIncompatible)
             {
-                Console.WriteLine("! Change '{0}' cannot be executed under '{1}'", methodPath, context);
+                Logger.LogError("Change '{MethodPath}' cannot be executed under '{Context}'", methodPath, context);
                 return false;
             }
 
@@ -89,7 +92,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
                 if (iBracket >= 0)
                 {
                     parm = parts[0].Substring(iBracket + 1).Replace("]", "");
-                    parts[0] = parts[0].Substring(0, iBracket );
+                    parts[0] = parts[0].Substring(0, iBracket);
                     parms = new object[] { Convert.ToInt16(parm) };
                 }
 
@@ -100,13 +103,13 @@ namespace Eii.Ecopath.Runner.Services.Automation
                     MethodInfo? method = GetType().GetMethod(parts[0]);
                     if (method == null)
                     {
-                        Console.WriteLine("! Automation entry '{0}' in '{1}' cannot be resolved", parts[0], methodPath);
+                        Logger.LogError("Automation entry '{Entry}' in '{MethodPath}' cannot be resolved", parts[0], methodPath);
                         return false;
                     }
                     var result = method.Invoke(this, parms);
                     if (result == null)
                     {
-                        Console.WriteLine("! Automation invocation {0}({1}) caused an error", parts[0], parm);
+                        Logger.LogError("Automation invocation {Entry}({Parm}) caused an error", parts[0], parm);
                         return false;
                     }
                     if (result is cNode)
@@ -115,7 +118,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
                     }
 
                     // Catch all - the returned method is of the wrong class
-                    Console.WriteLine("! Automation entry '{0}' in '{1}' bug! cNode expected", parts[0], methodPath);
+                    Logger.LogError("Automation entry '{Entry}' in '{MethodPath}' bug! cNode expected", parts[0], methodPath);
                     return false;
                 }
                 else
@@ -124,7 +127,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
                     MethodInfo? method = GetType().GetMethod(parts[0]);
                     if (method == null)
                     {
-                        Console.WriteLine("! Automation endpoint '{0}' in '{1}' cannot be resolved", parts[0], methodPath);
+                        Logger.LogError("Automation endpoint '{Entry}' in '{MethodPath}' cannot be resolved", parts[0], methodPath);
                         return false;
                     }
 
@@ -135,14 +138,14 @@ namespace Eii.Ecopath.Runner.Services.Automation
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("! Automation endpoint {0}({1}) threw error {2}", parts[0], fnparms, ex.Message);
+                        Logger.LogError(ex, "Automation endpoint {Entry}({Parms}) threw error", parts[0], fnparms);
                         return false;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("! Automation {0} threw error {1}", methodPath, ex.Message);
+                Logger.LogError(ex, "Automation {MethodPath} threw error", methodPath);
             }
             return false;
         }
@@ -168,7 +171,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
                 string paramList = string.Join(", ", parameters.Select(p => $"{p.Name}: {p.ParameterType.Name}"));
                 string signature = methodName;
-                
+
                 if (hasParams)
                     if (returnsNode)
                         signature += "[" + paramList + "]";
@@ -269,5 +272,59 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
             return paths;
         }
+
+        #region Ecpoath-wide accessors
+
+        /// -------------------------------------------------------------------
+        /// <summary>
+        /// Find the index of a group by name.
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <returns>The group index, or <see cref="cCore.NULL_VALUE"/> if no match 
+        /// was found.</returns>        
+        /// -------------------------------------------------------------------
+        protected int FindGroup(string groupName)
+        {
+            cEcopathDataStructures ds = this.Core.EcopathDataStructures;
+            return FindItem(groupName, ds.GroupName);
+        }
+
+        /// -------------------------------------------------------------------
+        /// <summary>
+        /// Find the index of a fleet by name. This function cannot be used to 
+        /// find the "all" fleet that is used in some specific EwE logic.
+        /// </summary>
+        /// <param name="fleetName"></param>
+        /// <returns>The fleet index, or <see cref="cCore.NULL_VALUE"/> if no match 
+        /// was found.</returns>        
+        /// -------------------------------------------------------------------
+        protected int FindFleet(string fleetName)
+        {
+            cEcopathDataStructures ds = this.Core.EcopathDataStructures;
+            return FindItem(fleetName, ds.FleetName);
+        }
+
+        /// -------------------------------------------------------------------
+        /// <summary>
+        /// Find the index of a named item by string comparison. All comparisons 
+        /// ignore casing.
+        /// </summary>
+        /// <param name="name">The name of the item to find.</param>
+        /// <param name="names">The array of names to search within.</param>
+        /// <returns>The index, or <see cref="cCore.NULL_VALUE"/> if no match 
+        /// was found.</returns>
+        /// -------------------------------------------------------------------
+        protected int FindItem(string name, string[] names)
+        {
+            name = name.Trim();
+            for (int i = 0; i < names.Length; i++)
+            {
+                if (string.Compare(name, names[i], StringComparison.InvariantCultureIgnoreCase) == 0)
+                    return i;
+            }
+            return cCore.NULL_VALUE;
+        }
     }
+
+        #endregion // Ecopath-wide accessors
 }

@@ -1,5 +1,7 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using EwECore.Common;
+using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -12,7 +14,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     public class cMapNode : cNode
     {
         #region Private vars
-        
+
         protected cEcospaceLayer Layer;
 
         #endregion // Private vars
@@ -23,8 +25,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// </summary>
         /// <param name="core">The <see cref="cCore"/> to operate on.</param>
         /// <param name="layer">the <see cref="cEcospaceLayer"/> to operate on.</param>
+        /// <param name="logger">Logger for this node.</param>
         // --------------------------------------------------------------------
-        public cMapNode(cCore core, cEcospaceLayer layer) : base(core) 
+        public cMapNode(ICoreService coreService, cEcospaceLayer layer, ILogger logger) : base(coreService, logger) 
         {
             this.Layer = layer;
         }
@@ -38,7 +41,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         // --------------------------------------------------------------------
         public bool fill(object value)
         {
-            cEcospaceBasemap bm = this.Core.EcospaceBasemap;
+            cEcospaceBasemap bm = CoreService.EcospaceBasemap;
             for (int ir = 1; ir <= bm.InRow; ir++)
                 for (int ic = 1; ic <= bm.InCol; ic++)
                 {
@@ -74,13 +77,13 @@ namespace Eii.Ecopath.Runner.Services.Automation
                 }
                 else
                 {
-                    // Unable to read file: log this
+                    Logger.LogWarning("Unable to read map file '{Filename}'", filename);
                     bSuccess = false;
                 }
             }
             else
             {
-                // Unable to read file: log this
+                Logger.LogWarning("Unable to read map file: filename is null or empty");
                 bSuccess = false;
             }
             return bSuccess;

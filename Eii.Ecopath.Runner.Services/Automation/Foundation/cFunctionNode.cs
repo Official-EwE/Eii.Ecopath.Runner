@@ -1,5 +1,7 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using EwECore.Common;
+using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -13,7 +15,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     {
         protected readonly cShapeData Shape;
 
-        public cFunctionNode(cCore core, cShapeData shape) : base(core)
+        public cFunctionNode(ICoreService coreService, cShapeData shape, ILogger logger) : base(coreService, logger)
         {
             this.Shape = shape;
         }
@@ -75,22 +77,22 @@ namespace Eii.Ecopath.Runner.Services.Automation
             // Parse shape shapetypename
             if (!Enum.TryParse(shapetypename, out shapetype))
             {
-                // LOG THIS: Unable to parse function shapetypename 
+                Logger.LogWarning("Unable to parse function shape type '{ShapeTypeName}'", shapetypename);
                 return false;
             }
 
             // Obtain primitive
-            IShapeFunction fn = cShapeFunctionFactory.GetShapeFunction((long)shapetype, Core.PluginManager);
+            IShapeFunction fn = cShapeFunctionFactory.GetShapeFunction((long)shapetype, CoreService.PluginManager);
             if (fn == null)
             {
-                // LOG THIS: Unable to get working shape type. Plugins may be absent
+                Logger.LogWarning("Unable to get shape function for type '{ShapeTypeName}'. Plugins may be absent", shapetypename);
                 return false;
             }
 
             // Is compatible?
             if (!fn.IsCompatible(this.Shape.DataType))
             {
-                // LOG THIS: Shape is not compatible with provided primitive
+                Logger.LogWarning("Shape type '{ShapeTypeName}' is not compatible with shape data type '{DataType}'", shapetypename, this.Shape.DataType);
                 return false;
             }
 

@@ -9,6 +9,13 @@ namespace EwERunApi.Controllers
     [Route("eweRun")]
     public class EwERunController : ControllerBase
     {
+        private readonly cEwEEngine _engine;
+
+        public EwERunController(cEwEEngine engine)
+        {
+            _engine = engine;
+        }
+
         // --------------------------------------------------------------------
         /// <summary>
         /// Execute an EwE run from a posted <see cref="cEwERunInstructions"/>
@@ -36,8 +43,7 @@ namespace EwERunApi.Controllers
 
             using (var cc = new cConsoleCopy(Path.Combine(instructions.OutputFolder, "EwERunConsole_log.txt")))
             {
-                cEwEEngine engine = new cEwEEngine(instructions);
-                if (engine.Run())
+                if (_engine.Run(instructions))
                     return Ok("Run completed");
 
                 return Problem("Run errors encountered");

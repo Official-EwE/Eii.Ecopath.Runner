@@ -1,12 +1,14 @@
-﻿using EwECore;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using System;
 using System.ComponentModel;
+using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcopathGroupNode : cEwECoreNode
     {
-        public cEcopathGroupNode(cCore core, cEcoPathGroupInput group) : base(core, group)
+        public cEcopathGroupNode(ICoreService coreService, cEcoPathGroupInput group, ILogger logger) : base(coreService, group, logger)
         {
         }
 
@@ -55,7 +57,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             if (this.Group.IsProducer)
                 return false;
             bool bOK = true;
-            for (int i = 0; i < Math.Min(diet_of.Length, this.Core.nGroups); i++)
+            for (int i = 0; i < Math.Min(diet_of.Length, CoreService.nGroups); i++)
                 bOK &= SetVariable(eVarNameFlags.DietComp, i, diet_of[i]);
             return bOK;
         }
