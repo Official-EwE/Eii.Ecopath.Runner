@@ -7,7 +7,7 @@ namespace EwERuEii.Ecopath.Runner.ServicesnConsole.Automation
 {
     public class cMPANode : cEwECoreNode
     {
-        public cMPANode(IcCoreService coreService, cEcospaceMPA mpa, ILogger logger) : base(coreService, mpa, logger) 
+        public cMPANode(ICoreService coreService, cEcospaceMPA mpa, ILogger logger) : base(coreService, mpa, logger) 
         {
         }
 

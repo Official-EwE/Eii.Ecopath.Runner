@@ -32,7 +32,7 @@ class Program
         // Build a DI service provider so all services receive ILogger<T> via injection
         var services = new ServiceCollection();
         services.AddLogging(b => b.AddSerilog(dispose: true));
-        services.AddSingleton<IcCoreService, cCoreService>();
+        services.AddSingleton<ICoreService, cCoreService>();
         services.AddTransient<cNodeService>();
         services.AddTransient<cEcopathModifierService>();
         services.AddTransient<cEcosimModifierService>();

@@ -7,7 +7,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     public class cEcospaceFleetNode : cEwECoreNode
     {
 
-        public cEcospaceFleetNode(IcCoreService coreService, cEcospaceFleetInput fleet, ILogger logger) : base(coreService, fleet, logger)
+        public cEcospaceFleetNode(ICoreService coreService, cEcospaceFleetInput fleet, ILogger logger) : base(coreService, fleet, logger)
         { 
         }
         

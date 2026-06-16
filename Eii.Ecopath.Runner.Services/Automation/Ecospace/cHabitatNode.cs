@@ -6,7 +6,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cHabitatNode : cEwECoreNode
     {
-        public cHabitatNode(IcCoreService coreService, cEcospaceHabitat hab, ILogger logger): base(coreService, hab, logger)
+        public cHabitatNode(ICoreService coreService, cEcospaceHabitat hab, ILogger logger): base(coreService, hab, logger)
         {
         }
         protected cEcospaceHabitat Habitat => (cEcospaceHabitat)this.CoreObj;

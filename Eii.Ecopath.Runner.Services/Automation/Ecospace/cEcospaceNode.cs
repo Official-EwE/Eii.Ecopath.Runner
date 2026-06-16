@@ -7,7 +7,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcospaceNode : cEwECoreNode
     {
-        public cEcospaceNode(IcCoreService coreService, cEcospaceModelParameters parms, ILogger logger) : base(coreService, parms, logger) 
+        public cEcospaceNode(ICoreService coreService, cEcospaceModelParameters parms, ILogger logger) : base(coreService, parms, logger) 
         {
         }
 

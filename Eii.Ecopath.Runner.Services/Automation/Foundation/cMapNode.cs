@@ -27,7 +27,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="layer">the <see cref="cEcospaceLayer"/> to operate on.</param>
         /// <param name="logger">Logger for this node.</param>
         // --------------------------------------------------------------------
-        public cMapNode(IcCoreService coreService, cEcospaceLayer layer, ILogger logger) : base(coreService, logger) 
+        public cMapNode(ICoreService coreService, cEcospaceLayer layer, ILogger logger) : base(coreService, logger) 
         {
             this.Layer = layer;
         }

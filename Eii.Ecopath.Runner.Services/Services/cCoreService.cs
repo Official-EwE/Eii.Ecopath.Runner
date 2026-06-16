@@ -11,7 +11,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     /// <see cref="cPluginManager"/> for the lifetime of the application.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cCoreService : IcCoreService
+    public class cCoreService : ICoreService
     {
         #region Private vars
 

@@ -6,7 +6,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcospaceEnvDriverNode : cEwECoreNode
     {
-        public cEcospaceEnvDriverNode(IcCoreService coreService, cEcospaceLayer driver, ILogger logger) : base(coreService, driver, logger) 
+        public cEcospaceEnvDriverNode(ICoreService coreService, cEcospaceLayer driver, ILogger logger) : base(coreService, driver, logger) 
         {
         }
 

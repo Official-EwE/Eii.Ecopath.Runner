@@ -12,7 +12,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     // --------------------------------------------------------------------
     public abstract class cEwECoreNode : cNode
     {
-        public cEwECoreNode(IcCoreService coreService, cCoreInputOutputBase coreobj, ILogger logger) : base(coreService, logger)
+        public cEwECoreNode(ICoreService coreService, cCoreInputOutputBase coreobj, ILogger logger) : base(coreService, logger)
         {
             this.CoreObj = coreobj;
         }

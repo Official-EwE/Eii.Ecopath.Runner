@@ -9,7 +9,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     /// </summary>
     public class cEwERootNode : cNode
     {
-        public cEwERootNode(IcCoreService coreService, ILogger logger) : base(coreService, logger) 
+        public cEwERootNode(ICoreService coreService, ILogger logger) : base(coreService, logger) 
         { 
         }
 

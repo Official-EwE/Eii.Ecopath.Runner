@@ -8,7 +8,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcopathGroupNode : cEwECoreNode
     {
-        public cEcopathGroupNode(IcCoreService coreService, cEcoPathGroupInput group, ILogger logger) : base(coreService, group, logger)
+        public cEcopathGroupNode(ICoreService coreService, cEcoPathGroupInput group, ILogger logger) : base(coreService, group, logger)
         {
         }
 

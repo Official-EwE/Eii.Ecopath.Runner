@@ -18,7 +18,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     {
         #region Private vars
 
-        private readonly IcCoreService _coreService;
+        private readonly ICoreService _coreService;
         private readonly ILogger<cEwEEngine> _logger;
         private readonly cEcopathModifierService _copathSvc;
         private readonly cEcosimModifierService _cosimSvc;
@@ -36,7 +36,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         public cEwEEngine(
             ILogger<cEwEEngine> logger,
-            IcCoreService coreService,
+            ICoreService coreService,
             cEcopathModifierService copathSvc,
             cEcosimModifierService cosimSvc,
             cEcospaceModifierService cospaceSvc)

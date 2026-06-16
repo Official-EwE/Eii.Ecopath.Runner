@@ -30,7 +30,7 @@ namespace EwERunProcess
                 .ConfigureServices((context, services) =>
                 {
                     services.AddTransient<EwERunProcessService>();
-                    services.AddSingleton<IcCoreService, cCoreService>();
+                    services.AddSingleton<ICoreService, cCoreService>();
                     services.AddTransient<cNodeService>();
                     services.AddTransient<cEcopathModifierService>();
                     services.AddTransient<cEcosimModifierService>();

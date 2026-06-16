@@ -9,7 +9,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     /// instance for the lifetime of the application.
     /// </summary>
     // ------------------------------------------------------------------------
-    public interface IcCoreService : IDisposable
+    public interface ICoreService : IDisposable
     {
         // --------------------------------------------------------------------
         /// <summary>

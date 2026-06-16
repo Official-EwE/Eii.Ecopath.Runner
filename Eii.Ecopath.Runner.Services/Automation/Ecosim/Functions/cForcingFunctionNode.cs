@@ -6,7 +6,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cForcingFunctionNode : cFunctionNode
     {
-        public cForcingFunctionNode(IcCoreService coreService, cShapeData shape, ILogger logger) : base(coreService, shape, logger)
+        public cForcingFunctionNode(ICoreService coreService, cShapeData shape, ILogger logger) : base(coreService, shape, logger)
         {
             // Nop
         }

@@ -18,7 +18,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     {
         #region Private vars
 
-        protected readonly IcCoreService _coreService;
+        protected readonly ICoreService _coreService;
         private readonly cNodeService _nodeService;
         protected readonly ILogger _logger;
 
@@ -32,7 +32,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <param name="nodeService">Automation-tree invocation service.</param>
         /// <param name="logger">Logger for this service.</param>
         // --------------------------------------------------------------------
-        protected cRuntimeModifierService(IcCoreService coreService, cNodeService nodeService, ILogger logger)
+        protected cRuntimeModifierService(ICoreService coreService, cNodeService nodeService, ILogger logger)
         {
             _coreService = coreService;
             _nodeService = nodeService;

@@ -15,7 +15,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     {
         protected readonly cShapeData Shape;
 
-        public cFunctionNode(IcCoreService coreService, cShapeData shape, ILogger logger) : base(coreService, logger)
+        public cFunctionNode(ICoreService coreService, cShapeData shape, ILogger logger) : base(coreService, logger)
         {
             this.Shape = shape;
         }

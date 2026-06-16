@@ -39,7 +39,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <param name="value">The parameter value to pass to the end-point.</param>
         /// <returns>True if the invocation succeeded.</returns>
         // --------------------------------------------------------------------
-        internal bool Invoke(IcCoreService coreService, string root, string key, object value)
+        internal bool Invoke(ICoreService coreService, string root, string key, object value)
         {
             cEwERootNode om = new cEwERootNode(coreService, _logger);
             bool bSuccess = om.Invoke(root, key, value);

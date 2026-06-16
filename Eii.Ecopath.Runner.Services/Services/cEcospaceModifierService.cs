@@ -20,7 +20,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// Constructor.
         /// </summary>
         // --------------------------------------------------------------------
-        public cEcospaceModifierService(IcCoreService coreService, cNodeService nodeService, ILogger<cEcospaceModifierService> logger)
+        public cEcospaceModifierService(ICoreService coreService, cNodeService nodeService, ILogger<cEcospaceModifierService> logger)
             : base(coreService, nodeService, logger)
         {
         }

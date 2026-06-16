@@ -6,7 +6,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEnvResponseFunctionNode : cFunctionNode
     {
-        public cEnvResponseFunctionNode(IcCoreService coreService, cEnviroResponseFunction shapeData, ILogger logger) : base(coreService, shapeData, logger)
+        public cEnvResponseFunctionNode(ICoreService coreService, cEnviroResponseFunction shapeData, ILogger logger) : base(coreService, shapeData, logger)
         {
         }
 

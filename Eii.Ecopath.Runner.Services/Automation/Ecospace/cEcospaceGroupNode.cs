@@ -6,7 +6,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcospaceGroupNode : cEwECoreNode
     {
-        public cEcospaceGroupNode(IcCoreService coreService, cEcospaceGroupInput group, ILogger logger) : base(coreService, group, logger)
+        public cEcospaceGroupNode(ICoreService coreService, cEcospaceGroupInput group, ILogger logger) : base(coreService, group, logger)
         { 
         }
         protected cEcospaceGroupInput Group => (cEcospaceGroupInput)this.CoreObj;
