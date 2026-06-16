@@ -328,4 +328,3 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         #endregion // Ecopath-wide accessors
 }
-}}
