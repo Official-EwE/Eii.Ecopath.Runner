@@ -36,6 +36,7 @@ Ecotracer without the GUI. It is available in two forms:
 - XML doc comments use the `// ---` divider style already present in the file being edited.
 - Use `#region` / `#endregion` blocks to group related members, consistent with existing files.
 - Follow the comment and formatting style of the file being edited.
+- Do not use `// ---` divider comment lines; use blank lines between members instead.
 
 ## Architecture
 
