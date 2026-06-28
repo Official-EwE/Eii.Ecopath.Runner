@@ -1,0 +1,79 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsTestProject>true</IsTestProject>
+    <Nullable>enable</Nullable>
+    <Platforms>AnyCPU;x64</Platforms>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Description>Integration tests for EwERunConsole</Description>
+    <Company>Ecopath International Initiative</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.6.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- Build the Console project first; do not add a managed reference to it -->
+  <ItemGroup>
+    <ProjectReference Include="..\Eii.Ecopath.Runner.Console\EwERunConsole.csproj"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!-- xunit parallel runner config -->
+  <ItemGroup>
+    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <!-- Testdata JSON files that live physically in this project -->
+  <ItemGroup>
+    <None Update="Testdata\**\*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <!-- Large data files linked from the Console project — no disk duplication -->
+  <ItemGroup>
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay.eiixml"
+          Link="Testdata\AnchovyBay\AnchovyBay.eiixml"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay_extdata.xml"
+          Link="Testdata\AnchovyBay\AnchovyBay_extdata.xml"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay_runinfo.json"
+          Link="Testdata\AnchovyBay\AnchovyBay_runinfo.json"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\MPA_test.asc"
+          Link="Testdata\AnchovyBay\MPA_test.asc"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\VLIZ\SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml"
+          Link="Testdata\VLIZ\SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\VLIZ\VLIZ_runinfo.json"
+          Link="Testdata\VLIZ\VLIZ_runinfo.json"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <!--
+    After this project builds, copy the entire EwERunConsole bin directory into our output
+    directory so that EwERunConsole.exe is available next to the test assembly.
+  -->
+  <Target Name="CopyConsoleBinaries" AfterTargets="Build">
+    <MSBuild Projects="..\Eii.Ecopath.Runner.Console\EwERunConsole.csproj"
+             Targets="GetTargetPath"
+             Properties="Configuration=$(Configuration);Platform=$(Platform)">
+      <Output TaskParameter="TargetOutputs" ItemName="_ConsoleTargetPath" />
+    </MSBuild>
+    <ItemGroup>
+      <_ConsoleBinFiles Include="$([System.IO.Path]::GetDirectoryName('%(_ConsoleTargetPath.Identity)'))\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_ConsoleBinFiles)"
+          DestinationFolder="$(OutDir)%(RecursiveDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

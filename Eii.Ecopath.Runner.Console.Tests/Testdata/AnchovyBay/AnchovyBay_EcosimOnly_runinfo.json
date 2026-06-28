@@ -1,0 +1,23 @@
+{
+  "Configuration": {
+    "ModelFile": "AnchovyBay.eiixml",
+    "EcosimScenario": 1,
+    "EcosimTimeseries": 0,
+    "EcospaceScenario": 0,
+    "SaveWithHeader": true,
+    "ExtDataConfigFile": "AnchovyBay_extdata.xml",
+    "RunYears": 10
+  },
+  "EcosimRun": {
+    "SaveContentCSV": [ "biomass", "catch" ],
+    "SaveAnnual": false,
+    "Changes": [
+      {
+        "Date": "start",
+        "Modifications": {
+          "ecosim.effort[3].fill": [ 1 ]
+        }
+      }
+    ]
+  }
+}

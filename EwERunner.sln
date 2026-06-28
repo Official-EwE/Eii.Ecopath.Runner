@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunConsole", "Eii.Ecopat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunProcess", "Eii.Ecopath.Runner.RunProcess\EwERunProcess.csproj", "{AFDDB58C-0904-4F54-ADC1-312630563D90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunConsoleTests", "Eii.Ecopath.Runner.Console.Tests\EwERunConsoleTests.csproj", "{EB341B1B-80BD-580F-AF58-77D36BAA3726}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,14 @@ Global
 		{AFDDB58C-0904-4F54-ADC1-312630563D90}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AFDDB58C-0904-4F54-ADC1-312630563D90}.Release|x64.ActiveCfg = Release|Any CPU
 		{AFDDB58C-0904-4F54-ADC1-312630563D90}.Release|x64.Build.0 = Release|Any CPU
+		{EB341B1B-80BD-580F-AF58-77D36BAA3726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB341B1B-80BD-580F-AF58-77D36BAA3726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB341B1B-80BD-580F-AF58-77D36BAA3726}.Debug|x64.ActiveCfg = Debug|x64
+		{EB341B1B-80BD-580F-AF58-77D36BAA3726}.Debug|x64.Build.0 = Debug|x64
+		{EB341B1B-80BD-580F-AF58-77D36BAA3726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB341B1B-80BD-580F-AF58-77D36BAA3726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB341B1B-80BD-580F-AF58-77D36BAA3726}.Release|x64.ActiveCfg = Release|x64
+		{EB341B1B-80BD-580F-AF58-77D36BAA3726}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

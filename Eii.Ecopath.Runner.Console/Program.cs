@@ -46,11 +46,12 @@ class Program
         // Initialize logger after LoggerFactory is created
         var m_logger = LoggingContext.LoggerFactory.CreateLogger("EwERunConsole");
 
-        ParserResult<CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
-            .WithParsed(options => { ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, m_logger, sp); })
+        bool success = false;
+        ParserResult <CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
+            .WithParsed(options => { success =ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, m_logger, sp); })
             .WithNotParsed(errors => { Complain(errors); });
 
-        return 1;
+        return success ? 1 : 0;
     }
 
     /// <summary>
@@ -58,7 +59,7 @@ class Program
     /// </summary>
     /// <param name="runinfofile"></param>
     /// <param name="outputfolder"></param>
-    static void ParseInstructions(string runinfofile, string? outputfolder, bool showtree, bool showcommands, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
+    static bool ParseInstructions(string runinfofile, string? outputfolder, bool showtree, bool showcommands, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
     {
         cEwERunInstructions? info;
 
@@ -69,7 +70,7 @@ class Program
         if (!cFileUtils.IsDirectoryAvailable(outputfolder, true))
         {
             Console.WriteLine("! Can't create output folder '{0}'", outputfolder);
-            return;
+            return false;
         }
 
         // Start logging asap
@@ -85,7 +86,7 @@ class Program
             if (!File.Exists(runinfofile))
             {
                 Console.WriteLine("! Can't find run info file '{0}'", runinfofile);
-                return;
+                return false;
             }
 
             try
@@ -98,19 +99,19 @@ class Program
             catch (JsonException ex)
             {
                 Console.WriteLine("! {0}", ex.Message);
-                return;
+                return false;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("! Can't parse run info file '{0}'. {1}", runinfofile, ex.Message);
-                return;
+                return false;
             }
 
             // Has instructions?
             if (info == null)
             {
                 Console.WriteLine("! Instructions missing from run info file '{0}'", runinfofile);
-                return;
+                return false;
             }
 
             // Pass run info file name to the EwE engine
@@ -122,12 +123,14 @@ class Program
             cEwEEngine engine = sp.GetRequiredService<cEwEEngine>();
             if (showtree | showcommands)
                 engine.WriteAutomationCapabilities(info, showtree);
-            else
-                if (engine.Run(info))
-                    Console.WriteLine("Run completed");
-                else
-                    Console.WriteLine("! Run errors encountered");
+            else if (engine.Run(info) == false)
+            {
+                Console.WriteLine("! Run errors encountered");
+                return false;
+            }
         } // Using
+        Console.WriteLine("Run completed");
+        return true;
     }
 
     static void Complain(IEnumerable<Error> errors)
