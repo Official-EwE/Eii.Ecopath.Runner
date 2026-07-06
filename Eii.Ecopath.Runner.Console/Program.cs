@@ -8,6 +8,7 @@ using EwEUtils.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -61,6 +62,7 @@ class Program
     /// <param name="outputfolder"></param>
     static bool ParseInstructions(string runinfofile, string? outputfolder, bool showtree, bool showcommands, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
     {
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
         cEwERunInstructions? info;
 
         // Need to do some restructuring. Might not need to RUN models, only load them to write out the command (tree).
@@ -79,6 +81,7 @@ class Program
             Console.WriteLine("==========================================================================");
             Console.WriteLine("EwERunConsole version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
             Console.WriteLine("EwE Core version {0}", cAssemblyUtils.GetVersion(cAssemblyUtils.GetAssemblyName(typeof(cCore))));
+            Console.WriteLine("Executed on {0}", DateTime.Now);
             Console.WriteLine("==========================================================================");
             Console.WriteLine();
 
@@ -129,7 +132,8 @@ class Program
                 return false;
             }
         } // Using
-        Console.WriteLine("Run completed");
+        stopwatch.Stop();
+        Console.WriteLine("Run completed in {0}", stopwatch.Elapsed);
         return true;
     }
 
