@@ -48,8 +48,8 @@ class Program
         var m_logger = LoggingContext.LoggerFactory.CreateLogger("EwERunConsole");
 
         bool success = false;
-        ParserResult <CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
-            .WithParsed(options => { success =ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, m_logger, sp); })
+        ParserResult<CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
+            .WithParsed(options => { success = ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, m_logger, sp); })
             .WithNotParsed(errors => { Complain(errors); });
 
         return success ? 1 : 0;
