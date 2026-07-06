@@ -8,6 +8,7 @@ using EwEUtils.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,8 +48,8 @@ class Program
         var m_logger = LoggingContext.LoggerFactory.CreateLogger("EwERunConsole");
 
         bool success = false;
-        ParserResult <CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
-            .WithParsed(options => { success =ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, m_logger, sp); })
+        ParserResult<CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
+            .WithParsed(options => { success = ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, m_logger, sp); })
             .WithNotParsed(errors => { Complain(errors); });
 
         return success ? 1 : 0;
@@ -61,6 +62,7 @@ class Program
     /// <param name="outputfolder"></param>
     static bool ParseInstructions(string runinfofile, string? outputfolder, bool showtree, bool showcommands, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
     {
+        var stopwatch = System.Diagnostics.Stopwatch.StartNew();
         cEwERunInstructions? info;
 
         // Need to do some restructuring. Might not need to RUN models, only load them to write out the command (tree).
@@ -79,6 +81,7 @@ class Program
             Console.WriteLine("==========================================================================");
             Console.WriteLine("EwERunConsole version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
             Console.WriteLine("EwE Core version {0}", cAssemblyUtils.GetVersion(cAssemblyUtils.GetAssemblyName(typeof(cCore))));
+            Console.WriteLine("Executed on {0}", DateTime.Now);
             Console.WriteLine("==========================================================================");
             Console.WriteLine();
 
@@ -129,7 +132,8 @@ class Program
                 return false;
             }
         } // Using
-        Console.WriteLine("Run completed");
+        stopwatch.Stop();
+        Console.WriteLine("Run completed in {0}", stopwatch.Elapsed);
         return true;
     }
 
