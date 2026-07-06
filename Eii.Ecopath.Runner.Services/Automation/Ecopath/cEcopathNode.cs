@@ -1,6 +1,7 @@
 ﻿using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -10,6 +11,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         {
         }
 
+        [Description("Select an Ecopath group by 1-based index")]
         public cEcopathGroupNode? group(int iGroup)
         {
             if ((iGroup < 1) | (iGroup > CoreService.nGroups))
@@ -20,6 +22,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return new cEcopathGroupNode(CoreService, CoreService.get_EcopathGroupInputs(iGroup), Logger);
         }
 
+        [Description("Select an Ecopath fleet by 1-based index")]
         public cEcopathFleetNode? fleet(int iFleet)
         {
             if ((iFleet < 1) | (iFleet > CoreService.nFleets))

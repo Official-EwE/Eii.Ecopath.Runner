@@ -2,6 +2,7 @@
 using EwECore;
 using EwECore.Common;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -39,6 +40,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="value">The value to set to every cell.</param>
         /// <returns>True if successful.</returns>
         // --------------------------------------------------------------------
+        [Description("Fill all map cells with a single constant value")]
         public bool fill(object value)
         {
             cEcospaceBasemap bm = CoreService.EcospaceBasemap;
@@ -57,6 +59,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="filename">The file to load the map from.</param>
         /// <returns>True if successful.</returns>
         // --------------------------------------------------------------------
+        [Description("Load the map from an ASCII grid file")]
         public bool load(string filename)
         {
             bool bSuccess = true;

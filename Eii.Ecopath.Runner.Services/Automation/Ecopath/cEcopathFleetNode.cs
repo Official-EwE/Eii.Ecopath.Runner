@@ -1,6 +1,7 @@
 ﻿using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -12,11 +13,13 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         protected cEcopathFleetInput Group => (cEcopathFleetInput)CoreObj;
 
+        [Description("Set the ex-vessel price for a specific group")]
         public bool value_of(float val, int iGroup)
         {
             return SetVariable(eVarNameFlags.OffVesselPrice, iGroup, val);
         }
 
+        [Description("Set all ex-vessel prices")]
         public bool values(int[] value_of)
         {
             bool bOK = true;
@@ -25,11 +28,13 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return bOK;
         }
 
+        [Description("Set landings for a specific group")]
         public bool landings_of(float val, int iGroup)
         {
             return SetVariable(eVarNameFlags.Landings, iGroup, val);
         }
 
+        [Description("Set all landings")]
         public bool landings(int[] landings_of)
         {
             bool bOK = true;
@@ -38,11 +43,13 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return bOK;
         }
 
+        [Description("Set discards for a specific group")]
         public bool discards_of(float val, int iGroup)
         {
             return SetVariable(eVarNameFlags.Discards, iGroup, val);
         }
 
+        [Description("Set all discards")]
         public bool discards(int[] discards_of)
         {
             bool bOK = true;

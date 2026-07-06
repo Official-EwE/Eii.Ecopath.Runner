@@ -49,7 +49,7 @@ class Program
 
         bool success = false;
         ParserResult<CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
-            .WithParsed(options => { success = ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, m_logger, sp); })
+            .WithParsed(options => { success = ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, options.Docs, m_logger, sp); })
             .WithNotParsed(errors => { Complain(errors); });
 
         return success ? 1 : 0;
@@ -60,12 +60,32 @@ class Program
     /// </summary>
     /// <param name="runinfofile"></param>
     /// <param name="outputfolder"></param>
-    static bool ParseInstructions(string runinfofile, string? outputfolder, bool showtree, bool showcommands, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
+    static bool ParseInstructions(string? runinfofile, string? outputfolder, bool showtree, bool showcommands, bool generateDocs, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
     {
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
         cEwERunInstructions? info;
 
         // Need to do some restructuring. Might not need to RUN models, only load them to write out the command (tree).
+
+        if (generateDocs)
+        {
+            string docsFolder = !string.IsNullOrEmpty(outputfolder)
+                ? outputfolder
+                : Directory.GetCurrentDirectory();
+            Directory.CreateDirectory(docsFolder);
+            string docsPath = Path.Combine(docsFolder, "automation-commands.md");
+            File.WriteAllText(docsPath, Eii.Ecopath.Runner.Services.Automation.cAutomationDocumentation.GenerateMarkdown());
+            logger.LogInformation("Automation command reference written to '{Path}'", docsPath);
+            Console.WriteLine("Automation command reference written to '{0}'", docsPath);
+            return true;
+        }
+
+        if (string.IsNullOrEmpty(runinfofile))
+        {
+            logger.LogError("No run-info file specified. Use --info or --docs.");
+            Console.WriteLine("! No run-info file specified. Use --info or --docs.");
+            return false;
+        }
 
         outputfolder = Path.Combine(outputfolder, Path.GetFileNameWithoutExtension(runinfofile));
 

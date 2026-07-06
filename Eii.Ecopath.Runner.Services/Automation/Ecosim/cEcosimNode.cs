@@ -1,6 +1,7 @@
 ﻿using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -20,6 +21,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="iFleet">1-based fleet index. Supports fleet zero (all fleets)</param>
         /// <returns></returns>
         /// -------------------------------------------------------------------
+        [Description("Get the fishing effort shape for a fleet by 1-based index")]
         public cForcingFunctionNode? effort(int iFleet)
         {
             cFishingEffortShapeManger man = CoreService.FishingEffortShapeManager;
@@ -39,6 +41,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="name">Fleet name.</param>
         /// <returns></returns>
         /// -------------------------------------------------------------------
+        [Description("Get the fishing effort shape for a fleet by name")]
         public cForcingFunctionNode? effort(string name)
         {
             cFishingEffortShapeManger man = CoreService.FishingEffortShapeManager;
@@ -52,6 +55,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="iGroup">1-based group index.</param>
         /// <returns></returns>
         /// -------------------------------------------------------------------
+        [Description("Get the fishing mortality shape for a group by 1-based index")]
         public cForcingFunctionNode? fishingmortality(int iGroup)
         {
             cFishingMortalityShapeManger man = CoreService.FishMortShapeManager;
@@ -71,6 +75,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         /// <see cref="fishingmortality(iGroup)"/>
         /// -------------------------------------------------------------------
+        [Description("Alias for fishingmortality(int)")]
         public cForcingFunctionNode? f(int iGroup)
         {
             return fishingmortality(iGroup);
@@ -84,6 +89,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         /// <see cref="fishingmortality(int)"/>
         /// -------------------------------------------------------------------
+        [Description("Alias for fishingmortality(string)")]
         public cForcingFunctionNode? f(string groupname)
         {
             return fishingmortality(groupname);
@@ -97,6 +103,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         /// <see cref="fishingmortality(int)"/>
         /// -------------------------------------------------------------------
+        [Description("Get the fishing mortality shape for a group by name")]
         public cForcingFunctionNode? fishingmortality(string groupname)
         {
             cFishingMortalityShapeManger man = CoreService.FishMortShapeManager;
@@ -115,6 +122,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         /// <see cref="fishingmortality(int)"/>
         /// -------------------------------------------------------------------
+        [Description("Get a forcing function shape by 1-based index")]
         public cForcingFunctionNode? forcingfunction(int iIndex)
         {
             cForcingFunctionShapeManager man = CoreService.ForcingShapeManager;
@@ -135,6 +143,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         /// <see cref="fishingmortality(int)"/>
         /// -------------------------------------------------------------------
+        [Description("Get a forcing function shape by name")]
         public cForcingFunctionNode? forcingfunction(string name)
         {
             cForcingFunctionShapeManager man = CoreService.ForcingShapeManager;
@@ -149,6 +158,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         /// <see cref="forcingfunction(int)"/>
         /// -------------------------------------------------------------------
+        [Description("Alias for forcingfunction(int)")]
         public cForcingFunctionNode? ff(int iIndex)
         {
             return forcingfunction(iIndex);
@@ -162,6 +172,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         /// <see cref="fishingmortality(int)"/>
         /// -------------------------------------------------------------------
+        [Description("Alias for forcingfunction(string)")]
         public cForcingFunctionNode? ff(string name)
         {
             return forcingfunction(name);
@@ -178,12 +189,13 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="iIndex">1-based shape index.</param>
         /// <returns></returns>
         /// -------------------------------------------------------------------
+        [Description("Get an environmental response function by 1-based index")]
         public cEnvResponseFunctionNode? envresponse(int iIndex)
         {
             cEnviroResponseShapeManager man = this.Core.EnviroResponseShapeManager;
             if ((iIndex < 1) | (iIndex > man.Count))
             {
-                Console.WriteLine("! Ecosim env response function {0} invalid, must be [1, {1}]", iIndex, man.Count);
+                Logger.LogError("Ecosim env response function {Index} invalid, must be [1, {MaxIndex}]", iIndex, man.Count);
                 return null;
             }
             return new cEnvResponseFunctionNode(CoreService, (cEnviroResponseFunction)man.get_CoreItem(iIndex), Logger);
@@ -196,6 +208,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="name">The environmental response function name.</param>
         /// <returns></returns>
         /// -------------------------------------------------------------------
+        [Description("Get an environmental response function by name")]
         public cEnvResponseFunctionNode? envresponse(string name)
         {
             cEnviroResponseShapeManager man = this.Core.EnviroResponseShapeManager;

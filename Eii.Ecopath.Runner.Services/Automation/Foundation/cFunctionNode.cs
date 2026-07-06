@@ -2,6 +2,7 @@
 using EwECore;
 using EwECore.Common;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -27,6 +28,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="fn"></param>
         /// <returns></returns>
         // ----------------------------------------------------------------
+        [Description("Load the function from a file (not yet implemented)")]
         public bool load(string fn)
         {
 
@@ -42,6 +44,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="points"></param>
         /// <returns></returns>
         // ----------------------------------------------------------------
+        [Description("Set function values from an array of points; excess points are ignored")]
         public virtual bool set(object[] points)
         {
             if (points == null) return false;
@@ -60,6 +63,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="points"></param>
         /// <returns></returns>
         // ----------------------------------------------------------------
+        [Description("Set function values, repeating the pattern to fill the entire shape")]
         public virtual bool fill(object[] points)
         {
             if (points == null) return false;
@@ -70,6 +74,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return true;
         }
 
+        [Description("Apply a built-in shape primitive (e.g. Sigmoid, Normal) to the function")]
         public bool reshape(string shapetypename, float[] parameters)
         {
             eShapeFunctionType shapetype = eShapeFunctionType.NotSet;

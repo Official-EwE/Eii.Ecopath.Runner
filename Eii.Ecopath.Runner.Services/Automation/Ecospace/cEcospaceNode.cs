@@ -1,7 +1,7 @@
 ﻿using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
-using EwERuEii.Ecopath.Runner.ServicesnConsole.Automation;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -12,6 +12,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         }
 
         // Accessor
+        [Description("Select an MPA by 1-based index")]
         public cMPANode? mpa(int iMPA)
         {
             if ((iMPA < 1) | (iMPA > CoreService.nMPAs))
@@ -22,6 +23,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return new cMPANode(CoreService, CoreService.get_EcospaceMPAs(iMPA), Logger);
         }
 
+        [Description("Select a habitat layer by 1-based index")]
         public cHabitatNode? habitat(int iHabitat)
         {
             if ((iHabitat < 1) | (iHabitat > CoreService.nHabitats))
@@ -32,6 +34,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return new cHabitatNode(CoreService, CoreService.get_EcospaceHabitats(iHabitat), Logger);
         }
 
+        [Description("Select an environmental driver layer; use 0 for depth")]
         public cEcospaceEnvDriverNode? envdriver(int iIndex)
         {
             if ((iIndex < 0) | (iIndex > CoreService.nEnvironmentalDriverLayers))
@@ -43,6 +46,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return new cEcospaceEnvDriverNode(CoreService, iIndex == 0 ? bm.LayerDepth : bm.get_LayerDriver(iIndex), Logger);
         }
 
+        [Description("Select an Ecospace group by 1-based index")]
         public cEcospaceGroupNode? group(int iGroup)
         {
             if ((iGroup <= 0) | (iGroup > CoreService.nGroups))
@@ -53,6 +57,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return new cEcospaceGroupNode(CoreService, CoreService.get_EcospaceGroupInputs(iGroup), Logger);
         }
 
+        [Description("Select an Ecospace fleet by 1-based index")]
         public cEcospaceFleetNode? fleet(int iFleet)
         {
             if ((iFleet < 0) | (iFleet > CoreService.nFleets))
@@ -63,6 +68,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return new cEcospaceFleetNode(CoreService, CoreService.get_EcospaceFleetInputs(iFleet), Logger);
         }
 
+        [Description("Access the region map layer")]
         public cMapNode? regions()
         {
             cEcospaceBasemap bm = CoreService.EcospaceBasemap;
