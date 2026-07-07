@@ -97,7 +97,8 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
 - The Markdown is then converted to PDF using the `docker://pandoc/latex:edge` action
   (ships with xelatex; no extra apt packages needed), producing
   `~Documentation/automation-commands.pdf`.
-- Both the `.md` and `.pdf` are attached to the GitHub Release alongside the ZIP.
+- Both the `.md` and `.pdf` are copied into the publish output folder and included in the
+  release ZIP alongside the binary.
 - `Program.Main` returns exit code `0` on success and `1` on failure (standard Unix convention).
 - See https://github.com/Official-EwE/.github/blob/master/profile/gitversion.md
 

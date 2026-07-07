@@ -101,9 +101,12 @@ jobs:
 
       # cd into the output directory first so the ZIP contains files at its root,
       # rather than nested under publish/EwERunConsole/.
+      # The documentation files are copied in before zipping so they are included at the root.
       - name: Create ZIP
         shell: bash
         run: |
+          cp ~Documentation/automation-commands.md publish/EwERunConsole/
+          cp ~Documentation/automation-commands.pdf publish/EwERunConsole/
           cd publish/EwERunConsole
           zip -r ../../EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip .
 
@@ -130,8 +133,6 @@ jobs:
           body: Automated release of EwERunConsole version ${{ steps.gitversion.outputs.semVer }}.
           files: |
             EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip
-            ~Documentation/automation-commands.md
-            ~Documentation/automation-commands.pdf
           draft: false
           prerelease: false
         env:
