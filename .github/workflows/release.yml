@@ -20,7 +20,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
 
       # Install the GitVersion CLI tool at the pinned version so the version calculation is reproducible.
       - name: Install GitVersion
@@ -69,6 +69,22 @@ jobs:
         run: dotnet restore Eii.Ecopath.Runner.Console/EwERunConsole.csproj
         shell: bash
 
+      # Generate the automation command reference Markdown.
+      # --docs uses pure type reflection over the automation node tree; no model file is required.
+      - name: Generate documentation
+        run: dotnet run --project Eii.Ecopath.Runner.Console/EwERunConsole.csproj --no-restore -- --docs
+        shell: bash
+
+      # Convert the Markdown reference to PDF using the official pandoc/latex Docker image.
+      # The image ships with xelatex so no extra apt packages are needed.
+      - name: Convert documentation to PDF
+        uses: docker://pandoc/latex:edge
+        with:
+          args: >-
+            ~Documentation/automation-commands.md
+            --pdf-engine=xelatex
+            -o ~Documentation/automation-commands.pdf
+
       # Publish a framework-dependent win-x64 binary.
       # Version properties are injected so the compiled assembly carries the correct version metadata.
       - name: Publish
@@ -112,7 +128,10 @@ jobs:
           tag_name: v${{ steps.gitversion.outputs.semVer }}
           name: EwERunConsole v${{ steps.gitversion.outputs.semVer }}
           body: Automated release of EwERunConsole version ${{ steps.gitversion.outputs.semVer }}.
-          files: EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip
+          files: |
+            EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip
+            ~Documentation/automation-commands.md
+            ~Documentation/automation-commands.pdf
           draft: false
           prerelease: false
         env:

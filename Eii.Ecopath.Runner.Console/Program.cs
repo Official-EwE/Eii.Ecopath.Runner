@@ -69,10 +69,7 @@ class Program
 
         if (generateDocs)
         {
-            string docsFolder = !string.IsNullOrEmpty(outputfolder)
-                ? outputfolder
-                : Directory.GetCurrentDirectory();
-            Directory.CreateDirectory(docsFolder);
+            string docsFolder = "~Documentation";
             string docsPath = Path.Combine(docsFolder, "automation-commands.md");
             File.WriteAllText(docsPath, Eii.Ecopath.Runner.Services.Automation.cAutomationDocumentation.GenerateMarkdown());
             logger.LogInformation("Automation command reference written to '{Path}'", docsPath);
