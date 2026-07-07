@@ -71,6 +71,7 @@ class Program
         {
             string docsFolder = "~Documentation";
             string docsPath = Path.Combine(docsFolder, "automation-commands.md");
+            Directory.CreateDirectory(docsFolder);
             File.WriteAllText(docsPath, Eii.Ecopath.Runner.Services.Automation.cAutomationDocumentation.GenerateMarkdown());
             logger.LogInformation("Automation command reference written to '{Path}'", docsPath);
             Console.WriteLine("Automation command reference written to '{0}'", docsPath);
