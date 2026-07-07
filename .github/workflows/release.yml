@@ -105,8 +105,8 @@ jobs:
       - name: Create ZIP
         shell: bash
         run: |
-          cp ~Documentation/automation-commands.md publish/EwERunConsole/
-          cp ~Documentation/automation-commands.pdf publish/EwERunConsole/
+          cp ~Documentation/automation-commands.md publish/EwERunConsole/~Documentation/
+          cp ~Documentation/automation-commands.pdf publish/EwERunConsole/~Documentation/
           cd publish/EwERunConsole
           zip -r ../../EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip .
 
