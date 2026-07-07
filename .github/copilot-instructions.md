@@ -17,7 +17,7 @@ Ecotracer without the GUI. It is available in two forms:
 | `Eii.Ecopath.Runner.Datamodel` | Plain data containers deserialised from JSON |
 
 ## Technology stack
-- Language: C# 13
+- Language: C# 14
 - Target framework: .NET 10 (`net10.0`)
 - Publish target: Windows (`win-x64`), framework-dependent
 - Key NuGet dependencies:
@@ -43,8 +43,8 @@ Ecotracer without the GUI. It is available in two forms:
 ### Console entry point
 - `Program.cs` — configures Serilog, parses CLI args via `CommandLineParser`, reads the JSON
   run-info file, and delegates to `cEwEEngine`.
-- `CommandLineParmOptions.cs` — defines the CLI flags (`--runinfo`, `--output`, `--showtree`,
-  `--showcommands`).
+- `CommandLineParmOptions.cs` — defines the CLI flags (`--info`, `--output`, `--showtree`,
+  `--showcommands`, `--docs`). `--info` is optional; `--docs` can be used standalone.
 
 ### API entry point
 - `EwERunController.cs` — single `POST /eweRun` endpoint; accepts `cEwERunInstructions` as a
@@ -70,6 +70,12 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
 - `cEcopathModifier`, `cEcosimModifier`, `cEcospaceModifier` — concrete per-model runners.
 - `Automation/` — `cEwERootNode` and its child nodes form a command/object tree used to apply
   dynamic parameter changes at runtime.
+- `cAutomationDocumentation` (`Automation/Foundation/cAutomationDocumentation.cs`) — static
+  class that reflects over the automation node tree and emits a Markdown reference document.
+  No model file or EwE core instance is required. Called by `Program.ParseInstructions` when
+  `--docs` is passed.
+- All public automation methods on node classes must carry a `[System.ComponentModel.Description]`
+  attribute so the generated Markdown includes meaningful descriptions.
 
 ## JSON configuration
 - The run-info JSON file maps directly onto `cEwERunInstructions`.
@@ -86,6 +92,13 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
 - Private NuGet feed: `github-Official-EwE` at
   `https://nuget.pkg.github.com/Official-EwE/index.json`, authenticated via `GITHUB_TOKEN`.
 - Publishes a `win-x64` framework-dependent binary, zipped and attached to a GitHub Release.
+- Before publishing, the workflow runs `dotnet run -- --docs` to generate
+  `~Documentation/automation-commands.md` via `cAutomationDocumentation.GenerateMarkdown()`.
+- The Markdown is then converted to PDF using the `docker://pandoc/latex:edge` action
+  (ships with xelatex; no extra apt packages needed), producing
+  `~Documentation/automation-commands.pdf`.
+- Both the `.md` and `.pdf` are attached to the GitHub Release alongside the ZIP.
+- `Program.Main` returns exit code `0` on success and `1` on failure (standard Unix convention).
 - See https://github.com/Official-EwE/.github/blob/master/profile/gitversion.md
 
 ## Docker (API project)
@@ -107,8 +120,6 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
 - Do not use `this.` unless resolving a name collision.
 - Do not add new NuGet packages without a clear reason.
 - Do not remove or alter the `// ToDo` stubs in `cEcopathModifier` — they are known placeholders.
-- Do not change the hardcoded `return 1` in `Program.Main` without also wiring up proper exit codes
-  throughout `ParseInstructions`.
 - Do not change `workflow=TrunkBased/preview1` in `release.yml` — it is the only valid
   trunk-based workflow name embedded in GitVersion 6.x.
 

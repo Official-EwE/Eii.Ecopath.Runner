@@ -52,7 +52,7 @@ class Program
             .WithParsed(options => { success = ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, options.Docs, m_logger, sp); })
             .WithNotParsed(errors => { Complain(errors); });
 
-        return success ? 1 : 0;
+        return success ? 0 : 1;
     }
 
     /// <summary>
