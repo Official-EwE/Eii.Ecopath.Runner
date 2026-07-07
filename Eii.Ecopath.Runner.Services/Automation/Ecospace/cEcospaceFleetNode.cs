@@ -1,6 +1,7 @@
 ﻿using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -13,11 +14,13 @@ namespace Eii.Ecopath.Runner.Services.Automation
         
         protected cEcospaceFleetInput Fleet => (cEcospaceFleetInput)CoreObj;
 
+        [Description("Set the fleet's effective power scaling")]
         public bool effective_power(float em)
         {
             return this.SetVariable(eVarNameFlags.EffectivePower, em);
         }
 
+        [Description("Set the fleet's spatial effort multiplier")]
         public bool semult(float semult)
         {
             return this.SetVariable(eVarNameFlags.SEmult, semult);
@@ -28,6 +31,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// </summary>
         /// <param name="mult"></param>
         /// <returns></returns>
+        [Description("Set the fleet's spatial effort multiplier (alias for semult)")]
         public bool effort_multiplier(float mult)
         {
             return this.semult(mult);

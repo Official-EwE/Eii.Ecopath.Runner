@@ -1,9 +1,9 @@
-﻿using Eii.Ecopath.Runner.Services.Automation;
-using Eii.Ecopath.Runner.Services.Runtime;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
-namespace EwERuEii.Ecopath.Runner.ServicesnConsole.Automation
+namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cMPANode : cEwECoreNode
     {
@@ -13,6 +13,7 @@ namespace EwERuEii.Ecopath.Runner.ServicesnConsole.Automation
 
         protected cEcospaceMPA MPA => (cEcospaceMPA)this.CoreObj;
         // Accessor
+        [Description("Access the MPA boundary map layer")]
         public cMapNode map()
         {
             cEcospaceBasemap bm = CoreService.EcospaceBasemap;

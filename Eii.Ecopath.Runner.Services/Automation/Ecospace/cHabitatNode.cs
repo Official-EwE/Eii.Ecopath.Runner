@@ -1,6 +1,7 @@
 ﻿using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -12,6 +13,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         protected cEcospaceHabitat Habitat => (cEcospaceHabitat)this.CoreObj;
 
         // Accessor
+        [Description("Access the habitat suitability map layer")]
         public cMapNode map()
         {
             cEcospaceBasemap bm = CoreService.EcospaceBasemap;

@@ -245,7 +245,12 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
                 // Skip methods with parameters
                 if (method.GetParameters().Length > 0)
+                {
+                    // Skip string-parameter overloads (name-based aliases); use int-indexed overloads only
+                    if (method.GetParameters()[0].ParameterType == typeof(string))
+                        continue;
                     parms = [1];
+                }
 
                 // Check if return type is cNode (or subclass)
                 if (typeof(cNode).IsAssignableFrom(method.ReturnType))
