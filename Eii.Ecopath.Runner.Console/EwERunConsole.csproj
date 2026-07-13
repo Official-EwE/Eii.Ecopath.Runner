@@ -58,6 +58,12 @@
     <None Update="Testdata\AnchovyBay_runinfo.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Testdata\Andy\anchovy_bay_ecosim_ex.eiixml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Testdata\Andy\R0001_0000.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Testdata\MPA_test.asc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

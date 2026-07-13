@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>AnchovyBay</ActiveDebugProfile>
+    <ActiveDebugProfile>Andy</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

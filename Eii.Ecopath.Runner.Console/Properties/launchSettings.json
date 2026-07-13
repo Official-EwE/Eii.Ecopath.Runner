@@ -7,6 +7,10 @@
     "VLIZ": {
       "commandName": "Project",
       "commandLineArgs": "--i \"Testdata\\VLIZ\\VLIZ_runinfo.json\" --o \"Testoutput\\VLIZ\""
+    },
+    "Andy": {
+      "commandName": "Project",
+      "commandLineArgs": "--i \"Testdata\\Andy\\R0001_0000.json\" --o \"Testoutput\\Andy\""
     }
   }
 }
