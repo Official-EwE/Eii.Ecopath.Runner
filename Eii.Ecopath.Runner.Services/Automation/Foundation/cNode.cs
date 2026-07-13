@@ -93,14 +93,15 @@ namespace Eii.Ecopath.Runner.Services.Automation
                 {
                     parm = parts[0].Substring(iBracket + 1).Replace("]", "");
                     parts[0] = parts[0].Substring(0, iBracket);
-                    parms = new object[] { Convert.ToInt16(parm) };
+                    parms = new object[] { Convert.ToInt32(parm) };
                 }
 
                 // Done?
                 if (parts.Length > 1)
                 {
-                    // Iterate on
-                    MethodInfo? method = GetType().GetMethod(parts[0]);
+                    // Iterate on — resolve by parameter types to avoid AmbiguousMatchException on overloaded methods
+                    Type[] paramTypes = parms?.Select(p => p.GetType()).ToArray() ?? Type.EmptyTypes;
+                    MethodInfo? method = GetType().GetMethod(parts[0], paramTypes);
                     if (method == null)
                     {
                         Logger.LogError("Automation entry '{Entry}' in '{MethodPath}' cannot be resolved", parts[0], methodPath);
