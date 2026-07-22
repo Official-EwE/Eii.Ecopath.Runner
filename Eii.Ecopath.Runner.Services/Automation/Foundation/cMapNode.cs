@@ -28,28 +28,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="layer">the <see cref="cEcospaceLayer"/> to operate on.</param>
         /// <param name="logger">Logger for this node.</param>
         // --------------------------------------------------------------------
-        public cMapNode(ICoreService coreService, cEcospaceLayer layer, ILogger logger) : base(coreService, logger) 
+        public cMapNode(ICoreService coreService, cEcospaceLayer layer, ILogger logger) : base(coreService, logger)
         {
             this.Layer = layer;
-        }
-
-        // --------------------------------------------------------------------
-        /// <summary>
-        /// Method to fill the map withe a single value.
-        /// </summary>
-        /// <param name="value">The value to set to every cell.</param>
-        /// <returns>True if successful.</returns>
-        // --------------------------------------------------------------------
-        [Description("Fill all map cells with a single constant value")]
-        public bool fill(object value)
-        {
-            cEcospaceBasemap bm = CoreService.EcospaceBasemap;
-            for (int ir = 1; ir <= bm.InRow; ir++)
-                for (int ic = 1; ic <= bm.InCol; ic++)
-                {
-                    this.Layer.set_Cell(ir, ic, Value: value);
-                }
-            return true;
         }
 
         // --------------------------------------------------------------------

@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.9" />
-    <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.87" />
+    <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.10" />
+    <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.92-cEwEEFDatabase.1-beta.20" />
   </ItemGroup>
 
   <ItemGroup>
