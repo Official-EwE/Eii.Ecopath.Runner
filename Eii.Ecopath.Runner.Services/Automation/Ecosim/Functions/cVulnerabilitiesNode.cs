@@ -16,7 +16,7 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
         /// <summary>
         /// Load an EwE vulnerabilities CSV file
         /// </summary>
-        /// <param name="csvpath">The path th the CSV file, in us-EN number format.</param>
+        /// <param name="csvpath">The path to the CSV file, in us-EN number format.</param>
         /// <returns>True if successful.</returns>
         // --------------------------------------------------------------------
         [Description("Load the vulnerabilities matrix from a standard EwE CSV file")]
@@ -35,7 +35,7 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
 
             try
             {
-                // ViulMult[prey,pred],
+                // VulMult[prey,pred],
                 cEwEArrayReader.ReadArray(dt, this.Core.EcosimDataStructures.VulMult, cEwEArrayReader.RowColMapping2D.RowCol);
             }
             catch (Exception ex)
