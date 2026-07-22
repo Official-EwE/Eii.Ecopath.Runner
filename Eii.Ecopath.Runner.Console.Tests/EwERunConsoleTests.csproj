@@ -11,10 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="6.6.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="FluentAssertions" Version="8.10.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.8.1" />
     <PackageReference Include="xunit" Version="2.9.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+    <PackageReference Include="xunit.runner.visualstudio" Version="4.0.0-pre.5">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -22,8 +22,7 @@
 
   <!-- Build the Console project first; do not add a managed reference to it -->
   <ItemGroup>
-    <ProjectReference Include="..\Eii.Ecopath.Runner.Console\EwERunConsole.csproj"
-                      ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\Eii.Ecopath.Runner.Console\EwERunConsole.csproj" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <!-- xunit parallel runner config -->
@@ -38,24 +37,12 @@
 
   <!-- Large data files linked from the Console project — no disk duplication -->
   <ItemGroup>
-    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay.eiixml"
-          Link="Testdata\AnchovyBay\AnchovyBay.eiixml"
-          CopyToOutputDirectory="PreserveNewest" />
-    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay_extdata.xml"
-          Link="Testdata\AnchovyBay\AnchovyBay_extdata.xml"
-          CopyToOutputDirectory="PreserveNewest" />
-    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay_runinfo.json"
-          Link="Testdata\AnchovyBay\AnchovyBay_runinfo.json"
-          CopyToOutputDirectory="PreserveNewest" />
-    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\MPA_test.asc"
-          Link="Testdata\AnchovyBay\MPA_test.asc"
-          CopyToOutputDirectory="PreserveNewest" />
-    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\VLIZ\SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml"
-          Link="Testdata\VLIZ\SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml"
-          CopyToOutputDirectory="PreserveNewest" />
-    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\VLIZ\VLIZ_runinfo.json"
-          Link="Testdata\VLIZ\VLIZ_runinfo.json"
-          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay.eiixml" Link="Testdata\AnchovyBay\AnchovyBay.eiixml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay_extdata.xml" Link="Testdata\AnchovyBay\AnchovyBay_extdata.xml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay_runinfo.json" Link="Testdata\AnchovyBay\AnchovyBay_runinfo.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\MPA_test.asc" Link="Testdata\AnchovyBay\MPA_test.asc" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\VLIZ\SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml" Link="Testdata\VLIZ\SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\VLIZ\VLIZ_runinfo.json" Link="Testdata\VLIZ\VLIZ_runinfo.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <!--
@@ -63,17 +50,13 @@
     directory so that EwERunConsole.exe is available next to the test assembly.
   -->
   <Target Name="CopyConsoleBinaries" AfterTargets="Build">
-    <MSBuild Projects="..\Eii.Ecopath.Runner.Console\EwERunConsole.csproj"
-             Targets="GetTargetPath"
-             Properties="Configuration=$(Configuration);Platform=$(Platform)">
+    <MSBuild Projects="..\Eii.Ecopath.Runner.Console\EwERunConsole.csproj" Targets="GetTargetPath" Properties="Configuration=$(Configuration);Platform=$(Platform)">
       <Output TaskParameter="TargetOutputs" ItemName="_ConsoleTargetPath" />
     </MSBuild>
     <ItemGroup>
       <_ConsoleBinFiles Include="$([System.IO.Path]::GetDirectoryName('%(_ConsoleTargetPath.Identity)'))\**\*" />
     </ItemGroup>
-    <Copy SourceFiles="@(_ConsoleBinFiles)"
-          DestinationFolder="$(OutDir)%(RecursiveDir)"
-          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(_ConsoleBinFiles)" DestinationFolder="$(OutDir)%(RecursiveDir)" SkipUnchangedFiles="true" />
   </Target>
 
 </Project>

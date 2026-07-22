@@ -1,4 +1,5 @@
-﻿using Eii.Ecopath.Runner.Services.Runtime;
+﻿using Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions;
+using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel;
@@ -178,7 +179,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return forcingfunction(name);
         }
 
-        #endregion Forcing function
+        #endregion // Forcing function
 
         #region Environmental responses
 
@@ -217,6 +218,8 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         #endregion // Environmental responses
 
+        #region // Other mortality
+
         //public MortResponseFunction? mortalityresponse(int iIndex)
         //{
         //    cEcosimMortalityResponseManager man = this.Core.EcosimMortalityResponseManager;
@@ -226,6 +229,18 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         //    return new MortResponseFunction(CoreService, man.get_InputData(iIndex), Logger);
         //}
+
+        #endregion // Other mortality
+
+        #region Vulnerabilities
+
+        public cVulnerabilitiesNode? vulnerabilities()
+        {
+            return new cVulnerabilitiesNode(CoreService, Logger);
+        }
+
+        #endregion // Vulnerabilities
+
 
         #region Utility
 
@@ -249,6 +264,6 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return cCore.NULL_VALUE;
         }
 
-        #endregion
+        #endregion // Utility
     }
 }
