@@ -20,7 +20,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return new cMapNode(CoreService, bm.get_LayerHabitatCapacityInput(CoreObj.Index), Logger);
         }
 
-        [Description("Set whether the habitat foraging capacity for this group is calculated using habitats")]
+        [Description("Set whether to include habitats when calculation foraging capacity for this group")]
         public void usehabitats(bool flag)
         {
             if (flag)
@@ -31,7 +31,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         }
 
 
-        [Description("Set whether the habitat foraging capacity for this group is calculated using environmental drivers")]
+        [Description("Set whether to include environmental drivers when calculation foraging capacity for this group")]
         public void useenvdrivers(bool flag)
         {
             if (flag)

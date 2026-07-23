@@ -20,7 +20,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return new cMapNode(CoreService, Driver, Logger);
         }
 
-        [Description("Include this env driver in the habitat foraging calculations")]
+        [Description("Set whether to include this env driver in the habitat foraging calculations")]
         public void drivecapacity(bool flag)
         {
             if (Driver.GetType() == typeof(cEcospaceLayerDepth))
