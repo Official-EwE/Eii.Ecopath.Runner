@@ -7,13 +7,14 @@ namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cHabitatNode : cEwECoreNode
     {
-        public cHabitatNode(ICoreService coreService, cEcospaceHabitat hab, ILogger logger): base(coreService, hab, logger)
+        public cHabitatNode(ICoreService coreService, cEcospaceHabitat hab, ILogger logger) : base(coreService, hab, logger)
         {
         }
+
         protected cEcospaceHabitat Habitat => (cEcospaceHabitat)this.CoreObj;
 
         // Accessor
-        [Description("Access the habitat suitability map layer")]
+        [Description("Access the habitat map layer")]
         public cMapNode map()
         {
             cEcospaceBasemap bm = CoreService.EcospaceBasemap;

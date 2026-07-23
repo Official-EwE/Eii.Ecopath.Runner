@@ -7,9 +7,58 @@ namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcospaceNode : cEwECoreNode
     {
-        public cEcospaceNode(ICoreService coreService, cEcospaceModelParameters parms, ILogger logger) : base(coreService, parms, logger) 
+        public cEcospaceNode(ICoreService coreService, cEcospaceModelParameters parms, ILogger logger) : base(coreService, parms, logger)
         {
         }
+
+        #region Groups and fleets
+
+        [Description("Select an Ecospace group by 1-based index")]
+        public cEcospaceGroupNode? group(int iGroup)
+        {
+            if ((iGroup <= 0) | (iGroup > CoreService.nGroups))
+            {
+                Logger.LogError("Ecospace group {Group} invalid, must be [1, {MaxGroup}]", iGroup, CoreService.nGroups);
+                return null;
+            }
+            return new cEcospaceGroupNode(CoreService, CoreService.get_EcospaceGroupInputs(iGroup), Logger);
+        }
+
+        [Description("Select an Ecospace group by name")]
+        public cEcospaceGroupNode? group(string name)
+        {
+            return group(FindGroup(name));
+        }
+
+        [Description("Select an Ecospace fleet by 1-based index")]
+        public cEcospaceFleetNode? fleet(int iFleet)
+        {
+            if ((iFleet < 0) | (iFleet > CoreService.nFleets))
+            {
+                Logger.LogError("Ecospace fleet {Fleet} invalid, must be [1, {MaxFleet}]", iFleet, CoreService.nFleets);
+                return null;
+            }
+            return new cEcospaceFleetNode(CoreService, CoreService.get_EcospaceFleetInputs(iFleet), Logger);
+        }
+
+        [Description("Select an Ecospace fleet by name")]
+        public cEcospaceFleetNode? fleet(string name)
+        {
+            return fleet(FindFleet(name));
+        }
+
+        #endregion // Groups and fleets
+
+        #region RelPP layer
+
+        public cMapNode relpp()
+        {
+            var bm = Core.EcospaceBasemap;
+            return new cMapNode(CoreService, bm.LayerRelPP, Logger);
+        }
+        #endregion // RelPP layer
+
+        #region MPA
 
         // Accessor
         [Description("Select an MPA by 1-based index")]
@@ -23,7 +72,18 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return new cMPANode(CoreService, CoreService.get_EcospaceMPAs(iMPA), Logger);
         }
 
-        [Description("Select a habitat layer by 1-based index")]
+        [Description("Select an MPA by name")]
+        public cMPANode? mpa(string name)
+        {
+            var ds = this.Core.EcospaceDataStructures;
+            return mpa(FindItem(name, ds.MPAname));
+        }
+
+        #endregion // MPA
+
+        #region Habitat
+
+        [Description("Select a habitat by 1-based index")]
         public cHabitatNode? habitat(int iHabitat)
         {
             if ((iHabitat < 1) | (iHabitat > CoreService.nHabitats))
@@ -33,6 +93,17 @@ namespace Eii.Ecopath.Runner.Services.Automation
             }
             return new cHabitatNode(CoreService, CoreService.get_EcospaceHabitats(iHabitat), Logger);
         }
+
+        [Description("Select a habitat by name")]
+        public cHabitatNode? habitat(string name)
+        {
+            var ds = this.Core.EcospaceDataStructures;
+            return habitat(FindItem(name, ds.HabitatText));
+        }
+
+        #endregion // Habitat
+
+        #region Environmental drivers
 
         [Description("Select an environmental driver layer; use 0 for depth")]
         public cEcospaceEnvDriverNode? envdriver(int iIndex)
@@ -46,27 +117,18 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return new cEcospaceEnvDriverNode(CoreService, iIndex == 0 ? bm.LayerDepth : bm.get_LayerDriver(iIndex), Logger);
         }
 
-        [Description("Select an Ecospace group by 1-based index")]
-        public cEcospaceGroupNode? group(int iGroup)
+        [Description("Select an environmental driver layer by name")]
+        public cEcospaceEnvDriverNode? envdriver(string name)
         {
-            if ((iGroup <= 0) | (iGroup > CoreService.nGroups))
-            {
-                Logger.LogError("Ecospace group {Group} invalid, must be [1, {MaxGroup}]", iGroup, CoreService.nGroups);
-                return null;
-            }
-            return new cEcospaceGroupNode(CoreService, CoreService.get_EcospaceGroupInputs(iGroup), Logger);
+            if (string.Equals(name, "depth", StringComparison.OrdinalIgnoreCase)) return envdriver(0);
+            var ds = this.Core.EcospaceDataStructures;
+            return envdriver(FindItem(name, ds.EnvironmentalLayerName));
+
         }
 
-        [Description("Select an Ecospace fleet by 1-based index")]
-        public cEcospaceFleetNode? fleet(int iFleet)
-        {
-            if ((iFleet < 0) | (iFleet > CoreService.nFleets))
-            { 
-                Logger.LogError("Ecospace fleet {Fleet} invalid, must be [1, {MaxFleet}]", iFleet, CoreService.nFleets);
-                return null;
-            }
-            return new cEcospaceFleetNode(CoreService, CoreService.get_EcospaceFleetInputs(iFleet), Logger);
-        }
+        #endregion // Environmental drivers
+
+        #region Regions
 
         [Description("Access the region map layer")]
         public cMapNode? regions()
@@ -74,5 +136,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             cEcospaceBasemap bm = CoreService.EcospaceBasemap;
             return new cMapNode(CoreService, bm.LayerRegion, Logger);
         }
+
+        #endregion // Regions
     }
 }
