@@ -325,12 +325,32 @@ namespace Eii.Ecopath.Runner.Services.Automation
             name = name.Trim();
             for (int i = 0; i < names.Length; i++)
             {
-                if (string.Compare(name, names[i], StringComparison.InvariantCultureIgnoreCase) == 0)
+                if (string.Compare(name, names[i], StringComparison.OrdinalIgnoreCase) == 0)
                     return i;
             }
             return cCore.NULL_VALUE;
         }
-    }
+
+        /// <summary>
+        /// Find the index of a shape by name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="shapes"></param>
+        /// <returns></returns>
+        protected int FindShape(string name, IEnumerable<cShapeData> shapes)
+        {
+            if (shapes == null) return cCore.NULL_VALUE;
+
+            name = name.ToLowerInvariant();
+            foreach (cShapeData shp in shapes)
+            {
+                if (string.Compare(name, shp.Name, StringComparison.OrdinalIgnoreCase) == 0)
+                    return shp.Index;
+            }
+
+            return cCore.NULL_VALUE;
+        }
 
         #endregion // Ecopath-wide accessors
+    }
 }

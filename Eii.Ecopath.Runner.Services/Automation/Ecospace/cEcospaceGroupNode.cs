@@ -8,7 +8,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     public class cEcospaceGroupNode : cEwECoreNode
     {
         public cEcospaceGroupNode(ICoreService coreService, cEcospaceGroupInput group, ILogger logger) : base(coreService, group, logger)
-        { 
+        {
         }
         protected cEcospaceGroupInput Group => (cEcospaceGroupInput)this.CoreObj;
 
@@ -27,6 +27,12 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public bool dispersal_rate(float mvel)
         {
             return this.SetVariable(eVarNameFlags.MVel, mvel);
+        }
+
+        [Description("Access the niche data of this group")]
+        public cEcospaceGroupNicheNode niche()
+        {
+            return new cEcospaceGroupNicheNode(CoreService, Group, Logger);
         }
     }
 }

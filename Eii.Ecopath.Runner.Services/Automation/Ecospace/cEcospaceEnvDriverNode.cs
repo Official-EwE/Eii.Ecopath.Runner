@@ -7,7 +7,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
 {
     public class cEcospaceEnvDriverNode : cEwECoreNode
     {
-        public cEcospaceEnvDriverNode(ICoreService coreService, cEcospaceLayer driver, ILogger logger) : base(coreService, driver, logger) 
+        public cEcospaceEnvDriverNode(ICoreService coreService, cEcospaceLayer driver, ILogger logger) : base(coreService, driver, logger)
         {
         }
 
@@ -18,6 +18,15 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cMapNode map()
         {
             return new cMapNode(CoreService, Driver, Logger);
+        }
+
+        [Description("Include this env driver in the habitat foraging calculations")]
+        public void drivecapacity(bool flag)
+        {
+            if (Driver.GetType() == typeof(cEcospaceLayerDepth))
+                ((cEcospaceLayerDepth)Driver).IsCapacityEnabled = flag;
+            else
+                ((cEcospaceLayerDriver)Driver).IsCapacityEnabled = flag;
         }
     }
 }

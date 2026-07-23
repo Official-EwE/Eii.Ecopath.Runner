@@ -240,30 +240,5 @@ namespace Eii.Ecopath.Runner.Services.Automation
         }
 
         #endregion // Vulnerabilities
-
-
-        #region Utility
-
-        /// <summary>
-        /// Retrieve a shape by name.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="shapes"></param>
-        /// <returns></returns>
-        int FindShape(string name, IEnumerable<cShapeData> shapes)
-        {
-            if (shapes == null) return cCore.NULL_VALUE;
-
-            name = name.ToLowerInvariant();
-            foreach (cShapeData shp in shapes)
-            {
-                if (string.Compare(name, shp.Name, StringComparison.InvariantCultureIgnoreCase) == 0)
-                    return shp.Index;
-            }
-
-            return cCore.NULL_VALUE;
-        }
-
-        #endregion // Utility
     }
 }

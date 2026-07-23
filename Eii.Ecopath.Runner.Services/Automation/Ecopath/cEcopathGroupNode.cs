@@ -1,8 +1,7 @@
 ﻿using Eii.Ecopath.Runner.Services.Runtime;
 using EwECore;
-using System;
-using System.ComponentModel;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
@@ -68,7 +67,6 @@ namespace Eii.Ecopath.Runner.Services.Automation
                 bOK &= SetVariable(eVarNameFlags.DietComp, i, diet_of[i]);
             return bOK;
         }
-
 
     }
 }
