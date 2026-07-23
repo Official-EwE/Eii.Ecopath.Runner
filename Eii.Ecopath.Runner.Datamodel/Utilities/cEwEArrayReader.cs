@@ -22,7 +22,7 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
 
             foreach (DataRow row in table.Rows)
             {
-                if (int.TryParse(row[0]?.ToString(), out int rowIndex) ||
+                if (!int.TryParse(row[0]?.ToString(), out int rowIndex) ||
                     (uint)rowIndex >= (uint)target.GetLength(mapping == RowColMapping2D.RowCol ? 0 : 1))
                     continue;
 
