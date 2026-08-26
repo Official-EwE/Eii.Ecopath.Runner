@@ -2,14 +2,17 @@
 
 namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
 {
+    // --------------------------------------------------------------------
+    /// <summary>
+    /// Container for receiving the various changes that the user would 
+    /// like to make to Ecopath.
+    /// </summary>
+    // --------------------------------------------------------------------
     public class cEcopathRunInstructions : IModelRunInstructions
     {
-        // --------------------------------------------------------------------
         /// <summary>
-        /// Container for receiving the various changes that the user would 
-        /// like to make to Ecopath.
+        /// Initializes a new instance of the <see cref="cEcopathRunInstructions"/> class.
         /// </summary>
-        // --------------------------------------------------------------------
         public cEcopathRunInstructions()
         {
         }

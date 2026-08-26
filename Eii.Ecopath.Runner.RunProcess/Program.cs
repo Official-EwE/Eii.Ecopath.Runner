@@ -9,8 +9,15 @@ using Microsoft.Extensions.Logging;
 
 namespace EwERunProcess
 {
+    /// <summary>
+    /// Entry point for EwERunProcess - a background service that executes EwE model runs with blob storage support.
+    /// </summary>
     internal class Program
     {
+        /// <summary>
+        /// Application entry point that configures services, sets up logging, and executes the EwE run process.
+        /// </summary>
+        /// <param name="args">Command-line arguments.</param>
         public static async Task Main(string[] args)
         {
             var stopwatch = System.Diagnostics.Stopwatch.StartNew();

@@ -1,18 +1,19 @@
 ﻿using Eii.Ecopath.Runner.Datamodel.Utilities;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
 {
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     /// <summary>
-    /// Container class that represent a number of modifications for a 
-    /// given EwE model at a given moment in time.
+    /// Container class that represent a number of modifications for a  given 
+    /// EwE model at a given moment in time.
     /// </summary>
-    // --------------------------------------------------------------------
+    // ------------------------------------------------------------------------
     public class cModificationsAtT
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="cModificationsAtT"/> class.
+        /// </summary>
         public cModificationsAtT()
         {
             Date = "?";

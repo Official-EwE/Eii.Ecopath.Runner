@@ -6,13 +6,13 @@ using System.Reflection;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    // --------------------------------------------------------------------
+    /// -----------------------------------------------------------------------
     /// <summary>
     /// A single node in the automation tree. This class supports nested
     /// invocation of functions by reading a string, to find and invoke 
     /// a final end point function.
     /// </summary>
-    // --------------------------------------------------------------------
+    /// -----------------------------------------------------------------------
     public class cNode
     {
         #region Private vars
@@ -24,13 +24,20 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         #endregion
 
+        /// -------------------------------------------------------------------
+        /// <summary>
+        /// Initializes a new instance of the <see cref="cNode"/> class.
+        /// </summary>
+        /// <param name="coreService">The core service providing access to the EwE model.</param>
+        /// <param name="logger">The logger for diagnostic messages.</param>
+        /// -------------------------------------------------------------------
         public cNode(ICoreService coreService, ILogger logger)
         {
             CoreService = coreService;
             Logger = logger;
         }
 
-        // --------------------------------------------------------------------
+        /// -------------------------------------------------------------------
         /// <summary>
         /// Try to invoke an automation command in the context of the current 
         /// executing model.
@@ -38,8 +45,8 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="context">The context of the current running model.</param>
         /// <param name="methodPath">The complete path to execute.</param>
         /// <param name="fnparms">The parameters to pass to the final function to execute.</param>
-        /// <returns></returns>
-        // --------------------------------------------------------------------
+        /// <returns>True if the command was successfully invoked; otherwise, false.</returns>
+        /// -------------------------------------------------------------------
         public bool Invoke(string context, string methodPath, object fnparms)
         {
             bool bIncompatible = false;
@@ -69,9 +76,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return CrawlAutomationTree(methodPath, fnparms);
         }
 
-
-
-        // --------------------------------------------------------------------
+        /// -------------------------------------------------------------------
         /// <summary>
         /// Recursively crawl an object chain for a given function end point to call.
         /// Properties and indexed properties are not yet supported.
@@ -79,7 +84,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="methodPath"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        // --------------------------------------------------------------------
+        /// -------------------------------------------------------------------
         protected bool CrawlAutomationTree(string methodPath, object fnparms)
         {
             try
@@ -224,13 +229,13 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return paths;
         }
 
-        // --------------------------------------------------------------------
+        /// -----------------------------------------------------------------------
         /// <summary>
         /// 
         /// </summary>
         /// <param name="prefix"></param>
         /// <returns></returns>
-        // --------------------------------------------------------------------
+        /// -----------------------------------------------------------------------
         public List<string> ListAutomationPaths(string prefix = "")
         {
             List<string> paths = new();
@@ -331,12 +336,14 @@ namespace Eii.Ecopath.Runner.Services.Automation
             return cCore.NULL_VALUE;
         }
 
+        /// -------------------------------------------------------------------
         /// <summary>
         /// Find the index of a shape by name
         /// </summary>
         /// <param name="name"></param>
         /// <param name="shapes"></param>
         /// <returns></returns>
+        /// -------------------------------------------------------------------
         protected int FindShape(string name, IEnumerable<cShapeData> shapes)
         {
             if (shapes == null) return cCore.NULL_VALUE;
