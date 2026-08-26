@@ -9,6 +9,8 @@
   <ItemGroup>
     <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.10" />
     <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.92-cEwEEFDatabase.1-beta.20" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12-pre20260709125052" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.10" />
   </ItemGroup>
 
   <ItemGroup>

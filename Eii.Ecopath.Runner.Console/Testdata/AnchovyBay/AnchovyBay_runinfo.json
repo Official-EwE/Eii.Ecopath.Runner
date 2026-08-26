@@ -16,7 +16,7 @@
         "Date": "start",
         "Modifications": {
           "ecosim.effort[3].fill": [ 1 ],
-          "ecosim.vulnerabilities.load": "Anchovy Bay-Vulnerabilities_01.csv"
+          "ecosim.vulnerabilities.load": "anchbay_andy_test.csv"
         }
       }
     ]
