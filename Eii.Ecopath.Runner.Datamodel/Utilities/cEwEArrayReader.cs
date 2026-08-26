@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Globalization;
 
 namespace Eii.Ecopath.Runner.Datamodel.Utilities
 {
@@ -7,13 +8,15 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
     /// as row and column indices. The code assumes that the CSV files are formatted as exported by the EwE
     /// user interface.
     /// </summary>
-    public class cEwEArrayReader
+    public static class cEwEArrayReader
     {
         public enum RowColMapping2D
         {
             RowCol,
             ColRow
         }
+
+        private static readonly CultureInfo fixedCulture = CultureInfo.GetCultureInfo("en-US");
 
         public static void ReadArray<T>(DataTable table, T[,] target, RowColMapping2D mapping = RowColMapping2D.RowCol)
         {
@@ -32,10 +35,48 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
                         (uint)columnIndex >= (uint)target.GetLength(mapping == RowColMapping2D.RowCol ? 1 : 0))
                         continue;
 
-                    int i1 = mapping == RowColMapping2D.RowCol ? rowIndex : columnIndex;
-                    int i2 = mapping == RowColMapping2D.RowCol ? columnIndex : rowIndex;
+                    if (Convert.IsDBNull(row[c]))
+                        continue;
 
-                    target[i1, i2] = (T)row[c];
+                    try
+                    {
+                        object cellValue = row[c];
+
+                        // Skip empty strings
+                        if (cellValue is string str && string.IsNullOrWhiteSpace(str))
+                            continue;
+
+                        T convertedValue;
+
+                        if (cellValue is string strValue)
+                        {
+                            // Parse string using en-US culture
+                            convertedValue = (T)Convert.ChangeType(strValue, typeof(T), fixedCulture);
+                        }
+                        else if (cellValue is T directValue)
+                        {
+                            // Direct cast if already correct type
+                            convertedValue = directValue;
+                        }
+                        else
+                        {
+                            // Convert other types using en-US culture
+                            convertedValue = (T)Convert.ChangeType(cellValue, typeof(T), fixedCulture);
+                        }
+
+                        int i1 = mapping == RowColMapping2D.RowCol ? rowIndex : columnIndex;
+                        int i2 = mapping == RowColMapping2D.RowCol ? columnIndex : rowIndex;
+
+                        target[i1, i2] = convertedValue;
+                    }
+                    catch (InvalidCastException)
+                    {
+                        continue;
+                    }
+                    catch (FormatException)
+                    {
+                        continue;
+                    }
                 }
             }
         }
