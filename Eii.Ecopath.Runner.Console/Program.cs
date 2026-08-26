@@ -8,7 +8,6 @@ using EwEUtils.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,8 +15,20 @@ using System.Text.Json;
 
 #pragma warning disable CS8604 // Possible null reference argument.
 
+/// ---------------------------------------------------------------------------
+/// <summary>
+/// Main entry point for the E wERunConsole application - a headless, JSON-driven runner for EwE models.
+/// </summary>
+/// ---------------------------------------------------------------------------
 class Program
 {
+    /// -----------------------------------------------------------------------
+    /// <summary>
+    /// Application entry point that configures logging, parses command-line arguments, and executes the EwE run.
+    /// </summary>
+    /// <param name="args">Command-line arguments.</param>
+    /// <returns>0 if the run was successful; 1 if errors occurred.</returns>
+    /// -----------------------------------------------------------------------
     public static int Main(string[] args)
     {
         string logFolder = Path.Combine(
@@ -55,11 +66,19 @@ class Program
         return success ? 0 : 1;
     }
 
+    /// -----------------------------------------------------------------------
     /// <summary>
-    /// Initialize the console app from the command line
+    /// Initialize the console app from the command line.
     /// </summary>
-    /// <param name="runinfofile"></param>
-    /// <param name="outputfolder"></param>
+    /// <param name="runinfofile">The path to the JSON run-info file.</param>
+    /// <param name="outputfolder">The path to the output folder for results.</param>
+    /// <param name="showtree">If true, displays the automation command tree.</param>
+    /// <param name="showcommands">If true, displays the commands being executed.</param>
+    /// <param name="generateDocs">If true, generates automation documentation and exits.</param>
+    /// <param name="logger">The logger instance for diagnostic messages.</param>
+    /// <param name="sp">The service provider for dependency injection.</param>
+    /// <returns>True if the run was successful; otherwise, false.</returns>
+    /// -----------------------------------------------------------------------
     static bool ParseInstructions(string? runinfofile, string? outputfolder, bool showtree, bool showcommands, bool generateDocs, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
     {
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
@@ -155,6 +174,12 @@ class Program
         return true;
     }
 
+    /// -----------------------------------------------------------------------
+    /// <summary>
+    /// Outputs command-line parsing errors to the console.
+    /// </summary>
+    /// <param name="errors">The collection of command-line parsing errors.</param>
+    /// -----------------------------------------------------------------------
     static void Complain(IEnumerable<Error> errors)
     {
         // Bwaaaaaah

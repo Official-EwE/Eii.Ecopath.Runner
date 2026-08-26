@@ -8,6 +8,9 @@ using System.Text.Json;
 
 namespace EwERunProcess
 {
+    /// <summary>
+    /// Service that orchestrates EwE model runs with blob storage integration for input/output management.
+    /// </summary>
     internal class EwERunProcessService
     {
         private readonly ILogger<EwERunProcessService> m_logger;
@@ -15,6 +18,12 @@ namespace EwERunProcess
         private readonly cEwEEngine _engine;
         cEwERunInstructions? runInstructions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EwERunProcessService"/> class.
+        /// </summary>
+        /// <param name="logger">The logger for diagnostic messages.</param>
+        /// <param name="blobStore">The blob store for input/output file management.</param>
+        /// <param name="engine">The EwE engine for executing model runs.</param>
         public EwERunProcessService(ILogger<EwERunProcessService> logger, IBlobStore blobStore, cEwEEngine engine)
         {
             m_logger = logger;
@@ -22,6 +31,13 @@ namespace EwERunProcess
             _engine = engine;
         }
 
+        /// <summary>
+        /// Executes an EwE model run by loading run instructions from the environment, syncing input files from blob storage,
+        /// running the model, and syncing output files back to blob storage.
+        /// </summary>
+        /// <param name="inputDirectory">The local input directory path.</param>
+        /// <param name="outputDirectory">The local output directory path.</param>
+        /// <returns>0 if the run was successful; non-zero otherwise.</returns>
         internal async Task<int> Run(string inputDirectory, string outputDirectory)
         {
             m_logger.LogInformation("Start running...");

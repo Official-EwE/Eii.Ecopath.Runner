@@ -10,6 +10,9 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
     // --------------------------------------------------------------------
     public class cEcospaceRunInstructions : IModelRunInstructions
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="cEcospaceRunInstructions"/> class.
+        /// </summary>
         public cEcospaceRunInstructions()
         {
         }

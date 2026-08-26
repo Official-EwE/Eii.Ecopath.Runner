@@ -3,14 +3,17 @@
 
 namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
 {
+    // --------------------------------------------------------------------
+    /// <summary>
+    /// Container for receiving the various changes that the user would 
+    /// like to make to Ecosim.
+    /// </summary>
+    // --------------------------------------------------------------------
     public class cEcosimRunInstructions : IModelRunInstructions
     {
-        // --------------------------------------------------------------------
         /// <summary>
-        /// Container for receiving the various changes that the user would 
-        /// like to make to Ecosim.
+        /// Initializes a new instance of the <see cref="cEcosimRunInstructions"/> class.
         /// </summary>
-        // --------------------------------------------------------------------
         public cEcosimRunInstructions()
         {
         }

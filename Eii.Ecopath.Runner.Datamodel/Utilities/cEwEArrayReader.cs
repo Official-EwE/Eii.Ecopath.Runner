@@ -10,14 +10,30 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
     /// </summary>
     public static class cEwEArrayReader
     {
+        /// <summary>
+        /// Defines the mapping between DataTable rows/columns and target array indices.
+        /// </summary>
         public enum RowColMapping2D
         {
+            /// <summary>
+            /// Map DataTable rows to target array first dimension, columns to second dimension.
+            /// </summary>
             RowCol,
+            /// <summary>
+            /// Map DataTable columns to target array first dimension, rows to second dimension.
+            /// </summary>
             ColRow
         }
 
         private static readonly CultureInfo fixedCulture = CultureInfo.GetCultureInfo("en-US");
 
+        /// <summary>
+        /// Reads data from a DataTable into a two-dimensional array, using row and column headers as indices.
+        /// </summary>
+        /// <typeparam name="T">The element type of the target array.</typeparam>
+        /// <param name="table">The DataTable containing the data to read.</param>
+        /// <param name="target">The target two-dimensional array to populate.</param>
+        /// <param name="mapping">The mapping strategy for rows and columns. Default is RowCol.</param>
         public static void ReadArray<T>(DataTable table, T[,] target, RowColMapping2D mapping = RowColMapping2D.RowCol)
         {
             if (table == null) return;

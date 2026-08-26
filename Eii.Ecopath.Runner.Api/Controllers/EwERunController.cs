@@ -5,12 +5,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EwERunApi.Controllers
 {
+    /// -----------------------------------------------------------------------
+    /// <summary>
+    /// API controller for executing EwE model runs.
+    /// </summary>
+    /// -----------------------------------------------------------------------
     [ApiController]
     [Route("eweRun")]
     public class EwERunController : ControllerBase
     {
         private readonly cEwEEngine _engine;
 
+        // --------------------------------------------------------------------
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EwERunController"/> class.
+        /// </summary>
+        /// <param name="engine">The EwE engine service for executing runs.</param>
+        // --------------------------------------------------------------------
         public EwERunController(cEwEEngine engine)
         {
             _engine = engine;

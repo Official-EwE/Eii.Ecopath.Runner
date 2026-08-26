@@ -23,25 +23,43 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
         private TextWriter m_oldOut;
         private bool m_bDisposed = false;
 
+        /// <summary>
+        /// Internal helper class that writes output to two TextWriter streams simultaneously.
+        /// </summary>
         private class DoubleWriter : TextWriter
         {
             private readonly TextWriter m_one;
             private readonly TextWriter m_two;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="DoubleWriter"/> class.
+            /// </summary>
+            /// <param name="one">The first TextWriter to write to.</param>
+            /// <param name="two">The second TextWriter to write to.</param>
             public DoubleWriter(TextWriter one, TextWriter two)
             {
                 m_one = one;
                 m_two = two;
             }
 
+            /// <summary>
+            /// Gets the encoding of the first writer.
+            /// </summary>
             public override Encoding Encoding => m_one.Encoding;
 
+            /// <summary>
+            /// Flushes both output streams.
+            /// </summary>
             public override void Flush()
             {
                 m_one.Flush();
                 m_two.Flush();
             }
 
+            /// <summary>
+            /// Writes a character to both output streams.
+            /// </summary>
+            /// <param name="value">The character to write.</param>
             public override void Write(char value)
             {
                 m_one.Write(value);
@@ -49,6 +67,10 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="cConsoleCopy"/> class and starts copying console output to a file.
+        /// </summary>
+        /// <param name="fn">The filename to write console output to.</param>
         public cConsoleCopy(string fn)
         {
             m_oldOut = Console.Out;
@@ -69,6 +91,16 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
             Console.SetOut(m_doubleWriter);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="cConsoleCopy"/> class with a formatted header containing run information.
+        /// </summary>
+        /// <param name="fn">The filename to write console output to.</param>
+        /// <param name="script">The script identifier (unused in current implementation).</param>
+        /// <param name="rev">The revision identifier.</param>
+        /// <param name="description">The description of the run.</param>
+        /// <param name="model">Optional path to the model file.</param>
+        /// <param name="pout">Optional output path.</param>
+        /// <param name="entries">Optional additional key-value pairs to include in the header.</param>
         public cConsoleCopy(string fn, string script, string rev, string description,
                             string model = "", string pout = "",
                             Dictionary<string, string>? entries = null)
@@ -100,6 +132,10 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Releases unmanaged and optionally managed resources.
+        /// </summary>
+        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!m_bDisposed)
@@ -119,6 +155,9 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
             }
         }
 
+        /// <summary>
+        /// Restores the original console output and closes the file stream.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
