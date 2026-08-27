@@ -60,7 +60,7 @@ class Program
 
         bool success = false;
         ParserResult<CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
-            .WithParsed(options => { success = ParseInstructions(options.RunInfo, options.Output, options.ShowTree, options.ShowCommands, options.Docs, m_logger, sp); })
+            .WithParsed(options => { success = ParseInstructions(options.RunInfo, options.Output, options.ShowCommands, options.Docs, m_logger, sp); })
             .WithNotParsed(errors => { Complain(errors); });
 
         return success ? 0 : 1;
@@ -79,7 +79,7 @@ class Program
     /// <param name="sp">The service provider for dependency injection.</param>
     /// <returns>True if the run was successful; otherwise, false.</returns>
     /// -----------------------------------------------------------------------
-    static bool ParseInstructions(string? runinfofile, string? outputfolder, bool showtree, bool showcommands, bool generateDocs, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
+    static bool ParseInstructions(string? runinfofile, string? outputfolder, bool showcommands, bool generateDocs, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
     {
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
         cEwERunInstructions? info;
@@ -161,14 +161,13 @@ class Program
 
             // Run the EwE engine
             cEwEEngine engine = sp.GetRequiredService<cEwEEngine>();
-            if (showtree | showcommands)
-                engine.WriteAutomationCapabilities(info, showtree);
-            else if (engine.Run(info) == false)
+            if (engine.Run(info) == false)
             {
                 Console.WriteLine("! Run errors encountered");
                 return false;
             }
         } // Using
+
         stopwatch.Stop();
         Console.WriteLine("Run completed in {0}", stopwatch.Elapsed);
         return true;
