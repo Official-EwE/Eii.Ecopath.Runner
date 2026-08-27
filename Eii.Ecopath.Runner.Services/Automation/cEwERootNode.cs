@@ -1,5 +1,4 @@
 ﻿using Eii.Ecopath.Runner.Services.Runtime;
-using EwECore;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel;
 
@@ -10,8 +9,8 @@ namespace Eii.Ecopath.Runner.Services.Automation
     /// </summary>
     public class cEwERootNode : cNode
     {
-        public cEwERootNode(ICoreService coreService, ILogger logger) : base(coreService, logger) 
-        { 
+        public cEwERootNode(ICoreService coreService, ILogger logger) : base(coreService, logger)
+        {
         }
 
         [Description("Enter the Ecopath modification context")]
@@ -30,12 +29,6 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cEcospaceNode ecospace()
         {
             return new cEcospaceNode(CoreService, CoreService.EcospaceModelParameters, Logger);
-        }
-
-        [AutomationIgnore]
-        public string[] AutomationTree()
-        {
-            return [.. ListAutomationTree()];
         }
 
         [AutomationIgnore]

@@ -1,6 +1,5 @@
 ﻿using Eii.Ecopath.Runner.Datamodel.Automation;
 using Eii.Ecopath.Runner.Datamodel.RunInstructions;
-using Eii.Ecopath.Runner.Services.Automation;
 using EwECore;
 using EwECore.SpatialData;
 using Microsoft.Extensions.Logging;
@@ -117,46 +116,6 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
             Console.WriteLine("OK");
             Console.WriteLine();
-            return true;
-        }
-
-        // --------------------------------------------------------------------
-        /// <summary>
-        /// Write the automation capabilities (tree or command paths) to console.
-        /// </summary>
-        // --------------------------------------------------------------------
-        public bool WriteAutomationCapabilities(cEwERunInstructions instructions, bool bTree)
-        {
-            Instructions = instructions;
-            EwEConfig = instructions.Configuration;
-
-            if (!ConfigureEnvironment())
-                return false;
-
-            if (!LoadModel())
-                return false;
-
-            if ((EwEConfig.EcosimScenario > 0) | (EwEConfig.EcospaceScenario > 0))
-            {
-                if (!LoadEcosim())
-                    return false;
-
-                if (EwEConfig.EcospaceScenario > 0)
-                {
-                    if (!LoadEcospace())
-                        return false;
-                }
-            }
-            cEwERootNode om = new cEwERootNode(_coreService, _logger);
-            string[] info = { };
-            if (bTree)
-                info = om.AutomationTree();
-            else
-                info = om.AutomationPaths();
-            for (int i = 0; i < info.Count(); i++)
-            {
-                Console.WriteLine(info[i]);
-            }
             return true;
         }
 
