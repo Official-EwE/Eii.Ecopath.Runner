@@ -1,5 +1,6 @@
 ﻿using Eii.Ecopath.Runner.Datamodel.Utilities;
 using Eii.Ecopath.Runner.Services.Runtime;
+using EwECore;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +23,10 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
         [Description("Load the vulnerabilities matrix from a standard EwE CSV file")]
         public bool load(string filename)
         {
+            // Cannot do this while running
+            if (Core.StateMonitor.IsBusy()) return false;
+
+            this.Core.SetBatchLock(cCore.eBatchLockType.Update);
             DataTable? dt;
             try
             {
@@ -43,6 +48,9 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
                 Logger.LogWarning("Unable to load vulnerabilities from file '{0}', {1}", filename, ex.Message);
                 return false;
             }
+
+            this.Core.ReleaseBatchLock(cCore.eBatchChangeLevelFlags.Ecosim);
+            this.Core.EcosimArenaManager.ResetArenas(0);
             return true;
         }
 
@@ -56,8 +64,11 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
         [Description("Set the vulnerabilities to a given value")]
         public void fill(double value)
         {
-            var data = this.Core.EcosimDataStructures.VulMult;
-            EwEUtils.Extensions.Fill(ref data, (float)value);
+            // Cannot do this while running
+            if (Core.StateMonitor.IsBusy()) return;
+
+            this.Core.SetVToDefault((float)value);
+            this.Core.EcosimArenaManager.ResetArenas(0);
         }
     }
 }
