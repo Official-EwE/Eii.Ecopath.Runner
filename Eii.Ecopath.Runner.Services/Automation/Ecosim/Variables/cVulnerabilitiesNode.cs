@@ -62,13 +62,14 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
         /// <returns>True if successful.</returns>
         // --------------------------------------------------------------------
         [Description("Set the vulnerabilities to a given value")]
-        public void fill(double value)
+        public bool fill(double value)
         {
             // Cannot do this while running
-            if (Core.StateMonitor.IsBusy()) return;
+            if (Core.StateMonitor.IsBusy()) return false;
 
             this.Core.SetVToDefault((float)value);
             this.Core.EcosimArenaManager.ResetArenas(0);
+            return true;
         }
     }
 }
