@@ -34,7 +34,7 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
             }
             catch (Exception ex)
             {
-                Logger.LogWarning("Unable to read map file '{0}', {1}", filename, ex.Message);
+                Logger.LogWarning("Unable to read V file '{0}', {1}", filename, ex.Message);
                 return false;
             }
 
@@ -45,7 +45,7 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
             }
             catch (Exception ex)
             {
-                Logger.LogWarning("Unable to load vulnerabilities from file '{0}', {1}", filename, ex.Message);
+                Logger.LogWarning("Unable to load V from file '{0}', {1}", filename, ex.Message);
                 return false;
             }
 
