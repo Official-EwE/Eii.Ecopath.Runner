@@ -21,6 +21,8 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         protected bool SetVariable(eVarNameFlags var, object val)
         {
+            if (val == null) return false;
+
             try
             {
                 cCoreInputOutputBase obj = this.CoreObj;
@@ -36,6 +38,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         protected bool SetVariable(eVarNameFlags var, int iIndex, object val)
         {
+            if (iIndex <= 0) return false;
+            if (val == null) return false;
+
             try
             {
                 cCoreInputOutputBase obj = this.CoreObj;
