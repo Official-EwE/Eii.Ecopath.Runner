@@ -18,10 +18,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         {
             int iGroup = FindGroup(name, Logger);
             if (iGroup <= 0)
-            {
-                Logger.LogError("Ecospace group {Group} invalid, must be [1, {MaxGroup}]", iGroup, CoreService.nGroups);
                 return null;
-            }
             return new cEcospaceGroupNode(CoreService, CoreService.get_EcospaceGroupInputs(iGroup), Logger);
         }
 
@@ -30,10 +27,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         {
             int iFleet = FindFleet(name, Logger);
             if (iFleet <= 0)
-            {
-                Logger.LogError("Ecospace fleet {Fleet} invalid, must be [1, {MaxFleet}]", iFleet, CoreService.nFleets);
                 return null;
-            }
             return new cEcospaceFleetNode(CoreService, CoreService.get_EcospaceFleetInputs(iFleet), Logger);
         }
 

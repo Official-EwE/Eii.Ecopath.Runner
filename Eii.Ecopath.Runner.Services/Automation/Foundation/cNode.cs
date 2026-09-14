@@ -80,9 +80,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// Recursively crawl an object chain for a given function end point to call.
         /// Properties and indexed properties are not yet supported.
         /// </summary>
-        /// <param name="methodPath"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <param name="methodPath">The complete path to the method to invoke.</param>
+        /// <param name="fnparms">The parameters to pass to the final function to execute.</param>
+        /// <returns>True if the method was successfully invoked; otherwise, false.</returns>
         /// -------------------------------------------------------------------
         protected bool CrawlAutomationTree(string methodPath, object fnparms)
         {
@@ -159,8 +159,8 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="prefix"></param>
-        /// <returns></returns>
+        /// <param name="prefix">The prefix to prepend to each automation path.</param>
+        /// <returns>A list of automation paths.</returns>
         /// -----------------------------------------------------------------------
         public List<string> ListAutomationPaths(string prefix = "")
         {
@@ -178,7 +178,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
                 // Skip methods with parameters
                 if (method.GetParameters().Length > 0)
                 {
-                    // Skip string-parameter overloads (name-based aliases); use int-indexed overloads only
+                    // Skip string-parameter overloads (itemName-based aliases); use int-indexed overloads only
                     if (method.GetParameters()[0].ParameterType == typeof(string))
                         continue;
                     parms = [1];
@@ -214,9 +214,10 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         /// -------------------------------------------------------------------
         /// <summary>
-        /// Find the index of a group by name.
+        /// Find the index of a group by itemName.
         /// </summary>
-        /// <param name="groupName"></param>
+        /// <param name="groupName">The name of the group to find.</param>
+        /// <param name="logger">The logger to log to.</param>
         /// <returns>The group index, or <see cref="cCore.NULL_VALUE"/> if no match 
         /// was found.</returns>        
         /// -------------------------------------------------------------------
@@ -228,10 +229,11 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         /// -------------------------------------------------------------------
         /// <summary>
-        /// Find the index of a fleet by name. This function cannot be used to 
+        /// Find the index of a fleet by itemName. This function cannot be used to 
         /// find the "all" fleet that is used in some specific EwE logic.
         /// </summary>
-        /// <param name="fleetName"></param>
+        /// <param name="fleetName">The name of the fleet to find.</param>
+        /// <param name="logger">The logger to log to.</param>
         /// <returns>The fleet index, or <see cref="cCore.NULL_VALUE"/> if no match 
         /// was found.</returns>        
         /// -------------------------------------------------------------------
@@ -246,42 +248,46 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// Find the index of a named item by string comparison. All comparisons 
         /// ignore casing.
         /// </summary>
-        /// <param name="name">The name of the item to find.</param>
+        /// <param name="itemName">The name of the item to find.</param>
         /// <param name="names">The array of names to search within.</param>
+        /// <param name="logger">The logger to log to.</param>
+        /// <param name="itemType">The type of item to find, for logging purposes.</param>
         /// <returns>The index, or <see cref="cCore.NULL_VALUE"/> if no match 
         /// was found.</returns>
         /// -------------------------------------------------------------------
-        protected int FindItem(string name, string[] names, ILogger logger, string itemName)
+        protected int FindItem(string itemName, string[] names, ILogger logger, string itemType)
         {
-            name = name.Trim();
+            itemName = itemName.Trim();
             for (int i = 0; i < names.Length; i++)
             {
-                if (string.Compare(name, names[i], StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare(itemName, names[i], StringComparison.OrdinalIgnoreCase) == 0)
                     return i;
             }
-            logger.LogWarning("Unable to find {ItemName} '{Name}'", itemName, name);
+            logger.LogWarning("Unable to find {ItemType} '{ItemName}'", itemType, itemName);
             return cCore.NULL_VALUE;
         }
 
         /// -------------------------------------------------------------------
         /// <summary>
-        /// Find the index of a shape by name
+        /// Find the index of a shape by itemName
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="shapes"></param>
-        /// <returns></returns>
+        /// <param name="shapeName">The name of the shape to find.</param>
+        /// <param name="shapes">The collection of shapes to search within.</param>
+        /// <param name="logger">The logger to log to.</param>
+        /// <param name="shapeType">The type of shape to find, for logging purposes.</param>
+        /// <returns>The index of the shape, or <see cref="cCore.NULL_VALUE"/> if no match was found.</returns>
         /// -------------------------------------------------------------------
-        protected int FindShape(string name, IEnumerable<cShapeData> shapes, ILogger logger, string shapename)
+        protected int FindShape(string shapeName, IEnumerable<cShapeData> shapes, ILogger logger, string shapeType)
         {
             if (shapes == null) return cCore.NULL_VALUE;
 
-            name = name.ToLowerInvariant();
+            shapeName = shapeName.ToLowerInvariant();
             foreach (cShapeData shp in shapes)
             {
-                if (string.Compare(name, shp.Name, StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare(shapeName, shp.Name, StringComparison.OrdinalIgnoreCase) == 0)
                     return shp.Index;
             }
-            logger.LogWarning("Unable to find {ShapeName} '{Name}'", shapename, name);
+            logger.LogWarning("Unable to find {shapeType} '{shapeName}'", shapeType, shapeName);
             return cCore.NULL_VALUE;
         }
 
@@ -289,11 +295,13 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <summary>
         /// Find the index of a shape by its database ID.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="shapes"></param>
-        /// <returns></returns>
+        /// <param name="IDBID">The database ID of the shape to find.</param>
+        /// <param name="shapes">The collection of shapes to search within.</param>
+        /// <param name="logger">The logger to log to.</param>
+        /// <param name="shapeType">The type of shape to find, for logging purposes.</param>
+        /// <returns>The index of the shape, or <see cref="cCore.NULL_VALUE"/> if no match was found.</returns>
         /// -------------------------------------------------------------------
-        protected int FindShape(int IDBID, IEnumerable<cShapeData> shapes, ILogger logger, string shapename)
+        protected int FindShape(int IDBID, IEnumerable<cShapeData> shapes, ILogger logger, string shapeType)
         {
             if (shapes == null) return cCore.NULL_VALUE;
 
@@ -302,7 +310,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
                 if (shp.DBID == IDBID)
                     return shp.Index;
             }
-            logger.LogWarning("Unable to find {ShapeName} with ID '{IDBID}'", shapename, IDBID);
+            logger.LogWarning("Unable to find {ShapeType} with DBID '{IDBID}'", shapeType, IDBID);
             return cCore.NULL_VALUE;
         }
         #endregion // Ecopath-wide accessors
