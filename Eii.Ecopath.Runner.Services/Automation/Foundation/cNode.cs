@@ -220,10 +220,10 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns>The group index, or <see cref="cCore.NULL_VALUE"/> if no match 
         /// was found.</returns>        
         /// -------------------------------------------------------------------
-        protected int FindGroup(string groupName)
+        protected int FindGroup(string groupName, ILogger logger)
         {
             cEcopathDataStructures ds = this.Core.EcopathDataStructures;
-            return FindItem(groupName, ds.GroupName);
+            return FindItem(groupName, ds.GroupName, logger, "group");
         }
 
         /// -------------------------------------------------------------------
@@ -235,10 +235,10 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns>The fleet index, or <see cref="cCore.NULL_VALUE"/> if no match 
         /// was found.</returns>        
         /// -------------------------------------------------------------------
-        protected int FindFleet(string fleetName)
+        protected int FindFleet(string fleetName, ILogger logger)
         {
             cEcopathDataStructures ds = this.Core.EcopathDataStructures;
-            return FindItem(fleetName, ds.FleetName);
+            return FindItem(fleetName, ds.FleetName, logger, "fleet");
         }
 
         /// -------------------------------------------------------------------
@@ -251,7 +251,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns>The index, or <see cref="cCore.NULL_VALUE"/> if no match 
         /// was found.</returns>
         /// -------------------------------------------------------------------
-        protected int FindItem(string name, string[] names)
+        protected int FindItem(string name, string[] names, ILogger logger, string itemName)
         {
             name = name.Trim();
             for (int i = 0; i < names.Length; i++)
@@ -259,6 +259,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
                 if (string.Compare(name, names[i], StringComparison.OrdinalIgnoreCase) == 0)
                     return i;
             }
+            logger.LogWarning("Unable to find {ItemName} '{Name}'", itemName, name);
             return cCore.NULL_VALUE;
         }
 
@@ -270,7 +271,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <param name="shapes"></param>
         /// <returns></returns>
         /// -------------------------------------------------------------------
-        protected int FindShape(string name, IEnumerable<cShapeData> shapes)
+        protected int FindShape(string name, IEnumerable<cShapeData> shapes, ILogger logger, string shapename)
         {
             if (shapes == null) return cCore.NULL_VALUE;
 
@@ -280,10 +281,30 @@ namespace Eii.Ecopath.Runner.Services.Automation
                 if (string.Compare(name, shp.Name, StringComparison.OrdinalIgnoreCase) == 0)
                     return shp.Index;
             }
-
+            logger.LogWarning("Unable to find {ShapeName} '{Name}'", shapename, name);
             return cCore.NULL_VALUE;
         }
 
+        /// -------------------------------------------------------------------
+        /// <summary>
+        /// Find the index of a shape by its database ID.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="shapes"></param>
+        /// <returns></returns>
+        /// -------------------------------------------------------------------
+        protected int FindShape(int IDBID, IEnumerable<cShapeData> shapes, ILogger logger, string shapename)
+        {
+            if (shapes == null) return cCore.NULL_VALUE;
+
+            foreach (cShapeData shp in shapes)
+            {
+                if (shp.DBID == IDBID)
+                    return shp.Index;
+            }
+            logger.LogWarning("Unable to find {ShapeName} with ID '{IDBID}'", shapename, IDBID);
+            return cCore.NULL_VALUE;
+        }
         #endregion // Ecopath-wide accessors
     }
 }

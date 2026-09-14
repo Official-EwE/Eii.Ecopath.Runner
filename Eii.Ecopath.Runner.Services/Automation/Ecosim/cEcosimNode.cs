@@ -17,26 +17,6 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         /// -------------------------------------------------------------------
         /// <summary>
-        /// Accessor; get a Fishing Effort shape by fleet index.
-        /// </summary>
-        /// <param name="iFleet">1-based fleet index. Supports fleet zero (all fleets)</param>
-        /// <returns></returns>
-        /// -------------------------------------------------------------------
-        [Description("Get the fishing effort shape for a fleet by 1-based index")]
-        public cForcingFunctionNode? effort(int iFleet)
-        {
-            cFishingEffortShapeManger man = CoreService.FishingEffortShapeManager;
-            if ((iFleet < 0) | (iFleet > man.Count))
-            {
-                Logger.LogError("Ecosim Effort function {Fleet} invalid, must be fleet [1, {MaxFleet}]", iFleet, CoreService.nFleets);
-                return null;
-            }
-            // Allow for the using the 0 fleet too
-            return new cForcingFunctionNode(CoreService, man.get_CoreItem(iFleet), Logger);
-        }
-
-        /// -------------------------------------------------------------------
-        /// <summary>
         /// Accessor alias; get a Fishing Effort shape by fleet name.
         /// </summary>
         /// <param name="name">Fleet name.</param>
@@ -46,40 +26,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cForcingFunctionNode? effort(string name)
         {
             cFishingEffortShapeManger man = CoreService.FishingEffortShapeManager;
-            return effort(FindShape(name, man.Shapes));
-        }
-
-        /// -------------------------------------------------------------------
-        /// <summary>
-        /// Accessor; get a Fishing Mortality shape by group index.
-        /// </summary>
-        /// <param name="iGroup">1-based group index.</param>
-        /// <returns></returns>
-        /// -------------------------------------------------------------------
-        [Description("Get the fishing mortality shape for a group by 1-based index")]
-        public cForcingFunctionNode? fishingmortality(int iGroup)
-        {
-            cFishingMortalityShapeManger man = CoreService.FishMortShapeManager;
-            if ((iGroup < 1) | (iGroup > man.Count))
-            {
-                Logger.LogError("Ecosim F function {Group} invalid, must be group [1, {MaxGroup}]", iGroup, CoreService.nGroups);
-                return null;
-            }
-            return new cForcingFunctionNode(CoreService, man.get_CoreItem(iGroup), Logger);
-        }
-
-        /// -------------------------------------------------------------------
-        /// <summary>
-        /// Accessor alias; get a Fishing Mortality shape by group index.
-        /// </summary>
-        /// <param name="iFleet">1-based fleet index. Supports fleet zero (all fleets)</param>
-        /// <returns></returns>
-        /// <see cref="fishingmortality(iGroup)"/>
-        /// -------------------------------------------------------------------
-        [Description("Alias for fishingmortality(int)")]
-        public cForcingFunctionNode? f(int iGroup)
-        {
-            return fishingmortality(iGroup);
+            int iShape = FindShape(name, man.Shapes, Logger, "Fishing Effort Shape");
+            if (iShape == cCore.NULL_VALUE) return null;
+            return new cForcingFunctionNode(CoreService, man[iShape], Logger);
         }
 
         /// -------------------------------------------------------------------
@@ -108,33 +57,14 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cForcingFunctionNode? fishingmortality(string groupname)
         {
             cFishingMortalityShapeManger man = CoreService.FishMortShapeManager;
-            return fishingmortality(FindShape(groupname, man.Shapes));
+            int iShape = FindShape(groupname, man.Shapes, Logger, "Fishing Mortality Shape");
+            if (iShape == cCore.NULL_VALUE) return null;
+            return new cForcingFunctionNode(CoreService, man[iShape], Logger);
         }
 
         #endregion // Fisheries
 
         #region Forcing function
-
-        /// -------------------------------------------------------------------
-        /// <summary>
-        /// Accessor; get a Forcing Function shape by function index.
-        /// </summary>
-        /// <param name="iIndex">1-based shape index.</param>
-        /// <returns></returns>
-        /// <see cref="fishingmortality(int)"/>
-        /// -------------------------------------------------------------------
-        [Description("Get a forcing function shape by 1-based index")]
-        public cForcingFunctionNode? forcingfunction(int iIndex)
-        {
-            cForcingFunctionShapeManager man = CoreService.ForcingShapeManager;
-            if ((iIndex < 1) | (iIndex > man.Count))
-            {
-                Logger.LogError("Ecosim forcing function {Index} invalid, must be [1, {MaxIndex}]", iIndex, man.Count);
-                return null;
-            }
-
-            return new cForcingFunctionNode(CoreService, man.get_CoreItem(iIndex), Logger);
-        }
 
         /// -------------------------------------------------------------------
         /// <summary>
@@ -148,21 +78,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cForcingFunctionNode? forcingfunction(string name)
         {
             cForcingFunctionShapeManager man = CoreService.ForcingShapeManager;
-            return forcingfunction(FindShape(name, man.Shapes));
-        }
-
-        /// -------------------------------------------------------------------
-        /// <summary>
-        /// Accessor alias; get a Forcing Function shape by index.
-        /// </summary>
-        /// <param name="iIndex">one-based function index.</param>
-        /// <returns></returns>
-        /// <see cref="forcingfunction(int)"/>
-        /// -------------------------------------------------------------------
-        [Description("Alias for forcingfunction(int)")]
-        public cForcingFunctionNode? ff(int iIndex)
-        {
-            return forcingfunction(iIndex);
+            int iShape = FindShape(name, man.Shapes, Logger, "Forcing Function Shape");
+            if (iShape == cCore.NULL_VALUE) return null;
+            return new cForcingFunctionNode(CoreService, man[iShape], Logger);
         }
 
         /// -------------------------------------------------------------------
@@ -181,44 +99,47 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         #endregion // Forcing function
 
+        #region Mediation functions
+
+        /// -------------------------------------------------------------------
+        /// <summary>
+        /// Accessor alias; get a mediation function by name.
+        /// </summary>
+        /// <param name="name">The function name.</param>
+        /// <returns></returns>
+        /// -------------------------------------------------------------------
+        [Description("Get an mediation function by name")]
+        public cMediationFunctionNode? mediationfunction(string name)
+        {
+            var man = this.Core.MediationShapeManager;
+            int iShape = FindShape(name, man.Shapes, Logger, "Mediation Shape");
+            if (iShape == cCore.NULL_VALUE) return null;
+            return new cMediationFunctionNode(CoreService, (cMediationFunction)man[iShape], Logger);
+        }
+
+        #endregion // Mediation functions
+
         #region Environmental responses
 
         /// -------------------------------------------------------------------
         /// <summary>
-        /// Accessor; get an Environmental Response functiopn by index.
-        /// </summary>
-        /// <param name="iIndex">1-based shape index.</param>
-        /// <returns></returns>
-        /// -------------------------------------------------------------------
-        [Description("Get an environmental response function by 1-based index")]
-        public cEnvResponseFunctionNode? envresponse(int iIndex)
-        {
-            cEnviroResponseShapeManager man = this.Core.EnviroResponseShapeManager;
-            if ((iIndex < 1) | (iIndex > man.Count))
-            {
-                Logger.LogError("Ecosim env response function {Index} invalid, must be [1, {MaxIndex}]", iIndex, man.Count);
-                return null;
-            }
-            return new cEnvResponseFunctionNode(CoreService, (cEnviroResponseFunction)man.get_CoreItem(iIndex), Logger);
-        }
-
-        /// -------------------------------------------------------------------
-        /// <summary>
-        /// Accessor alias; get an Environmental Response functiopn by name.
+        /// Accessor; get an Environmental Response functiopn by name.
         /// </summary>
         /// <param name="name">The environmental response function name.</param>
         /// <returns></returns>
         /// -------------------------------------------------------------------
         [Description("Get an environmental response function by name")]
-        public cEnvResponseFunctionNode? envresponse(string name)
+        public cEnvResponseFunctionNode? envresponsefunction(string name)
         {
             cEnviroResponseShapeManager man = this.Core.EnviroResponseShapeManager;
-            return envresponse(FindShape(name, man.Shapes));
+            int iShape = FindShape(name, man.Shapes, Logger, "Environmental Response Shape");
+            if (iShape == cCore.NULL_VALUE) return null;
+            return new cEnvResponseFunctionNode(CoreService, (cEnviroResponseFunction)man[iShape], Logger);
         }
 
         #endregion // Environmental responses
 
-        #region // Other mortality
+        //#region // Other mortality
 
         //public MortResponseFunction? mortalityresponse(int iIndex)
         //{
@@ -230,7 +151,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         //    return new MortResponseFunction(CoreService, man.get_InputData(iIndex), Logger);
         //}
 
-        #endregion // Other mortality
+        //#endregion // Other mortality
 
         #region Vulnerabilities
 
