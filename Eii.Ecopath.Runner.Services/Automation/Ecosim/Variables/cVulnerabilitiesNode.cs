@@ -1,6 +1,5 @@
 ﻿using Eii.Ecopath.Runner.Datamodel.Utilities;
 using Eii.Ecopath.Runner.Services.Runtime;
-using EwECore;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel;
 using System.Data;
@@ -24,9 +23,8 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
         public bool load(string filename)
         {
             // Cannot do this while running
-            if (Core.StateMonitor.IsBusy()) return false;
+            //if (Core.StateMonitor.IsBusy()) return false;
 
-            this.Core.SetBatchLock(cCore.eBatchLockType.Update);
             DataTable? dt;
             try
             {
@@ -49,8 +47,6 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
                 return false;
             }
 
-            this.Core.ReleaseBatchLock(cCore.eBatchChangeLevelFlags.Ecosim);
-            this.Core.EcosimArenaManager.ResetArenas(0);
             return true;
         }
 

@@ -45,7 +45,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             bool bSuccess = om.Invoke(root, key, value);
             if (!bSuccess)
             {
-                string msg = $"! Automation invoke failed: {root}.{key}({value})";
+                string msg = $"! Automation {root} invoke failed: {key}({value})";
                 Console.WriteLine(msg);
                 _logger.LogWarning(msg);
             }
