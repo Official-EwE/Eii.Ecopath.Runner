@@ -15,7 +15,7 @@
       {
         "Date": "start",
         "Modifications": {
-          "ecosim.effort[3].fill": [ 1 ],
+          "ecosim.effort[trawlers].fill": [1],
           "ecosim.vulnerabilities.load": "anchbay_andy_test.csv"
         }
       }
@@ -32,13 +32,13 @@
       {
         "Date": "start",
         "Modifications": {
-          "ecospace.mpa[1].map.fill": 0
+          "ecospace.mpa[MPA 1].map.fill": 0
         }
       },
       {
         "Date": "1-1-2025",
         "Modifications": {
-          "ecospace.mpa[1].map.load": "mpa_test.asc"
+          "ecospace.mpa[MPA 1].map.load": "mpa_test.asc"
         }
       }
     ]
