@@ -1,7 +1,9 @@
 ﻿using Eii.Ecopath.Runner.Datamodel.Automation;
 using Eii.Ecopath.Runner.Datamodel.RunInstructions;
 using EwECore;
+using EwECore.Common;
 using EwECore.SpatialData;
+using EwEUtils.Utilities;
 using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Runtime
@@ -183,6 +185,12 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                 {
                     Console.WriteLine("Loaded STDF data from '{0}', {1} dataset(s)", EwEConfig.ExtDataConfigFile, dsm.Datasets().Length);
                     _logger.LogInformation("Loaded STDF data from '{ConfigFile}', {DatasetCount} dataset(s)", EwEConfig.ExtDataConfigFile, dsm.Datasets().Length);
+
+                    foreach (ISpatialDataSet ds in dsm.Datasets())
+                    {
+                        Console.WriteLine("- {0} ({1})", ds.CustomName, cTypeUtils.TypeToString(ds.GetType()));
+                        _logger.LogInformation("- {DatasetName} ({DatasetType})", ds.CustomName, cTypeUtils.TypeToString(ds.GetType()));
+                    }
                 }
                 else
                 {
