@@ -8,13 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.*" />
+    <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.*" />
+    <PackageReference Include="Eii.Ecopath.SpatialTemporalFrameworkPlugin.Engine" Version="1.0.*" />
     <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12-pre20260709125052" />
     <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.10" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Eii.Ecopath\Sources\EwECore\EwECore.vbproj" />
-    <ProjectReference Include="..\..\Test\Eii.Ecopath.SpatialTemporalFrameworkPlugin.Engine\EwESpatialAssetsEnginePlugin.vbproj" />
     <ProjectReference Include="..\Eii.Ecopath.Runner.Datamodel\Eii.Ecopath.Runner.Datamodel.csproj" />
   </ItemGroup>
 
