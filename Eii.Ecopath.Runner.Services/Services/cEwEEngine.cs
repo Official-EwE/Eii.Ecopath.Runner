@@ -1,7 +1,9 @@
 ﻿using Eii.Ecopath.Runner.Datamodel.Automation;
 using Eii.Ecopath.Runner.Datamodel.RunInstructions;
 using EwECore;
+using EwECore.Common;
 using EwECore.SpatialData;
+using EwEUtils.Utilities;
 using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Runtime
@@ -19,9 +21,9 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
         private readonly ICoreService _coreService;
         private readonly ILogger<cEwEEngine> _logger;
-        private readonly cEcopathModifierService _copathSvc;
-        private readonly cEcosimModifierService _cosimSvc;
-        private readonly cEcospaceModifierService _cospaceSvc;
+        private readonly cEcopathModifierService _ecopathSvc;
+        private readonly cEcosimModifierService _ecosimSvc;
+        private readonly cEcospaceModifierService _ecospaceSvc;
 
         private cEwERunInstructions Instructions = null!;
         private cEwEConfiguration EwEConfig = null!;
@@ -36,18 +38,15 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         public cEwEEngine(
             ILogger<cEwEEngine> logger,
             ICoreService coreService,
-            cEcopathModifierService copathSvc,
-            cEcosimModifierService cosimSvc,
-            cEcospaceModifierService cospaceSvc)
+            cEcopathModifierService ecopathSvc,
+            cEcosimModifierService ecosimSvc,
+            cEcospaceModifierService ecospaceSvc)
         {
             _logger = logger;
             _coreService = coreService;
-            _copathSvc = copathSvc;
-            _cosimSvc = cosimSvc;
-            _cospaceSvc = cospaceSvc;
-
-            // Disable logging
-            //cLog.VerboseLevel = eVerboseLevel.Disabled;
+            _ecopathSvc = ecopathSvc;
+            _ecosimSvc = ecosimSvc;
+            _ecospaceSvc = ecospaceSvc;
         }
 
         /// -------------------------------------------------------------------
@@ -148,6 +147,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             _logger.LogInformation("Working directory set to '{WorkFolder}'", workfolder);
 
             // Plug-ins
+
             int n = _coreService.PluginManager.LoadPlugins(".", true);
             Console.WriteLine("Loaded {0} plugin(s):", n);
             _logger.LogInformation("Loaded {PluginCount} plugin(s)", n);
@@ -185,6 +185,17 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                 {
                     Console.WriteLine("Loaded STDF data from '{0}', {1} dataset(s)", EwEConfig.ExtDataConfigFile, dsm.Datasets().Length);
                     _logger.LogInformation("Loaded STDF data from '{ConfigFile}', {DatasetCount} dataset(s)", EwEConfig.ExtDataConfigFile, dsm.Datasets().Length);
+
+                    foreach (ISpatialDataSet ds in dsm.Datasets())
+                    {
+                        string sType = cTypeUtils.TypeToString(ds.GetType());
+                        string sName = ds.CustomName;
+
+                        if (sType.ToLower().Contains("placeholder")) sType = "(unresolved)";
+
+                        Console.WriteLine("- {0} ({1})", sName, sType);
+                        _logger.LogInformation("- {DatasetName} ({DatasetType})", sName, sType);
+                    }
                 }
                 else
                 {
@@ -199,7 +210,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         private bool RunEcopath()
         {
             cEcopathModifier mod = new cEcopathModifier(EwEConfig, Instructions.EcopathRun);
-            if (!_copathSvc.Run(mod))
+            if (!_ecopathSvc.Run(mod))
             {
                 Console.WriteLine("! Failed to run Ecopath");
                 _logger.LogWarning("Failed to run Ecopath");
@@ -265,7 +276,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             _logger.LogInformation("Ecosim run years = {RunYears}", _coreService.nEcosimYears);
 
             cEcosimModifier mod = new cEcosimModifier(EwEConfig, Instructions.EcosimRun);
-            if (!_cosimSvc.Run(mod))
+            if (!_ecosimSvc.Run(mod))
             {
                 Console.WriteLine("! Failed to run Ecosim");
                 _logger.LogWarning("Failed to run Ecosim");
@@ -296,6 +307,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             }
             Console.WriteLine("Loaded Ecospace scenario {0}: {1}", iSpace, _coreService.GetEcospaceScenarioName(iSpace));
             _logger.LogInformation("Loaded Ecospace scenario {Scenario}: {Name}", iSpace, _coreService.GetEcospaceScenarioName(iSpace));
+
             return true;
         }
 
@@ -319,7 +331,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             _logger.LogInformation("Ecospace run years = {RunYears}", _coreService.nEcospaceYears);
 
             cEcospaceModifier mod = new cEcospaceModifier(EwEConfig, Instructions.EcospaceRun);
-            if (!_cospaceSvc.Run(mod))
+            if (!_ecospaceSvc.Run(mod))
             {
                 Console.WriteLine("! Failed to run Ecospace");
                 _logger.LogWarning("Failed to run Ecospace");

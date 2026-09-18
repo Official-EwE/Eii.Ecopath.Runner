@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.10" />
-    <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.101" />
+    <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.*" />
+    <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.*" />
+    <PackageReference Include="Eii.Ecopath.SpatialAssetsEnginePlugin" Version="1.0.*" />
     <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12-pre20260709125052" />
     <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.10" />
   </ItemGroup>

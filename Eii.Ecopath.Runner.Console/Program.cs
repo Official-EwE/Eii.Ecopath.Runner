@@ -59,6 +59,9 @@ class Program
         var m_logger = LoggingContext.LoggerFactory.CreateLogger("EwERunConsole");
 
         bool success = false;
+
+        // ToDo: Add a command-line option to specify the log file location
+
         ParserResult<CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
             .WithParsed(options => { success = ParseInstructions(options.RunInfo, options.Output, options.ShowCommands, options.Docs, m_logger, sp); })
             .WithNotParsed(errors => { Complain(errors); });
