@@ -124,9 +124,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
                 string rawEntry = iDot >= 0 ? methodPath[..iDot] : methodPath;
                 string? remainder = iDot >= 0 ? methodPath[(iDot + 1)..] : null;
 
-                if (!TryParseAutomationPathEntry(rawEntry, out AutomationPathEntry? entry))
+                if (!TryParseAutomationPathEntry(rawEntry, out AutomationPathEntry? entry) || (entry == null))
                 {
-                    Logger.LogError("Automation entry '{Entry}' in '{MethodPath}' is malformed", rawEntry, methodPath);
+                    Logger.LogError("Automation entry '{rawEntry}' in '{MethodPath}' is malformed", rawEntry, methodPath);
                     return false;
                 }
 
