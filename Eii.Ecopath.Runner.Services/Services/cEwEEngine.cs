@@ -188,8 +188,13 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
                     foreach (ISpatialDataSet ds in dsm.Datasets())
                     {
-                        Console.WriteLine("- {0} ({1})", ds.CustomName, cTypeUtils.TypeToString(ds.GetType()));
-                        _logger.LogInformation("- {DatasetName} ({DatasetType})", ds.CustomName, cTypeUtils.TypeToString(ds.GetType()));
+                        string sType = cTypeUtils.TypeToString(ds.GetType());
+                        string sName = ds.CustomName;
+
+                        if (sType.ToLower().Contains("placeholder")) sType = "(unresolved)";
+
+                        Console.WriteLine("- {0} ({1})", sName, sType);
+                        _logger.LogInformation("- {DatasetName} ({DatasetType})", sName, sType);
                     }
                 }
                 else
