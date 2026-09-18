@@ -1,8 +1,8 @@
 ﻿# Eii.Ecopath.Runner
 
-Headless, JSON-driven runner for the [EwE (Ecopath with Ecosim)](https://ecopath.org) marine
+Headless, JSON-driven runner for the [Ecopath with Ecisim (EwE)](https://ecopath.org) marine
 ecosystem modelling platform. Automates sequential runs of Ecopath, Ecosim, Ecospace and
-Ecotracer without the GUI.
+Ecotracer in scripted environments.
 
 ## Solution structure
 
