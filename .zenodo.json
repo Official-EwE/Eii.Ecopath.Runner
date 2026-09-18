@@ -1,0 +1,91 @@
+{
+  "title": "Ecopath with Ecosim (EwE) automation runner",
+  "description": "A text file-driven automation runner for the Ecopath with Ecosim (EwE) marine ecosystem modelling platform. It automates sequential runs of Ecopath, Ecosim, Ecospace and Ecotracer for integration into scripted and reproducible modelling workflows",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "EUPL-1.2",
+  "language": "eng",
+
+  "creators": [
+    {
+      "name": "Steenbeek, Jeroen",
+      "affiliation": "Ecopath International Initiative",
+      "orcid": "0000-0002-7878-8075",
+      "type": "ProjectManager"
+    },
+    {
+      "name": "Gordó-Vilaseca, Cesc",
+      "affiliation": "Institute of Marine Sciences (ICM-CSIC)",
+      "orcid": "0000-0001-5992-218X",
+      "type": "Researcher"
+    },
+    {
+      "name": "Stock, Andy",
+      "affiliation": "Norwegian Institute for Water Research",
+      "orcid": "0000-0003-2848-1961",
+      "type": "Researcher"
+    },
+    {
+      "name": "Pint, Steven",
+      "affiliation": "Flanders Marine Institute",
+      "orcid": "0000-0001-5530-6785",
+      "type": "Researcher"
+    },
+    {
+      "name": "Claudet, Joachim",
+      "affiliation": "French National Centre for Scientific Research",
+      "orcid": "0000-0001-6295-1061",
+      "type": "Supervisor"
+    },
+    {
+      "name": "Kreeftenberg, Rik",
+      "affiliation": "Spinsoft",
+      "type": "Producer"
+    }
+  ],
+
+  "contributors": [
+    {
+      "name": "Ecopath International Initiative",
+      "type": "ResearchGroup"
+    },
+    {
+      "name": "European Union",
+      "type": "Funder"
+    }
+  ],
+  "grants": [
+    {
+      "id": "101180994"
+    }
+  ],
+  "keywords": [
+    "Ecopath with Ecosim",
+    "EwE",
+    "Ecopath",
+    "Ecosim",
+    "Ecospace",
+    "Ecotracer",
+    "ecosystem modelling",
+    "marine ecosystem modelling",
+    "model automation",
+    "batch processing",
+    "scripted workflows",
+    "reproducible modelling",
+    "open source"
+  ],
+
+  "communities": [
+    {
+      "identifier": "ewe"
+    }
+  ],
+
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Official-EwE/Eii.Ecopath.Runner.git",
+      "relation": "isSourceOf",
+      "resource_type": "software"
+    }
+  ]
+}
