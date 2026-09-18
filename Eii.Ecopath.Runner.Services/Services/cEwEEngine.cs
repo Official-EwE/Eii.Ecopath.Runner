@@ -191,7 +191,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                         string sType = cTypeUtils.TypeToString(ds.GetType());
                         string sName = ds.CustomName;
 
-                        if (sType.ToLower().Contains("placeholder")) sType = "(unresolved)";
+                        if (sType.ToLower().Contains("placeholder")) sType = "unresolved";
 
                         Console.WriteLine("- {0} ({1})", sName, sType);
                         _logger.LogInformation("- {DatasetName} ({DatasetType})", sName, sType);
