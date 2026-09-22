@@ -14,7 +14,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cEcopathGroupNode? group(string groupName)
         {
             int iGroup = FindGroup(groupName, Logger);
-            if (iGroup <= 0) return null;
+            if (iGroup < 0) return null;
             return new cEcopathGroupNode(CoreService, CoreService.get_EcopathGroupInputs(iGroup), Logger);
         }
 

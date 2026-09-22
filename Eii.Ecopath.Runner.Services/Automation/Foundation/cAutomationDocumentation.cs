@@ -31,12 +31,12 @@ namespace Eii.Ecopath.Runner.Services.Automation
             sb.AppendLine("{");
             sb.AppendLine("  \"Date\": \"1-1-2025\",");
             sb.AppendLine("  \"Modifications\": {");
-            sb.AppendLine("    \"ecosim.effort[1].fill\": [ 0.5 ]");
+            sb.AppendLine("    \"ecosim.effort[$].fill\": [ 0.5 ]");
             sb.AppendLine("  }");
             sb.AppendLine("}");
             sb.AppendLine("```");
             sb.AppendLine();
-            sb.AppendLine("> **`[#]`** = 1-based integer index. String-name aliases work at runtime but are not listed here.");
+            sb.AppendLine("> **`[$]`** = name. Names are not case sensitive.");
             sb.AppendLine();
             sb.AppendLine("## Commands");
             sb.AppendLine();
