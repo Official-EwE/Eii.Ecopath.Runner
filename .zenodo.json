@@ -14,10 +14,9 @@
       "type": "ProjectManager"
     },
     {
-      "name": "Gordó-Vilaseca, Cesc",
-      "affiliation": "Institute of Marine Sciences (ICM-CSIC)",
-      "orcid": "0000-0001-5992-218X",
-      "type": "Researcher"
+      "name": "Kreeftenberg, Rik",
+      "affiliation": "Spinsoft",
+      "type": "Producer"
     },
     {
       "name": "Stock, Andy",
@@ -32,15 +31,16 @@
       "type": "Researcher"
     },
     {
+      "name": "Gordó-Vilaseca, Cesc",
+      "affiliation": "Institute of Marine Sciences (ICM-CSIC)",
+      "orcid": "0000-0001-5992-218X",
+      "type": "Researcher"
+    },
+    {
       "name": "Claudet, Joachim",
       "affiliation": "French National Centre for Scientific Research",
       "orcid": "0000-0001-6295-1061",
       "type": "Supervisor"
-    },
-    {
-      "name": "Kreeftenberg, Rik",
-      "affiliation": "Spinsoft",
-      "type": "Producer"
     }
   ],
 
@@ -49,31 +49,26 @@
       "name": "Ecopath International Initiative",
       "type": "ResearchGroup"
     },
-    {
+	{
       "name": "European Union",
       "type": "Funder"
     }
   ],
-  "grants": [
-    {
-      "id": "101180994"
-    }
-  ],
-  "keywords": [
-    "Ecopath with Ecosim",
-    "EwE",
-    "Ecopath",
-    "Ecosim",
-    "Ecospace",
-    "Ecotracer",
-    "ecosystem modelling",
-    "marine ecosystem modelling",
-    "model automation",
-    "batch processing",
-    "scripted workflows",
-    "reproducible modelling",
-    "open source"
-  ],
+ "keywords": [
+	  "Ecopath with Ecosim",
+	  "EwE",
+	  "Ecopath",
+	  "Ecosim",
+	  "Ecospace",
+	  "Ecotracer",
+	  "ecosystem modelling",
+	  "marine ecosystem modelling",
+	  "model automation",
+	  "batch processing",
+	  "scripted workflows",
+	  "reproducible modelling",
+	  "open source"
+	],
 
   "communities": [
     {

@@ -102,6 +102,9 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             Console.WriteLine("Start run");
             _logger.LogInformation("Ecospace start run");
 
+            // Execute the first time step BEFORE the core is busy with the run, so that we can capture the initial state of the model before any changes are applied.
+            runSuccess &= Apply(mod, 1);
+
             // Wire bridge callback as a lambda that captures mod and the local success flag
             IPlugin? pi = GetPlugin(typeof(cEcospaceBridgePlugin));
             if (pi != null)
@@ -121,7 +124,9 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                             Console.WriteLine("{0}{1}{2}", year, spinTag, saveTag);
                             _logger.LogInformation("Ecospace year {Year}{SpinTag}{SaveTag}", year, spinTag, saveTag);
                         }
-                        runSuccess &= Apply(mod, iTime);
+
+                        if (iTime > 1)
+                            runSuccess &= Apply(mod, iTime);
                     }
                 };
             }
