@@ -95,6 +95,10 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             // Check data connections
             Console.WriteLine("Ecospace no. ext data connections = {0}", _coreService.SpatialDataConnectionManager.NumConnectedAdapters);
             Console.WriteLine();
+
+            // Here, at this point, all 'start run" commands should be executed before the run is actually set in motion. This is important!
+            // TODO_JS: kick off all timestep 1 modifiers
+
             Console.WriteLine("Start run");
             _logger.LogInformation("Ecospace start run");
 
@@ -129,12 +133,12 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                     if (msg.Importance == eMessageImportance.Information)
                     {
                         Console.WriteLine("STDF: {0}", msg.Message);
-                        _logger.LogInformation("STDF: {Message}", msg.Message);
+                        //_logger.LogInformation("STDF: {Message}", msg.Message); No need to log, already done in EwE
                     }
-                    if (msg.Importance == eMessageImportance.Critical)
+                    else
                     {
                         Console.WriteLine("! STDF: {0}", msg.Message);
-                        _logger.LogWarning("STDF: {Message}", msg.Message);
+                        //_logger.LogWarning("STDF: {Message}", msg.Message); No need to log, already done in EwE
                     }
                 },
                 eCoreComponentType.External,
