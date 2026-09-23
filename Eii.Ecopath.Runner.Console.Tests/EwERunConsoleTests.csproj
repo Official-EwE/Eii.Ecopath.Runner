@@ -38,7 +38,6 @@
   <!-- Large data files linked from the Console project — no disk duplication -->
   <ItemGroup>
     <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay.eiixml" Link="Testdata\AnchovyBay\AnchovyBay.eiixml" CopyToOutputDirectory="PreserveNewest" />
-    <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay_extdata.xml" Link="Testdata\AnchovyBay\AnchovyBay_extdata.xml" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\AnchovyBay_runinfo.json" Link="Testdata\AnchovyBay\AnchovyBay_runinfo.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\Eii.Ecopath.Runner.Console\Testdata\AnchovyBay\MPA_test.asc" Link="Testdata\AnchovyBay\MPA_test.asc" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\Eii.Ecopath.Runner.Console\Testdata\VLIZ\SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml" Link="Testdata\VLIZ\SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml" CopyToOutputDirectory="PreserveNewest" />

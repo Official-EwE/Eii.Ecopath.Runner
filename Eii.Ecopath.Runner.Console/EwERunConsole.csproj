@@ -37,111 +37,12 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Anchovy Bay Spatial.eiixml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\anchbay_andy_test.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\Anchovy Bay-Vulnerabilities_01.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\Anchovy Bay-Vulnerabilities_02.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBay.eiixml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBayMPA\mpa_noshrimpers_2005-05.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBayMPA\mpa_noshrimpers_2012-09.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBayPP\AnchovyBay_RelPP.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBayTemperature\sst_2000-01.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBayTemperature\sst_2010-01.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBayTemperature\sst_2013-01.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBayTemperature\sst_2014-07.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBayTemperature\sst_2019-04.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBay_extdata.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBay_runinfo.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\MPA_test.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay_runinfo.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\Andy\anchovy_bay_ecosim_ex.eiixml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\Andy\R0001_0000.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\MPA_test.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SampleFile.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay.eiixml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay_extdata.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBayMPA\mpa_noshrimpers_2005-05.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBayMPA\mpa_noshrimpers_2012-09.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBayPP\AnchovyBay_RelPP.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBayTemperature\sst_2000-01.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBayTemperature\sst_2010-01.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBayTemperature\sst_2013-01.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBayTemperature\sst_2014-07.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBayTemperature\sst_2019-04.asc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\VLIZ\SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\VLIZ\VLIZ_runinfo.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="~Documentation\EwERunConsole_help.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
+	<ItemGroup>
+		<Content Include="TestData\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+	
   <ItemGroup>
     <ProjectReference Include="..\Eii.Ecopath.Runner.Datamodel\Eii.Ecopath.Runner.Datamodel.csproj" />
     <ProjectReference Include="..\Eii.Ecopath.Runner.Services\Eii.Ecopath.Runner.Services.csproj" />
