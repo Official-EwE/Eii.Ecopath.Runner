@@ -23,7 +23,11 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
         public bool load(string filename)
         {
             // Cannot do this while running
-            //if (Core.StateMonitor.IsBusy()) return false;
+            if (Core.StateMonitor.IsBusy())
+            {
+                Logger.LogWarning("Cannot apply vulnerabilities while running");
+                return false;
+            }
 
             DataTable? dt;
             try

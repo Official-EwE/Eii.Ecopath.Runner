@@ -5,7 +5,7 @@
     "EcosimTimeseries": 0,
     "EcospaceScenario": 1,
     "SaveWithHeader": true,
-    "ExtDataConfigFile": "AnchovyBay_extdata.xml",
+    "ExtDataConfigFile": "AnchovyBay_drivers.xml",
     "RunYears": 50
   },
   "EcosimRun": {
@@ -15,8 +15,8 @@
       {
         "Date": "start",
         "Modifications": {
-          "ecosim.effort[trawlers].fill": [1],
-          "ecosim.vulnerabilities.load": "anchbay_andy_test.csv"
+          "ecosim.effort[trawlers].fill": [ 1 ],
+          "ecosim.vulnerabilities.load": "AnchovyBay-Vulnerabilities_02.csv"
         }
       }
     ]
