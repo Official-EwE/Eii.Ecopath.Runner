@@ -181,6 +181,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             {
                 cSpatialDataConnectionManager man = _coreService.SpatialDataConnectionManager;
                 cSpatialDataSetManager dsm = man.DatasetManager();
+
                 if (dsm.Load(EwEConfig.ExtDataConfigFile, true))
                 {
                     Console.WriteLine("Loaded STDF data from '{0}', {1} dataset(s)", EwEConfig.ExtDataConfigFile, dsm.Datasets().Length);
