@@ -10,17 +10,7 @@
   },
   "EcosimRun": {
     "SaveContentCSV": [ "biomass", "catch" ],
-    "SaveAnnual": false,
-    "Changes": [
-      {
-        "Date": "start",
-        "Modifications": {
-          "ecosim.effort[trawlers].fill": [ 1 ],
-          "ecosim.vulnerabilities.load": "AnchovyBay-Vulnerabilities_02.csv",
-          "ecosim.ff[temp].reshape":  ["linear", [22, 25.8]]
-        }
-      }
-    ]
+    "SaveAnnual": false
   },
   "EcospaceRun": {
     "RunSpinupYears": 10,

@@ -45,7 +45,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         // ----------------------------------------------------------------
         [Description("Set function values from an array of points; excess points are ignored")]
-        public virtual bool set(object[] points)
+        public virtual bool set(float[] points)
         {
             if (points == null) return false;
             var floatArray = points.Select(x => (float)Convert.ChangeType(x, typeof(float))).ToArray();
@@ -64,7 +64,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         // ----------------------------------------------------------------
         [Description("Set function values, repeating the pattern to fill the entire shape")]
-        public virtual bool fill(object[] points)
+        public virtual bool fill(float[] points)
         {
             if (points == null) return false;
             var floatArray = points.Select(x => (float)Convert.ChangeType(x, typeof(float))).ToArray();
