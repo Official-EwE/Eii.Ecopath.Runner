@@ -69,7 +69,8 @@ public class cNode
     /// <param name="fnparms">The parameters to pass to the final function to execute.</param>
     /// <returns>True if the command was successfully invoked; otherwise, false.</returns>
     /// -------------------------------------------------------------------
-    public bool Invoke(string context, string methodPath, object fnparms)
+    [AutomationIgnoreAttribute]
+    public bool Invoke(string context, string methodPath, object? fnparms)
     {
         if (string.IsNullOrWhiteSpace(methodPath))
         {
@@ -116,7 +117,8 @@ public class cNode
     /// <param name="fnparms">The parameters to pass to the final function to execute.</param>
     /// <returns>True if the method was successfully invoked; otherwise, false.</returns>
     /// -------------------------------------------------------------------
-    protected bool CrawlAutomationTree(string methodPath, object fnparms)
+    [AutomationIgnoreAttribute]
+    protected bool CrawlAutomationTree(string methodPath, object? fnparms)
     {
         try
         {
@@ -130,30 +132,29 @@ public class cNode
                 return false;
             }
 
-            // The final path component is the endpoint. Selectors on endpoints are
-            // currently not part of the automation grammar; endpoint parameters are
-            // supplied through fnparms.
             if (remainder == null)
             {
                 if (entry.Selector != null)
                 {
-                    Logger.LogError("Automation endpoint '{Entry}' in '{MethodPath}' cannot contain a selector", rawEntry, methodPath);
+                    Logger.LogError(
+                        "Automation endpoint '{Entry}' in '{MethodPath}' cannot contain a selector",
+                        rawEntry,
+                        methodPath);
+
                     return false;
                 }
 
-                // The outer JSON array represents the endpoint argument list. A nested
-                // array therefore remains a single array-valued argument for binding.
-                object?[] endpointArguments = fnparms switch
-                {
-                    object?[] args => args,
-                    _ => [fnparms]
-                };
-
-                MethodBinding? binding = ResolveAutomationMethod(GetType(), entry.MethodName, endpointArguments);
+                // Pass the endpoint payload exactly as received. Do not decide here
+                // whether a JSON array represents an argument list or one array argument.
+                MethodBinding? binding = ResolveAutomationMethod(GetType(), entry.MethodName, fnparms);
 
                 if (binding == null)
                 {
-                    Logger.LogError("Automation endpoint '{Entry}' in '{MethodPath}' cannot be resolved", entry.MethodName, methodPath);
+                    Logger.LogError(
+                        "Automation endpoint '{Entry}' in '{MethodPath}' cannot be resolved",
+                        entry.MethodName,
+                        methodPath);
+
                     return false;
                 }
 
@@ -174,9 +175,7 @@ public class cNode
                 }
             }
 
-            object?[] arguments = entry.Selector == null
-                ? []
-                : [entry.Selector];
+            object?[] arguments = entry.Selector == null ? [] : [entry.Selector];
 
             MethodBinding? intermediateBinding = ResolveAutomationMethod(GetType(), entry.MethodName, arguments);
 
@@ -217,6 +216,7 @@ public class cNode
     /// Parses one automation path entry into a method name and optional selector.
     /// </summary>
     /// -------------------------------------------------------------------
+    [AutomationIgnoreAttribute]
     private static bool TryParseAutomationPathEntry(string rawEntry, out AutomationPathEntry? entry)
     {
         entry = null;
@@ -265,27 +265,54 @@ public class cNode
     /// are converted only after a candidate overload has been identified.
     /// </summary>
     /// -------------------------------------------------------------------
-    private static MethodBinding? ResolveAutomationMethod(Type type, string methodName, object?[] arguments)
+    [AutomationIgnoreAttribute]
+    private static MethodBinding? ResolveAutomationMethod(Type type, string methodName, object? supplied)
     {
-        List<MethodBinding> candidates = type
-            .GetMethods(BindingFlags.Instance | BindingFlags.Public)
-            .Where(m => m.Name.Equals(methodName, StringComparison.OrdinalIgnoreCase))
-            .Where(m => m.GetCustomAttribute<AutomationIgnoreAttribute>() == null)
-            .Where(m => m.GetParameters().Length == arguments.Length)
-            .Select(m => TryBindAutomationMethod(m, arguments))
-            .Where(b => b != null)
-            .Cast<MethodBinding>()
-            .OrderBy(b => b.Score)
-            .ThenBy(b => b.Method.MetadataToken)
-            .ToList();
+        List<MethodBinding> candidates = new();
+
+        MethodInfo[] methods =
+            type.GetMethods(BindingFlags.Instance | BindingFlags.Public);
+
+        foreach (MethodInfo method in methods)
+        {
+            // Correct method name?
+            if (!method.Name.Equals(methodName, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            // Explicitly excluded from automation?
+            if (method.GetCustomAttribute<AutomationIgnoreAttribute>() != null)
+                continue;
+
+            // Let the candidate method interpret the supplied JSON structure
+            // according to its own parameter signature.
+            MethodBinding? binding = TryBindAutomationMethod(method, supplied);
+
+            if (binding == null)
+                continue;
+
+            candidates.Add(binding);
+        }
 
         if (candidates.Count == 0)
             return null;
 
-        // Equal-scoring overloads are genuinely ambiguous. Do not depend on
-        // reflection order to select one silently.
-        if (candidates.Count > 1 && candidates[0].Score == candidates[1].Score)
+        candidates.Sort((a, b) =>
+        {
+            int result = a.Score.CompareTo(b.Score);
+
+            if (result == 0)
+                result = a.Method.MetadataToken.CompareTo(b.Method.MetadataToken);
+
+            return result;
+        });
+
+        // Equal-scoring overloads are genuinely ambiguous. Do not rely on
+        // reflection order to make an arbitrary choice.
+        if (candidates.Count > 1 &&
+            candidates[0].Score == candidates[1].Score)
+        {
             return null;
+        }
 
         return candidates[0];
     }
@@ -295,25 +322,85 @@ public class cNode
     /// Attempts to bind supplied arguments to a specific method overload.
     /// </summary>
     /// -------------------------------------------------------------------
-    private static MethodBinding? TryBindAutomationMethod(MethodInfo method, object?[] suppliedArguments)
+    [AutomationIgnoreAttribute]
+    private static MethodBinding? TryBindAutomationMethod(MethodInfo method, object? supplied)
     {
         ParameterInfo[] parameters = method.GetParameters();
-        object?[] boundArguments = new object?[suppliedArguments.Length];
+
+        object?[] suppliedArguments;
+
+        // Special structural case:
+        //
+        // If the candidate method expects exactly one array parameter,
+        // an incoming JSON array represents that parameter itself rather
+        // than a list of separate method arguments.
+        //
+        // Example:
+        //
+        //     fill(float[])
+        //
+        // JSON:
+        //
+        //     [1, 1]
+        //
+        // becomes:
+        //
+        //     fill(new float[] { 1, 1 })
+        //
+        if (parameters.Length == 1 &&
+            parameters[0].ParameterType.IsArray &&
+            supplied is Array)
+        {
+            suppliedArguments = [supplied];
+        }
+
+        // Normal case: a JSON array represents the method argument list.
+        //
+        // Example:
+        //
+        //     reshape(string, float[])
+        //
+        // JSON:
+        //
+        //     ["linear", [22, 25.8]]
+        //
+        else if (supplied is object?[] argumentArray)
+        {
+            suppliedArguments = argumentArray;
+        }
+
+        // Scalar payload: one method argument.
+        else
+        {
+            suppliedArguments = [supplied];
+        }
+
+        // Now that structure has been interpreted for this candidate,
+        // ordinary arity checking is meaningful.
+        if (parameters.Length != suppliedArguments.Length)
+            return null;
+
+        object?[] boundArguments =
+            new object?[suppliedArguments.Length];
+
         int score = 0;
 
         for (int i = 0; i < parameters.Length; i++)
         {
-            object? supplied = suppliedArguments[i];
+            object? suppliedArgument = suppliedArguments[i];
             Type targetType = parameters[i].ParameterType;
 
-            if (!TryBindAutomationArgument(supplied, targetType, out object? bound, out int argumentScore))
+            if (!TryBindAutomationArgument(suppliedArgument, targetType, out object? bound, out int argumentScore))
                 return null;
 
             boundArguments[i] = bound;
             score += argumentScore;
         }
 
-        return new MethodBinding(method, boundArguments, score);
+        return new MethodBinding(
+            method,
+            boundArguments,
+            score);
     }
 
     /// -------------------------------------------------------------------
@@ -322,6 +409,7 @@ public class cNode
     /// parameter type. Lower scores indicate stronger matches.
     /// </summary>
     /// -------------------------------------------------------------------
+    [AutomationIgnoreAttribute]
     private static bool TryBindAutomationArgument(object? supplied, Type targetType, out object? bound, out int score)
     {
         bound = null;
@@ -347,14 +435,16 @@ public class cNode
         {
             string value = selector.Value;
 
-            if (effectiveTargetType != typeof(string) &&
-                TryConvertAutomationValue(value, effectiveTargetType, out object? converted))
+            // Prefer a typed interpretation over string when possible.
+            // Thus "[1]" resolves to int rather than string.
+            if (effectiveTargetType != typeof(string) && TryConvertAutomationValue(value, effectiveTargetType, out object? converted))
             {
                 bound = converted;
                 score = 0;
                 return true;
             }
 
+            // Otherwise retain the selector text as a name.
             if (effectiveTargetType == typeof(string))
             {
                 bound = value;
@@ -431,6 +521,7 @@ public class cNode
     /// culture. Enum and Guid values receive explicit handling.
     /// </summary>
     /// -------------------------------------------------------------------
+    [AutomationIgnoreAttribute]
     private static bool TryConvertAutomationValue(object value, Type targetType, out object? converted)
     {
         converted = null;
@@ -478,6 +569,7 @@ public class cNode
     /// <param name="prefix">The prefix to prepend to each automation path.</param>
     /// <returns>A list of automation paths.</returns>
     /// -----------------------------------------------------------------------
+    [AutomationIgnoreAttribute]
     public List<string> ListAutomationPaths(string prefix = "")
     {
         List<string> paths = new();
@@ -569,6 +661,7 @@ public class cNode
     /// <returns>The group index, or <see cref="cCore.NULL_VALUE"/> if no match
     /// was found.</returns>
     /// -------------------------------------------------------------------
+    [AutomationIgnoreAttribute]
     protected int FindGroup(string groupName, ILogger logger)
     {
         cEcopathDataStructures ds = this.Core.EcopathDataStructures;
@@ -585,6 +678,7 @@ public class cNode
     /// <returns>The fleet index, or <see cref="cCore.NULL_VALUE"/> if no match
     /// was found.</returns>
     /// -------------------------------------------------------------------
+    [AutomationIgnoreAttribute]
     protected int FindFleet(string fleetName, ILogger logger)
     {
         cEcopathDataStructures ds = this.Core.EcopathDataStructures;
@@ -603,6 +697,7 @@ public class cNode
     /// <returns>The index, or <see cref="cCore.NULL_VALUE"/> if no match
     /// was found.</returns>
     /// -------------------------------------------------------------------
+    [AutomationIgnoreAttribute]
     protected int FindItem(string itemName, string[] names, ILogger logger, string itemType)
     {
         itemName = itemName.Trim();
@@ -625,6 +720,7 @@ public class cNode
     /// <param name="shapeType">The type of shape to find, for logging purposes.</param>
     /// <returns>The index of the shape, or <see cref="cCore.NULL_VALUE"/> if no match was found.</returns>
     /// -------------------------------------------------------------------
+    [AutomationIgnoreAttribute]
     protected cShapeData? FindShape(string shapeName, IEnumerable<cShapeData> shapes, ILogger logger, string shapeType)
     {
         if (shapes == null) return null;
@@ -649,6 +745,7 @@ public class cNode
     /// <param name="shapeType">The type of shape to find, for logging purposes.</param>
     /// <returns>The index of the shape, or <see cref="cCore.NULL_VALUE"/> if no match was found.</returns>
     /// -------------------------------------------------------------------
+    [AutomationIgnoreAttribute]
     protected int FindShape(int IDBID, IEnumerable<cShapeData> shapes, ILogger logger, string shapeType)
     {
         if (shapes == null) return cCore.NULL_VALUE;
