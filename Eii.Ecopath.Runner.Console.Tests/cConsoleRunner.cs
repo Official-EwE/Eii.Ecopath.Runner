@@ -92,6 +92,10 @@ namespace Eii.Ecopath.Runner.Console.Tests
                 CreateNoWindow = true
             };
 
+            // Set the EWE_DEBUG_BREAK environment variable if the test runner has it set, so that we can attach a debugger to EwERunConsole if needed.
+            if (Environment.GetEnvironmentVariable("EWE_DEBUG_BREAK") == "1")
+                psi.Environment["EWE_DEBUG_BREAK"] = "1";
+
             foreach (string arg in args)
                 psi.ArgumentList.Add(arg);
 
