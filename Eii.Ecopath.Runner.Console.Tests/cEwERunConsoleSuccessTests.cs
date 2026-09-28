@@ -23,7 +23,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
                 @"Testdata\AnchovyBay\AnchovyBay_runinfo.json", id);
 
             // Assert
-            result.ExitCode.Should().Be(1, because: result.StdOut);
+            result.ExitCode.Should().Be(0, because: result.StdOut);
             result.StdOut.Should().Contain("Run completed");
             File.Exists(Path.Combine(result.ActualOutputFolder, "EwERunConsole_log.txt"))
                 .Should().BeTrue("the console log file should be written to the output folder");
