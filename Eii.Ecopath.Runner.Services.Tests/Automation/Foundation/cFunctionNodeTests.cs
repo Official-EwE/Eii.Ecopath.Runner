@@ -65,7 +65,7 @@ namespace Eii.Ecopath.Runner.Services.Tests.Automation.Foundation
             var (node, shape, _) = CreateNode(5);
 
             // Act
-            var result = node.set(new object[] { 2f, 4f });
+            var result = node.set(new float[] { 2f, 4f });
 
             // Assert
             result.Should().BeTrue();
@@ -79,7 +79,7 @@ namespace Eii.Ecopath.Runner.Services.Tests.Automation.Foundation
             var (node, shape, _) = CreateNode(3);
 
             // Act
-            var result = node.set(new object[] { 1f, 2f, 3f, 4f, 5f });
+            var result = node.set(new float[] { 1f, 2f, 3f, 4f, 5f });
 
             // Assert
             result.Should().BeTrue();
@@ -108,7 +108,7 @@ namespace Eii.Ecopath.Runner.Services.Tests.Automation.Foundation
             var (node, shape, _) = CreateNode(5);
 
             // Act
-            var result = node.fill(new object[] { 1f, 2f });
+            var result = node.fill(new float[] { 1f, 2f });
 
             // Assert
             result.Should().BeTrue();
