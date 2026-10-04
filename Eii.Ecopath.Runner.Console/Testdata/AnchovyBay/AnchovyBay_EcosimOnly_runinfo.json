@@ -5,7 +5,7 @@
     "EcosimTimeseries": 0,
     "EcospaceScenario": 0,
     "SaveWithHeader": true,
-    "ExtDataConfigFile": "AnchovyBay_extdata.xml",
+    "ExtDataConfigFile": "AnchovyBay_drivers.xml",
     "RunYears": 10
   },
   "EcosimRun": {
@@ -15,7 +15,7 @@
       {
         "Date": "start",
         "Modifications": {
-          "ecosim.effort[3].fill": [ 1 ]
+            "ecosim.effort[Shrimpers].fill": [ 1 ]
         }
       }
     ]
