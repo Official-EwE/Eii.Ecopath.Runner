@@ -1,0 +1,49 @@
+name: Test Check
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    # EwERunConsole is published as a Windows-only, win-x64 framework-dependent
+    # binary, and Eii.Ecopath.Runner.Console.Tests spawns EwERunConsole.exe as a
+    # child process, so this job must run on a Windows runner.
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      # Register the private GitHub NuGet feed that hosts the EwE engine packages.
+      # The standard GITHUB_TOKEN is used so no extra secret needs to be configured.
+      # The source is removed first (if present) to avoid duplicate-source errors on re-runs.
+      - name: Ensure github-Official-EwE NuGet source
+        run: |
+          if dotnet nuget list source | grep -q "github-Official-EwE"; then
+            dotnet nuget remove source github-Official-EwE
+          fi
+          dotnet nuget add source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+            --name "github-Official-EwE" \
+            --username ${{ github.repository_owner }} \
+            --password ${{ github.token }} \
+            --store-password-in-clear-text
+        shell: bash
+
+      - name: Build
+        run: dotnet build EwERunner.sln --configuration Release
+        shell: bash
+
+      - name: Run tests
+        run: dotnet test EwERunner.sln --configuration Release --no-build
+        shell: bash
+
+# Note: for this check to actually block merges, it must be added as a required
+# status check for the "master" branch in the repository's branch protection
+# settings (Settings > Branches > Branch protection rules). This cannot be
+# configured from within this YAML file.
