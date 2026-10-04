@@ -44,7 +44,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             result.StdOut.Should().Contain("Run completed");
 
             string outputFolder = Path.Combine(result.ActualOutputFolder, "ecosim_New Ecosim scenario");
-            result.StdOut.Should().Contain(outputFolder, "the output folder path should be mentioned in the console output");
+            result.StdOut.Should().Contain(outputFolder, $"the output folder path {outputFolder} should be mentioned in the console output");
 
             Directory.GetFiles(outputFolder, "*.csv")
                 .Should().NotBeEmpty("Ecosim should write at least one CSV output file");
@@ -66,7 +66,6 @@ namespace Eii.Ecopath.Runner.Console.Tests
         }
 
         [Fact]
-        [Trait("Category", "Slow")]
         public async Task VLIZ_EcosimOnly_Succeeds()
         {
             // Arrange
@@ -81,7 +80,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             result.StdOut.Should().Contain("Run completed");
 
             string outputFolder = Path.Combine(result.ActualOutputFolder, "ecosim_V15_TechnicalReport");
-            result.StdOut.Should().Contain(outputFolder, "the output folder path should be mentioned in the console output");
+            result.StdOut.Should().Contain(outputFolder, $"the output folder path {outputFolder} should be mentioned in the console output");
 
             Directory.GetFiles(outputFolder, "*.csv")
                 .Should().NotBeEmpty("Ecosim should write at least one CSV output file");
