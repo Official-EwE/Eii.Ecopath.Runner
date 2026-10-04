@@ -6,7 +6,10 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # EwERunConsole is published as a Windows-only, win-x64 framework-dependent
+    # binary, and Eii.Ecopath.Runner.Console.Tests spawns EwERunConsole.exe as a
+    # child process, so this job must run on a Windows runner.
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
@@ -32,8 +35,12 @@ jobs:
             --store-password-in-clear-text
         shell: bash
 
+      - name: Build
+        run: dotnet build EwERunner.sln --configuration Release
+        shell: bash
+
       - name: Run tests
-        run: dotnet test EwERunner.sln --configuration Release
+        run: dotnet test EwERunner.sln --configuration Release --no-build
         shell: bash
 
 # Note: for this check to actually block merges, it must be added as a required
