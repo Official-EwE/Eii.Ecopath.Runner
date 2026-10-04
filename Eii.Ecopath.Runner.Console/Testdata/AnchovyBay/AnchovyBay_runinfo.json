@@ -23,13 +23,13 @@
       {
         "Date": "start",
         "Modifications": {
-          "ecospace.mpa[MPA 1].map.fill": 0
+          "ecospace.mpa[No shrimpers].map.fill": 0
         }
       },
       {
         "Date": "1-1-2025",
         "Modifications": {
-          "ecospace.mpa[MPA 1].map.load": "mpa_test.asc"
+            "ecospace.mpa[No shrimpers].map.load": "mpa_test.asc"
         }
       }
     ]

@@ -35,6 +35,7 @@ To debug into `EwERunConsole.exe`, use the built-in `EWE_DEBUG_BREAK` debug hook
    `Debugger.Launch()` fires and Windows prompts you to pick a debugger to
    attach — choose the running Visual Studio instance. Execution then pauses
    and your breakpoints will hit.
+   <img src="ChooseDebugger.png" alt="MSE options" width="400"/>
 5. **Remember to deselect the `.runsettings` file** (**Select Solution Wide
    runsettings File > (none)**) once you're done, so normal test runs aren't
    affected by the extra debug prompt.

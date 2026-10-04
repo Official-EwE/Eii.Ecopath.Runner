@@ -42,10 +42,24 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="TestData\AnchovyBay\AnchovyBay_EcopathOnly_runinfo.json" />
+	  <Content Remove="TestData\AnchovyBay\AnchovyBay_EcosimOnly_runinfo.json" />
+	</ItemGroup>
 	
   <ItemGroup>
     <ProjectReference Include="..\Eii.Ecopath.Runner.Datamodel\Eii.Ecopath.Runner.Datamodel.csproj" />
     <ProjectReference Include="..\Eii.Ecopath.Runner.Services\Eii.Ecopath.Runner.Services.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <None Update="Testdata\AnchovyBay\AnchovyBay_EcopathOnly_runinfo.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Testdata\AnchovyBay\AnchovyBay_EcosimOnly_runinfo.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
