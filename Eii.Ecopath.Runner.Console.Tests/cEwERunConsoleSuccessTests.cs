@@ -103,8 +103,8 @@ namespace Eii.Ecopath.Runner.Console.Tests
 
             Directory.GetFiles(outputFolder, "*.csv").Should().NotBeEmpty(
                 $"Ecosim should write at least one CSV file in '{outputFolder}'.{Environment.NewLine}" +
-                $"Folder contents:{Environment.NewLine}{ListFolderContents(outputFolder)}{Environment.NewLine}" +
-                $"Parent contents:{Environment.NewLine}{ListFolderContents(parent)}{Environment.NewLine}{output}");
+                $"Folder {outputFolder} contents:{Environment.NewLine}{ListFolderContents(outputFolder)}{Environment.NewLine}" +
+                $"Parent {parent} contents:{Environment.NewLine}{ListFolderContents(parent)}{Environment.NewLine}{output}");
 
             //if (!OperatingSystem.IsWindows())
             //    return;
