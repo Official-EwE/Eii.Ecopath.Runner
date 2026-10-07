@@ -90,7 +90,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             //    return;
 
             Directory.GetFiles(outputFolder, "*.csv")
-                .Should().NotBeEmpty("Ecosim should write at least one CSV output file. " + output);
+                .Should().NotBeEmpty($"Ecosim should write at least one CSV output file in '{outputFolder}'. {output}");
         }
     }
 }
