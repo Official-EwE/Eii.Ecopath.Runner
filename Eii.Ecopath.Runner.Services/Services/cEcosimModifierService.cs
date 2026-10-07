@@ -121,7 +121,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             {
                 string path = _coreService.get_DefaultOutputPath(eAutosaveTypes.EcosimResults);
                 wr.WriteResults(path, null, bSaveAnnual ? TriState.False : TriState.True, false);
-                Console.WriteLine("Ecosim wrote output to {0}", path);
+                Console.WriteLine("Ecosim wrote {0} output to {1} ", autosaveResults.Count, path);
             }
         }
 

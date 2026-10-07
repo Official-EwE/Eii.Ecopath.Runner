@@ -1,6 +1,7 @@
 using FluentAssertions;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -86,11 +87,34 @@ namespace Eii.Ecopath.Runner.Console.Tests
         // EwECore does not write Ecosim CSV output when running on Linux (CI), so only verify it on Windows.
         private static void AssertCsvOutput(string outputFolder, string output)
         {
+            string parent = Path.GetDirectoryName(outputFolder)!;
+
+            Directory.Exists(outputFolder).Should().BeTrue(
+                $"'{outputFolder}' should exist. Parent contents:{Environment.NewLine}{ListFolderContents(parent)}");
+
+            Directory.GetFiles(outputFolder, "*.csv").Should().NotBeEmpty(
+                $"Ecosim should write at least one CSV file in '{outputFolder}'.{Environment.NewLine}" +
+                $"Folder contents:{Environment.NewLine}{ListFolderContents(outputFolder)}{Environment.NewLine}" +
+                $"Parent contents:{Environment.NewLine}{ListFolderContents(parent)}{Environment.NewLine}{output}");
+
             //if (!OperatingSystem.IsWindows())
             //    return;
 
-            Directory.GetFiles(outputFolder, "*.csv")
-                .Should().NotBeEmpty($"Ecosim should write at least one CSV output file in '{outputFolder}'. {output}");
+            //Directory.GetFiles(outputFolder, "*.csv")
+            //    .Should().NotBeEmpty($"Ecosim should write at least one CSV output file in '{outputFolder}'. {output}");
+        }
+
+        private static string ListFolderContents(string folder)
+        {
+            if (!Directory.Exists(folder))
+                return $"Folder '{folder}' does not exist.";
+
+            var entries = Directory
+                .EnumerateFileSystemEntries(folder, "*", SearchOption.AllDirectories)
+                .Select(p => Path.GetRelativePath(folder, p) + (Directory.Exists(p) ? Path.DirectorySeparatorChar : ""))
+                .Order();
+
+            return string.Join(Environment.NewLine, entries);
         }
     }
 }
