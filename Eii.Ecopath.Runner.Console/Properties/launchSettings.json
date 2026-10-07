@@ -11,6 +11,18 @@
     "Andy": {
       "commandName": "Project",
       "commandLineArgs": "--i \"Testdata\\Andy\\R0001_0000.json\" --o \"Testoutput\\Andy\""
+    },
+    "Anchovy EcopathOnly": {
+      "commandName": "Project",
+      "commandLineArgs": "--i \"Testdata\\AnchovyBay\\AnchovyBay_EcopathOnly_runinfo.json\" --o \"Testoutput\\AnchovyBay\""
+    },
+    "Anchovy EcosimOnly": {
+      "commandName": "Project",
+      "commandLineArgs": "--i \"Testdata\\AnchovyBay\\AnchovyBay_EcosimOnly_runinfo.json\" --o \"Testoutput\\AnchovyBay\""
+    },
+    "Documentation": {
+      "commandName": "Project",
+      "commandLineArgs": "--docs"
     }
   }
 }

@@ -15,6 +15,8 @@ Ecotracer without the GUI. It is available in two forms:
 | `Eii.Ecopath.Runner.Api` | ASP.NET Core Web API wrapper (`EwERunApi.csproj`) |
 | `Eii.Ecopath.Runner.Services` | Runtime engine, modifiers, and automation node tree |
 | `Eii.Ecopath.Runner.Datamodel` | Plain data containers deserialised from JSON |
+| `Eii.Ecopath.Runner.Console.Tests` | Integration tests for `EwERunConsole` |
+| `Eii.Ecopath.Runner.Services.Tests` | Unit tests for `Eii.Ecopath.Runner.Services` |
 
 ## Technology stack
 - Language: C# 14
@@ -76,6 +78,21 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
   `--docs` is passed.
 - All public automation methods on node classes must carry a `[System.ComponentModel.Description]`
   attribute so the generated Markdown includes meaningful descriptions.
+
+## Testing
+- `Eii.Ecopath.Runner.Console.Tests` — integration tests that drive the built `EwERunConsole.exe`
+  end-to-end (xUnit).
+- `Eii.Ecopath.Runner.Services.Tests` — unit tests for `Eii.Ecopath.Runner.Services` only; does not
+  cover other projects. Uses xUnit, `FluentAssertions` 6.6.0, and `Moq` 4.18.0.
+  - Tests are arranged with `// Arrange` / `// Act` / `// Assert` comments.
+  - EwECore types with no public parameterless constructor or with abstract members not backed by
+    an interface (e.g. `cShapeData`) are exercised via minimal, fully-functional test-double
+    subclasses (e.g. `cTestShapeData`) rather than Moq mocks, since Moq cannot proxy the class's
+    non-virtual, field-backed members.
+  - Abstract node classes with no dedicated interface (e.g. `cFunctionNode`) are tested via a
+    minimal concrete test subclass (e.g. `cTestFunctionNode`) that forwards to the base
+    constructor.
+  - `ICoreService` and `ILogger` are mocked with Moq.
 
 ## JSON configuration
 - The run-info JSON file maps directly onto `cEwERunInstructions`.

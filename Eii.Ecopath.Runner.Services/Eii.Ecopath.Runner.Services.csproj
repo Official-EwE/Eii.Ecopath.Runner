@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Eii.Ecopath.BridgePlugin" Version="1.0.*" />
+    <Content Remove="C:\Users\EwEDev\.nuget\packages\eii.ecopath.ewecore\6.7.105\contentFiles\any\net10.0\Includes\Interop.JRO.dll" />
+    <Content Remove="C:\Users\EwEDev\.nuget\packages\eii.ecopath.ewecore\6.7.105\contentFiles\any\net10.0\Includes\Microsoft.Office.interop.access.dao.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.*" />
     <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.*" />
     <PackageReference Include="Eii.Ecopath.SpatialAssetsEnginePlugin" Version="1.0.*" />
   </ItemGroup>

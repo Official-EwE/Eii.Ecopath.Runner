@@ -23,7 +23,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
                 @"Testdata\AnchovyBay\AnchovyBay_runinfo.json", id);
 
             // Assert
-            result.ExitCode.Should().Be(1, because: result.StdOut);
+            result.ExitCode.Should().Be(0, because: result.StdOut);
             result.StdOut.Should().Contain("Run completed");
             File.Exists(Path.Combine(result.ActualOutputFolder, "EwERunConsole_log.txt"))
                 .Should().BeTrue("the console log file should be written to the output folder");
@@ -40,9 +40,13 @@ namespace Eii.Ecopath.Runner.Console.Tests
                 @"Testdata\AnchovyBay\AnchovyBay_EcosimOnly_runinfo.json", id);
 
             // Assert
-            result.ExitCode.Should().Be(1, because: result.StdOut);
+            result.ExitCode.Should().Be(0, because: result.StdOut);
             result.StdOut.Should().Contain("Run completed");
-            Directory.GetFiles(result.ActualOutputFolder, "*.csv")
+
+            string outputFolder = Path.Combine(result.ActualOutputFolder, "ecosim_New Ecosim scenario");
+            result.StdOut.Should().Contain(outputFolder, $"the output folder path {outputFolder} should be mentioned in the console output");
+
+            Directory.GetFiles(outputFolder, "*.csv")
                 .Should().NotBeEmpty("Ecosim should write at least one CSV output file");
         }
 
@@ -57,12 +61,11 @@ namespace Eii.Ecopath.Runner.Console.Tests
                 @"Testdata\AnchovyBay\AnchovyBay_EcopathOnly_runinfo.json", id);
 
             // Assert
-            result.ExitCode.Should().Be(1, because: result.StdOut);
+            result.ExitCode.Should().Be(0, because: result.StdOut);
             result.StdOut.Should().Contain("Run completed");
         }
 
         [Fact]
-        [Trait("Category", "Slow")]
         public async Task VLIZ_EcosimOnly_Succeeds()
         {
             // Arrange
@@ -73,9 +76,13 @@ namespace Eii.Ecopath.Runner.Console.Tests
                 @"Testdata\VLIZ\VLIZ_runinfo.json", id);
 
             // Assert
-            result.ExitCode.Should().Be(1, because: result.StdOut);
+            result.ExitCode.Should().Be(0, because: result.StdOut);
             result.StdOut.Should().Contain("Run completed");
-            Directory.GetFiles(result.ActualOutputFolder, "*.csv")
+
+            string outputFolder = Path.Combine(result.ActualOutputFolder, "ecosim_V15_TechnicalReport");
+            result.StdOut.Should().Contain(outputFolder, $"the output folder path {outputFolder} should be mentioned in the console output");
+
+            Directory.GetFiles(outputFolder, "*.csv")
                 .Should().NotBeEmpty("Ecosim should write at least one CSV output file");
         }
     }

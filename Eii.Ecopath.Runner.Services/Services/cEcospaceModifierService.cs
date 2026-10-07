@@ -96,9 +96,6 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             Console.WriteLine("Ecospace no. ext data connections = {0}", _coreService.SpatialDataConnectionManager.NumConnectedAdapters);
             Console.WriteLine();
 
-            // Here, at this point, all 'start run" commands should be executed before the run is actually set in motion. This is important!
-            // TODO_JS: kick off all timestep 1 modifiers
-
             Console.WriteLine("Start run");
             _logger.LogInformation("Ecospace start run");
 

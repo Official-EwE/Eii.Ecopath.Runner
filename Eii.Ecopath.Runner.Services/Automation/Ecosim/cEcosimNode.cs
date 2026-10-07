@@ -26,9 +26,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cForcingFunctionNode? effort(string name)
         {
             cFishingEffortShapeManger man = CoreService.FishingEffortShapeManager;
-            int iShape = FindShape(name, man.Shapes, Logger, "Fishing Effort Shape");
-            if (iShape == cCore.NULL_VALUE) return null;
-            return new cForcingFunctionNode(CoreService, man[iShape], Logger);
+            cShapeData? shape = FindShape(name, man.Shapes, Logger, "Fishing Effort Shape");
+            if (shape == null) return null;
+            return new cForcingFunctionNode(CoreService, shape, Logger);
         }
 
         /// -------------------------------------------------------------------
@@ -57,9 +57,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cForcingFunctionNode? fishingmortality(string groupname)
         {
             cFishingMortalityShapeManger man = CoreService.FishMortShapeManager;
-            int iShape = FindShape(groupname, man.Shapes, Logger, "Fishing Mortality Shape");
-            if (iShape == cCore.NULL_VALUE) return null;
-            return new cForcingFunctionNode(CoreService, man[iShape], Logger);
+            cShapeData? shape = FindShape(groupname, man.Shapes, Logger, "Fishing Mortality Shape");
+            if (shape == null) return null;
+            return new cForcingFunctionNode(CoreService, shape, Logger);
         }
 
         #endregion // Fisheries
@@ -78,9 +78,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cForcingFunctionNode? forcingfunction(string name)
         {
             cForcingFunctionShapeManager man = CoreService.ForcingShapeManager;
-            int iShape = FindShape(name, man.Shapes, Logger, "Forcing Function Shape");
-            if (iShape == cCore.NULL_VALUE) return null;
-            return new cForcingFunctionNode(CoreService, man[iShape], Logger);
+            cShapeData? shape = FindShape(name, man.Shapes, Logger, "Forcing Function Shape");
+            if (shape == null) return null;
+            return new cForcingFunctionNode(CoreService, shape, Logger);
         }
 
         /// -------------------------------------------------------------------
@@ -112,9 +112,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cMediationFunctionNode? mediationfunction(string name)
         {
             var man = this.Core.MediationShapeManager;
-            int iShape = FindShape(name, man.Shapes, Logger, "Mediation Shape");
-            if (iShape == cCore.NULL_VALUE) return null;
-            return new cMediationFunctionNode(CoreService, (cMediationFunction)man[iShape], Logger);
+            cShapeData? shape = FindShape(name, man.Shapes, Logger, "Mediation Shape");
+            if (shape == null) return null;
+            return new cMediationFunctionNode(CoreService, (cMediationFunction)shape, Logger);
         }
 
         #endregion // Mediation functions
@@ -132,9 +132,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         public cEnvResponseFunctionNode? envresponsefunction(string name)
         {
             cEnviroResponseShapeManager man = this.Core.EnviroResponseShapeManager;
-            int iShape = FindShape(name, man.Shapes, Logger, "Environmental Response Shape");
-            if (iShape == cCore.NULL_VALUE) return null;
-            return new cEnvResponseFunctionNode(CoreService, (cEnviroResponseFunction)man[iShape], Logger);
+            cShapeData? shape = FindShape(name, man.Shapes, Logger, "Environmental Response Shape");
+            if (shape == null) return null;
+            return new cEnvResponseFunctionNode(CoreService, (cEnviroResponseFunction)shape, Logger);
         }
 
         #endregion // Environmental responses

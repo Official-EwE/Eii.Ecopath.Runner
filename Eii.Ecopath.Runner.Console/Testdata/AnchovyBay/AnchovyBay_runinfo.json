@@ -5,21 +5,12 @@
     "EcosimTimeseries": 0,
     "EcospaceScenario": 1,
     "SaveWithHeader": true,
-    "ExtDataConfigFile": "AnchovyBay_extdata.xml",
+    "ExtDataConfigFile": "AnchovyBay_drivers.xml",
     "RunYears": 50
   },
   "EcosimRun": {
     "SaveContentCSV": [ "biomass", "catch" ],
-    "SaveAnnual": false,
-    "Changes": [
-      {
-        "Date": "start",
-        "Modifications": {
-          "ecosim.effort[trawlers].fill": [1],
-          "ecosim.vulnerabilities.load": "anchbay_andy_test.csv"
-        }
-      }
-    ]
+    "SaveAnnual": false
   },
   "EcospaceRun": {
     "RunSpinupYears": 10,
@@ -32,13 +23,13 @@
       {
         "Date": "start",
         "Modifications": {
-          "ecospace.mpa[MPA 1].map.fill": 0
+          "ecospace.mpa[No shrimpers].map.fill": 0
         }
       },
       {
         "Date": "1-1-2025",
         "Modifications": {
-          "ecospace.mpa[MPA 1].map.load": "mpa_test.asc"
+            "ecospace.mpa[No shrimpers].map.load": "mpa_test.asc"
         }
       }
     ]
