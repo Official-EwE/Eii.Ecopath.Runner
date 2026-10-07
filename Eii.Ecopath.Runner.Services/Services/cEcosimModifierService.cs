@@ -120,8 +120,8 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             if (autosaveResults.Count > 0)
             {
                 string path = _coreService.get_DefaultOutputPath(eAutosaveTypes.EcosimResults);
-                wr.WriteResults(path, null, bSaveAnnual ? TriState.False : TriState.True, false);
-                Console.WriteLine("Ecosim wrote {0} output to {1} ", autosaveResults.Count, path);
+                bool success = wr.WriteResults(path, null, bSaveAnnual ? TriState.False : TriState.True, false);
+                Console.WriteLine("Ecosim wrote {0} output to {1}. Success: {2}", autosaveResults.Count, path, success);
             }
         }
 
