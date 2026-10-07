@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Eii.Ecopath.Bridge" Version="1.0.*" />
+    <PackageReference Include="Eii.Ecopath.BridgePlugin" Version="1.0.*" />
     <PackageReference Include="Eii.Ecopath.EwECore" Version="6.7.*" />
     <PackageReference Include="Eii.Ecopath.SpatialAssetsEnginePlugin" Version="1.0.*" />
   </ItemGroup>
