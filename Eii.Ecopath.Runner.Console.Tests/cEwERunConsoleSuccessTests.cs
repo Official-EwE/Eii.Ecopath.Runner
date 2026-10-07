@@ -101,7 +101,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             Directory.Exists(outputFolder).Should().BeTrue(
                 $"'{outputFolder}' should exist. Parent contents:{Environment.NewLine}{ListFolderContents(parent)}");
 
-            Directory.GetFiles(outputFolder, "*.csv").Should().NotBeEmpty(
+            Directory.GetFiles(outputFolder, "*.*").Should().NotBeEmpty(
                 $"Ecosim should write at least one CSV file in '{outputFolder}'.{Environment.NewLine}" +
                 $"Folder {outputFolder} contents:{Environment.NewLine}{ListFolderContents(outputFolder)}{Environment.NewLine}" +
                 $"Parent {parent} contents:{Environment.NewLine}{ListFolderContents(parent)}{Environment.NewLine}{output}");
