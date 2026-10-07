@@ -23,10 +23,11 @@ namespace Eii.Ecopath.Runner.Console.Tests
     internal static class cConsoleRunner
     {
         /// <summary>
-        /// Full path to EwERunConsole.exe, expected next to the test assembly.
+        /// Full path to EwERunConsole.dll, expected next to the test assembly.
+        /// It is launched via the dotnet host so it works on any OS.
         /// </summary>
         internal static readonly string ExePath =
-            Path.Combine(AppContext.BaseDirectory, "EwERunConsole.exe");
+            Path.Combine(AppContext.BaseDirectory, "EwERunConsole.dll");
 
         // Default timeout for any single run.
         private static readonly TimeSpan DefaultTimeout = TimeSpan.FromMinutes(10);
@@ -49,10 +50,12 @@ namespace Eii.Ecopath.Runner.Console.Tests
             string uniqueId,
             CancellationToken ct = default)
         {
+            runInfoRelPath = runInfoRelPath.Replace('\\', Path.DirectorySeparatorChar);
+
             string runInfoPath = Path.Combine(AppContext.BaseDirectory, runInfoRelPath);
             string outputBase = Path.Combine("Testoutput", uniqueId);
 
-            // ArgumentList handles quoting automatically — do not wrap paths in extra quotes.
+            // ArgumentList handles
             string[] args = ["-i", runInfoPath, "-o", outputBase];
 
             string actualOutputFolder = Path.Combine(
@@ -83,7 +86,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             using var timeoutCts = new CancellationTokenSource(DefaultTimeout);
             using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(ct, timeoutCts.Token);
 
-            var psi = new ProcessStartInfo(ExePath)
+            var psi = new ProcessStartInfo("dotnet")
             {
                 WorkingDirectory = AppContext.BaseDirectory,
                 UseShellExecute = false,
@@ -91,6 +94,8 @@ namespace Eii.Ecopath.Runner.Console.Tests
                 RedirectStandardError = true,
                 CreateNoWindow = true
             };
+
+            psi.ArgumentList.Add(ExePath);
 
             // Set the EWE_DEBUG_BREAK environment variable if the test runner has it set, so that we can attach a debugger to EwERunConsole if needed.
             if (Environment.GetEnvironmentVariable("EWE_DEBUG_BREAK") == "1")
