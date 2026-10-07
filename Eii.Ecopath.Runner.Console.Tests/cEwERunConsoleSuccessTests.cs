@@ -44,6 +44,9 @@ namespace Eii.Ecopath.Runner.Console.Tests
             result.ExitCode.Should().Be(0, because: result.StdOut);
             result.StdOut.Should().Contain("Run completed");
 
+            File.Exists(Path.Combine(result.ActualOutputFolder, "EwERunConsole_log.txt"))
+                .Should().BeTrue("the console log file should be written to the output folder");
+
             string outputFolder = Path.Combine(result.ActualOutputFolder, "ecosim_New Ecosim scenario");
             result.StdOut.Should().Contain(outputFolder, $"the output folder path {outputFolder} should be mentioned in the console output");
             AssertCsvOutput(outputFolder, result.StdOut);
@@ -62,6 +65,9 @@ namespace Eii.Ecopath.Runner.Console.Tests
             // Assert
             result.ExitCode.Should().Be(0, because: result.StdOut);
             result.StdOut.Should().Contain("Run completed");
+
+            File.Exists(Path.Combine(result.ActualOutputFolder, "EwERunConsole_log.txt"))
+                .Should().BeTrue("the console log file should be written to the output folder");
         }
 
         [Fact]
@@ -77,6 +83,9 @@ namespace Eii.Ecopath.Runner.Console.Tests
             // Assert
             result.ExitCode.Should().Be(0, because: result.StdOut);
             result.StdOut.Should().Contain("Run completed");
+
+            File.Exists(Path.Combine(result.ActualOutputFolder, "EwERunConsole_log.txt"))
+                .Should().BeTrue("the console log file should be written to the output folder");
 
             string outputFolder = Path.Combine(result.ActualOutputFolder, "ecosim_V15_TechnicalReport");
             result.StdOut.Should().Contain(outputFolder, $"the output folder path {outputFolder} should be mentioned in the console output");
