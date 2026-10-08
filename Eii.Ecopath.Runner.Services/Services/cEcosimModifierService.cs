@@ -120,8 +120,68 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             if (autosaveResults.Count > 0)
             {
                 string path = _coreService.get_DefaultOutputPath(eAutosaveTypes.EcosimResults);
-                bool success = wr.WriteResults(path, null, bSaveAnnual ? TriState.False : TriState.True, false);
-                Console.WriteLine("Ecosim wrote {0} output to {1}. Success: {2}", autosaveResults.Count, path, success);
+                bool success = wr.WriteResults(path, autosaveResults.ToArray(), bSaveAnnual ? TriState.False : TriState.True, false);
+                RelocateLowerCasedOutput(path, _logger);
+                Console.WriteLine("Ecosim wrote {0} result type(s) to {1}. Success: {2}", autosaveResults.Count, path, success);
+            }
+        }
+
+        // --------------------------------------------------------------------
+        /// <summary>
+        /// Workaround for EwECore <c>cEcosimResultWriter.GetOutputFileName</c>, which
+        /// lower-cases the entire output path instead of only the file name. On
+        /// case-sensitive file systems (Linux) this writes CSV files into an
+        /// all-lowercase twin of <paramref name="path"/>. This method moves those
+        /// files back into <paramref name="path"/> and removes the empty twin.
+        /// </summary>
+        /// <remarks>
+        /// ToDo: remove once EwECore only lower-cases the file name.
+        /// </remarks>
+        // --------------------------------------------------------------------
+        internal static void RelocateLowerCasedOutput(string path, ILogger logger)
+        {
+            if (OperatingSystem.IsWindows() || string.IsNullOrEmpty(path))
+                return;
+
+            string lowered = path.ToLowerInvariant();
+            if (lowered == path || !Directory.Exists(lowered))
+                return;
+
+            string fullPath = Path.GetFullPath(path);
+            string fullLowered = Path.GetFullPath(lowered);
+            if (fullPath == fullLowered)
+                return;
+
+            try
+            {
+                Directory.CreateDirectory(fullPath);
+
+                int nMoved = 0;
+                foreach (string file in Directory.GetFiles(fullLowered))
+                {
+                    File.Move(file, Path.Combine(fullPath, Path.GetFileName(file)), true);
+                    nMoved++;
+                }
+
+                // Remove the now-empty lower-cased twin folders, walking upward while
+                // they are empty and do not coincide with the original path's ancestors.
+                string? dirLowered = fullLowered;
+                string? dirOriginal = fullPath;
+                while (dirLowered != null && dirOriginal != null &&
+                       dirLowered != dirOriginal &&
+                       Directory.Exists(dirLowered) &&
+                       !Directory.EnumerateFileSystemEntries(dirLowered).Any())
+                {
+                    Directory.Delete(dirLowered);
+                    dirLowered = Path.GetDirectoryName(dirLowered);
+                    dirOriginal = Path.GetDirectoryName(dirOriginal);
+                }
+
+                logger.LogInformation("Relocated {Count} Ecosim output file(s) from '{Lowered}' to '{Path}'", nMoved, fullLowered, fullPath);
+            }
+            catch (Exception ex)
+            {
+                logger.LogWarning(ex, "Failed to relocate Ecosim output from '{Lowered}' to '{Path}'", fullLowered, fullPath);
             }
         }
 

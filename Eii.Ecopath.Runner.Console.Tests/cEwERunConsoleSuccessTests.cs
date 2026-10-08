@@ -93,7 +93,6 @@ namespace Eii.Ecopath.Runner.Console.Tests
             AssertCsvOutput(outputFolder, result.StdOut);
         }
 
-        // EwECore does not write Ecosim CSV output when running on Linux (CI), so only verify it on Windows.
         private static void AssertCsvOutput(string outputFolder, string output)
         {
             string parent = Path.GetDirectoryName(outputFolder)!;
@@ -101,16 +100,15 @@ namespace Eii.Ecopath.Runner.Console.Tests
             Directory.Exists(outputFolder).Should().BeTrue(
                 $"'{outputFolder}' should exist. Parent contents:{Environment.NewLine}{ListFolderContents(parent)}");
 
-            Directory.GetFiles(outputFolder, "*.*").Should().NotBeEmpty(
-                $"Ecosim should write at least one CSV file in '{outputFolder}'.{Environment.NewLine}" +
+            string diagnostics =
                 $"Folder {outputFolder} contents:{Environment.NewLine}{ListFolderContents(outputFolder)}{Environment.NewLine}" +
-                $"Parent {parent} contents:{Environment.NewLine}{ListFolderContents(parent)}{Environment.NewLine}{output}");
+                $"Parent {parent} contents:{Environment.NewLine}{ListFolderContents(parent)}{Environment.NewLine}{output}";
 
-            //if (!OperatingSystem.IsWindows())
-            //    return;
+            Directory.GetFiles(outputFolder, "*.*").Should().NotBeEmpty(
+                $"Ecosim should write at least one file in '{outputFolder}'.{Environment.NewLine}{diagnostics}");
 
-            //Directory.GetFiles(outputFolder, "*.csv")
-            //    .Should().NotBeEmpty($"Ecosim should write at least one CSV output file in '{outputFolder}'. {output}");
+            Directory.GetFiles(outputFolder, "*.csv").Should().NotBeEmpty(
+                $"Ecosim should write at least one CSV output file in '{outputFolder}'.{Environment.NewLine}{diagnostics}");
         }
 
         private static string ListFolderContents(string folder)
