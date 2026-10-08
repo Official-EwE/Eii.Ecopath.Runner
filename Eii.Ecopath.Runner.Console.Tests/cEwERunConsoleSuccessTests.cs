@@ -46,7 +46,8 @@ namespace Eii.Ecopath.Runner.Console.Tests
             string outputFolder = Path.Combine(result.ActualOutputFolder, "ecosim_New Ecosim scenario");
             result.StdOut.Should().Contain(outputFolder, $"the output folder path {outputFolder} should be mentioned in the console output");
 
-            AssertCsvOutput(outputFolder);
+            Directory.GetFiles(outputFolder, "*.csv")
+                .Should().NotBeEmpty("Ecosim should write at least one CSV output file");
         }
 
         [Fact]
@@ -80,15 +81,6 @@ namespace Eii.Ecopath.Runner.Console.Tests
 
             string outputFolder = Path.Combine(result.ActualOutputFolder, "ecosim_V15_TechnicalReport");
             result.StdOut.Should().Contain(outputFolder, $"the output folder path {outputFolder} should be mentioned in the console output");
-
-            AssertCsvOutput(outputFolder);
-        }
-
-        // EwECore does not write Ecosim CSV output when running on Linux (CI), so only verify it on Windows.
-        private static void AssertCsvOutput(string outputFolder)
-        {
-            if (!OperatingSystem.IsWindows())
-                return;
 
             Directory.GetFiles(outputFolder, "*.csv")
                 .Should().NotBeEmpty("Ecosim should write at least one CSV output file");
