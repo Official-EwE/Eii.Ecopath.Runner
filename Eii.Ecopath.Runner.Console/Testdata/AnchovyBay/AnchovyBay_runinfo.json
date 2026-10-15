@@ -10,7 +10,7 @@
   },
   "EcosimRun": {
     "SaveContentCSV": [ "biomass", "catch" ],
-    "SaveAnnual": false,
+    "SaveAnnual": true,
     "Changes": [
       {
         "Date": "start",

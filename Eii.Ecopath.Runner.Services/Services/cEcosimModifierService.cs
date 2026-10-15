@@ -4,7 +4,6 @@ using EwECore;
 using EwECore.Ecosim;
 using EwECore.Plugins;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic;
 
 namespace Eii.Ecopath.Runner.Services.Runtime
 {
@@ -94,18 +93,33 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             out bool bSaveAnnual)
         {
             autosaveResults = [];
-            bSaveAnnual = false;
+            bSaveAnnual = mod.MyRunModel.SaveAnnual;
 
             if (mod.MyRunModel.SaveContentCSV != null)
             {
-                string requests = string.Join(" ", mod.MyRunModel.SaveContentCSV.ToArray()).ToLower();
-                foreach (cEcosimResultWriter.eResultTypes result in (cEcosimResultWriter.eResultTypes[])Enum.GetValues(typeof(cEcosimResultWriter.eResultTypes)))
+                // Do this the other way around. Parse the strings entered by the user and see if they match any of the result types. This way we can validate all values entered
+
+                bool isValid = true;
+                Console.WriteLine("Configuring Ecosim autosaving");
+                Console.WriteLine("* Ecosim writing output {0}", bSaveAnnual ? "annual" : "monthly");
+                foreach (string s in mod.MyRunModel.SaveContentCSV)
                 {
-                    if (requests.Contains(result.ToString().ToLower()))
-                        autosaveResults.Add(result);
+                    if (!Enum.TryParse(typeof(cEcosimResultWriter.eResultTypes), s, true, out object? parsed))
+                    {
+                        isValid = false;
+                        Console.WriteLine($"x Unrecognized Ecosim output type '{s}'");
+                    }
+                    else
+                    {
+                        autosaveResults.Add((cEcosimResultWriter.eResultTypes)parsed);
+                    }
                 }
-                bSaveAnnual = mod.MyRunModel.SaveAnnual;
-                Console.WriteLine("Ecosim writing output {0}", bSaveAnnual ? "annual" : "monthly");
+                if (!isValid)
+                {
+                    Console.WriteLine("Supported Ecosim ouput types are:");
+                    foreach (string name in Enum.GetNames(typeof(cEcosimResultWriter.eResultTypes)))
+                        Console.WriteLine($"  - {name}");
+                }
             }
         }
 
@@ -120,7 +134,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             if (autosaveResults.Count > 0)
             {
                 string path = _coreService.get_DefaultOutputPath(eAutosaveTypes.EcosimResults);
-                wr.WriteResults(path, null, bSaveAnnual ? TriState.False : TriState.True, false);
+                wr.WriteResults(path, autosaveResults.ToArray(), bSaveAnnual ? eAutosaveFrequency.Annually : eAutosaveFrequency.Monthly, false);
                 Console.WriteLine("Ecosim wrote output to {0}", path);
             }
         }
