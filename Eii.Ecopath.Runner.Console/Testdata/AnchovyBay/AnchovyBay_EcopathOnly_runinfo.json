@@ -7,5 +7,8 @@
     "SaveWithHeader": true,
     "ExtDataConfigFile": "",
     "RunYears": 1
+  },
+  "EcopathRun": {
+    "SaveContentCSV": [ "yes please. And thank you" ] 
   }
 }
