@@ -10,7 +10,16 @@
   },
   "EcosimRun": {
     "SaveContentCSV": [ "biomass", "catch" ],
-    "SaveAnnual": false
+    "SaveAnnual": true,
+    "Changes": [
+      {
+        "Date": "start",
+        "Modifications": {
+          "ecosim.effort[trawlers].fill": [1],
+          "ecosim.vulnerabilities.load": "anchbay_andy_test.csv"
+        }
+      }
+    ]
   },
   "EcospaceRun": {
     "RunSpinupYears": 10,
