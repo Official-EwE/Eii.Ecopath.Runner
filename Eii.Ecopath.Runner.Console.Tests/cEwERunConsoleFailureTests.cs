@@ -23,7 +23,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
                 @"Testdata\AnchovyBay\DoesNotExist_runinfo.json", id);
 
             // Assert
-            result.ExitCode.Should().Be(0, because: result.StdOut);
+            result.ExitCode.Should().Be(1, because: result.StdOut);
             result.StdOut.Should().Contain("! Can't find run info file");
         }
 
@@ -38,7 +38,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
                 @"Testdata\AnchovyBay\AnchovyBay_InvalidJson.json", id);
 
             // Assert
-            result.ExitCode.Should().Be(0, because: result.StdOut);
+            result.ExitCode.Should().Be(1, because: result.StdOut);
             result.StdOut.Should().Contain("!");
         }
 
@@ -49,7 +49,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             cConsoleRunResult result = await cConsoleRunner.RunAsync([]);
 
             // Assert
-            result.ExitCode.Should().Be(0);
+            result.ExitCode.Should().Be(1, because: result.StdOut);
         }
     }
 }

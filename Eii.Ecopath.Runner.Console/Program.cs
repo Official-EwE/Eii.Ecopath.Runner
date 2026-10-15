@@ -31,6 +31,10 @@ class Program
     /// -----------------------------------------------------------------------
     public static int Main(string[] args)
     {
+        // If you want to debug the EwERunConsoleTests , set the environment variable EWE_DEBUG_BREAK=1 in the test runner's environment.
+        if (System.Diagnostics.Debugger.IsAttached is false && Environment.GetEnvironmentVariable("EWE_DEBUG_BREAK") == "1")
+            System.Diagnostics.Debugger.Launch();
+
         string logFolder = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             "EwERunConsole", "Logs");

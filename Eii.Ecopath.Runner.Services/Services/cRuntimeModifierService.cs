@@ -83,7 +83,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
                 foreach (string key in c.modifications.Keys)
                 {
                     string lowerKey = key.ToLower();
-                    object val = c.modifications[key];
+                    object? val = c.modifications[key];
                     // Apply change at the current Root. Keys are processed in lower case
                     if (_nodeService.Invoke(_coreService, mod.Root, lowerKey, val))
                     {

@@ -25,8 +25,7 @@ RUN if [ ! -z "$GITHUB_TOKEN" ]; then \
     --name github-Official-EwE \
     --username github \
     --password $GITHUB_TOKEN \
-    --store-password-in-clear-text \
-    --configfile NuGet.config; \
+    --store-password-in-clear-text; \
     fi
 
 RUN dotnet nuget locals all --clear     # Clear local NuGet cache to ensure we get the latest packages, especially important when using tokens for private feeds

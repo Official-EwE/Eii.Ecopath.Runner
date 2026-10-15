@@ -9,8 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\WeatherForecastController.cs" />
-    <Compile Remove="WeatherForecast.cs" />
+    <Compile Remove="Testdata\**" />
+    <Content Remove="Testdata\**" />
+    <EmbeddedResource Remove="Testdata\**" />
+    <None Remove="Testdata\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,15 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Eii.Ecopath.Runner.Datamodel\Eii.Ecopath.Runner.Datamodel.csproj" />
     <ProjectReference Include="..\Eii.Ecopath.Runner.Services\Eii.Ecopath.Runner.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Testdata\AnchovyBay\AnchovyBay.eiixml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Testdata\AnchovyBay\AnchovyBay_extdata.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <Target Name="BuildPushDockerImage">

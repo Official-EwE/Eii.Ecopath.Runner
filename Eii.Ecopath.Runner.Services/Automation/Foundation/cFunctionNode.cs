@@ -45,7 +45,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         // ----------------------------------------------------------------
         [Description("Set function values from an array of points; excess points are ignored")]
-        public virtual bool set(object[] points)
+        public virtual bool set(float[] points)
         {
             if (points == null) return false;
             var floatArray = points.Select(x => (float)Convert.ChangeType(x, typeof(float))).ToArray();
@@ -64,7 +64,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         // ----------------------------------------------------------------
         [Description("Set function values, repeating the pattern to fill the entire shape")]
-        public virtual bool fill(object[] points)
+        public virtual bool fill(float[] points)
         {
             if (points == null) return false;
             var floatArray = points.Select(x => (float)Convert.ChangeType(x, typeof(float))).ToArray();
@@ -79,10 +79,22 @@ namespace Eii.Ecopath.Runner.Services.Automation
         {
             eShapeFunctionType shapetype = eShapeFunctionType.NotSet;
 
+            if (string.IsNullOrEmpty(shapetypename))
+            {
+                Logger.LogWarning("First parameter must be a shape type name (string)");
+                return false;
+            }
+
             // Parse shape shapetypename
-            if (!Enum.TryParse(shapetypename, out shapetype))
+            if (!Enum.TryParse(shapetypename, ignoreCase: true, out shapetype))
             {
                 Logger.LogWarning("Unable to parse function shape type '{ShapeTypeName}'", shapetypename);
+                return false;
+            }
+
+            if (parameters == null)
+            {
+                Logger.LogWarning("No parameters specified");
                 return false;
             }
 
@@ -97,12 +109,22 @@ namespace Eii.Ecopath.Runner.Services.Automation
             // Is compatible?
             if (!fn.IsCompatible(this.Shape.DataType))
             {
-                Logger.LogWarning("Shape type '{ShapeTypeName}' is not compatible with shape data type '{DataType}'", shapetypename, this.Shape.DataType);
+                Logger.LogWarning("The specified shape type '{ShapeTypeName}' is not compatible with selected EwE function '{DataType}'", shapetypename, this.Shape.DataType);
                 return false;
             }
 
-            for (int i = 0; i < Math.Min(parameters.Count(), fn.nParameters); i++)
-                fn.set_ParamValue(i, parameters[i]);
+            if (parameters.Length != fn.nParameters)
+            {
+                Logger.LogWarning("Shape type '{ShapeTypeName}' requires {Expected} parameters, but {Actual} were specified",
+                    shapetypename, fn.nParameters, parameters.Length);
+                return false;
+            }
+
+            // Configure EwE shapefunction and apply to shape
+            for (int i = 0; i < fn.nParameters; i++)
+            {
+                fn.set_ParamValue(i + 1, parameters[i]); // One-based. Naturally.
+            }
 
             // Eeek
             fn.Apply(this.Shape);

@@ -70,13 +70,11 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
                 ParameterInfo[] parameters = method.GetParameters();
 
-                // Skip string-parameter (name-based) aliases — same rule as ListAutomationPaths
-                if (parameters.Length > 0 && parameters[0].ParameterType == typeof(string)) continue;
-
                 bool returnsNode = typeof(cNode).IsAssignableFrom(method.ReturnType);
                 bool hasIntParam = parameters.Length == 1 && parameters[0].ParameterType == typeof(int);
+                bool hasStringParam = parameters.Length == 1 && parameters[0].ParameterType == typeof(string);
 
-                string segment = method.Name + (hasIntParam ? "[#]" : "");
+                string segment = method.Name + (hasIntParam ? "[#]" : hasStringParam ? "[$]" : "");
                 string fullPath = string.IsNullOrEmpty(prefix) ? segment : $"{prefix}.{segment}";
 
                 // Cycle guard: same concrete return type at the same path prefix
