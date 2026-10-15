@@ -1,4 +1,5 @@
 using Eii.Ecopath.Runner.Datamodel.Automation;
+using EwECore;
 using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Runtime
@@ -39,9 +40,19 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         internal bool Run(cEcopathModifier mod)
         {
             CompleteAndPrepareChanges(mod);
+
             // ToDo: configure Ecopath settings
             bool runSuccess = Apply(mod, cRuntimeModifier.FirstTimeStep);
             runSuccess &= _coreService.RunEcopath();
+
+            if (runSuccess)
+            {
+                if (mod.MyRunModel.SaveContentCSV != null && mod.MyRunModel.SaveContentCSV.Count > 0)
+                {
+                    cEcopathResultWriter wr = new cEcopathResultWriter(_coreService.Core);
+                    wr.WriteResults(true);
+                }
+            }
             return runSuccess;
         }
     }

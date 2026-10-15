@@ -16,5 +16,10 @@ namespace Eii.Ecopath.Runner.Datamodel.Automation
             : base("ecopath", config, runmodel)
         {
         }
+
+        /// <summary>
+        /// Gets the strongly-typed run instructions for Ecopath.
+        /// </summary>
+        public cEcopathRunInstructions MyRunModel => (cEcopathRunInstructions)RunModel;
     }
 }

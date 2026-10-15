@@ -97,9 +97,8 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
             if (mod.MyRunModel.SaveContentCSV != null)
             {
-                // Do this the other way around. Parse the strings entered by the user and see if they match any of the result types. This way we can validate all values entered
-
                 bool isValid = true;
+
                 Console.WriteLine("Configuring Ecosim autosaving");
                 Console.WriteLine("* Ecosim writing output {0}", bSaveAnnual ? "annual" : "monthly");
                 foreach (string s in mod.MyRunModel.SaveContentCSV)

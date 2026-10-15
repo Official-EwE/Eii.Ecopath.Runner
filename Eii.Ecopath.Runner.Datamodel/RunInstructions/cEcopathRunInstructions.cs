@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
+﻿namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
 {
     // --------------------------------------------------------------------
     /// <summary>
