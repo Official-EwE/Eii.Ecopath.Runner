@@ -1,0 +1,73 @@
+Create or update a markup file with the documentation of this model / service
+And create mermaid diagrams
+
+The name of the markup file will be [repo name]_architecture.md, and it is located in the root of the project, at the same level as the README.md
+
+Follow the document structure below. Other models will be described in the same structure.
+
+If the [repo name]_architecture.md is allready present, read it, and update what has changed. Don't delete text or graphs without confirmation.
+
+To inspect what the model does, inspect the app.py in python, or the program.cs in C# systems.
+
+# [repo Name] — Architecture
+
+## Overview
+Describe what the system does.
+Describe what language its written in, what IDE is used.
+
+### Licence
+How is the code Licenced?
+
+### Zenodo
+Describe the contents of the Zenodo file and what it's used for
+
+## Responsibilities
+Describe what the responsabilities of the model are
+
+### Build outputs
+List the binaries that are build in this workspace, and describe what they do
+
+## Service architecture
+Describe the architecture of the model in 5 sentences
+
+### High-Level Architecture
+Describe the high level architecture, possibly using a (Mermaid flowchart).
+One diagram for each Host project
+
+### Message flow 
+Create a Mermaid sequence diagram
+
+### Key design decisions / trade-offs
+
+## Error handling
+Describe what happens when an exception occurs
+
+## Logging
+Describe how logging is configured
+
+## Create documentation
+Describe how the documentation is created. (by executing the EwERunConsole with a "--docs" parameter) Describe how the documentation is connected to the code, and how it is generated from the code.
+## TestData files
+List the test data files and what they are used for. and how they are connected via the json files
+
+## Configuration files
+List the configuration files and what they are used for.
+
+## CI/CD
+Describe what is done in the Github actions.
+Describe what docker images are created and where they are pushed to.
+
+## Technology stack (table: package | role)
+List and short description of the non trivial packages that are used
+
+## Project Structure
+Describe the directory structure in the project
+
+## Source control
+Describe what source control is used, and if there is something special to mention, like submodules, etc
+
+## Testing
+### Automated tests
+### Manual tests
+Describe how you can run the EwERunConsole with different command line arguments by selecting the correct launch configuration in Visual studio. Use the "Launch different models and create the documentation.png" image. See the launchSettings.json. 
+### Manual testing with Postman
