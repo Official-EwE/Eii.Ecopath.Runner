@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,7 +11,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
     /// <summary>
     /// Result of a single EwERunConsole process invocation.
     /// </summary>
-    internal record cConsoleRunResult(
+    internal record ConsoleRunResult(
         int ExitCode,
         string StdOut,
         string StdErr,
@@ -20,7 +20,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
     /// <summary>
     /// Launches EwERunConsole.exe as a child process and captures its output.
     /// </summary>
-    internal static class cConsoleRunner
+    internal static class ConsoleRunner
     {
         /// <summary>
         /// Full path to EwERunConsole.dll, expected next to the test assembly.
@@ -45,7 +45,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
         ///   collision-free output subfolder under <c>Testoutput\</c>.
         /// </param>
         /// <param name="ct">Optional cancellation token.</param>
-        internal static async Task<cConsoleRunResult> RunAsync(
+        internal static async Task<ConsoleRunResult> RunAsync(
             string runInfoRelPath,
             string uniqueId,
             CancellationToken ct = default)
@@ -71,14 +71,14 @@ namespace Eii.Ecopath.Runner.Console.Tests
         /// Runs EwERunConsole with a completely arbitrary argument list.
         /// Use this overload for negative tests (e.g. empty args).
         /// </summary>
-        internal static async Task<cConsoleRunResult> RunAsync(
+        internal static async Task<ConsoleRunResult> RunAsync(
             string[] rawArgs,
             CancellationToken ct = default)
         {
             return await RunCoreAsync(rawArgs, actualOutputFolder: string.Empty, ct);
         }
 
-        private static async Task<cConsoleRunResult> RunCoreAsync(
+        private static async Task<ConsoleRunResult> RunCoreAsync(
             IEnumerable<string> args,
             string actualOutputFolder,
             CancellationToken ct)
@@ -135,7 +135,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             await process.WaitForExitAsync(linkedCts.Token);
             await Task.WhenAll(stdOutDone.Task, stdErrDone.Task);
 
-            return new cConsoleRunResult(
+            return new ConsoleRunResult(
                 process.ExitCode,
                 stdOut.ToString(),
                 stdErr.ToString(),

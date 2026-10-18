@@ -10,20 +10,20 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
     /// JSON text file provided by the user.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cEwERunInstructions
+    public class EwERunInstructions
     {
         // --------------------------------------------------------------------
         /// <summary>
         /// Constructah.
         /// </summary>
         // --------------------------------------------------------------------
-        public cEwERunInstructions()
+        public EwERunInstructions()
         {
-            Configuration = new cEwEConfiguration();
-            EcopathRun = new cEcopathRunInstructions();
-            EcosimRun = new cEcosimRunInstructions();
-            EcospaceRun = new cEcospaceRunInstructions();
-            EcotracerRun = new cEcotracerRunInstructions();
+            Configuration = new EwEConfiguration();
+            EcopathRun = new EcopathRunInstructions();
+            EcosimRun = new EcosimRunInstructions();
+            EcospaceRun = new EcospaceRunInstructions();
+            EcotracerRun = new EcotracerRunInstructions();
         }
 
         // --------------------------------------------------------------------
@@ -54,39 +54,39 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
         /// Get/set the generic EwE configuration parameters.
         /// </summary>
         // --------------------------------------------------------------------
-        [JsonConverter(typeof(JsonStrictConverter<cEwEConfiguration>))]
-        public cEwEConfiguration Configuration { get; set; }
+        [JsonConverter(typeof(JsonStrictConverter<EwEConfiguration>))]
+        public EwEConfiguration Configuration { get; set; }
 
         // --------------------------------------------------------------------
         /// <summary>
         /// Get/set the Ecopath configuration parameters and modifications.
         /// </summary>
         // --------------------------------------------------------------------
-        [JsonConverter(typeof(JsonStrictConverter<cEcopathRunInstructions>))]
-        public cEcopathRunInstructions EcopathRun { get; set; }
+        [JsonConverter(typeof(JsonStrictConverter<EcopathRunInstructions>))]
+        public EcopathRunInstructions EcopathRun { get; set; }
 
         // --------------------------------------------------------------------
         /// <summary>
         /// Get/set the Ecosim configuration parameters and modifications.
         /// </summary>
         // --------------------------------------------------------------------
-        [JsonConverter(typeof(JsonStrictConverter<cEcosimRunInstructions>))]
-        public cEcosimRunInstructions EcosimRun { get; set; }
+        [JsonConverter(typeof(JsonStrictConverter<EcosimRunInstructions>))]
+        public EcosimRunInstructions EcosimRun { get; set; }
 
         // --------------------------------------------------------------------
         /// <summary>
         /// Get/set the Ecospace configuration parameters and modifications.
         /// </summary>
         // --------------------------------------------------------------------
-        [JsonConverter(typeof(JsonStrictConverter<cEcospaceRunInstructions>))]
-        public cEcospaceRunInstructions EcospaceRun { get; set; }
+        [JsonConverter(typeof(JsonStrictConverter<EcospaceRunInstructions>))]
+        public EcospaceRunInstructions EcospaceRun { get; set; }
 
         // --------------------------------------------------------------------
         /// <summary>
         /// Get/set the Ecotracer configuration parameters and modifications.
         /// </summary>
         // --------------------------------------------------------------------
-        [JsonConverter(typeof(JsonStrictConverter<cEcotracerRunInstructions>))]
-        public cEcotracerRunInstructions EcotracerRun { get; set; }
+        [JsonConverter(typeof(JsonStrictConverter<EcotracerRunInstructions>))]
+        public EcotracerRunInstructions EcotracerRun { get; set; }
     }
 }

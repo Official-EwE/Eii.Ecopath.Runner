@@ -4,9 +4,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cEnvResponseFunctionNode : cFunctionNode
+    public class EnvResponseFunctionNode : FunctionNode
     {
-        public cEnvResponseFunctionNode(ICoreService coreService, cEnviroResponseFunction shapeData, ILogger logger) : base(coreService, shapeData, logger)
+        public EnvResponseFunctionNode(ICoreService coreService, cEnviroResponseFunction shapeData, ILogger logger) : base(coreService, shapeData, logger)
         {
         }
 

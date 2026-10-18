@@ -9,12 +9,12 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
     /// EwE model at a given moment in time.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cModificationsAtT
+    public class ModificationsAtT
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="cModificationsAtT"/> class.
+        /// Initializes a new instance of the <see cref="ModificationsAtT"/> class.
         /// </summary>
-        public cModificationsAtT()
+        public ModificationsAtT()
         {
             Date = "?";
             TimeStep = 0;

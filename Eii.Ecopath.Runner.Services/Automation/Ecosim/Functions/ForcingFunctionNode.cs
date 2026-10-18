@@ -4,9 +4,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cForcingFunctionNode : cFunctionNode
+    public class ForcingFunctionNode : FunctionNode
     {
-        public cForcingFunctionNode(ICoreService coreService, cShapeData shape, ILogger logger) : base(coreService, shape, logger)
+        public ForcingFunctionNode(ICoreService coreService, cShapeData shape, ILogger logger) : base(coreService, shape, logger)
         {
             // Nop
         }

@@ -8,15 +8,15 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
     /// like to make to Ecotracer.
     /// </summary>
     // --------------------------------------------------------------------
-    public class cEcotracerRunInstructions : IModelRunInstructions
+    public class EcotracerRunInstructions : IModelRunInstructions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="cEcotracerRunInstructions"/> class.
+        /// Initializes a new instance of the <see cref="EcotracerRunInstructions"/> class.
         /// </summary>
-        public cEcotracerRunInstructions()
+        public EcotracerRunInstructions()
         {
             SaveContentCSV = new List<string>();
-            Changes = new List<cModificationsAtT>();
+            Changes = new List<ModificationsAtT>();
         }
 
         /// <summary>
@@ -43,6 +43,6 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
         /// Ecosim model.
         /// </summary>
         // --------------------------------------------------------------------
-        public List<cModificationsAtT> Changes { get; set; }
+        public List<ModificationsAtT> Changes { get; set; }
     }
 }

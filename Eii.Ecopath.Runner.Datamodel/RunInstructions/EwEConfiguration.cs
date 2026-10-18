@@ -8,7 +8,7 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
     /// would want to configure.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cEwEConfiguration
+    public class EwEConfiguration
     {
         // --------------------------------------------------------------------
         /// <summary>

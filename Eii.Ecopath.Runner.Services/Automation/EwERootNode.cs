@@ -7,28 +7,28 @@ namespace Eii.Ecopath.Runner.Services.Automation
     /// <summary>
     /// Root class for building an EwE automation tree.
     /// </summary>
-    public class cEwERootNode : cNode
+    public class EwERootNode : Node
     {
-        public cEwERootNode(ICoreService coreService, ILogger logger) : base(coreService, logger)
+        public EwERootNode(ICoreService coreService, ILogger logger) : base(coreService, logger)
         {
         }
 
         [Description("Enter the Ecopath modification context")]
-        public cEcopathNode ecopath()
+        public EcopathNode ecopath()
         {
-            return new cEcopathNode(CoreService, Logger);
+            return new EcopathNode(CoreService, Logger);
         }
 
         [Description("Enter the Ecosim modification context")]
-        public cEcosimNode ecosim()
+        public EcosimNode ecosim()
         {
-            return new cEcosimNode(CoreService, CoreService.EcosimModelParameters, Logger);
+            return new EcosimNode(CoreService, CoreService.EcosimModelParameters, Logger);
         }
 
         [Description("Enter the Ecospace modification context")]
-        public cEcospaceNode ecospace()
+        public EcospaceNode ecospace()
         {
-            return new cEcospaceNode(CoreService, CoreService.EcospaceModelParameters, Logger);
+            return new EcospaceNode(CoreService, CoreService.EcospaceModelParameters, Logger);
         }
 
         [AutomationIgnore]

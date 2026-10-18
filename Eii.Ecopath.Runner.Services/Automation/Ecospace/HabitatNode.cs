@@ -5,9 +5,9 @@ using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cHabitatNode : cEwECoreNode
+    public class HabitatNode : EwECoreNode
     {
-        public cHabitatNode(ICoreService coreService, cEcospaceHabitat hab, ILogger logger) : base(coreService, hab, logger)
+        public HabitatNode(ICoreService coreService, cEcospaceHabitat hab, ILogger logger) : base(coreService, hab, logger)
         {
         }
 
@@ -15,10 +15,10 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         // Accessor
         [Description("Access the habitat map layer")]
-        public cMapNode map()
+        public MapNode map()
         {
             cEcospaceBasemap bm = CoreService.EcospaceBasemap;
-            return new cMapNode(CoreService, bm.get_LayerHabitat(this.CoreObj.Index), Logger);
+            return new MapNode(CoreService, bm.get_LayerHabitat(this.CoreObj.Index), Logger);
         }
 
     }

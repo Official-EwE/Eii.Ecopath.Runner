@@ -8,12 +8,12 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
     /// like to make to Ecospace.
     /// </summary>
     // --------------------------------------------------------------------
-    public class cEcospaceRunInstructions : IModelRunInstructions
+    public class EcospaceRunInstructions : IModelRunInstructions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="cEcospaceRunInstructions"/> class.
+        /// Initializes a new instance of the <see cref="EcospaceRunInstructions"/> class.
         /// </summary>
-        public cEcospaceRunInstructions()
+        public EcospaceRunInstructions()
         {
         }
 
@@ -38,7 +38,7 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
         /// The number of computational cores to allocate to Ecospace.
         /// </summary>
         /// <remarks>
-        /// This flag should move to <see cref="cEwEConfiguration"/>
+        /// This flag should move to <see cref="EwEConfiguration"/>
         /// </remarks>
         // --------------------------------------------------------------------
         public int MaxCores { get; set; } = -1;
@@ -88,6 +88,6 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
         /// Ecospace model.
         /// </summary>
         // --------------------------------------------------------------------
-        public List<cModificationsAtT> Changes { get; set; } = [];
+        public List<ModificationsAtT> Changes { get; set; } = [];
     }
 }

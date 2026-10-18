@@ -1,4 +1,4 @@
-using Eii.Ecopath.Runner.Datamodel.Automation;
+﻿using Eii.Ecopath.Runner.Datamodel.Automation;
 using EwEBridge.Ecospace;
 using EwECore;
 using EwECore.Common;
@@ -10,17 +10,17 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     // ------------------------------------------------------------------------
     /// <summary>
     /// Service responsible for executing an Ecospace run using a configured
-    /// <see cref="cEcospaceModifier"/>.
+    /// <see cref="EcospaceModifier"/>.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cEcospaceModifierService : cRuntimeModifierService
+    public class EcospaceModifierService : RuntimeModifierService
     {
         // --------------------------------------------------------------------
         /// <summary>
         /// Constructor.
         /// </summary>
         // --------------------------------------------------------------------
-        public cEcospaceModifierService(ICoreService coreService, cNodeService nodeService, ILogger<cEcospaceModifierService> logger)
+        public EcospaceModifierService(ICoreService coreService, NodeService nodeService, ILogger<EcospaceModifierService> logger)
             : base(coreService, nodeService, logger)
         {
         }
@@ -37,10 +37,10 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <summary>
         /// Execute the Ecospace run described by <paramref name="mod"/>.
         /// </summary>
-        /// <param name="mod">A fully configured <see cref="cEcospaceModifier"/>.</param>
+        /// <param name="mod">A fully configured <see cref="EcospaceModifier"/>.</param>
         /// <returns>True if the run completed without errors.</returns>
         // --------------------------------------------------------------------
-        internal bool Run(cEcospaceModifier mod)
+        internal bool Run(EcospaceModifier mod)
         {
             bool runSuccess = true;
 
@@ -169,7 +169,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// Configure Ecospace result writers and set the first output time step.
         /// </summary>
         // --------------------------------------------------------------------
-        private void ConfigureAutosave(cEcospaceModifier mod)
+        private void ConfigureAutosave(EcospaceModifier mod)
         {
             cEcospaceModelParameters parms = _coreService.EcospaceModelParameters;
             cEcospaceDataStructures cads = _coreService.EcospaceDataStructures;

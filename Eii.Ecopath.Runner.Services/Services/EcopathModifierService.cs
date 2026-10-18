@@ -1,4 +1,4 @@
-using Eii.Ecopath.Runner.Datamodel.Automation;
+﻿using Eii.Ecopath.Runner.Datamodel.Automation;
 using EwECore;
 using Microsoft.Extensions.Logging;
 
@@ -7,17 +7,17 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     // ------------------------------------------------------------------------
     /// <summary>
     /// Service responsible for executing an Ecopath run using a configured
-    /// <see cref="cEcopathModifier"/>.
+    /// <see cref="EcopathModifier"/>.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cEcopathModifierService : cRuntimeModifierService
+    public class EcopathModifierService : RuntimeModifierService
     {
         // --------------------------------------------------------------------
         /// <summary>
         /// Constructor.
         /// </summary>
         // --------------------------------------------------------------------
-        public cEcopathModifierService(ICoreService coreService, cNodeService nodeService, ILogger<cEcopathModifierService> logger)
+        public EcopathModifierService(ICoreService coreService, NodeService nodeService, ILogger<EcopathModifierService> logger)
             : base(coreService, nodeService, logger)
         {
         }
@@ -27,22 +27,22 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         protected override int DateToTimeStep(DateTime date)
         {
-            return cRuntimeModifier.FirstTimeStep; // Bwahah!
+            return RuntimeModifier.FirstTimeStep; // Bwahah!
         }
 
         // --------------------------------------------------------------------
         /// <summary>
         /// Execute the Ecopath run described by <paramref name="mod"/>.
         /// </summary>
-        /// <param name="mod">A fully configured <see cref="cEcopathModifier"/>.</param>
+        /// <param name="mod">A fully configured <see cref="EcopathModifier"/>.</param>
         /// <returns>True if the run completed without errors.</returns>
         // --------------------------------------------------------------------
-        internal bool Run(cEcopathModifier mod)
+        internal bool Run(EcopathModifier mod)
         {
             CompleteAndPrepareChanges(mod);
 
             // ToDo: configure Ecopath settings
-            bool runSuccess = Apply(mod, cRuntimeModifier.FirstTimeStep);
+            bool runSuccess = Apply(mod, RuntimeModifier.FirstTimeStep);
             runSuccess &= _coreService.RunEcopath();
 
             if (runSuccess)

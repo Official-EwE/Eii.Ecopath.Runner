@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Reflection;
 using System.Text;
 
@@ -12,7 +12,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
     /// No model file or EwE core instance is required.
     /// </summary>
     // --------------------------------------------------------------------
-    public static class cAutomationDocumentation
+    public static class AutomationDocumentation
     {
         // --------------------------------------------------------------------
         /// <summary>
@@ -40,18 +40,18 @@ namespace Eii.Ecopath.Runner.Services.Automation
             sb.AppendLine();
             sb.AppendLine("## Commands");
             sb.AppendLine();
-            AppendNodeDocs(sb, typeof(cEwERootNode), "", 3, []);
+            AppendNodeDocs(sb, typeof(EwERootNode), "", 3, []);
             return sb.ToString();
         }
 
         // Walk declared methods on the type AND its base chain up to (but not
-        // including) cNode, so inherited methods such as cFunctionNode.set on
-        // cForcingFunctionNode are included. The most-derived declaration wins.
+        // including) Node, so inherited methods such as FunctionNode.set on
+        // ForcingFunctionNode are included. The most-derived declaration wins.
         static IEnumerable<MethodInfo> GetAutomationMethods(Type t)
         {
             var seen = new HashSet<string>();
             Type? cur = t;
-            while (cur != null && cur != typeof(cNode) && cur != typeof(object))
+            while (cur != null && cur != typeof(Node) && cur != typeof(object))
             {
                 foreach (MethodInfo m in cur.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly))
                     if (seen.Add(m.Name))
@@ -70,7 +70,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
                 ParameterInfo[] parameters = method.GetParameters();
 
-                bool returnsNode = typeof(cNode).IsAssignableFrom(method.ReturnType);
+                bool returnsNode = typeof(Node).IsAssignableFrom(method.ReturnType);
                 bool hasIntParam = parameters.Length == 1 && parameters[0].ParameterType == typeof(int);
                 bool hasStringParam = parameters.Length == 1 && parameters[0].ParameterType == typeof(string);
 

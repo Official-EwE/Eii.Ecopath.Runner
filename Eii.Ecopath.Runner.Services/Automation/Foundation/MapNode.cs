@@ -12,7 +12,7 @@ namespace Eii.Ecopath.Runner.Services.Automation;
 /// on maps.
 /// </summary>
 /// --------------------------------------------------------------------
-public class cMapNode : cNode
+public class MapNode : Node
 {
     #region Private vars
 
@@ -28,7 +28,7 @@ public class cMapNode : cNode
     /// <param name="layer">the <see cref="cEcospaceLayer"/> to operate on.</param>
     /// <param name="logger">Logger for this node.</param>
     // --------------------------------------------------------------------
-    public cMapNode(ICoreService coreService, cEcospaceLayer layer, ILogger logger) : base(coreService, logger)
+    public MapNode(ICoreService coreService, cEcospaceLayer layer, ILogger logger) : base(coreService, logger)
     {
         this.Layer = layer;
     }

@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -10,7 +10,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
     /// Integration tests that verify EwERunConsole exits with code 1
     /// and produces the expected output for valid run configurations.
     /// </summary>
-    public class cEwERunConsoleSuccessTests
+    public class EwERunConsoleSuccessTests
     {
         [Fact]
         public async Task AnchovyBay_EcosimAndEcospace_Succeeds()
@@ -19,7 +19,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             string id = Guid.NewGuid().ToString("N");
 
             // Act
-            cConsoleRunResult result = await cConsoleRunner.RunAsync(
+            ConsoleRunResult result = await ConsoleRunner.RunAsync(
                 @"Testdata\AnchovyBay\AnchovyBay_runinfo.json", id);
 
             // Assert
@@ -36,7 +36,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             string id = Guid.NewGuid().ToString("N");
 
             // Act
-            cConsoleRunResult result = await cConsoleRunner.RunAsync(
+            ConsoleRunResult result = await ConsoleRunner.RunAsync(
                 @"Testdata\AnchovyBay\AnchovyBay_EcosimOnly_runinfo.json", id);
 
             // Assert
@@ -57,7 +57,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             string id = Guid.NewGuid().ToString("N");
 
             // Act
-            cConsoleRunResult result = await cConsoleRunner.RunAsync(
+            ConsoleRunResult result = await ConsoleRunner.RunAsync(
                 @"Testdata\AnchovyBay\AnchovyBay_EcopathOnly_runinfo.json", id);
 
             // Assert
@@ -72,7 +72,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             string id = Guid.NewGuid().ToString("N");
 
             // Act
-            cConsoleRunResult result = await cConsoleRunner.RunAsync(
+            ConsoleRunResult result = await ConsoleRunner.RunAsync(
                 @"Testdata\VLIZ\VLIZ_runinfo.json", id);
 
             // Assert

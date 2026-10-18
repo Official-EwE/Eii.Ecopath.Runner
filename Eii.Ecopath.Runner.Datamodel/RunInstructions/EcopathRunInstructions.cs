@@ -6,12 +6,12 @@
     /// like to make to Ecopath.
     /// </summary>
     // --------------------------------------------------------------------
-    public class cEcopathRunInstructions : IModelRunInstructions
+    public class EcopathRunInstructions : IModelRunInstructions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="cEcopathRunInstructions"/> class.
+        /// Initializes a new instance of the <see cref="EcopathRunInstructions"/> class.
         /// </summary>
-        public cEcopathRunInstructions()
+        public EcopathRunInstructions()
         {
         }
 
@@ -28,6 +28,6 @@
         /// The changes to make to Ecopath.
         /// </summary>
         // --------------------------------------------------------------------
-        public List<cModificationsAtT> Changes { get; set; } = [];
+        public List<ModificationsAtT> Changes { get; set; } = [];
     }
 }

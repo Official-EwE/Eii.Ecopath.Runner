@@ -8,7 +8,7 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
     /// as row and column indices. The code assumes that the CSV files are formatted as exported by the EwE
     /// user interface.
     /// </summary>
-    public static class cEwEArrayReader
+    public static class EwEArrayReader
     {
         /// <summary>
         /// Defines the mapping between DataTable rows/columns and target array indices.

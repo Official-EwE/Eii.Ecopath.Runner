@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -10,7 +10,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
     /// Integration tests that verify EwERunConsole exits with code 0
     /// and reports the appropriate error message for invalid inputs.
     /// </summary>
-    public class cEwERunConsoleFailureTests
+    public class EwERunConsoleFailureTests
     {
         [Fact]
         public async Task NonExistentRunInfoFile_Fails()
@@ -19,7 +19,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             string id = Guid.NewGuid().ToString("N");
 
             // Act
-            cConsoleRunResult result = await cConsoleRunner.RunAsync(
+            ConsoleRunResult result = await ConsoleRunner.RunAsync(
                 @"Testdata\AnchovyBay\DoesNotExist_runinfo.json", id);
 
             // Assert
@@ -34,7 +34,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
             string id = Guid.NewGuid().ToString("N");
 
             // Act
-            cConsoleRunResult result = await cConsoleRunner.RunAsync(
+            ConsoleRunResult result = await ConsoleRunner.RunAsync(
                 @"Testdata\AnchovyBay\AnchovyBay_InvalidJson.json", id);
 
             // Assert
@@ -46,7 +46,7 @@ namespace Eii.Ecopath.Runner.Console.Tests
         public async Task NoArguments_Fails()
         {
             // Act
-            cConsoleRunResult result = await cConsoleRunner.RunAsync([]);
+            ConsoleRunResult result = await ConsoleRunner.RunAsync([]);
 
             // Assert
             result.ExitCode.Should().Be(1, because: result.StdOut);

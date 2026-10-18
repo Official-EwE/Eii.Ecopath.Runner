@@ -5,19 +5,19 @@ using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cMPANode : cEwECoreNode
+    public class MPANode : EwECoreNode
     {
-        public cMPANode(ICoreService coreService, cEcospaceMPA mpa, ILogger logger) : base(coreService, mpa, logger) 
+        public MPANode(ICoreService coreService, cEcospaceMPA mpa, ILogger logger) : base(coreService, mpa, logger) 
         {
         }
 
         protected cEcospaceMPA MPA => (cEcospaceMPA)this.CoreObj;
         // Accessor
         [Description("Access the MPA boundary map layer")]
-        public cMapNode map()
+        public MapNode map()
         {
             cEcospaceBasemap bm = CoreService.EcospaceBasemap;
-            return new cMapNode(CoreService, bm.get_LayerMPA(this.CoreObj.Index), Logger);
+            return new MapNode(CoreService, bm.get_LayerMPA(this.CoreObj.Index), Logger);
         }
 
     }

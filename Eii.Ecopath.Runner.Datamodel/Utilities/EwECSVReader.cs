@@ -7,7 +7,7 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
     /// <summary>
     /// Helper class for reading CSV files into DataTable objects using the en-US culture.
     /// </summary>
-    public class cEwECSVReader
+    public class EwECSVReader
     {
         /// <summary>
         /// Reads a CSV file and loads its contents into a DataTable.

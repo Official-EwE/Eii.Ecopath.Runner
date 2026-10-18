@@ -15,8 +15,8 @@ namespace EwERunProcess
     {
         private readonly ILogger<EwERunProcessService> m_logger;
         private readonly IBlobStore _blobStore;
-        private readonly cEwEEngine _engine;
-        cEwERunInstructions? runInstructions;
+        private readonly EwEEngine _engine;
+        EwERunInstructions? runInstructions;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EwERunProcessService"/> class.
@@ -24,7 +24,7 @@ namespace EwERunProcess
         /// <param name="logger">The logger for diagnostic messages.</param>
         /// <param name="blobStore">The blob store for input/output file management.</param>
         /// <param name="engine">The EwE engine for executing model runs.</param>
-        public EwERunProcessService(ILogger<EwERunProcessService> logger, IBlobStore blobStore, cEwEEngine engine)
+        public EwERunProcessService(ILogger<EwERunProcessService> logger, IBlobStore blobStore, EwEEngine engine)
         {
             m_logger = logger;
             _blobStore = blobStore;
@@ -73,7 +73,7 @@ namespace EwERunProcess
                 // Read run info Json
                 JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
                 string lines = File.ReadAllText(runInfoPath);
-                runInstructions = JsonSerializer.Deserialize<cEwERunInstructions>(lines, options);
+                runInstructions = JsonSerializer.Deserialize<EwERunInstructions>(lines, options);
             }
             catch (JsonException ex)
             {

@@ -6,10 +6,10 @@ using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cEcosimNode : cEwECoreNode
+    public class EcosimNode : EwECoreNode
     {
 
-        public cEcosimNode(ICoreService coreService, cEcoSimModelParameters parms, ILogger logger) : base(coreService, parms, logger)
+        public EcosimNode(ICoreService coreService, cEcoSimModelParameters parms, ILogger logger) : base(coreService, parms, logger)
         {
         }
 
@@ -23,12 +23,12 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         /// -------------------------------------------------------------------
         [Description("Get the fishing effort shape for a fleet by name")]
-        public cForcingFunctionNode? effort(string name)
+        public ForcingFunctionNode? effort(string name)
         {
             cFishingEffortShapeManger man = CoreService.FishingEffortShapeManager;
             cShapeData? shape = FindShape(name, man.Shapes, Logger, "Fishing Effort Shape");
             if (shape == null) return null;
-            return new cForcingFunctionNode(CoreService, shape, Logger);
+            return new ForcingFunctionNode(CoreService, shape, Logger);
         }
 
         /// -------------------------------------------------------------------
@@ -40,7 +40,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <see cref="fishingmortality(int)"/>
         /// -------------------------------------------------------------------
         [Description("Alias for fishingmortality(string)")]
-        public cForcingFunctionNode? f(string groupname)
+        public ForcingFunctionNode? f(string groupname)
         {
             return fishingmortality(groupname);
         }
@@ -54,12 +54,12 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <see cref="fishingmortality(int)"/>
         /// -------------------------------------------------------------------
         [Description("Get the fishing mortality shape for a group by name")]
-        public cForcingFunctionNode? fishingmortality(string groupname)
+        public ForcingFunctionNode? fishingmortality(string groupname)
         {
             cFishingMortalityShapeManger man = CoreService.FishMortShapeManager;
             cShapeData? shape = FindShape(groupname, man.Shapes, Logger, "Fishing Mortality Shape");
             if (shape == null) return null;
-            return new cForcingFunctionNode(CoreService, shape, Logger);
+            return new ForcingFunctionNode(CoreService, shape, Logger);
         }
 
         #endregion // Fisheries
@@ -75,12 +75,12 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <see cref="fishingmortality(int)"/>
         /// -------------------------------------------------------------------
         [Description("Get a forcing function shape by name")]
-        public cForcingFunctionNode? forcingfunction(string name)
+        public ForcingFunctionNode? forcingfunction(string name)
         {
             cForcingFunctionShapeManager man = CoreService.ForcingShapeManager;
             cShapeData? shape = FindShape(name, man.Shapes, Logger, "Forcing Function Shape");
             if (shape == null) return null;
-            return new cForcingFunctionNode(CoreService, shape, Logger);
+            return new ForcingFunctionNode(CoreService, shape, Logger);
         }
 
         /// -------------------------------------------------------------------
@@ -92,7 +92,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <see cref="fishingmortality(int)"/>
         /// -------------------------------------------------------------------
         [Description("Alias for forcingfunction(string)")]
-        public cForcingFunctionNode? ff(string name)
+        public ForcingFunctionNode? ff(string name)
         {
             return forcingfunction(name);
         }
@@ -109,12 +109,12 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         /// -------------------------------------------------------------------
         [Description("Get an mediation function by name")]
-        public cMediationFunctionNode? mediationfunction(string name)
+        public MediationFunctionNode? mediationfunction(string name)
         {
             var man = this.Core.MediationShapeManager;
             cShapeData? shape = FindShape(name, man.Shapes, Logger, "Mediation Shape");
             if (shape == null) return null;
-            return new cMediationFunctionNode(CoreService, (cMediationFunction)shape, Logger);
+            return new MediationFunctionNode(CoreService, (cMediationFunction)shape, Logger);
         }
 
         #endregion // Mediation functions
@@ -129,12 +129,12 @@ namespace Eii.Ecopath.Runner.Services.Automation
         /// <returns></returns>
         /// -------------------------------------------------------------------
         [Description("Get an environmental response function by name")]
-        public cEnvResponseFunctionNode? envresponsefunction(string name)
+        public EnvResponseFunctionNode? envresponsefunction(string name)
         {
             cEnviroResponseShapeManager man = this.Core.EnviroResponseShapeManager;
             cShapeData? shape = FindShape(name, man.Shapes, Logger, "Environmental Response Shape");
             if (shape == null) return null;
-            return new cEnvResponseFunctionNode(CoreService, (cEnviroResponseFunction)shape, Logger);
+            return new EnvResponseFunctionNode(CoreService, (cEnviroResponseFunction)shape, Logger);
         }
 
         #endregion // Environmental responses
@@ -155,9 +155,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         #region Vulnerabilities
 
-        public cVulnerabilitiesNode? vulnerabilities()
+        public VulnerabilitiesNode? vulnerabilities()
         {
-            return new cVulnerabilitiesNode(CoreService, Logger);
+            return new VulnerabilitiesNode(CoreService, Logger);
         }
 
         #endregion // Vulnerabilities

@@ -15,7 +15,7 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
     /// }
     /// </code>
     /// </remarks>
-    public class cConsoleCopy : IDisposable
+    public class ConsoleCopy : IDisposable
     {
         private FileStream? m_fileStream;
         private StreamWriter? m_fileWriter;
@@ -68,10 +68,10 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="cConsoleCopy"/> class and starts copying console output to a file.
+        /// Initializes a new instance of the <see cref="ConsoleCopy"/> class and starts copying console output to a file.
         /// </summary>
         /// <param name="fn">The filename to write console output to.</param>
-        public cConsoleCopy(string fn)
+        public ConsoleCopy(string fn)
         {
             m_oldOut = Console.Out;
 
@@ -92,7 +92,7 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="cConsoleCopy"/> class with a formatted header containing run information.
+        /// Initializes a new instance of the <see cref="ConsoleCopy"/> class with a formatted header containing run information.
         /// </summary>
         /// <param name="fn">The filename to write console output to.</param>
         /// <param name="script">The script identifier (unused in current implementation).</param>
@@ -101,7 +101,7 @@ namespace Eii.Ecopath.Runner.Datamodel.Utilities
         /// <param name="model">Optional path to the model file.</param>
         /// <param name="pout">Optional output path.</param>
         /// <param name="entries">Optional additional key-value pairs to include in the header.</param>
-        public cConsoleCopy(string fn, string script, string rev, string description,
+        public ConsoleCopy(string fn, string script, string rev, string description,
                             string model = "", string pout = "",
                             Dictionary<string, string>? entries = null)
             : this(fn)

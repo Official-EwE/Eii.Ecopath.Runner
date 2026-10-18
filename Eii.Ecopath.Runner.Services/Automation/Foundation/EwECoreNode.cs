@@ -10,9 +10,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
     /// on internal variables.
     /// </summary>
     // --------------------------------------------------------------------
-    public abstract class cEwECoreNode : cNode
+    public abstract class EwECoreNode : Node
     {
-        public cEwECoreNode(ICoreService coreService, cCoreInputOutputBase coreobj, ILogger logger) : base(coreService, logger)
+        public EwECoreNode(ICoreService coreService, cCoreInputOutputBase coreobj, ILogger logger) : base(coreService, logger)
         {
             this.CoreObj = coreobj;
         }

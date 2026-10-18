@@ -1,4 +1,4 @@
-# GitHub Copilot Instructions for Eii.Ecopath.Runner
+﻿# GitHub Copilot Instructions for Eii.Ecopath.Runner
 
 ## Project overview
 Eii.Ecopath.Runner is a headless, JSON-driven runner for the EwE (Ecopath with Ecosim) marine
@@ -31,7 +31,7 @@ Ecotracer without the GUI. It is available in two forms:
   - `Microsoft.AspNetCore.OpenApi` 10.x — OpenAPI support (API only)
 
 ## Code conventions
-- Class names are prefixed with a lowercase `c` (e.g. `cEwEEngine`, `cRuntimeModifier`).
+- Class names use standard PascalCase with no prefix (e.g. `EwEEngine`, `RuntimeModifier`).
 - Interfaces are prefixed with `I` (e.g. `IModelRunInstructions`).
 - Do not use the `this.` qualifier unless needed to resolve an ambiguity.
 - Use C# 12+ collection expressions (`[]`) for empty collection initialisers.
@@ -44,35 +44,35 @@ Ecotracer without the GUI. It is available in two forms:
 
 ### Console entry point
 - `Program.cs` — configures Serilog, parses CLI args via `CommandLineParser`, reads the JSON
-  run-info file, and delegates to `cEwEEngine`.
+  run-info file, and delegates to `EwEEngine`.
 - `CommandLineParmOptions.cs` — defines the CLI flags (`--info`, `--output`, `--showtree`,
   `--showcommands`, `--docs`). `--info` is optional; `--docs` can be used standalone.
 
 ### API entry point
-- `EwERunController.cs` — single `POST /eweRun` endpoint; accepts `cEwERunInstructions` as a
-  JSON body, resolves paths, and delegates to `cEwEEngine`.
+- `EwERunController.cs` — single `POST /eweRun` endpoint; accepts `EwERunInstructions` as a
+  JSON body, resolves paths, and delegates to `EwEEngine`.
 
 ### Datamodel (`Eii.Ecopath.Runner.Datamodel`)
 Plain data containers deserialised from JSON via `System.Text.Json`:
-- `cEwERunInstructions` — top-level wrapper; top-level JSON keys are `Configuration`,
+- `EwERunInstructions` — top-level wrapper; top-level JSON keys are `Configuration`,
   `EcopathRun`, `EcosimRun`, `EcospaceRun`, `EcotracerRun`.
-- `cEwEConfiguration` — global settings (model file path, scenario indices, run years).
-- `cEcopathRunInstructions`, `cEcosimRunInstructions`, `cEcospaceRunInstructions`,
-  `cEcotracerRunInstructions` — per-model settings and modification schedules.
-- `cModificationsAtT` — parameter changes to inject at a specific date or time step.
+- `EwEConfiguration` — global settings (model file path, scenario indices, run years).
+- `EcopathRunInstructions`, `EcosimRunInstructions`, `EcospaceRunInstructions`,
+  `EcotracerRunInstructions` — per-model settings and modification schedules.
+- `ModificationsAtT` — parameter changes to inject at a specific date or time step.
 - `IModelRunInstructions` — interface implemented by all per-model instruction classes.
 - `JsonStrictConverter` — applied to each section; unknown JSON properties cause a reported error.
-- `cConsoleCopy` — tees console output to a log file. **Note:** `cConsoleCopy` does NOT work reliably in Kubernetes. For writing console output to a log file in Kubernetes, use a different approach (e.g. a custom TextWriter or direct file writing) without `cConsoleCopy`.
+- `ConsoleCopy` — tees console output to a log file. **Note:** `ConsoleCopy` does NOT work reliably in Kubernetes. For writing console output to a log file in Kubernetes, use a different approach (e.g. a custom TextWriter or direct file writing) without `ConsoleCopy`.
 
 ### Services / runtime (`Eii.Ecopath.Runner.Services`)
-- `cEwEEngine` (`cEwEEngine.cs`) — instantiates `cCore`, loads plug-ins, and orchestrates the
+- `EwEEngine` (`EwEEngine.cs`) — instantiates `cCore`, loads plug-ins, and orchestrates the
   Ecopath → Ecosim → Ecospace pipeline by delegating to the concrete modifier classes.
-- `cRuntimeModifier` — abstract base; handles change scheduling, date→timestep conversion,
+- `RuntimeModifier` — abstract base; handles change scheduling, date→timestep conversion,
   and plug-in lookup. Concrete subclasses override `Run()`.
-- `cEcopathModifier`, `cEcosimModifier`, `cEcospaceModifier` — concrete per-model runners.
-- `Automation/` — `cEwERootNode` and its child nodes form a command/object tree used to apply
+- `EcopathModifier`, `EcosimModifier`, `EcospaceModifier` — concrete per-model runners.
+- `Automation/` — `EwERootNode` and its child nodes form a command/object tree used to apply
   dynamic parameter changes at runtime.
-- `cAutomationDocumentation` (`Automation/Foundation/cAutomationDocumentation.cs`) — static
+- `AutomationDocumentation` (`Automation/Foundation/AutomationDocumentation.cs`) — static
   class that reflects over the automation node tree and emits a Markdown reference document.
   No model file or EwE core instance is required. Called by `Program.ParseInstructions` when
   `--docs` is passed.
@@ -87,15 +87,15 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
   - Tests are arranged with `// Arrange` / `// Act` / `// Assert` comments.
   - EwECore types with no public parameterless constructor or with abstract members not backed by
     an interface (e.g. `cShapeData`) are exercised via minimal, fully-functional test-double
-    subclasses (e.g. `cTestShapeData`) rather than Moq mocks, since Moq cannot proxy the class's
+    subclasses (e.g. `TestShapeData`) rather than Moq mocks, since Moq cannot proxy the class's
     non-virtual, field-backed members.
-  - Abstract node classes with no dedicated interface (e.g. `cFunctionNode`) are tested via a
-    minimal concrete test subclass (e.g. `cTestFunctionNode`) that forwards to the base
+  - Abstract node classes with no dedicated interface (e.g. `FunctionNode`) are tested via a
+    minimal concrete test subclass (e.g. `TestFunctionNode`) that forwards to the base
     constructor.
   - `ICoreService` and `ILogger` are mocked with Moq.
 
 ## JSON configuration
-- The run-info JSON file maps directly onto `cEwERunInstructions`.
+- The run-info JSON file maps directly onto `EwERunInstructions`.
 - Top-level keys: `Configuration`, `EcopathRun`, `EcosimRun`, `EcospaceRun`, `EcotracerRun`.
 - `JsonStrictConverter` is applied to each section — unknown JSON properties cause a reported error.
 - File paths inside the JSON are relative to the folder containing the JSON file.
@@ -110,7 +110,7 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
   `https://nuget.pkg.github.com/Official-EwE/index.json`, authenticated via `GITHUB_TOKEN`.
 - Publishes a `win-x64` framework-dependent binary, zipped and attached to a GitHub Release.
 - Before publishing, the workflow runs `dotnet run -- --docs` to generate
-  `~Documentation/automation-commands.md` via `cAutomationDocumentation.GenerateMarkdown()`.
+  `~Documentation/automation-commands.md` via `AutomationDocumentation.GenerateMarkdown()`.
 - The Markdown is then converted to PDF using the `docker://pandoc/latex:edge` action
   (ships with xelatex; no extra apt packages needed), producing
   `~Documentation/automation-commands.pdf`.
@@ -137,7 +137,7 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
 ## What to avoid
 - Do not use `this.` unless resolving a name collision.
 - Do not add new NuGet packages without a clear reason.
-- Do not remove or alter the `// ToDo` stubs in `cEcopathModifier` — they are known placeholders.
+- Do not remove or alter the `// ToDo` stubs in `EcopathModifier` — they are known placeholders.
 - Do not change `workflow=TrunkBased/preview1` in `release.yml` — it is the only valid
   trunk-based workflow name embedded in GitVersion 6.x.
 

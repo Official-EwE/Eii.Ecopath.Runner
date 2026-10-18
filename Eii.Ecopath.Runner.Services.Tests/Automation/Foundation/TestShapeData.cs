@@ -1,4 +1,4 @@
-using EwECore;
+﻿using EwECore;
 
 namespace Eii.Ecopath.Runner.Services.Tests.Automation.Foundation
 {
@@ -7,11 +7,11 @@ namespace Eii.Ecopath.Runner.Services.Tests.Automation.Foundation
     /// Only the abstract <see cref="Update"/> member is overridden; all other
     /// behavior (point storage, locking, etc.) is the real base implementation.
     /// </summary>
-    internal sealed class cTestShapeData : cShapeData
+    internal sealed class TestShapeData : cShapeData
     {
         public int UpdateCallCount { get; private set; }
 
-        public cTestShapeData(int numberOfPoints) : base(numberOfPoints)
+        public TestShapeData(int numberOfPoints) : base(numberOfPoints)
         {
         }
 

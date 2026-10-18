@@ -1,4 +1,4 @@
-using EwECore;
+﻿using EwECore;
 using EwECore.Common;
 using EwECore.Plugins;
 using EwECore.SpatialData;
@@ -11,7 +11,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     /// <see cref="cPluginManager"/> for the lifetime of the application.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cCoreService : ICoreService
+    public class CoreService : ICoreService
     {
         #region Private vars
 
@@ -25,7 +25,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <see cref="cPluginManager"/>.
         /// </summary>
         // --------------------------------------------------------------------
-        public cCoreService()
+        public CoreService()
         {
             Core = new cCore();
             Core.PluginManager = new cPluginManager();

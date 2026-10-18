@@ -12,11 +12,11 @@ namespace Eii.Ecopath.Runner.Services.Automation
     /// on <see cref="cShapeData">functions</see>.
     /// </summary>
     // --------------------------------------------------------------------
-    public abstract class cFunctionNode : cNode
+    public abstract class FunctionNode : Node
     {
         protected readonly cShapeData Shape;
 
-        public cFunctionNode(ICoreService coreService, cShapeData shape, ILogger logger) : base(coreService, logger)
+        public FunctionNode(ICoreService coreService, cShapeData shape, ILogger logger) : base(coreService, logger)
         {
             this.Shape = shape;
         }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Eii.Ecopath.Runner.Services.Runtime;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
@@ -7,14 +7,14 @@ using Xunit;
 
 namespace Eii.Ecopath.Runner.Services.Tests.Automation.Foundation
 {
-    public class cFunctionNodeTests
+    public class FunctionNodeTests
     {
-        private static (cTestFunctionNode Node, cTestShapeData Shape, Mock<ILogger> Logger) CreateNode(int nPoints)
+        private static (TestFunctionNode Node, TestShapeData Shape, Mock<ILogger> Logger) CreateNode(int nPoints)
         {
             var coreService = new Mock<ICoreService>();
             var logger = new Mock<ILogger>();
-            var shape = new cTestShapeData(nPoints);
-            var node = new cTestFunctionNode(coreService.Object, shape, logger.Object);
+            var shape = new TestShapeData(nPoints);
+            var node = new TestFunctionNode(coreService.Object, shape, logger.Object);
             return (node, shape, logger);
         }
 

@@ -13,7 +13,7 @@ namespace Eii.Ecopath.Runner.Services.Automation;
 /// a final end point function.
 /// </summary>
 /// -----------------------------------------------------------------------
-public class cNode
+public class Node
 {
     #region Private vars
 
@@ -48,12 +48,12 @@ public class cNode
 
     /// -------------------------------------------------------------------
     /// <summary>
-    /// Initializes a new instance of the <see cref="cNode"/> class.
+    /// Initializes a new instance of the <see cref="Node"/> class.
     /// </summary>
     /// <param name="coreService">The core service providing access to the EwE model.</param>
     /// <param name="logger">The logger for diagnostic messages.</param>
     /// -------------------------------------------------------------------
-    public cNode(ICoreService coreService, ILogger logger)
+    public Node(ICoreService coreService, ILogger logger)
     {
         CoreService = coreService;
         Logger = logger;
@@ -196,9 +196,9 @@ public class cNode
                 return false;
             }
 
-            if (result is not cNode subNode)
+            if (result is not Node subNode)
             {
-                Logger.LogError("Automation entry '{Entry}' in '{MethodPath}' bug! cNode expected", rawEntry, methodPath);
+                Logger.LogError("Automation entry '{Entry}' in '{MethodPath}' bug! Node expected", rawEntry, methodPath);
                 return false;
             }
 
@@ -583,7 +583,7 @@ public class cNode
         {
             // Endpoints do not need to be invoked to list them.
             MethodInfo? endpoint = methodGroup.FirstOrDefault(
-                m => !typeof(cNode).IsAssignableFrom(m.ReturnType));
+                m => !typeof(Node).IsAssignableFrom(m.ReturnType));
 
             if (endpoint != null)
             {
@@ -594,7 +594,7 @@ public class cNode
                 continue;
             }
 
-            // Navigation methods return cNode. Prefer a zero-argument overload;
+            // Navigation methods return Node. Prefer a zero-argument overload;
             // otherwise use an integer overload with a conventional valid index
             // for discovery. A string-only navigation overload cannot be invoked
             // generically without inventing a model item name.
@@ -632,7 +632,7 @@ public class cNode
                 continue;
             }
 
-            if (result is not cNode subNode)
+            if (result is not Node subNode)
                 continue;
 
             string navigationPath = string.IsNullOrEmpty(prefix)

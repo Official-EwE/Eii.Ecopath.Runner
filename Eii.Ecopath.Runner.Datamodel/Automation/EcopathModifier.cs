@@ -1,18 +1,18 @@
-using Eii.Ecopath.Runner.Datamodel.RunInstructions;
+﻿using Eii.Ecopath.Runner.Datamodel.RunInstructions;
 
 namespace Eii.Ecopath.Runner.Datamodel.Automation
 {
     /// <summary>
     /// Data container for an Ecopath run.
     /// </summary>
-    public class cEcopathModifier : cRuntimeModifier
+    public class EcopathModifier : RuntimeModifier
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="cEcopathModifier"/> class.
+        /// Initializes a new instance of the <see cref="EcopathModifier"/> class.
         /// </summary>
         /// <param name="config">The EwE-wide configuration as defined by the user.</param>
         /// <param name="runmodel">The Ecopath-specific configuration and changes as defined by the user.</param>
-        public cEcopathModifier(cEwEConfiguration config, IModelRunInstructions runmodel)
+        public EcopathModifier(EwEConfiguration config, IModelRunInstructions runmodel)
             : base("ecopath", config, runmodel)
         {
         }
@@ -20,6 +20,6 @@ namespace Eii.Ecopath.Runner.Datamodel.Automation
         /// <summary>
         /// Gets the strongly-typed run instructions for Ecopath.
         /// </summary>
-        public cEcopathRunInstructions MyRunModel => (cEcopathRunInstructions)RunModel;
+        public EcopathRunInstructions MyRunModel => (EcopathRunInstructions)RunModel;
     }
 }

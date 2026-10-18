@@ -1,4 +1,4 @@
-using Eii.Ecopath.Runner.Datamodel.Automation;
+﻿using Eii.Ecopath.Runner.Datamodel.Automation;
 using EwEBridge.Ecosim;
 using EwECore;
 using EwECore.Ecosim;
@@ -10,17 +10,17 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     // ------------------------------------------------------------------------
     /// <summary>
     /// Service responsible for executing an Ecosim run using a configured
-    /// <see cref="cEcosimModifier"/>.
+    /// <see cref="EcosimModifier"/>.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cEcosimModifierService : cRuntimeModifierService
+    public class EcosimModifierService : RuntimeModifierService
     {
         // --------------------------------------------------------------------
         /// <summary>
         /// Constructor.
         /// </summary>
         // --------------------------------------------------------------------
-        public cEcosimModifierService(ICoreService coreService, cNodeService nodeService, ILogger<cEcosimModifierService> logger)
+        public EcosimModifierService(ICoreService coreService, NodeService nodeService, ILogger<EcosimModifierService> logger)
             : base(coreService, nodeService, logger)
         {
         }
@@ -37,10 +37,10 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <summary>
         /// Execute the Ecosim run described by <paramref name="mod"/>.
         /// </summary>
-        /// <param name="mod">A fully configured <see cref="cEcosimModifier"/>.</param>
+        /// <param name="mod">A fully configured <see cref="EcosimModifier"/>.</param>
         /// <returns>True if the run completed without errors.</returns>
         // --------------------------------------------------------------------
-        internal bool Run(cEcosimModifier mod)
+        internal bool Run(EcosimModifier mod)
         {
             bool runSuccess = true;
 
@@ -88,7 +88,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// Determine which result types to auto-save and whether to save annually.
         /// </summary>
         // --------------------------------------------------------------------
-        private void ConfigureAutosave(cEcosimModifier mod,
+        private void ConfigureAutosave(EcosimModifier mod,
             out List<cEcosimResultWriter.eResultTypes> autosaveResults,
             out bool bSaveAnnual)
         {

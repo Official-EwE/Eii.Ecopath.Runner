@@ -1,4 +1,4 @@
-using Eii.Ecopath.Runner.Services.Automation;
+﻿using Eii.Ecopath.Runner.Services.Automation;
 using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Runtime
@@ -6,15 +6,15 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     // ------------------------------------------------------------------------
     /// <summary>
     /// Injectable service that executes automation-tree invocations against a
-    /// running EwE core.  Wraps <see cref="cEwERootNode"/> so callers never
+    /// running EwE core.  Wraps <see cref="EwERootNode"/> so callers never
     /// need to instantiate it directly.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cNodeService
+    public class NodeService
     {
         #region Private vars
 
-        private readonly ILogger<cNodeService> _logger;
+        private readonly ILogger<NodeService> _logger;
 
         #endregion // Private vars
 
@@ -23,7 +23,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// Constructor.
         /// </summary>
         // --------------------------------------------------------------------
-        public cNodeService(ILogger<cNodeService> logger)
+        public NodeService(ILogger<NodeService> logger)
         {
             _logger = logger;
         }
@@ -41,7 +41,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         // --------------------------------------------------------------------
         internal bool Invoke(ICoreService coreService, string root, string key, object? value)
         {
-            cEwERootNode om = new cEwERootNode(coreService, _logger);
+            EwERootNode om = new EwERootNode(coreService, _logger);
             bool bSuccess = om.Invoke(root, key, value);
             if (!bSuccess)
             {

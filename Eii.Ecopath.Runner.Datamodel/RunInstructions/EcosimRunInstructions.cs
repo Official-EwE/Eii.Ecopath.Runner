@@ -9,12 +9,12 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
     /// like to make to Ecosim.
     /// </summary>
     // --------------------------------------------------------------------
-    public class cEcosimRunInstructions : IModelRunInstructions
+    public class EcosimRunInstructions : IModelRunInstructions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="cEcosimRunInstructions"/> class.
+        /// Initializes a new instance of the <see cref="EcosimRunInstructions"/> class.
         /// </summary>
-        public cEcosimRunInstructions()
+        public EcosimRunInstructions()
         {
         }
 
@@ -46,6 +46,6 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
         /// Ecosim model.
         /// </summary>
         // --------------------------------------------------------------------
-        public List<cModificationsAtT> Changes { get; set; } = [];
+        public List<ModificationsAtT> Changes { get; set; } = [];
     }
 }

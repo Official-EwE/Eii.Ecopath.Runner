@@ -5,9 +5,9 @@ using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cEcospaceGroupNode : cEwECoreNode
+    public class EcospaceGroupNode : EwECoreNode
     {
-        public cEcospaceGroupNode(ICoreService coreService, cEcospaceGroupInput group, ILogger logger) : base(coreService, group, logger)
+        public EcospaceGroupNode(ICoreService coreService, cEcospaceGroupInput group, ILogger logger) : base(coreService, group, logger)
         {
         }
         protected cEcospaceGroupInput Group => (cEcospaceGroupInput)this.CoreObj;
@@ -30,9 +30,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
         }
 
         [Description("Access the niche data of this group")]
-        public cEcospaceGroupNicheNode niche()
+        public EcospaceGroupNicheNode niche()
         {
-            return new cEcospaceGroupNicheNode(CoreService, Group, Logger);
+            return new EcospaceGroupNicheNode(CoreService, Group, Logger);
         }
     }
 }

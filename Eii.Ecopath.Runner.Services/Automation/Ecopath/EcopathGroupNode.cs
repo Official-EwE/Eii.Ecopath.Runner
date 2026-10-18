@@ -5,9 +5,9 @@ using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cEcopathGroupNode : cEwECoreNode
+    public class EcopathGroupNode : EwECoreNode
     {
-        public cEcopathGroupNode(ICoreService coreService, cEcoPathGroupInput group, ILogger logger) : base(coreService, group, logger)
+        public EcopathGroupNode(ICoreService coreService, cEcoPathGroupInput group, ILogger logger) : base(coreService, group, logger)
         {
         }
 

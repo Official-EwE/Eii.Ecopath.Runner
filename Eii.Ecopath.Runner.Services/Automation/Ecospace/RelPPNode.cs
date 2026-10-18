@@ -5,9 +5,9 @@ using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cRelPPNode : cEwECoreNode
+    public class RelPPNode : EwECoreNode
     {
-        public cRelPPNode(ICoreService coreService, ILogger logger) : base(coreService, coreService.EcospaceBasemap.LayerRelPP, logger)
+        public RelPPNode(ICoreService coreService, ILogger logger) : base(coreService, coreService.EcospaceBasemap.LayerRelPP, logger)
         {
         }
 
@@ -15,9 +15,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         // Accessor
         [Description("Access the relative PP layer")]
-        public cMapNode map()
+        public MapNode map()
         {
-            return new cMapNode(CoreService, RelPPLayer, Logger);
+            return new MapNode(CoreService, RelPPLayer, Logger);
         }
 
     }

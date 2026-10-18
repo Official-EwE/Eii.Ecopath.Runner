@@ -11,22 +11,22 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     /// -----------------------------------------------------------------------
     /// <summary>
     /// Central engine to execute an EwE run as dictated by 
-    /// a basic <see cref="cEwEConfiguration"/> and <see cref="cEwERunInstructions"/> 
+    /// a basic <see cref="EwEConfiguration"/> and <see cref="EwERunInstructions"/> 
     /// for the different EwE models.
     /// </summary>
     /// -----------------------------------------------------------------------
-    public class cEwEEngine
+    public class EwEEngine
     {
         #region Private vars
 
         private readonly ICoreService _coreService;
-        private readonly ILogger<cEwEEngine> _logger;
-        private readonly cEcopathModifierService _ecopathSvc;
-        private readonly cEcosimModifierService _ecosimSvc;
-        private readonly cEcospaceModifierService _ecospaceSvc;
+        private readonly ILogger<EwEEngine> _logger;
+        private readonly EcopathModifierService _ecopathSvc;
+        private readonly EcosimModifierService _ecosimSvc;
+        private readonly EcospaceModifierService _ecospaceSvc;
 
-        private cEwERunInstructions Instructions = null!;
-        private cEwEConfiguration EwEConfig = null!;
+        private EwERunInstructions Instructions = null!;
+        private EwEConfiguration EwEConfig = null!;
 
         #endregion // Private vars
 
@@ -35,12 +35,12 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// Constructor — all dependencies are injected.
         /// </summary>
         // --------------------------------------------------------------------
-        public cEwEEngine(
-            ILogger<cEwEEngine> logger,
+        public EwEEngine(
+            ILogger<EwEEngine> logger,
             ICoreService coreService,
-            cEcopathModifierService ecopathSvc,
-            cEcosimModifierService ecosimSvc,
-            cEcospaceModifierService ecospaceSvc)
+            EcopathModifierService ecopathSvc,
+            EcosimModifierService ecosimSvc,
+            EcospaceModifierService ecospaceSvc)
         {
             _logger = logger;
             _coreService = coreService;
@@ -60,7 +60,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// and will trigger the different model runs.
         /// </remarks>
         /// -------------------------------------------------------------------
-        public bool Run(cEwERunInstructions instructions)
+        public bool Run(EwERunInstructions instructions)
         {
             Instructions = instructions;
             EwEConfig = instructions.Configuration;
@@ -210,7 +210,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
         private bool RunEcopath()
         {
-            cEcopathModifier mod = new cEcopathModifier(EwEConfig, Instructions.EcopathRun);
+            EcopathModifier mod = new EcopathModifier(EwEConfig, Instructions.EcopathRun);
             if (!_ecopathSvc.Run(mod))
             {
                 Console.WriteLine("! Failed to run Ecopath");
@@ -276,7 +276,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             Console.WriteLine("Ecosim run years = {0}", _coreService.nEcosimYears);
             _logger.LogInformation("Ecosim run years = {RunYears}", _coreService.nEcosimYears);
 
-            cEcosimModifier mod = new cEcosimModifier(EwEConfig, Instructions.EcosimRun);
+            EcosimModifier mod = new EcosimModifier(EwEConfig, Instructions.EcosimRun);
             if (!_ecosimSvc.Run(mod))
             {
                 Console.WriteLine("! Failed to run Ecosim");
@@ -331,7 +331,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             Console.WriteLine("Ecospace run years = {0}", _coreService.nEcospaceYears);
             _logger.LogInformation("Ecospace run years = {RunYears}", _coreService.nEcospaceYears);
 
-            cEcospaceModifier mod = new cEcospaceModifier(EwEConfig, Instructions.EcospaceRun);
+            EcospaceModifier mod = new EcospaceModifier(EwEConfig, Instructions.EcospaceRun);
             if (!_ecospaceSvc.Run(mod))
             {
                 Console.WriteLine("! Failed to run Ecospace");

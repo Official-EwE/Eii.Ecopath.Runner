@@ -1,4 +1,4 @@
-using Eii.Ecopath.Runner.Datamodel.RunInstructions;
+﻿using Eii.Ecopath.Runner.Datamodel.RunInstructions;
 
 namespace Eii.Ecopath.Runner.Datamodel.Automation
 {
@@ -7,17 +7,17 @@ namespace Eii.Ecopath.Runner.Datamodel.Automation
     /// Data container that describes a single model run — the root context
     /// name, the per-model instructions, global configuration, and the
     /// pending timed-change schedule.  All runtime logic lives in the
-    /// concrete <see cref="cRuntimeModifierService"/> subclasses.
+    /// concrete <see cref="RuntimeModifierService"/> subclasses.
     /// </summary>
     // ------------------------------------------------------------------------
-    public class cRuntimeModifier
+    public class RuntimeModifier
     {
         #region Internal vars 
 
         public readonly string Root;
         public readonly IModelRunInstructions RunModel;
-        public readonly cEwEConfiguration Configuration;
-        public readonly Dictionary<int, cModificationsAtT> Changes;
+        public readonly EwEConfiguration Configuration;
+        public readonly Dictionary<int, ModificationsAtT> Changes;
 
         public const int FirstTimeStep = 1;
         public const int NoTimeStep = -1;
@@ -35,7 +35,7 @@ namespace Eii.Ecopath.Runner.Datamodel.Automation
         /// <param name="runmodel">The model-specific configuration and changes as 
         /// defined by the user.</param>
         // --------------------------------------------------------------------
-        public cRuntimeModifier(string root, cEwEConfiguration config, IModelRunInstructions runmodel)
+        public RuntimeModifier(string root, EwEConfiguration config, IModelRunInstructions runmodel)
         {
             Root = root;
             Configuration = config;

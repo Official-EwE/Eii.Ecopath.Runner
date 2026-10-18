@@ -5,40 +5,40 @@ using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cEcospaceNode : cEwECoreNode
+    public class EcospaceNode : EwECoreNode
     {
-        public cEcospaceNode(ICoreService coreService, cEcospaceModelParameters parms, ILogger logger) : base(coreService, parms, logger)
+        public EcospaceNode(ICoreService coreService, cEcospaceModelParameters parms, ILogger logger) : base(coreService, parms, logger)
         {
         }
 
         #region Groups and fleets
 
         [Description("Select an Ecospace group by name")]
-        public cEcospaceGroupNode? group(string name)
+        public EcospaceGroupNode? group(string name)
         {
             int iGroup = FindGroup(name, Logger);
             if (iGroup <= 0)
                 return null;
-            return new cEcospaceGroupNode(CoreService, CoreService.get_EcospaceGroupInputs(iGroup), Logger);
+            return new EcospaceGroupNode(CoreService, CoreService.get_EcospaceGroupInputs(iGroup), Logger);
         }
 
         [Description("Select an Ecospace fleet by name")]
-        public cEcospaceFleetNode? fleet(string name)
+        public EcospaceFleetNode? fleet(string name)
         {
             int iFleet = FindFleet(name, Logger);
             if (iFleet <= 0)
                 return null;
-            return new cEcospaceFleetNode(CoreService, CoreService.get_EcospaceFleetInputs(iFleet), Logger);
+            return new EcospaceFleetNode(CoreService, CoreService.get_EcospaceFleetInputs(iFleet), Logger);
         }
 
         #endregion // Groups and fleets
 
         #region RelPP layer
 
-        public cMapNode relpp()
+        public MapNode relpp()
         {
             var bm = Core.EcospaceBasemap;
-            return new cMapNode(CoreService, bm.LayerRelPP, Logger);
+            return new MapNode(CoreService, bm.LayerRelPP, Logger);
         }
         #endregion // RelPP layer
 
@@ -46,12 +46,12 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
 
         [Description("Select an MPA by name")]
-        public cMPANode? mpa(string name)
+        public MPANode? mpa(string name)
         {
             var ds = this.Core.EcospaceDataStructures;
             int iMPA = FindItem(name, ds.MPAname, Logger, "MPA");
             if (iMPA == cCore.NULL_VALUE) return null;
-            return new cMPANode(CoreService, CoreService.get_EcospaceMPAs(iMPA), Logger);
+            return new MPANode(CoreService, CoreService.get_EcospaceMPAs(iMPA), Logger);
         }
 
         #endregion // MPA
@@ -59,11 +59,11 @@ namespace Eii.Ecopath.Runner.Services.Automation
         #region Habitat
 
         [Description("Select a habitat by name")]
-        public cHabitatNode? habitat(string name)
+        public HabitatNode? habitat(string name)
         {
             var ds = this.Core.EcospaceDataStructures;
             int iHabitat = FindItem(name, ds.HabitatText, Logger, "Habitat");
-            return new cHabitatNode(CoreService, CoreService.get_EcospaceHabitats(iHabitat), Logger);
+            return new HabitatNode(CoreService, CoreService.get_EcospaceHabitats(iHabitat), Logger);
         }
 
         #endregion // Habitat
@@ -71,7 +71,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
         #region Environmental drivers
 
         [Description("Select an environmental driver layer by name")]
-        public cEcospaceEnvDriverNode? envdriver(string name)
+        public EcospaceEnvDriverNode? envdriver(string name)
         {
             var ds = this.Core.EcospaceDataStructures;
             int iDriver = 0;
@@ -80,7 +80,7 @@ namespace Eii.Ecopath.Runner.Services.Automation
             if (!string.Equals(name, "depth", StringComparison.OrdinalIgnoreCase))
                 iDriver = FindItem(name, ds.EnvironmentalLayerName, Logger, "Environmental Driver");
             if (iDriver < 0) return null;
-            return new cEcospaceEnvDriverNode(CoreService, iDriver == 0 ? bm.LayerDepth : bm.get_LayerDriver(iDriver), Logger);
+            return new EcospaceEnvDriverNode(CoreService, iDriver == 0 ? bm.LayerDepth : bm.get_LayerDriver(iDriver), Logger);
         }
 
         #endregion // Environmental drivers
@@ -88,10 +88,10 @@ namespace Eii.Ecopath.Runner.Services.Automation
         #region Regions
 
         [Description("Access the region map layer")]
-        public cMapNode? regions()
+        public MapNode? regions()
         {
             cEcospaceBasemap bm = CoreService.EcospaceBasemap;
-            return new cMapNode(CoreService, bm.LayerRegion, Logger);
+            return new MapNode(CoreService, bm.LayerRegion, Logger);
         }
 
         #endregion // Regions

@@ -6,9 +6,9 @@ using System.Data;
 
 namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
 {
-    public class cVulnerabilitiesNode : cNode
+    public class VulnerabilitiesNode : Node
     {
-        public cVulnerabilitiesNode(ICoreService coreService, ILogger logger) : base(coreService, logger)
+        public VulnerabilitiesNode(ICoreService coreService, ILogger logger) : base(coreService, logger)
         {
         }
 
@@ -32,7 +32,7 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
             DataTable? dt;
             try
             {
-                dt = cEwECSVReader.ReadDataTable(filename);
+                dt = EwECSVReader.ReadDataTable(filename);
             }
             catch (Exception ex)
             {
@@ -43,7 +43,7 @@ namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
             try
             {
                 // VulMult[prey,pred],
-                cEwEArrayReader.ReadArray(dt, this.Core.EcosimDataStructures.VulMult, cEwEArrayReader.RowColMapping2D.RowCol);
+                EwEArrayReader.ReadArray(dt, this.Core.EcosimDataStructures.VulMult, EwEArrayReader.RowColMapping2D.RowCol);
             }
             catch (Exception ex)
             {

@@ -1,4 +1,4 @@
-using Eii.Ecopath.Runner.Datamodel.Automation;
+﻿using Eii.Ecopath.Runner.Datamodel.Automation;
 using Eii.Ecopath.Runner.Datamodel.RunInstructions;
 using EwECore;
 using EwECore.Plugins;
@@ -10,16 +10,16 @@ namespace Eii.Ecopath.Runner.Services.Runtime
     // ------------------------------------------------------------------------
     /// <summary>
     /// Abstract base for the per-model modifier services. Holds the shared
-    /// <see cref="cCore"/> reference (via <see cref="cCoreService"/>) and
+    /// <see cref="cCore"/> reference (via <see cref="CoreService"/>) and
     /// provides common helpers for applying timed changes and date parsing.
     /// </summary>
     // ------------------------------------------------------------------------
-    public abstract class cRuntimeModifierService
+    public abstract class RuntimeModifierService
     {
         #region Private vars
 
         protected readonly ICoreService _coreService;
-        private readonly cNodeService _nodeService;
+        private readonly NodeService _nodeService;
         protected readonly ILogger _logger;
 
         #endregion // Private vars
@@ -32,7 +32,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <param name="nodeService">Automation-tree invocation service.</param>
         /// <param name="logger">Logger for this service.</param>
         // --------------------------------------------------------------------
-        protected cRuntimeModifierService(ICoreService coreService, cNodeService nodeService, ILogger logger)
+        protected RuntimeModifierService(ICoreService coreService, NodeService nodeService, ILogger logger)
         {
             _coreService = coreService;
             _nodeService = nodeService;
@@ -45,12 +45,12 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <summary>
         /// Parse the incoming changes on <paramref name="mod"/> — converting
         /// free date texts into time steps — and populate
-        /// <see cref="cRuntimeModifier.Changes"/> for swift processing.
+        /// <see cref="RuntimeModifier.Changes"/> for swift processing.
         /// </summary>
         // --------------------------------------------------------------------
-        protected void CompleteAndPrepareChanges(cRuntimeModifier mod)
+        protected void CompleteAndPrepareChanges(RuntimeModifier mod)
         {
-            foreach (cModificationsAtT c in mod.RunModel.Changes)
+            foreach (ModificationsAtT c in mod.RunModel.Changes)
             {
                 int iTimeStep = c.TimeStep;
                 if (iTimeStep == 0) iTimeStep = ParseDate(c.Date);
@@ -66,7 +66,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// <param name="iTime">The time step to process.</param>
         /// <returns>True if all changes were applied successfully.</returns>
         // --------------------------------------------------------------------
-        protected bool Apply(cRuntimeModifier mod, int iTime)
+        protected bool Apply(RuntimeModifier mod, int iTime)
         {
             bool bSuccess = true;
 
@@ -74,7 +74,7 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             if (mod.Changes.ContainsKey(iTime))
             {
                 // #Yes: grab it and pop it off the list.
-                cModificationsAtT c = mod.Changes[iTime];
+                ModificationsAtT c = mod.Changes[iTime];
                 mod.Changes.Remove(iTime);
 
                 Debug.Assert(c != null);
@@ -105,21 +105,21 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         /// </summary>
         /// <param name="date">The date, which can be "start".</param>
         /// <returns>A one-based timestep, starting at
-        /// <see cref="cRuntimeModifier.FirstTimeStep"/> or
-        /// <see cref="cRuntimeModifier.NoTimeStep"/> if an error occurred.
+        /// <see cref="RuntimeModifier.FirstTimeStep"/> or
+        /// <see cref="RuntimeModifier.NoTimeStep"/> if an error occurred.
         /// </returns>
         // --------------------------------------------------------------------
         public int ParseDate(string date)
         {
             if (string.IsNullOrEmpty(date))
-                return cRuntimeModifier.FirstTimeStep;
+                return RuntimeModifier.FirstTimeStep;
             if (string.Compare(date, "start", true) == 0)
-                return cRuntimeModifier.FirstTimeStep;
+                return RuntimeModifier.FirstTimeStep;
 
             if (DateTime.TryParse(date, out DateTime dt))
                 return DateToTimeStep(dt);
 
-            return cRuntimeModifier.NoTimeStep;
+            return RuntimeModifier.NoTimeStep;
         }
 
         // --------------------------------------------------------------------

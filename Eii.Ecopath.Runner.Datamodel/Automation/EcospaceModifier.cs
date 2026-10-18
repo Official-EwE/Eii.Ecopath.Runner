@@ -1,20 +1,20 @@
-using Eii.Ecopath.Runner.Datamodel.RunInstructions;
+﻿using Eii.Ecopath.Runner.Datamodel.RunInstructions;
 
 namespace Eii.Ecopath.Runner.Datamodel.Automation
 {
     /// <summary>
     /// Data container for an Ecospace run.
     /// </summary>
-    public class cEcospaceModifier : cRuntimeModifier
+    public class EcospaceModifier : RuntimeModifier
     {
         #region Construction / destruction
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="cEcospaceModifier"/> class.
+        /// Initializes a new instance of the <see cref="EcospaceModifier"/> class.
         /// </summary>
         /// <param name="config">The EwE-wide configuration as defined by the user.</param>
         /// <param name="runmodel">The Ecospace-specific configuration and changes as defined by the user.</param>
-        public cEcospaceModifier(cEwEConfiguration config, cEcospaceRunInstructions runmodel)
+        public EcospaceModifier(EwEConfiguration config, EcospaceRunInstructions runmodel)
             : base("ecospace", config, runmodel)
         {
         }
@@ -24,7 +24,7 @@ namespace Eii.Ecopath.Runner.Datamodel.Automation
         /// <summary>
         /// Gets the strongly-typed run instructions for Ecospace.
         /// </summary>
-        public cEcospaceRunInstructions MyRunModel => (cEcospaceRunInstructions)RunModel;
+        public EcospaceRunInstructions MyRunModel => (EcospaceRunInstructions)RunModel;
 
         #region Internals 
 

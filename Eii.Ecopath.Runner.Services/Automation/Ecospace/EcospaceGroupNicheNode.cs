@@ -5,19 +5,19 @@ using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cEcospaceGroupNicheNode : cEwECoreNode
+    public class EcospaceGroupNicheNode : EwECoreNode
     {
-        public cEcospaceGroupNicheNode(ICoreService coreService, cEcospaceGroupInput group, ILogger logger) : base(coreService, group, logger)
+        public EcospaceGroupNicheNode(ICoreService coreService, cEcospaceGroupInput group, ILogger logger) : base(coreService, group, logger)
         {
         }
 
         protected cEcospaceGroupInput Group => (cEcospaceGroupInput)this.CoreObj;
 
         [Description("Get the base capacity map (niche map) of this group")]
-        public cMapNode map()
+        public MapNode map()
         {
             var bm = Core.EcospaceBasemap;
-            return new cMapNode(CoreService, bm.get_LayerHabitatCapacityInput(CoreObj.Index), Logger);
+            return new MapNode(CoreService, bm.get_LayerHabitatCapacityInput(CoreObj.Index), Logger);
         }
 
         [Description("Set whether to include habitats when calculation foraging capacity for this group")]

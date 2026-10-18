@@ -5,9 +5,9 @@ using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cEcospaceEnvDriverNode : cEwECoreNode
+    public class EcospaceEnvDriverNode : EwECoreNode
     {
-        public cEcospaceEnvDriverNode(ICoreService coreService, cEcospaceLayer driver, ILogger logger) : base(coreService, driver, logger)
+        public EcospaceEnvDriverNode(ICoreService coreService, cEcospaceLayer driver, ILogger logger) : base(coreService, driver, logger)
         {
         }
 
@@ -15,9 +15,9 @@ namespace Eii.Ecopath.Runner.Services.Automation
 
         // Accessor
         [Description("Access the environmental driver map layer")]
-        public cMapNode map()
+        public MapNode map()
         {
-            return new cMapNode(CoreService, Driver, Logger);
+            return new MapNode(CoreService, Driver, Logger);
         }
 
         [Description("Set whether to include this env driver in the habitat foraging calculations")]

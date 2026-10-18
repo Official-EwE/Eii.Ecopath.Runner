@@ -4,9 +4,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Eii.Ecopath.Runner.Services.Automation.Ecosim.Functions
 {
-    public class cMediationFunctionNode : cFunctionNode
+    public class MediationFunctionNode : FunctionNode
     {
-        public cMediationFunctionNode(ICoreService coreService, cMediationFunction shapeData, ILogger logger) : base(coreService, shapeData, logger)
+        public MediationFunctionNode(ICoreService coreService, cMediationFunction shapeData, ILogger logger) : base(coreService, shapeData, logger)
         {
         }
 

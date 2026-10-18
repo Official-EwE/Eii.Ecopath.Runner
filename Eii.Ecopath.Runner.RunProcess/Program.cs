@@ -37,12 +37,12 @@ namespace EwERunProcess
                 .ConfigureServices((context, services) =>
                 {
                     services.AddTransient<EwERunProcessService>();
-                    services.AddSingleton<ICoreService, cCoreService>();
-                    services.AddTransient<cNodeService>();
-                    services.AddTransient<cEcopathModifierService>();
-                    services.AddTransient<cEcosimModifierService>();
-                    services.AddTransient<cEcospaceModifierService>();
-                    services.AddTransient<cEwEEngine>();
+                    services.AddSingleton<ICoreService, CoreService>();
+                    services.AddTransient<NodeService>();
+                    services.AddTransient<EcopathModifierService>();
+                    services.AddTransient<EcosimModifierService>();
+                    services.AddTransient<EcospaceModifierService>();
+                    services.AddTransient<EwEEngine>();
                     services.AddSingleton<IBlobStore>(sp =>
                     {
                         var blobLogger = sp.GetRequiredService<ILogger<Program>>();

@@ -5,10 +5,10 @@ using System.ComponentModel;
 
 namespace Eii.Ecopath.Runner.Services.Automation
 {
-    public class cEcospaceFleetNode : cEwECoreNode
+    public class EcospaceFleetNode : EwECoreNode
     {
 
-        public cEcospaceFleetNode(ICoreService coreService, cEcospaceFleetInput fleet, ILogger logger) : base(coreService, fleet, logger)
+        public EcospaceFleetNode(ICoreService coreService, cEcospaceFleetInput fleet, ILogger logger) : base(coreService, fleet, logger)
         { 
         }
         
