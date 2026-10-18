@@ -1,4 +1,4 @@
-using Eii.Ecopath.Runner.Services.Runtime;
+﻿using Eii.Ecopath.Runner.Services.Runtime;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,12 +9,12 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddHealthChecks();
 
-builder.Services.AddSingleton<ICoreService, cCoreService>();
-builder.Services.AddTransient<cNodeService>();
-builder.Services.AddTransient<cEcopathModifierService>();
-builder.Services.AddTransient<cEcosimModifierService>();
-builder.Services.AddTransient<cEcospaceModifierService>();
-builder.Services.AddTransient<cEwEEngine>();
+builder.Services.AddSingleton<ICoreService, CoreService>();
+builder.Services.AddTransient<NodeService>();
+builder.Services.AddTransient<EcopathModifierService>();
+builder.Services.AddTransient<EcosimModifierService>();
+builder.Services.AddTransient<EcospaceModifierService>();
+builder.Services.AddTransient<EwEEngine>();
 
 var app = builder.Build();
 

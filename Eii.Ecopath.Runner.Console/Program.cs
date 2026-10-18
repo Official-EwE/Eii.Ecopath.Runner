@@ -48,12 +48,12 @@ class Program
         // Build a DI service provider so all services receive ILogger<T> via injection
         var services = new ServiceCollection();
         services.AddLogging(b => b.AddSerilog(dispose: true));
-        services.AddSingleton<ICoreService, cCoreService>();
-        services.AddTransient<cNodeService>();
-        services.AddTransient<cEcopathModifierService>();
-        services.AddTransient<cEcosimModifierService>();
-        services.AddTransient<cEcospaceModifierService>();
-        services.AddTransient<cEwEEngine>();
+        services.AddSingleton<ICoreService, CoreService>();
+        services.AddTransient<NodeService>();
+        services.AddTransient<EcopathModifierService>();
+        services.AddTransient<EcosimModifierService>();
+        services.AddTransient<EcospaceModifierService>();
+        services.AddTransient<EwEEngine>();
         var sp = services.BuildServiceProvider();
 
         // Initialize LoggerFactory (to be used by EwE Core and other components that don't get ILogger via DI)
@@ -89,7 +89,7 @@ class Program
     static bool ParseInstructions(string? runinfofile, string? outputfolder, bool showcommands, bool generateDocs, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
     {
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-        cEwERunInstructions? info;
+        EwERunInstructions? info;
 
         // Need to do some restructuring. Might not need to RUN models, only load them to write out the command (tree).
 
@@ -98,7 +98,7 @@ class Program
             string docsFolder = "~Documentation";
             string docsPath = Path.Combine(docsFolder, "automation-commands.md");
             Directory.CreateDirectory(docsFolder);
-            File.WriteAllText(docsPath, Eii.Ecopath.Runner.Services.Automation.cAutomationDocumentation.GenerateMarkdown());
+            File.WriteAllText(docsPath, Eii.Ecopath.Runner.Services.Automation.AutomationDocumentation.GenerateMarkdown());
             logger.LogInformation("Automation command reference written to '{Path}'", docsPath);
             Console.WriteLine("Automation command reference written to '{0}'", docsPath);
             return true;
@@ -120,7 +120,7 @@ class Program
         }
 
         // Start logging asap
-        using (var cc = new cConsoleCopy(Path.Combine(outputfolder, "EwERunConsole_log.txt")))
+        using (var cc = new ConsoleCopy(Path.Combine(outputfolder, "EwERunConsole_log.txt")))
         {
             Console.WriteLine("==========================================================================");
             Console.WriteLine("EwERunConsole version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
@@ -141,7 +141,7 @@ class Program
                 // Read run info Json
                 JsonSerializerOptions options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
                 string lines = File.ReadAllText(runinfofile);
-                info = JsonSerializer.Deserialize<cEwERunInstructions>(lines, options);
+                info = JsonSerializer.Deserialize<EwERunInstructions>(lines, options);
             }
             catch (JsonException ex)
             {
@@ -167,7 +167,7 @@ class Program
             info.OutputFolder = Path.GetFullPath(outputfolder);
 
             // Run the EwE engine
-            cEwEEngine engine = sp.GetRequiredService<cEwEEngine>();
+            EwEEngine engine = sp.GetRequiredService<EwEEngine>();
             if (engine.Run(info) == false)
             {
                 Console.WriteLine("! Run errors encountered");

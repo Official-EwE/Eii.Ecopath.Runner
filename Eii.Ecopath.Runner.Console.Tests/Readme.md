@@ -1,7 +1,7 @@
-# Eii.Ecopath.Runner.Console.Tests
+﻿# Eii.Ecopath.Runner.Console.Tests
 
 Integration tests for `EwERunConsole`. Each test launches `EwERunConsole.exe` as a
-**separate child process** via `cConsoleRunner` and inspects its exit code, stdout,
+**separate child process** via `ConsoleRunner` and inspects its exit code, stdout,
 and stderr.
 
 ## Debugging EwERunConsole.exe from a test
@@ -15,7 +15,7 @@ To debug into `EwERunConsole.exe`, use the built-in `EWE_DEBUG_BREAK` debug hook
 
 1. `Program.Main` in `Eii.Ecopath.Runner.Console\Program.cs` calls
    `Debugger.Launch()` when the `EWE_DEBUG_BREAK` environment variable is set to
-   `1`. `cConsoleRunner` forwards this variable from the test process's
+   `1`. `ConsoleRunner` forwards this variable from the test process's
    environment into the `EwERunConsole.exe` child process if present.
 2. Enable the variable for the test run via the `.runsettings` file at the
    solution root:

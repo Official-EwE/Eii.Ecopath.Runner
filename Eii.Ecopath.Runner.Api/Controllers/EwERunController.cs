@@ -14,7 +14,7 @@ namespace EwERunApi.Controllers
     [Route("eweRun")]
     public class EwERunController : ControllerBase
     {
-        private readonly cEwEEngine _engine;
+        private readonly EwEEngine _engine;
 
         // --------------------------------------------------------------------
         /// <summary>
@@ -22,14 +22,14 @@ namespace EwERunApi.Controllers
         /// </summary>
         /// <param name="engine">The EwE engine service for executing runs.</param>
         // --------------------------------------------------------------------
-        public EwERunController(cEwEEngine engine)
+        public EwERunController(EwEEngine engine)
         {
             _engine = engine;
         }
 
         // --------------------------------------------------------------------
         /// <summary>
-        /// Execute an EwE run from a posted <see cref="cEwERunInstructions"/>
+        /// Execute an EwE run from a posted <see cref="EwERunInstructions"/>
         /// configuration object.
         /// </summary>
         /// <param name="instructions">The full run configuration.</param>
@@ -38,7 +38,7 @@ namespace EwERunApi.Controllers
         /// <returns>200 OK on success, 500 Problem on failure.</returns>
         // --------------------------------------------------------------------
         [HttpPost(Name = "PostEwERun")]
-        public IActionResult Post([FromBody] cEwERunInstructions instructions, [FromQuery] string? inputFolder = null, [FromQuery] string? outputFolder = null)
+        public IActionResult Post([FromBody] EwERunInstructions instructions, [FromQuery] string? inputFolder = null, [FromQuery] string? outputFolder = null)
         {
             ArgumentException.ThrowIfNullOrEmpty(inputFolder, nameof(inputFolder));
             ArgumentException.ThrowIfNullOrEmpty(outputFolder, nameof(outputFolder));
@@ -52,7 +52,7 @@ namespace EwERunApi.Controllers
 
             Directory.CreateDirectory(instructions.OutputFolder);
 
-            using (var cc = new cConsoleCopy(Path.Combine(instructions.OutputFolder, "EwERunConsole_log.txt")))
+            using (var cc = new ConsoleCopy(Path.Combine(instructions.OutputFolder, "EwERunConsole_log.txt")))
             {
                 if (_engine.Run(instructions))
                     return Ok("Run completed");

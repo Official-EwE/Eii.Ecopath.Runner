@@ -12,6 +12,6 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
     public interface IModelRunInstructions
     {
         List<string> SaveContentCSV { get; set; }
-        List<cModificationsAtT> Changes { get; set; }
+        List<ModificationsAtT> Changes { get; set; }
     }
 }

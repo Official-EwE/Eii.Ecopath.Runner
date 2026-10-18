@@ -1,4 +1,4 @@
-# Eii.Ecopath.Runner — Architecture
+﻿# Eii.Ecopath.Runner — Architecture
 
 ## Overview
 Eii.Ecopath.Runner is a headless, JSON-driven automation runner for the
@@ -35,14 +35,14 @@ attribution. It contains:
 | `related_identifiers` | The GitHub source repository (`isSourceOf`) |
 
 ## Responsibilities
-- Deserialise and strictly validate a run-info JSON into `cEwERunInstructions`; unknown JSON
+- Deserialise and strictly validate a run-info JSON into `EwERunInstructions`; unknown JSON
   properties are reported as errors (`JsonStrictConverter`).
 - Instantiate the EwE core (`cCore`), load plug-ins (bridge plug-in, spatial assets engine
   plug-in), load the model file and the optional spatial-temporal (STDF) data configuration.
 - Run Ecopath, then optionally the selected Ecosim scenario / time series and the selected
   Ecospace scenario, honouring configured run years, spin-up years and save options.
 - Apply scheduled parameter modifications at runtime through the automation node tree
-  (`cEwERootNode` and its children), addressed by dotted command paths such as
+  (`EwERootNode` and its children), addressed by dotted command paths such as
   `ecospace.mpa[1].map.load`.
 - Write result files and a full console log to the output folder.
 - Generate a Markdown reference of all automation commands (`--docs`).
@@ -56,17 +56,17 @@ attribution. It contains:
 | `EwERunApi.dll` | `Eii.Ecopath.Runner.Api` | ASP.NET Core Web API exposing `POST /eweRun` and `GET /healthz`. Packaged as Docker image `ghcr.io/official-ewe/eiiecopathrunnerapi:latest`. |
 | `EwERunProcess.dll` | `Eii.Ecopath.Runner.RunProcess` | Generic-host console app launched as a Kubernetes Job; configured via environment variables and a mounted `runinfo.json`. Packaged as Docker image `ghcr.io/official-ewe/eiiecopathrunnerrunprocess:latest`. |
 | `Eii.Ecopath.Runner.Services.dll` | `Eii.Ecopath.Runner.Services` | Class library: engine, modifier services, automation node tree, documentation generator. |
-| `Eii.Ecopath.Runner.Datamodel.dll` | `Eii.Ecopath.Runner.Datamodel` | Class library: JSON data contracts and utilities (`cConsoleCopy`, `JsonStrictConverter`). |
+| `Eii.Ecopath.Runner.Datamodel.dll` | `Eii.Ecopath.Runner.Datamodel` | Class library: JSON data contracts and utilities (`ConsoleCopy`, `JsonStrictConverter`). |
 
 ## Service architecture
 The solution is layered: thin host projects (Console, Api, RunProcess) handle I/O and process
 lifetime, while all modelling logic lives in the shared `Eii.Ecopath.Runner.Services` library and
 all data contracts in `Eii.Ecopath.Runner.Datamodel`. Each host builds a
-`Microsoft.Extensions.DependencyInjection` container that registers `ICoreService`/`cCoreService`
-(a singleton wrapper around the EwE `cCore`), the per-model modifier services and `cEwEEngine`,
-and then calls `cEwEEngine.Run(instructions)`. `cEwEEngine` orchestrates the fixed pipeline
+`Microsoft.Extensions.DependencyInjection` container that registers `ICoreService`/`CoreService`
+(a singleton wrapper around the EwE `cCore`), the per-model modifier services and `EwEEngine`,
+and then calls `EwEEngine.Run(instructions)`. `EwEEngine` orchestrates the fixed pipeline
 *configure environment → load model → Ecopath → Ecosim → Ecospace* and stops at the first
-failure. Per-model `cRuntimeModifier` subclasses translate the `Changes` schedule (dates →
+failure. Per-model `RuntimeModifier` subclasses translate the `Changes` schedule (dates →
 time steps) into automation commands executed against the node tree, which sets values on EwE
 core objects through a plug-in callback bridge. The RunProcess host wraps the engine in an
 `IBlobStore` abstraction (`S3BlobStore` or `LocalBlobStore`) so the same run can execute inside a
@@ -83,17 +83,17 @@ flowchart TD
     end
 
     subgraph Services["Eii.Ecopath.Runner.Services"]
-        ENG["cEwEEngine"]
-        CS["cCoreService : ICoreService"]
-        MODS["cEcopathModifierService<br/>cEcosimModifierService<br/>cEcospaceModifierService"]
-        RM["cEcopathModifier / cEcosimModifier / cEcospaceModifier<br/>(cRuntimeModifier)"]
-        NODES["Automation node tree<br/>cEwERootNode → … (cNodeService)"]
-        DOCS["cAutomationDocumentation"]
+        ENG["EwEEngine"]
+        CS["CoreService : ICoreService"]
+        MODS["EcopathModifierService<br/>EcosimModifierService<br/>EcospaceModifierService"]
+        RM["EcopathModifier / EcosimModifier / EcospaceModifier<br/>(RuntimeModifier)"]
+        NODES["Automation node tree<br/>EwERootNode → … (NodeService)"]
+        DOCS["AutomationDocumentation"]
     end
 
     subgraph Datamodel["Eii.Ecopath.Runner.Datamodel"]
-        DM["cEwERunInstructions<br/>cEwEConfiguration<br/>cEco*RunInstructions<br/>cModificationsAtT"]
-        UTIL["cConsoleCopy<br/>JsonStrictConverter"]
+        DM["EwERunInstructions<br/>EwEConfiguration<br/>cEco*RunInstructions<br/>ModificationsAtT"]
+        UTIL["ConsoleCopy<br/>JsonStrictConverter"]
     end
 
     subgraph External["External"]
@@ -135,13 +135,13 @@ flowchart TD
 flowchart LR
     USER["User / script"] -->|"--info runinfo.json --output folder<br/>--docs · --showcommands"| ARGS["CommandLineParser<br/>CommandLineParmOptions"]
     ARGS --> PRG["Program.Main<br/>Serilog + DI container"]
-    PRG -->|"--docs"| DOCS["cAutomationDocumentation<br/>→ ~Documentation/automation-commands.md"]
+    PRG -->|"--docs"| DOCS["AutomationDocumentation<br/>→ ~Documentation/automation-commands.md"]
     PRG --> PARSE["ParseInstructions<br/>System.Text.Json (strict)"]
-    PARSE --> INSTR["cEwERunInstructions"]
-    INSTR --> ENG["cEwEEngine.Run()"]
-    ENG --> CORE["cCoreService → cCore<br/>Ecopath → Ecosim → Ecospace"]
+    PARSE --> INSTR["EwERunInstructions"]
+    INSTR --> ENG["EwEEngine.Run()"]
+    ENG --> CORE["CoreService → cCore<br/>Ecopath → Ecosim → Ecospace"]
     CORE --> OUT["output/&lt;runinfo name&gt;/<br/>CSV · ASC · EwERunConsole_log.txt"]
-    PRG --> TEE["cConsoleCopy<br/>(tees stdout to log)"]
+    PRG --> TEE["ConsoleCopy<br/>(tees stdout to log)"]
     PRG --> SLOG["Serilog rolling file<br/>%LOCALAPPDATA%\\EwERunConsole\\Logs"]
     ENG -->|"true / false"| EXIT["Exit code 0 / 1"]
 ```
@@ -150,14 +150,14 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    CLIENT["HTTP client<br/>(Postman, Process API)"] -->|"POST /eweRun?inputFolder=&outputFolder=<br/>body: cEwERunInstructions"| KESTREL["ASP.NET Core<br/>Kestrel · port 53150 (Docker)"]
+    CLIENT["HTTP client<br/>(Postman, Process API)"] -->|"POST /eweRun?inputFolder=&outputFolder=<br/>body: EwERunInstructions"| KESTREL["ASP.NET Core<br/>Kestrel · port 53150 (Docker)"]
     CLIENT -->|"GET /healthz"| HC["Health checks"]
     KESTREL --> CTRL["EwERunController.Post"]
-    CTRL -->|"resolve RunConfigFile / OutputFolder<br/>relative to AppContext.BaseDirectory"| INSTR["cEwERunInstructions"]
-    INSTR --> ENG["cEwEEngine.Run()<br/>(DI, singleton cCoreService)"]
+    CTRL -->|"resolve RunConfigFile / OutputFolder<br/>relative to AppContext.BaseDirectory"| INSTR["EwERunInstructions"]
+    INSTR --> ENG["EwEEngine.Run()<br/>(DI, singleton CoreService)"]
     ENG --> CORE["cCore<br/>Ecopath → Ecosim → Ecospace"]
     CORE --> OUT["&lt;outputFolder&gt;/<br/>CSV · ASC · EwERunConsole_log.txt"]
-    CTRL --> TEE["cConsoleCopy"]
+    CTRL --> TEE["ConsoleCopy"]
     ENG -->|"true"| OK["200 OK 'Run completed'"]
     ENG -->|"false"| ERR["500 Problem 'Run errors encountered'"]
     DOCKER["Docker image<br/>ghcr.io/official-ewe/eiiecopathrunnerapi"] -.hosts.-> KESTREL
@@ -177,7 +177,7 @@ flowchart TD
     SVC -->|"1. copy runinfo.json to INPUT & OUTPUT dirs"| FS["Local INPUT_DIRECTORY /<br/>OUTPUT_DIRECTORY"]
     SVC -->|"2. CopyToLocalDirectoryOrIgnoreAsync"| S3BS
     S3IN["s3://bucket/ewerunprocess/INPUT_DIRECTORY/"] --> S3BS
-    SVC -->|"3. Run(instructions)"| ENG["cEwEEngine<br/>Ecopath → Ecosim → Ecospace"]
+    SVC -->|"3. Run(instructions)"| ENG["EwEEngine<br/>Ecopath → Ecosim → Ecospace"]
     ENG --> FS
     SVC -->|"4. UploadDirectoryOrIgnoreAsync"| S3BS
     S3BS --> S3OUT["s3://bucket/ewerunprocess/OUTPUT_DIRECTORY/<br/>results + EwERunProcess_log.txt"]
@@ -192,13 +192,13 @@ sequenceDiagram
     participant U as Caller (CLI / HTTP client / K8s Job)
     participant H as Host (Program.cs / EwERunController / EwERunProcessService)
     participant B as IBlobStore (RunProcess only)
-    participant E as cEwEEngine
-    participant C as cCoreService / cCore
+    participant E as EwEEngine
+    participant C as CoreService / cCore
     participant M as Modifier services
     participant N as Automation node tree
 
     U->>H: runinfo.json (+ input / output folder)
-    H->>H: Deserialize cEwERunInstructions (strict JSON)
+    H->>H: Deserialize EwERunInstructions (strict JSON)
     opt RunProcess
         H->>B: CopyToLocalDirectoryOrIgnoreAsync(input)
         B-->>H: local model files
@@ -206,18 +206,18 @@ sequenceDiagram
     H->>E: Run(instructions)
     E->>C: Set OutputPath, working dir, LoadPlugins(".")
     E->>C: LoadModel(ModelFile) [+ STDF dataset config]
-    E->>M: cEcopathModifierService.Run(cEcopathModifier)
+    E->>M: EcopathModifierService.Run(EcopathModifier)
     M->>N: apply Changes
     N->>C: set parameters, run Ecopath
     alt EcosimScenario > 0 or EcospaceScenario > 0
         E->>C: LoadEcosimScenario(n) [+ LoadTimeSeries]
-        E->>M: cEcosimModifierService.Run(cEcosimModifier)
+        E->>M: EcosimModifierService.Run(EcosimModifier)
         M->>N: apply Changes at time step t
         N->>C: run Ecosim
     end
     alt EcospaceScenario > 0
         E->>C: LoadEcospaceScenario(n)
-        E->>M: cEcospaceModifierService.Run(cEcospaceModifier)
+        E->>M: EcospaceModifierService.Run(EcospaceModifier)
         M->>N: apply Changes at time step t (via bridge plug-in callbacks)
         N->>C: run Ecospace, save ASC/CSV
     end
@@ -229,7 +229,7 @@ sequenceDiagram
 ```
 
 ### Key design decisions / trade-offs
-- **One engine, three hosts.** All orchestration lives in `cEwEEngine`; hosts only differ in
+- **One engine, three hosts.** All orchestration lives in `EwEEngine`; hosts only differ in
   how they obtain the instructions and where files live. Trade-off: the engine still assumes
   file-system paths (`RunConfigFile`, `OutputFolder`), so the API and RunProcess hosts have to
   synthesise a `RunConfigFile` path from the model file to make relative paths resolve.
@@ -240,12 +240,12 @@ sequenceDiagram
   files early at the cost of forward-compatibility of old binaries with newer JSON.
 - **Dotted automation commands + reflection.** Runtime modifications are string paths resolved
   against the node tree, allowing new parameters to be exposed without changing the JSON schema;
-  `cAutomationDocumentation` reflects over the same tree so documentation never drifts.
-- **Singleton `cCoreService`.** The EwE core is not thread-safe, so a single `cCore` is shared
+  `AutomationDocumentation` reflects over the same tree so documentation never drifts.
+- **Singleton `CoreService`.** The EwE core is not thread-safe, so a single `cCore` is shared
   per process; the API is therefore effectively single-run-at-a-time.
 - **Blob store abstraction in RunProcess.** `IBlobStore` falls back to `LocalBlobStore` when no
   `AWS_ACCESS_KEY_ID` is present, allowing identical local and in-cluster execution.
-- **`cConsoleCopy` for run logs.** Console output is teed to `EwERunConsole_log.txt` in the
+- **`ConsoleCopy` for run logs.** Console output is teed to `EwERunConsole_log.txt` in the
   Console and API hosts; it is deliberately not used in RunProcess because it is unreliable in
   Kubernetes.
 
@@ -261,7 +261,7 @@ sequenceDiagram
   model file in the blob store throw `InvalidOperationException` / `FileNotFoundException`,
   terminating the process so the Kubernetes Job is marked failed. Engine failures are logged;
   output files are uploaded regardless so the log is available in S3.
-- **Engine:** `cEwEEngine` never throws for expected failures; each step logs a warning and
+- **Engine:** `EwEEngine` never throws for expected failures; each step logs a warning and
   returns `false`. The only `try/catch` guards setting the working directory.
 
 ## Logging
@@ -270,10 +270,10 @@ sequenceDiagram
   are not DI-constructed can obtain loggers as well.
 - **Console:** Serilog with a rolling daily file sink under
   `%LOCALAPPDATA%\EwERunConsole\Logs\log-<date>.txt` at `Verbose` level. In addition the
-  console output of a run is teed by `cConsoleCopy` into `<output>\EwERunConsole_log.txt`.
+  console output of a run is teed by `ConsoleCopy` into `<output>\EwERunConsole_log.txt`.
 - **API:** Default ASP.NET Core logging configured by `appsettings.json`
   (`Default: Information`, `Microsoft.AspNetCore: Warning`). Run console output is teed into
-  `<output>\EwERunConsole_log.txt` via `cConsoleCopy`.
+  `<output>\EwERunConsole_log.txt` via `ConsoleCopy`.
 - **RunProcess:** Console logger (`systemd` formatter, simple single-line with timestamps) and
   Debug logger; levels can be overridden by a `Logging` section in `appsettings.json`. All
   environment variables are logged at start-up for diagnostics.
@@ -285,12 +285,12 @@ dictionary is **generated from the code**, never written by hand:
 1. Run `EwERunConsole --docs` (locally: the **Documentation** launch profile in Visual Studio; in
    CI: `dotnet run --project Eii.Ecopath.Runner.Console/EwERunConsole.csproj -- --docs`).
    No model file, run-info file or EwE core instance is needed.
-2. `Program.ParseInstructions` calls `cAutomationDocumentation.GenerateMarkdown()`
-   (`Eii.Ecopath.Runner.Services/Automation/Foundation/cAutomationDocumentation.cs`) and writes
+2. `Program.ParseInstructions` calls `AutomationDocumentation.GenerateMarkdown()`
+   (`Eii.Ecopath.Runner.Services/Automation/Foundation/AutomationDocumentation.cs`) and writes
    the result to `~Documentation/automation-commands.md`.
 3. `GenerateMarkdown()` uses reflection to walk the automation node tree starting at
-   `cEwERootNode`. For every public instance method (including inherited ones up to `cNode`):
-   - a method returning a `cNode` subtype becomes a Markdown heading and is recursed into;
+   `EwERootNode`. For every public instance method (including inherited ones up to `Node`):
+   - a method returning a `Node` subtype becomes a Markdown heading and is recursed into;
    - a single `int` parameter is rendered as `[#]`, a single `string` parameter as `[$]`
      (e.g. `ecosim.effort[$].fill`);
    - any other method becomes a bullet listing its parameters;
@@ -308,8 +308,8 @@ actually accepts.
 ```mermaid
 flowchart LR
     VS["Visual Studio profile 'Documentation'<br/>or CI step"] -->|"--docs"| PRG["Program.ParseInstructions"]
-    PRG --> GEN["cAutomationDocumentation.GenerateMarkdown()"]
-    GEN -->|reflection| ROOT["cEwERootNode → child nodes<br/>[Description] attributes"]
+    PRG --> GEN["AutomationDocumentation.GenerateMarkdown()"]
+    GEN -->|reflection| ROOT["EwERootNode → child nodes<br/>[Description] attributes"]
     GEN --> MD["~Documentation/automation-commands.md"]
     MD -->|"pandoc/latex (CI)"| PDF["~Documentation/automation-commands.pdf"]
     MD --> ZIP["Release ZIP"]
@@ -337,7 +337,7 @@ file is referenced from it, relative to the JSON's folder.
 | `Andy/R0001_0000.json` + `anchovy_bay_ecosim_ex.eiixml` | Ecosim-only run with explicit per-fleet monthly effort series (`ecosim.effort[#].set`) | `Andy` profile |
 | `example_runinfo.json` | Annotated template for new run-info files | documentation |
 | `Api/Testdata/AnchovyBay/*` (`.eiixml`, `AnchovyBay_extdata.xml`, `MPA_test.asc`) | Input set for the `POST /eweRun` sample request | `EwERunApi.http` |
-| `Console.Tests/Testdata/AnchovyBay/AnchovyBay_InvalidJson.json` | Malformed JSON to assert the failure path (exit code 1) | `cEwERunConsoleFailureTests` |
+| `Console.Tests/Testdata/AnchovyBay/AnchovyBay_InvalidJson.json` | Malformed JSON to assert the failure path (exit code 1) | `EwERunConsoleFailureTests` |
 
 ```mermaid
 flowchart LR
@@ -353,7 +353,7 @@ flowchart LR
 
 | File | Purpose |
 |---|---|
-| `<name>_runinfo.json` | The run-info document mapped onto `cEwERunInstructions`. Top-level keys `Configuration`, `EcopathRun`, `EcosimRun`, `EcospaceRun`, `EcotracerRun`. Paths are relative to the JSON file; scenario indices are 1-based, `-1` skips a model. |
+| `<name>_runinfo.json` | The run-info document mapped onto `EwERunInstructions`. Top-level keys `Configuration`, `EcopathRun`, `EcosimRun`, `EcospaceRun`, `EcotracerRun`. Paths are relative to the JSON file; scenario indices are 1-based, `-1` skips a model. |
 | `*_extdata.xml` (optional) | STDF spatial-temporal dataset configuration referenced by `Configuration.ExtDataConfigFile`. |
 | `NuGet.config` | Package source mapping: `Eii.*` packages come only from the private `github-Official-EwE` feed, everything else from nuget.org. |
 | `Eii.Ecopath.Runner.Api/appsettings*.json` | ASP.NET Core logging and host settings. |
@@ -424,7 +424,7 @@ Eii.Ecopath.Runner/
 ├── EwERunner.sln
 ├── .runsettings
 ├── Eii.Ecopath.Runner.Console/          # EwERunConsole.csproj
-│   ├── Program.cs                       # Serilog + DI + CLI parsing → cEwEEngine
+│   ├── Program.cs                       # Serilog + DI + CLI parsing → EwEEngine
 │   ├── CommandLineParmOptions.cs
 │   ├── Properties/launchSettings.json   # Per-model and --docs launch profiles
 │   └── Testdata/                        # AnchovyBay/, VLIZ/, Andy/, example_runinfo.json
@@ -440,13 +440,13 @@ Eii.Ecopath.Runner/
 │   ├── Dockerfile
 │   └── tools/build-push-docker.ps1
 ├── Eii.Ecopath.Runner.Services/
-│   ├── Services/cEwEEngine.cs           # Pipeline orchestration
+│   ├── Services/EwEEngine.cs           # Pipeline orchestration
 │   ├── Services/…ModifierService.cs     # Per-model run services
-│   ├── Runtime/                         # cRuntimeModifier and subclasses
-│   └── Automation/                      # cEwERootNode tree, Foundation/cAutomationDocumentation
+│   ├── Runtime/                         # RuntimeModifier and subclasses
+│   └── Automation/                      # EwERootNode tree, Foundation/AutomationDocumentation
 ├── Eii.Ecopath.Runner.Datamodel/
-│   ├── RunInstructions/                 # cEwERunInstructions and per-model instruction classes
-│   └── Utilities/                       # cConsoleCopy, JsonStrictConverter
+│   ├── RunInstructions/                 # EwERunInstructions and per-model instruction classes
+│   └── Utilities/                       # ConsoleCopy, JsonStrictConverter
 ├── Eii.Ecopath.Runner.Console.Tests/    # Integration tests (child process)
 └── Eii.Ecopath.Runner.Services.Tests/   # Unit tests
 ```
@@ -461,14 +461,14 @@ feed `github-Official-EwE` (requires a PAT with `read:packages` locally and in D
 ## Testing
 
 ### Automated tests
-- **`Eii.Ecopath.Runner.Console.Tests`** — xUnit integration tests. `cConsoleRunner` launches
+- **`Eii.Ecopath.Runner.Console.Tests`** — xUnit integration tests. `ConsoleRunner` launches
   the built `EwERunConsole.exe` as a separate child process against the AnchovyBay test data and
-  asserts on exit code, stdout and stderr (`cEwERunConsoleSuccessTests`,
-  `cEwERunConsoleFailureTests`). Set `EWE_DEBUG_BREAK=1` (e.g. via `.runsettings`) to have the
+  asserts on exit code, stdout and stderr (`EwERunConsoleSuccessTests`,
+  `EwERunConsoleFailureTests`). Set `EWE_DEBUG_BREAK=1` (e.g. via `.runsettings`) to have the
   child process call `Debugger.Launch()`.
 - **`Eii.Ecopath.Runner.Services.Tests`** — xUnit unit tests for the Services project only,
   using FluentAssertions and Moq. `ICoreService` and `ILogger` are mocked; EwECore types that
-  cannot be proxied (e.g. `cShapeData`) and abstract nodes (e.g. `cFunctionNode`) are exercised
+  cannot be proxied (e.g. `cShapeData`) and abstract nodes (e.g. `FunctionNode`) are exercised
   through minimal test-double subclasses. Tests follow the Arrange / Act / Assert layout.
 - Tests are not executed by the release workflow; run them from Visual Studio Test Explorer or
   `dotnet test EwERunner.sln`.

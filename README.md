@@ -30,8 +30,8 @@ EwERunConsole --runinfo path/to/runinfo.json --output path/to/output
 ```mermaid
 flowchart TD
     A["CLI args\n(--runinfo, --output)"] --> B["Program.cs\nParses args"]
-    B --> C["JSON file\nDeserialized into cEwERunInstructions"]
-    C --> D["cEwEEngine\nOrchestrates the run"]
+    B --> C["JSON file\nDeserialized into EwERunInstructions"]
+    C --> D["EwEEngine\nOrchestrates the run"]
     D --> E["Load EwE model\n(Ecopath)"]
     E --> F["Run Ecopath"]
     F --> G{"Ecosim\nscenario?"}
@@ -48,7 +48,7 @@ flowchart TD
 # Eii.Ecopath.Runner.Api
 
 ASP.NET Core Web API wrapper. Accepts the same JSON run-info as a `POST /eweRun` body and
-delegates to `cEwEEngine`.
+delegates to `EwEEngine`.
 
 ## Build and push Docker image
 
@@ -86,7 +86,7 @@ flowchart TD
         direction TB
         RunInfo["1 - Read runinfo.json from RUN_INFO_PATH\ncopy to INPUT_DIRECTORY\ncopy to OUTPUT_DIRECTORY"]
         S3Down["2 - S3BlobStore.CopyToLocalDirectoryOrIgnoreAsync\nDownload s3://bucket/ewerunprocess/INPUT_DIRECTORY/                           \nto local INPUT_DIRECTORY/"]
-        Engine["3 - cEwEEngine\nEcopath - Ecosim - Ecospace\nReads from INPUT_DIRECTORY\nWrites results to OUTPUT_DIRECTORY"]
+        Engine["3 - EwEEngine\nEcopath - Ecosim - Ecospace\nReads from INPUT_DIRECTORY\nWrites results to OUTPUT_DIRECTORY"]
         S3Up["4 - S3BlobStore.UploadDirectoryOrIgnoreAsync\nUpload local OUTPUT_DIRECTORY/\nto s3://bucket/ewerunprocess/OUTPUT_DIRECTORY/"]
         RunInfo --> S3Down --> Engine --> S3Up
     end
@@ -148,7 +148,7 @@ This includes the EwE model file (e.g. `AnchovyBay.eiixml`) and all supporting f
 
 **5. Engine run**
 
-`cEwEEngine` sets the working directory to `INPUT_DIRECTORY` and runs
+`EwEEngine` sets the working directory to `INPUT_DIRECTORY` and runs
 Ecopath, Ecosim, and Ecospace in sequence. All result files are written to `OUTPUT_DIRECTORY`.
 
 **6. Local to S3 (upload)**
