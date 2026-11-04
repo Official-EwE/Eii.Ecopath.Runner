@@ -55,7 +55,7 @@ DOCKER_BUILD_GITHUB_TOKEN
 Set it with:
 [System.Environment]::SetEnvironmentVariable('DOCKER_BUILD_GITHUB_TOKEN', 'your-token', 'User')
 "@
-    exit 1echo
+    exit 1
 }
 
 Write-Host "Tokens loaded."
@@ -65,7 +65,7 @@ Write-Host "Building Docker image..."
 
 docker build `
     -f $DockerfilePath `
-    --build-arg GITHUB_TOKEN=$githubToken `
+    --secret id=GITHUB_TOKEN,env=DOCKER_BUILD_GITHUB_TOKEN `
     -t $ImageName `
     $SolutionDir
 

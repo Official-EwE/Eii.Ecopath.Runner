@@ -365,8 +365,8 @@ flowchart LR
 | `.github/copilot-instructions.md` | Coding conventions for AI-assisted development. |
 
 ## CI/CD
-Workflow `.github/workflows/release.yml` ("Build and Release") runs on every push to `master`
-on `ubuntu-latest`:
+Workflow `.github/workflows/create_release_and_docker.yml` ("Create Release and Docker Image")
+runs on every push to `master` on `ubuntu-latest`:
 
 1. Full-depth checkout and .NET 10 SDK setup.
 2. GitVersion 6.4.0 computes the semantic version with `workflow=TrunkBased/preview1` and
@@ -378,14 +378,22 @@ on `ubuntu-latest`:
 5. Publishes `EwERunConsole` as framework-dependent `win-x64` with version properties injected,
    copies both documentation files into the output and zips it as
    `EwERunConsole-<semver>.zip`.
-6. Creates and pushes tag `v<semver>` (skipped if it exists) and creates a GitHub Release with the
-   ZIP attached.
+6. Builds and pushes `ghcr.io/official-ewe/eiiecopathrunnerrunprocess` with tags `<semver>` and
+   `latest`, using the same GitVersion result and `GITHUB_TOKEN` for private NuGet restore and GHCR.
+7. Creates and pushes tag `v<semver>` (skipped if it exists) and creates a GitHub Release with the
+   ZIP attached and a reference to the versioned Docker image.
 
-**Docker images** are not built by the workflow but by the per-project scripts
+The workflow requires `contents: write` and `packages: write`. Grant this repository write access
+under the existing GHCR package's **Manage Actions access**, and read access to the private NuGet
+packages used during restore.
+
+**Manual Docker builds** remain available through the per-project scripts
 `tools/build-push-docker.ps1` (also callable through the MSBuild target `BuildPushDockerImage`).
-Each script builds the multi-stage Dockerfile from the solution root, passing
-`DOCKER_BUILD_GITHUB_TOKEN` as `--build-arg GITHUB_TOKEN` for the private feed, and pushes to
-GitHub Container Registry:
+Each script builds the multi-stage Dockerfile from the solution root and pushes to GitHub
+Container Registry. The API script passes `DOCKER_BUILD_GITHUB_TOKEN` as `--build-arg GITHUB_TOKEN`.
+The RunProcess script and release workflow use a required BuildKit secret named `GITHUB_TOKEN`
+for private NuGet restore, without storing credentials in image layers. Subsequent build and
+publish steps use `--no-restore`.
 
 | Project | Image |
 |---|---|
@@ -414,7 +422,7 @@ GitHub Container Registry:
 Eii.Ecopath.Runner/
 ├── .github/
 │   ├── copilot-instructions.md
-│   └── workflows/release.yml
+│   └── workflows/create_release_and_docker.yml
 ├── .zenodo.json
 ├── LICENSE
 ├── NuGet.config

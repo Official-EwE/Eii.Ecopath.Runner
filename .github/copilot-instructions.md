@@ -102,7 +102,10 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
 - Scenario indices are one-based; `-1` means "skip this model".
 
 ## CI/CD
-- Workflow: `.github/workflows/release.yml`, triggered on every push to `master`.
+- Workflow: `.github/workflows/create_release_and_docker.yml`, triggered on every push to `master`.
+- Publishes `ghcr.io/official-ewe/eiiecopathrunnerrunprocess` with `latest` and version tags using
+  the same GitVersion result as the console release. Creates the Git tag only once.
+- Requires `contents: write`, `packages: write`, and repository access to the existing GHCR package.
 - Versioning: GitVersion 6.x with `workflow=TrunkBased/preview1`.
   - Patch is auto-incremented on every commit to `master`.
   - Use `+semver: minor` or `+semver: major` in a commit/merge message to force a higher bump.
@@ -138,6 +141,6 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
 - Do not use `this.` unless resolving a name collision.
 - Do not add new NuGet packages without a clear reason.
 - Do not remove or alter the `// ToDo` stubs in `EcopathModifier` — they are known placeholders.
-- Do not change `workflow=TrunkBased/preview1` in `release.yml` — it is the only valid
+- Do not change `workflow=TrunkBased/preview1` in `create_release_and_docker.yml` — it is the only valid
   trunk-based workflow name embedded in GitVersion 6.x.
 
