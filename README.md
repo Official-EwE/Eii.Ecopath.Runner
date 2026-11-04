@@ -20,6 +20,8 @@ Ecotracer in scripted environments.
 
 Automation run console for EwE. Driven by a JSON run-info file passed on the command line.
 
+[Download the latest automation command reference (PDF)](https://github.com/Official-EwE/Eii.Ecopath.Runner/releases/latest/download/automation-commands.pdf).
+
 **Usage**
 ```bash
 EwERunConsole --runinfo path/to/runinfo.json --output path/to/output

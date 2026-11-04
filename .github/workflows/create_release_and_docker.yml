@@ -158,6 +158,8 @@ jobs:
             EwERunProcess Docker image: ghcr.io/official-ewe/eiiecopathrunnerrunprocess:${{ steps.gitversion.outputs.semVer }}
           files: |
             EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip
+            ~Documentation/automation-commands.pdf
+          fail_on_unmatched_files: true
           draft: false
           prerelease: false
         env:
