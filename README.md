@@ -70,6 +70,10 @@ Containerised batch runner launched as a Kubernetes Job by the Process API.
 
 ## Build and push Docker image
 
+Requires Docker with BuildKit enabled. The script passes `DOCKER_BUILD_GITHUB_TOKEN` as a
+required build secret for private NuGet restore; credentials are not stored in image layers.
+Open a new terminal after setting the persistent environment variable for the first time.
+
 ```powershell
 [System.Environment]::SetEnvironmentVariable('DOCKER_BUILD_GITHUB_TOKEN', 'your-token', 'User')
 .\Eii.Ecopath.Runner.RunProcess\tools\build-push-docker.ps1

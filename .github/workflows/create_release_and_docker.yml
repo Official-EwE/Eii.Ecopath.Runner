@@ -1,14 +1,24 @@
-name: Build and Release
+name: Create Release and Docker Image
 
-# Triggers on every push to master, which represents a completed piece of work on the trunk.
 on:
   push:
     branches:
       - master
 
+permissions:
+  contents: write
+  packages: write
+
+concurrency:
+  group: create-release-and-docker
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      IMAGE: ghcr.io/official-ewe/eiiecopathrunnerrunprocess
 
     steps:
       # Full clone required by GitVersion to walk the commit history and compute the version.
@@ -22,17 +32,13 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      # Install the GitVersion CLI tool at the pinned version so the version calculation is reproducible.
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v4.1.0
         with:
           versionSpec: '6.4.0'
 
-      # Calculate the semantic version from the git history.
-      # - workflow=TrunkBased/preview1: trunk-based development mode; master is the mainline branch,
-      #   patch is auto-incremented on every commit. Use '+semver: minor' or '+semver: major' in a
-      #   merge/commit message to force a higher bump.
-      # - tag-prefix=v: matches existing tags of the form vX.Y.Z.
+      # Calculate one version for the console release, Docker image and git tag.
+      # Patch auto-increments; use '+semver: minor' or '+semver: major' for higher bumps.
       - name: Run GitVersion
         id: gitversion
         uses: gittools/actions/gitversion/execute@v4.1.0
@@ -45,9 +51,6 @@ jobs:
         run: echo "Building version ${{ steps.gitversion.outputs.semVer }}"
         shell: bash
 
-      # Register the private GitHub NuGet feed that hosts the EwE engine packages.
-      # The standard GITHUB_TOKEN is used so no extra secret needs to be configured.
-      # The source is removed first (if present) to avoid duplicate-source errors on re-runs.
       - name: Ensure github-Official-EwE NuGet source
         run: |
           if dotnet nuget list source | grep -q "github-Official-EwE"; then
@@ -60,7 +63,6 @@ jobs:
             --store-password-in-clear-text
         shell: bash
 
-      # Diagnostic step: print the active NuGet sources so feed resolution issues are easy to spot in the log.
       - name: List NuGet data sources
         run: dotnet nuget list source --format detailed
         shell: bash
@@ -69,14 +71,11 @@ jobs:
         run: dotnet restore Eii.Ecopath.Runner.Console/EwERunConsole.csproj
         shell: bash
 
-      # Generate the automation command reference Markdown.
-      # --docs uses pure type reflection over the automation node tree; no model file is required.
+      # Documentation generation uses reflection; no model file is required.
       - name: Generate documentation
         run: dotnet run --project Eii.Ecopath.Runner.Console/EwERunConsole.csproj --no-restore -- --docs
         shell: bash
 
-      # Convert the Markdown reference to PDF using the official pandoc/latex Docker image.
-      # The image ships with xelatex so no extra apt packages are needed.
       - name: Convert documentation to PDF
         uses: docker://pandoc/latex:edge
         with:
@@ -85,9 +84,7 @@ jobs:
             --pdf-engine=xelatex
             -o ~Documentation/automation-commands.pdf
 
-      # Publish a framework-dependent win-x64 binary.
-      # Version properties are injected so the compiled assembly carries the correct version metadata.
-      - name: Publish
+      - name: Publish console
         run: >
           dotnet publish Eii.Ecopath.Runner.Console/EwERunConsole.csproj
           --configuration Release
@@ -99,9 +96,6 @@ jobs:
           /p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }}
         shell: bash
 
-      # cd into the output directory first so the ZIP contains files at its root,
-      # rather than nested under publish/EwERunConsole/.
-      # The documentation files are copied in before zipping so they are included at the root.
       - name: Create ZIP
         shell: bash
         run: |
@@ -111,9 +105,36 @@ jobs:
           cd publish/EwERunConsole
           zip -r ../../EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip .
 
-      # Push the version tag to the remote so GitVersion can find it on the next run.
-      # The existence check prevents the step from failing when the workflow is re-run
-      # for the same commit (e.g. after a transient failure in a later step).
+      - name: Log in to GHCR
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: echo "$GITHUB_TOKEN" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+        shell: bash
+
+      - name: Build Docker image
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.gitversion.outputs.semVer }}
+        run: |
+          docker build \
+            -f Eii.Ecopath.Runner.RunProcess/Dockerfile \
+            --secret id=GITHUB_TOKEN,env=GITHUB_TOKEN \
+            --label "org.opencontainers.image.source=https://github.com/${{ github.repository }}" \
+            --label "org.opencontainers.image.version=$VERSION" \
+            --label "org.opencontainers.image.revision=${{ github.sha }}" \
+            -t "$IMAGE:$VERSION" \
+            -t "$IMAGE:latest" \
+            .
+        shell: bash
+
+      - name: Push Docker image
+        env:
+          VERSION: ${{ steps.gitversion.outputs.semVer }}
+        run: |
+          docker push "$IMAGE:$VERSION"
+          docker push "$IMAGE:latest"
+        shell: bash
+
       - name: Create tag
         shell: bash
         run: |
@@ -122,8 +143,8 @@ jobs:
           if git rev-parse "$TAG" >/dev/null 2>&1; then
             echo "Tag $TAG already exists, skipping"
           else
-            git tag $TAG
-            git push origin $TAG
+            git tag "$TAG"
+            git push origin "$TAG"
           fi
 
       - name: Create GitHub Release
@@ -131,7 +152,10 @@ jobs:
         with:
           tag_name: v${{ steps.gitversion.outputs.semVer }}
           name: EwERunConsole v${{ steps.gitversion.outputs.semVer }}
-          body: Automated release of EwERunConsole version ${{ steps.gitversion.outputs.semVer }}.
+          body: |
+            Automated release of EwERunConsole version ${{ steps.gitversion.outputs.semVer }}.
+
+            EwERunProcess Docker image: ghcr.io/official-ewe/eiiecopathrunnerrunprocess:${{ steps.gitversion.outputs.semVer }}
           files: |
             EwERunConsole-${{ steps.gitversion.outputs.semVer }}.zip
           draft: false
