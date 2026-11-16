@@ -46,7 +46,7 @@ Ecotracer without the GUI. It is available in two forms:
 - `Program.cs` — configures Serilog, parses CLI args via `CommandLineParser`, reads the JSON
   run-info file, and delegates to `EwEEngine`.
 - `CommandLineParmOptions.cs` — defines the CLI flags (`--info`, `--output`, `--showtree`,
-  `--showcommands`, `--docs`). `--info` is optional; `--docs` can be used standalone.
+  `--docs`). `--info` is optional; `--docs` can be used standalone.
 
 ### API entry point
 - `EwERunController.cs` — single `POST /eweRun` endpoint; accepts `EwERunInstructions` as a

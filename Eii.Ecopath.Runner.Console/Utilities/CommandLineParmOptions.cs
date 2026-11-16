@@ -25,14 +25,6 @@ class CommandLineParmOptions
 
     /// ------------------------------------------------------------------------
     /// <summary>
-    /// Gets or sets a value indicating whether to display all commands being executed.
-    /// </summary>
-    /// ------------------------------------------------------------------------    
-    [Option('c', HelpText = "Show all commands")]
-    public bool ShowCommands { get; set; }
-
-    /// ------------------------------------------------------------------------
-    /// <summary>
     /// Gets or sets a value indicating whether to generate automation documentation and exit.
     /// </summary>
     /// ------------------------------------------------------------------------
