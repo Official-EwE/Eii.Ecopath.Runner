@@ -67,7 +67,7 @@ class Program
         // ToDo: Add a command-line option to specify the log file location
 
         ParserResult<CommandLineParmOptions> parms = Parser.Default.ParseArguments<CommandLineParmOptions>(args)
-            .WithParsed(options => { success = ParseInstructions(options.RunInfo, options.Output, options.ShowCommands, options.Docs, m_logger, sp); })
+            .WithParsed(options => { success = ParseInstructions(options.RunInfo, options.Output, options.Docs, m_logger, sp); })
             .WithNotParsed(errors => { Complain(errors); });
 
         return success ? 0 : 1;
@@ -80,13 +80,12 @@ class Program
     /// <param name="runinfofile">The path to the JSON run-info file.</param>
     /// <param name="outputfolder">The path to the output folder for results.</param>
     /// <param name="showtree">If true, displays the automation command tree.</param>
-    /// <param name="showcommands">If true, displays the commands being executed.</param>
     /// <param name="generateDocs">If true, generates automation documentation and exits.</param>
     /// <param name="logger">The logger instance for diagnostic messages.</param>
     /// <param name="sp">The service provider for dependency injection.</param>
     /// <returns>True if the run was successful; otherwise, false.</returns>
     /// -----------------------------------------------------------------------
-    static bool ParseInstructions(string? runinfofile, string? outputfolder, bool showcommands, bool generateDocs, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
+    static bool ParseInstructions(string? runinfofile, string? outputfolder, bool generateDocs, Microsoft.Extensions.Logging.ILogger logger, IServiceProvider sp)
     {
         var stopwatch = System.Diagnostics.Stopwatch.StartNew();
         EwERunInstructions? info;

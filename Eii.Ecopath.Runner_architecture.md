@@ -52,7 +52,7 @@ attribution. It contains:
 
 | Binary | Project | Description |
 |---|---|---|
-| `EwERunConsole.exe` | `Eii.Ecopath.Runner.Console` | CLI. `--info <runinfo.json> --output <folder>` runs a model; `--docs` writes `~Documentation/automation-commands.md`; `--showcommands` prints executed commands. Exit code 0 = success, 1 = failure. Published as a framework-dependent `win-x64` ZIP on GitHub Releases. |
+| `EwERunConsole.exe` | `Eii.Ecopath.Runner.Console` | CLI. `--info <runinfo.json> --output <folder>` runs a model; `--docs` writes `~Documentation/automation-commands.md`. Exit code 0 = success, 1 = failure. Published as a framework-dependent `win-x64` ZIP on GitHub Releases. |
 | `EwERunApi.dll` | `Eii.Ecopath.Runner.Api` | ASP.NET Core Web API exposing `POST /eweRun` and `GET /healthz`. Packaged as Docker image `ghcr.io/official-ewe/eiiecopathrunnerapi:latest`. |
 | `EwERunProcess.dll` | `Eii.Ecopath.Runner.RunProcess` | Generic-host console app launched as a Kubernetes Job; configured via environment variables and a mounted `runinfo.json`. Packaged as Docker image `ghcr.io/official-ewe/eiiecopathrunnerrunprocess:latest`. |
 | `Eii.Ecopath.Runner.Services.dll` | `Eii.Ecopath.Runner.Services` | Class library: engine, modifier services, automation node tree, documentation generator. |
@@ -133,7 +133,7 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    USER["User / script"] -->|"--info runinfo.json --output folder<br/>--docs · --showcommands"| ARGS["CommandLineParser<br/>CommandLineParmOptions"]
+    USER["User / script"] -->|"--info runinfo.json --output folder<br/>--docs"| ARGS["CommandLineParser<br/>CommandLineParmOptions"]
     ARGS --> PRG["Program.Main<br/>Serilog + DI container"]
     PRG -->|"--docs"| DOCS["AutomationDocumentation<br/>→ ~Documentation/automation-commands.md"]
     PRG --> PARSE["ParseInstructions<br/>System.Text.Json (strict)"]
@@ -500,8 +500,7 @@ to the **Start** button:
 | `Documentation` | `--docs` | Generates `~Documentation/automation-commands.md` and exits |
 
 Outputs appear under `Testoutput\<model>\<runinfo name>\` in the build output directory, together
-with `EwERunConsole_log.txt`. Add `--showcommands` to any profile to echo every automation command
-as it is executed. Other hosts have their own profiles: the API has a Kestrel and a Docker
+with `EwERunConsole_log.txt`. Other hosts have their own profiles: the API has a Kestrel and a Docker
 profile, and RunProcess has a Docker profile that bind-mounts a local `testconfig/` folder to
 `/etc/config` via `containerRunArguments`.
 
