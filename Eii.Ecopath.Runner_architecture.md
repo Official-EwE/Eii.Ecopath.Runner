@@ -316,7 +316,7 @@ flowchart LR
     PDF --> ZIP
 ```
 
-## TestData files
+## Testdata files
 Test data lives in `Eii.Ecopath.Runner.Console/Testdata/` (copied to the output directory on
 build) with a smaller copy in `Eii.Ecopath.Runner.Api/Testdata/` and an invalid-JSON case in
 `Eii.Ecopath.Runner.Console.Tests/Testdata/`. A run-info JSON is the entry point; every other

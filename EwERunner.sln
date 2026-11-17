@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunConsole", "Eii.Ecopat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunProcess", "Eii.Ecopath.Runner.RunProcess\EwERunProcess.csproj", "{AFDDB58C-0904-4F54-ADC1-312630563D90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunConsoleTests", "Eii.Ecopath.Runner.Console.Tests\EwERunConsoleTests.csproj", "{EB341B1B-80BD-580F-AF58-77D36BAA3726}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunConsoleIntegrationTests", "Eii.Ecopath.Runner.Console.Tests\EwERunConsoleIntegrationTests.csproj", "{EB341B1B-80BD-580F-AF58-77D36BAA3726}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eii.Ecopath.Runner.Services.Tests", "Eii.Ecopath.Runner.Services.Tests\Eii.Ecopath.Runner.Services.Tests.csproj", "{326FBB21-75DE-4E21-9911-06D359DC999D}"
 EndProject
