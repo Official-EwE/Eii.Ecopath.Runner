@@ -86,13 +86,18 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             Console.WriteLine("OK");
             Console.WriteLine();
 
-            if ((EwEConfig.EcosimScenario <= 0) & (EwEConfig.EcospaceScenario <= 0))
+            cEcopathDataStructures pathdata = _coreService.EcopathDataStructures;
+            int iSim = ResolveScenario(EwEConfig.EcosimScenario, pathdata.EcosimScenarioName);
+            int iTS = ResolveTimeSeries(EwEConfig.EcosimTimeseries);
+            int iSpace = ResolveScenario(EwEConfig.EcospaceScenario, pathdata.EcospaceScenarioName);
+
+            if (iSim <= 0)
                 return true;
 
             Console.WriteLine("==== Ecosim ====");
             _logger.LogInformation("==== Ecosim ====");
 
-            if (!LoadEcosim())
+            if (!LoadEcosim(iSim, iTS))
                 return false;
 
             if (!RunEcosim())
@@ -101,13 +106,13 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             Console.WriteLine("OK");
             Console.WriteLine();
 
-            if (EwEConfig.EcospaceScenario <= 0)
+            if (iSpace <= 0)
                 return true;
 
             Console.WriteLine("==== Ecospace ====");
             _logger.LogInformation("==== Ecospace ====");
 
-            if (!LoadEcospace())
+            if (!LoadEcospace(iSpace))
                 return false;
 
             if (!RunEcospace())
@@ -220,11 +225,9 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             return true;
         }
 
-        private bool LoadEcosim()
+        private bool LoadEcosim(int iSim, int iTS)
         {
             // Get Ecosim scenario to run
-            int iSim = Math.Max(EwEConfig.EcospaceScenario > 0 ? 1 : 0, EwEConfig.EcosimScenario);
-
             if (iSim > _coreService.nEcosimScenarios)
             {
                 Console.WriteLine("! Requested Ecosim scenario #{0} does not exist", iSim);
@@ -242,17 +245,17 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             Console.WriteLine("Loaded Ecosim scenario {0}: {1}", iSim, _coreService.GetEcosimScenarioName(iSim));
             _logger.LogInformation("Loaded Ecosim scenario {Scenario}: {Name}", iSim, _coreService.GetEcosimScenarioName(iSim));
 
-            if (EwEConfig.EcosimTimeseries > 0)
+            if (iTS > 0)
             {
                 // Log this 
-                if (!_coreService.LoadTimeSeries(EwEConfig.EcosimTimeseries))
+                if (!_coreService.LoadTimeSeries(iTS))
                 {
-                    Console.WriteLine("! Failed to load Ecosim timeseries #{0}", EwEConfig.EcosimTimeseries);
-                    _logger.LogWarning("Failed to load Ecosim timeseries #{Timeseries}", EwEConfig.EcosimTimeseries);
+                    Console.WriteLine("! Failed to load Ecosim timeseries #{0}", iTS);
+                    _logger.LogWarning("Failed to load Ecosim timeseries #{Timeseries}", iTS);
                     return false;
                 }
-                Console.WriteLine("Loaded Ecosim timeseries {0}: {1}", EwEConfig.EcosimTimeseries, _coreService.GetTimeSeriesDatasetName(EwEConfig.EcosimTimeseries));
-                _logger.LogInformation("Loaded Ecosim timeseries {Timeseries}: {Name}", EwEConfig.EcosimTimeseries, _coreService.GetTimeSeriesDatasetName(EwEConfig.EcosimTimeseries));
+                Console.WriteLine("Loaded Ecosim timeseries {0}: {1}", iTS, _coreService.GetTimeSeriesDatasetName(iTS));
+                _logger.LogInformation("Loaded Ecosim timeseries {Timeseries}: {Name}", iTS, _coreService.GetTimeSeriesDatasetName(iTS));
             }
             return true;
         }
@@ -288,9 +291,8 @@ namespace Eii.Ecopath.Runner.Services.Runtime
             return true;
         }
 
-        private bool LoadEcospace()
+        private bool LoadEcospace(int iSpace)
         {
-            int iSpace = EwEConfig.EcospaceScenario;
 
             // Fail if the requested Ecospace scenario is not defined
             if (iSpace > _coreService.nEcospaceScenarios)
@@ -345,6 +347,48 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         }
 
         #endregion // Internal implementation
+
+        private int ResolveScenario(string identifier, string[] names)
+        {
+            if (identifier == null)
+                return 0;
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                if (string.CompareOrdinal(names[i], identifier) == 0)
+                    return i;
+            }
+
+            if (int.TryParse(identifier, out int iScenario))
+                return iScenario;
+
+            Console.WriteLine("! Failed to resolve scenario identifier '{0}'", identifier);
+            _logger.LogWarning("Failed to resolve scenario identifier '{Identifier}'", identifier);
+            return 0;
+        }
+
+        private int ResolveTimeSeries(object? identifier)
+        {
+            if (identifier == null)
+                return 0;
+
+            if (identifier.GetType() == typeof(int))
+                return (int)identifier;
+
+            if (identifier.GetType() == typeof(string))
+            {
+                string name = (string)identifier;
+                for (int i = 0; i < _coreService.nEcosimTimeSeriesDatasets; i++)
+                {
+                    if (string.CompareOrdinal(_coreService.GetTimeSeriesDatasetName(i), name) == 0)
+                        return i;
+                }
+            }
+
+            Console.WriteLine("! Failed to resolve scenario identifier '{0}'", identifier);
+            _logger.LogWarning("Failed to resolve scenario identifier '{Identifier}'", identifier);
+            return 0;
+        }
     }
 
 }
