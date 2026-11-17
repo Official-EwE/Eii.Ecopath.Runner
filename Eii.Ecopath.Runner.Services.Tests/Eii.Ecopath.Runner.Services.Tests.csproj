@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -23,6 +23,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Eii.Ecopath.Runner.Services\Eii.Ecopath.Runner.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="RunInstructions\" />
   </ItemGroup>
 
 </Project>

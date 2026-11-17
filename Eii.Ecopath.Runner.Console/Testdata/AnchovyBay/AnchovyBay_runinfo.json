@@ -1,9 +1,9 @@
 {
   "Configuration": {
     "ModelFile": "AnchovyBay.eiixml",
-    "EcosimScenario": 1,
-    "EcosimTimeseries": 0,
-    "EcospaceScenario": 1,
+    "EcosimScenario": "New Ecosim scenario",
+    "EcosimTimeseries": "anchovybay",
+    "EcospaceScenario": "BayOfAnchovies",
     "SaveWithHeader": true,
     "ExtDataConfigFile": "AnchovyBay_drivers.xml",
     "RunYears": 50

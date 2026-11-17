@@ -1,0 +1,1373 @@
+<?xml version="1.0"?>
+<EwEModel Name="Anchovy Bay_Ecosim_ex" DBVersion="6.700014" EwEVersion="6.7.0.18858">
+  <Table Name="Auxillary" Columns="DBID:System.Int64,Remark:System.String,Settings:System.String,ValueID:System.String,VisualStyle:System.String" Num="110">
+    <Row>1,,,EcospaceLayerPort:0:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>2,,,EcospaceLayerSail:0:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>3,,,EcospaceLayerMigration:0:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>4,,,EcospaceLayerRelPP:0:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>5,,,EcospaceLayerRelCin:0:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>6,,,EcospaceLayerRegion:0:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>7,,,EcospaceLayerDepth:0:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>8,,,EcospaceLayerHabitatCapacityInput:0:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>9,,,EcospaceLayerHabitatCapacity:0:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>10,,,EcospaceLayerDriver:1:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>11,,,EcospaceLayerDriver:2:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAAAAAAAACgoKCw==</Row>
+    <Row>12,Biomass estimate comes from ....,,EcoPathGroupInput:8:BiomassAreaInput,</Row>
+    <Row>13,"EE of 0.08 is way too low, need to check diet composition.",,EcoPathGroupOutput:8:EEOutput,</Row>
+    <Row>14,,,EcospaceLayerPort:1:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAD/AAAAAAAAAgAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAADx2P//CgoGCQAAAAAL</Row>
+    <Row>15,,,EcospaceLayerSail:1:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAADx2P//CgoGCQAAAAAL</Row>
+    <Row>16,,,EcospaceLayerRegion:1:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAADx2P//CgoGCQAAAAAL</Row>
+    <Row>17,,,EcospaceLayerRelPP:1:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAADx2P//CgoGCQAAAAAL</Row>
+    <Row>18,,,EcospaceLayerContaminantRelativeDistribution:1:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAADx2P//CgoGCQAAAAAL</Row>
+    <Row>19,,,EcospaceLayerExclusion:1:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAAEwAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAADQAAQAB+v////v///8K////QAAAAAAAAAIACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAADx2P//CgoGCQAAAAAL</Row>
+    <Row>20,,,EcospaceLayerDepth:1:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAADx2P//CgoGCQAAAAAL</Row>
+    <Row>21,,,EcospaceLayerAdvection:1:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAADx2P//CgoGCQAAAAAL</Row>
+    <Row>22,,,EcospaceLayerHabitatCapacityInput:1:Name,AAEAAAD/////AQAAAAAAAAAMAgAAAE5Fd0VDb3JlLCBWZXJzaW9uPTYuNy4wLjE4NTU4LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTFkODc1MzkzYjNlYmNhZDAMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAB5Fd0VDb3JlLkF1eGlsaWFyeS5jVmlzdWFsU3R5bGULAAAADG1faGF0Y2hTdHlsZQltX2NsckZvcmUJbV9jbHJCYWNrBW1faW1nDW1fc3RyRm9udE5hbWULbV9zRm9udFNpemULbV9mb250c3R5bGUMbV9ncmFkaWVudElEEG1fZ3JhZGllbnRDb2xvcnMQbV9ncmFkaWVudEJyZWFrcw5tX2dyYWRpZW50TmFtZQQEBAQBAAQABAcBI1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAwAAABRTeXN0ZW0uRHJhd2luZy5Db2xvcgMAAAAUU3lzdGVtLkRyYXdpbmcuQ29sb3IDAAAAFFN5c3RlbS5EcmF3aW5nLkltYWdlAwAAAAsYU3lzdGVtLkRyYXdpbmcuRm9udFN0eWxlAwAAAAgWU3lzdGVtLkRyYXdpbmcuQ29sb3JbXQMAAAAGAgAAAAX8////I1N5c3RlbS5EcmF3aW5nLkRyYXdpbmcyRC5IYXRjaFN0eWxlAQAAAAd2YWx1ZV9fAAgDAAAABQAAAAX7////FFN5c3RlbS5EcmF3aW5nLkNvbG9yBAAAAARuYW1lBXZhbHVlCmtub3duQ29sb3IFc3RhdGUBAAAACQcHAwAAAAoAAAAAAAAAACMAAQAB+v////v///8KAAAAAAAAAAAbAAEACgYHAAAABUFyaWFsAAAAQQX4////GFN5c3RlbS5EcmF3aW5nLkZvbnRTdHlsZQEAAAAHdmFsdWVfXwAIAwAAAAAAAADx2P//CgoGCQAAAAAL</Row>
+  </Table>
+  <Table Name="cConsumerUnit" Columns="ConsumerAttribute1:System.Single,DBID:System.Int64" Num="2">
+    <Row>0,6</Row>
+  </Table>
+  <Table Name="cConsumerUnitDefault" Columns="DBID:System.Int64,Name:System.String" Num="2">
+    <Row>6,Default</Row>
+  </Table>
+  <Table Name="cDistributionUnit" Columns="DBID:System.Int64,DistributionAttribute1:System.Single" Num="2">
+    <Row>4,0</Row>
+  </Table>
+  <Table Name="cDistributionUnitDefault" Columns="DBID:System.Int64,Name:System.String" Num="2">
+    <Row>4,Default</Row>
+  </Table>
+  <Table Name="cEconomicUnit" Columns="CapitalInput:System.Single,CertificationCost:System.Single,DBID:System.Int64,EnergyCost:System.Single,EnergyProducts:System.Single,IndustrialCost:System.Single,IndustrialProducts:System.Single,LicenseTax:System.Single,ManagementCost:System.Single,OwnerFemale:System.Single,OwnerFemaleDependents:System.Single,OwnerFemalePay:System.Single,OwnerFemaleshare:System.Single,OwnerMale:System.Single,OwnerMaleDependents:System.Single,OwnerMalePay:System.Single,OwnerMaleshare:System.Single,RoyaltyCost:System.Single,ServiceCost:System.Single,ServiceProducts:System.Single,SubsidyEnergy:System.Single,SubsidyOther:System.Single,TaxEnvironmental:System.Single,TaxExport:System.Single,TaxImport:System.Single,TaxProduction:System.Single,TaxVAT:System.Single,WorkerFemale:System.Single,WorkerFemaleDependents:System.Single,WorkerFemalePay:System.Single,WorkerFemaleshare:System.Single,WorkerMale:System.Single,WorkerMaleDependents:System.Single,WorkerMalePay:System.Single,WorkerMaleshare:System.Single" Num="140">
+    <Row>0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</Row>
+    <Row>0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</Row>
+    <Row>0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</Row>
+    <Row>0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</Row>
+  </Table>
+  <Table Name="cFlowDiagram" Columns="DBID:System.Int64,Name:System.String" Num="2">
+    <Row>7,Default</Row>
+  </Table>
+  <Table Name="cLinkDefault" Columns="BiomassRatio:System.Single,DBID:System.Int64,LinkType:System.Int64,Name:System.String,ValuePerTon:System.Single,ValueRatio:System.Single" Num="24">
+    <Row>1,8,1,ProducerToProcessing,1,1</Row>
+    <Row>1,9,2,ProcessingToDistribution,1,1</Row>
+    <Row>1,10,3,DistributionToMarket,1,1</Row>
+    <Row>1,11,4,MarketToConsumer,1,1</Row>
+  </Table>
+  <Table Name="cMarketUnit" Columns="DBID:System.Int64,MarketAttribute1:System.Single" Num="2">
+    <Row>5,0</Row>
+  </Table>
+  <Table Name="cMarketUnitDefault" Columns="DBID:System.Int64,Name:System.String" Num="2">
+    <Row>5,Default</Row>
+  </Table>
+  <Table Name="cOOPStorable" Columns="AllowEvents:System.Int32,DBID:System.Int64,xCLASS_NAMEx:System.String" Num="33">
+    <Row>1,1,EwEValueChainPlugin!EwEValueChainPlugin.cParameters</Row>
+    <Row>1,2,EwEValueChainPlugin!EwEValueChainPlugin.cProducerUnitDefault</Row>
+    <Row>1,3,EwEValueChainPlugin!EwEValueChainPlugin.cProcessingUnitDefault</Row>
+    <Row>1,4,EwEValueChainPlugin!EwEValueChainPlugin.cDistributionUnitDefault</Row>
+    <Row>1,5,EwEValueChainPlugin!EwEValueChainPlugin.cMarketUnitDefault</Row>
+    <Row>1,6,EwEValueChainPlugin!EwEValueChainPlugin.cConsumerUnitDefault</Row>
+    <Row>1,7,EwEValueChainPlugin!EwEValueChainPlugin.cFlowDiagram</Row>
+    <Row>1,8,EwEValueChainPlugin!EwEValueChainPlugin.cLinkDefault</Row>
+    <Row>1,9,EwEValueChainPlugin!EwEValueChainPlugin.cLinkDefault</Row>
+    <Row>1,10,EwEValueChainPlugin!EwEValueChainPlugin.cLinkDefault</Row>
+    <Row>1,11,EwEValueChainPlugin!EwEValueChainPlugin.cLinkDefault</Row>
+  </Table>
+  <Table Name="cParameters" Columns="DBID:System.Int64,EquilibriumEffortIncrement:System.Single,EquilibriumEffortMax:System.Single,EquilibriumEffortMin:System.Single,ResultsByFleet:System.Int32,RunWithEcopath:System.Int32,RunWithEcosim:System.Int32,RunWithSearches:System.Int32" Num="8">
+    <Row>1,0.25,4,0,0,0,0,0</Row>
+  </Table>
+  <Table Name="cProcessingUnit" Columns="AgriculturalInput:System.Single,AgriculturalProducts:System.Single,DBID:System.Int64" Num="3">
+    <Row>0,0,3</Row>
+  </Table>
+  <Table Name="cProcessingUnitDefault" Columns="DBID:System.Int64,Name:System.String" Num="2">
+    <Row>3,Default</Row>
+  </Table>
+  <Table Name="cProducerUnit" Columns="DBID:System.Int64,EcopathFleetID:System.Int64,EcopathGroupID:System.Int64,Name:System.String,ObserverCost:System.Single,ObserverRate:System.Single,TicketProducts:System.Single" Num="7">
+    <Row>2,0,0,Default,0,1,0</Row>
+  </Table>
+  <Table Name="cProducerUnitDefault" Columns="DBID:System.Int64,EcopathFleetID:System.Int64,EcopathGroupID:System.Int64,Name:System.String" Num="4">
+    <Row>2,0,0,Default</Row>
+  </Table>
+  <Table Name="cUnit" Columns="DBID:System.Int64,Name:System.String,Nationality:System.Int64,Sequence:System.Int64" Num="20">
+    <Row>2,Default,0,0</Row>
+    <Row>3,Default,0,0</Row>
+    <Row>4,Default,0,0</Row>
+    <Row>5,Default,0,0</Row>
+    <Row>6,Default,0,0</Row>
+  </Table>
+  <Table Name="EcopathCatch" Columns="DiscardMortality:System.Single,Discards:System.Single,FleetID:System.Int64,GroupID:System.Int64,Landing:System.Single,Price:System.Single" Num="330">
+    <Row>1,0,1,1,0,1</Row>
+    <Row>1,0,2,1,0,1</Row>
+    <Row>1,0,3,1,0,1</Row>
+    <Row>1,0,4,1,0,1</Row>
+    <Row>1,0,5,1,0,1</Row>
+    <Row>1,0,1,2,0,1</Row>
+    <Row>1,0,2,2,0,1</Row>
+    <Row>1,0,3,2,0,1</Row>
+    <Row>1,0,4,2,0,1</Row>
+    <Row>1,0,5,2,0,1</Row>
+    <Row>1,0,1,3,0.0045,6</Row>
+    <Row>1,0,2,3,0,1</Row>
+    <Row>1,0,3,3,0,1</Row>
+    <Row>1,0,4,3,0,1</Row>
+    <Row>1,0,5,3,0,1</Row>
+    <Row>1,0,1,4,0,1</Row>
+    <Row>1,0,2,4,0.45,10</Row>
+    <Row>1,0,3,4,0,1</Row>
+    <Row>1,0,4,4,0,1</Row>
+    <Row>1,0,5,4,0,1</Row>
+    <Row>1,0,1,5,0,1</Row>
+    <Row>1,0,2,5,0.2,4</Row>
+    <Row>1,0,3,5,0,1</Row>
+    <Row>1,0,4,5,0,1</Row>
+    <Row>1,0,5,5,0,1</Row>
+    <Row>1,0,1,6,0,1</Row>
+    <Row>1,0,2,6,0,1</Row>
+    <Row>1,0,3,6,0.4,4</Row>
+    <Row>1,0,4,6,0,1</Row>
+    <Row>1,0,5,6,0,1</Row>
+    <Row>1,0,1,7,0,1</Row>
+    <Row>1,0,2,7,0,1</Row>
+    <Row>1,0,3,7,1.2,2</Row>
+    <Row>1,0,4,7,0.2,3</Row>
+    <Row>1,0,5,7,0,1</Row>
+    <Row>1,0,1,8,0,1</Row>
+    <Row>1,0,2,8,0,1</Row>
+    <Row>1,0,3,8,0,1</Row>
+    <Row>1,0,4,8,0,1</Row>
+    <Row>1,0,5,8,0.5,20</Row>
+    <Row>1,0,1,9,0,1</Row>
+    <Row>1,0,2,9,0,1</Row>
+    <Row>1,0,3,9,0,1</Row>
+    <Row>1,0,4,9,0,1</Row>
+    <Row>1,0,5,9,0,1</Row>
+    <Row>1,0,1,10,0,1</Row>
+    <Row>1,0,2,10,0,1</Row>
+    <Row>1,0,3,10,0,1</Row>
+    <Row>1,0,4,10,0,1</Row>
+    <Row>1,0,5,10,0,1</Row>
+    <Row>1,0,1,11,0,1</Row>
+    <Row>1,0,2,11,0,1</Row>
+    <Row>1,0,3,11,0,1</Row>
+    <Row>1,0,4,11,0,1</Row>
+    <Row>1,0,5,11,0,1</Row>
+  </Table>
+  <Table Name="EcopathCatchCode" Columns="Code:System.Int64,GroupID:System.Int64,Proportion:System.Single" Num="0" />
+  <Table Name="EcopathDietComp" Columns="DetritusFate:System.Single,Diet:System.Single,PredID:System.Int64,PreyID:System.Int64" Num="484">
+    <Row>0,0,1,1</Row>
+    <Row>1,0,2,1</Row>
+    <Row>1,0,3,1</Row>
+    <Row>1,0,4,1</Row>
+    <Row>1,0,5,1</Row>
+    <Row>1,0,6,1</Row>
+    <Row>1,0,7,1</Row>
+    <Row>1,0,8,1</Row>
+    <Row>1,0.7,9,1</Row>
+    <Row>1,0.1,10,1</Row>
+    <Row>1,0,11,1</Row>
+    <Row>0,0.0001198367,1,2</Row>
+    <Row>0,0,2,2</Row>
+    <Row>0,0,3,2</Row>
+    <Row>0,0,4,2</Row>
+    <Row>0,0,5,2</Row>
+    <Row>0,0,6,2</Row>
+    <Row>0,0,7,2</Row>
+    <Row>0,0,8,2</Row>
+    <Row>0,0,9,2</Row>
+    <Row>0,0,10,2</Row>
+    <Row>0,0,11,2</Row>
+    <Row>0,0.0001560313,1,3</Row>
+    <Row>0,0,2,3</Row>
+    <Row>0,0,3,3</Row>
+    <Row>0,0,4,3</Row>
+    <Row>0,0,5,3</Row>
+    <Row>0,0,6,3</Row>
+    <Row>0,0,7,3</Row>
+    <Row>0,0,8,3</Row>
+    <Row>0,0,9,3</Row>
+    <Row>0,0,10,3</Row>
+    <Row>0,0,11,3</Row>
+    <Row>0,0.00134281,1,4</Row>
+    <Row>0,0.1,2,4</Row>
+    <Row>0,0.04,3,4</Row>
+    <Row>0,0,4,4</Row>
+    <Row>0,0.05,5,4</Row>
+    <Row>0,0,6,4</Row>
+    <Row>0,0,7,4</Row>
+    <Row>0,0,8,4</Row>
+    <Row>0,0,9,4</Row>
+    <Row>0,0,10,4</Row>
+    <Row>0,0,11,4</Row>
+    <Row>0,0.0009643622,1,5</Row>
+    <Row>0,0.1,2,5</Row>
+    <Row>0,0.05,3,5</Row>
+    <Row>0,0.05,4,5</Row>
+    <Row>0,0.05,5,5</Row>
+    <Row>0,0,6,5</Row>
+    <Row>0,0,7,5</Row>
+    <Row>0,0,8,5</Row>
+    <Row>0,0,9,5</Row>
+    <Row>0,0,10,5</Row>
+    <Row>0,0,11,5</Row>
+    <Row>0,0.0009135095,1,6</Row>
+    <Row>0,0.2,2,6</Row>
+    <Row>0,0,3,6</Row>
+    <Row>0,0,4,6</Row>
+    <Row>0,0,5,6</Row>
+    <Row>0,0.05,6,6</Row>
+    <Row>0,0,7,6</Row>
+    <Row>0,0,8,6</Row>
+    <Row>0,0,9,6</Row>
+    <Row>0,0,10,6</Row>
+    <Row>0,0,11,6</Row>
+    <Row>0,0.01104806,1,7</Row>
+    <Row>0,0.5,2,7</Row>
+    <Row>0,0,3,7</Row>
+    <Row>0,0.1,4,7</Row>
+    <Row>0,0.45,5,7</Row>
+    <Row>0,0.5,6,7</Row>
+    <Row>0,0,7,7</Row>
+    <Row>0,0,8,7</Row>
+    <Row>0,0,9,7</Row>
+    <Row>0,0,10,7</Row>
+    <Row>0,0,11,7</Row>
+    <Row>0,0.003010378,1,8</Row>
+    <Row>0,0,2,8</Row>
+    <Row>0,0.01,3,8</Row>
+    <Row>0,0.01,4,8</Row>
+    <Row>0,0.01,5,8</Row>
+    <Row>0,0,6,8</Row>
+    <Row>0,0,7,8</Row>
+    <Row>0,0,8,8</Row>
+    <Row>0,0,9,8</Row>
+    <Row>0,0,10,8</Row>
+    <Row>0,0,11,8</Row>
+    <Row>0,0.09553023,1,9</Row>
+    <Row>0,0.1,2,9</Row>
+    <Row>0,0.9,3,9</Row>
+    <Row>0,0.84,4,9</Row>
+    <Row>0,0.44,5,9</Row>
+    <Row>0,0,6,9</Row>
+    <Row>0,0,7,9</Row>
+    <Row>0,1,8,9</Row>
+    <Row>0,0.1,9,9</Row>
+    <Row>0,0,10,9</Row>
+    <Row>0,0,11,9</Row>
+    <Row>0,0.6771201,1,10</Row>
+    <Row>0,0,2,10</Row>
+    <Row>0,0,3,10</Row>
+    <Row>0,0,4,10</Row>
+    <Row>0,0,5,10</Row>
+    <Row>0,0.45,6,10</Row>
+    <Row>0,1,7,10</Row>
+    <Row>0,0,8,10</Row>
+    <Row>0,0.1,9,10</Row>
+    <Row>0,0,10,10</Row>
+    <Row>0,0,11,10</Row>
+    <Row>0,0.2097946,1,11</Row>
+    <Row>0,0,2,11</Row>
+    <Row>0,0,3,11</Row>
+    <Row>0,0,4,11</Row>
+    <Row>0,0,5,11</Row>
+    <Row>0,0,6,11</Row>
+    <Row>0,0,7,11</Row>
+    <Row>0,0,8,11</Row>
+    <Row>0,0.1,9,11</Row>
+    <Row>0,0.9,10,11</Row>
+    <Row>0,0,11,11</Row>
+  </Table>
+  <Table Name="EcopathDietCompSample" Columns="Diet:System.Single,PredID:System.Int64,PreyID:System.Int64,SampleID:System.Int64" Num="0" />
+  <Table Name="EcopathDiscardFate" Columns="DiscardFate:System.Single,FleetID:System.Int64,GroupID:System.Int64" Num="15">
+    <Row>1,1,1</Row>
+    <Row>1,2,1</Row>
+    <Row>1,3,1</Row>
+    <Row>1,4,1</Row>
+    <Row>1,5,1</Row>
+  </Table>
+  <Table Name="EcopathFleet" Columns="FixedCost:System.Single,FleetID:System.Int64,FleetName:System.String,NominalEffort:System.Single,PoolColor:System.String,SailingCost:System.Single,Sequence:System.Int64,VariableCost:System.Single" Num="40">
+    <Row>0,1,Sealers,1,ffff0000,40,1,40</Row>
+    <Row>0,2,Trawlers,1,00000000,40,2,40</Row>
+    <Row>0,3,Seiners,1,ffff8040,40,3,40</Row>
+    <Row>0,4,Bait boats,1,00000000,40,4,40</Row>
+    <Row>0,5,Shrimpers,1,00000000,40,5,40</Row>
+  </Table>
+  <Table Name="EcopathGroup" Columns="AinLW:System.Single,Area:System.Single,BinLW:System.Single,BiomAcc:System.Single,BiomAccRate:System.Single,Biomass:System.Single,Catch:System.Single,CmCo:System.Single,ConsBiom:System.Single,Consumption:System.Single,DtImports:System.Single,EcoEfficiency:System.Single,EmigRate:System.Single,Emigration:System.Single,Export:System.Single,GroupID:System.Int64,GroupIsFish:System.Boolean,GroupIsInvert:System.Boolean,GroupName:System.String,Immigration:System.Single,ImpVar:System.Single,Loo:System.Single,NonMarketValue:System.Single,OtherMort:System.Single,PoolColor:System.String,ProdBiom:System.Single,ProdCons:System.Single,ProdResp:System.Single,Production:System.Single,PSDInclude:System.Int64,QmQo:System.Single,RespBiom:System.Single,RespCons:System.Single,Respiration:System.Single,Sequence:System.Int64,t0:System.Single,Tcatch:System.Single,Tmax:System.Single,Type:System.Single,Unassim:System.Single,Unassimilated:System.Single,vbK:System.Single,Winf:System.Single" Num="473">
+    <Row>-1,1,-1,0,0,10,0,0,-9999,0,0,0,0,0,742.149,1,False,False,Detritus,0,0,-1,0,-9999,ff3ea979,-9999,-9999,0,0,,0,0,0,0,11,100,0,-1,2,0,0,-1,-1</Row>
+    <Row>-1,1,-1,0.0016,0.02,0.08,0,,9,0,0,-9999,0,0,0,2,True,True,Whales,0,0,-1,0,-9999,ff1f7e54,0.05,-9999,0,0,,,0,0,0.572,1,-9999,-1,-1,0,0.2,0,1.783333,-1</Row>
+    <Row>-1,1,-1,-0.003045,-0.05,0.0609,0.0045,,15,0,0,-9999,0,0,0.0045,3,True,True,Seals,0,0,-1,0,-9999,ff00511a,0.1539,-9999,0,0,,,0,0,0.7214274,2,-9999,-1,-1,0,0.2,0,2.9487,-1</Row>
+    <Row>-1,1,-1,0,0,3,0.45,,2.58,0,0,-9999,0,0,0.45,4,True,True,Cod,0,0,-1,0,-9999,ff29ff76,0.31,-9999,0,0,,,0,0,5.262,3,-9999,-1,-1,0,0.2,0,0.4126666,-1</Row>
+    <Row>-1,1,-1,0,0,1.8,0.2,,3.1,0,0,-9999,0,0,0.2,5,True,True,Whiting,0,0,-1,0,-9999,ff8061ef,0.581,-9999,0,0,,,0,0,3.4182,4,-9999,-1,-1,0,0.2,0,0.4263333,-1</Row>
+    <Row>-1,1,-1,0,0,1.2,0.4,,4.4,0,0,-9999,0,0,0.4,6,True,True,Mackerel,0,0,-1,0,-9999,ffcf6be5,0.7233334,-9999,0,0,,,0,0,3.356,5,-9999,-1,-1,0,0.2,0,0.6388889,-1</Row>
+    <Row>-1,1,-1,0,0,7,1.4,,9.13,0,0,-9999,0,0,1.4,7,True,True,Anchovy,0,0,-1,0,-9999,ffe4fd66,1.2,-9999,0,0,,,0,0,42.728,6,-9999,-1,-1,0,0.2,0,1.443083,-1</Row>
+    <Row>-1,1,-1,0,0,0.8,0.5,,-9999,0,0,-9999,0,0,0.5,8,True,True,Shrimp,0,0,-1,0,-9999,ffb34919,3,0.25,0,0,,,0,0,5.28,7,-9999,-1,-1,0,0.2,0,1.4,-1</Row>
+    <Row>-1,1,-1,0,0,-9999,0,,-9999,0,0,0.6,0,0,0,9,True,True,Benthos,0,0,-1,0,-9999,ff598a64,3,0.25,0,0,,,0,0,213.9604,8,-9999,-1,-1,0,0.2,0,1.4,-1</Row>
+    <Row>-1,1,-1,0,0,14.8,0,,-9999,0,0,-9999,0,0,0,10,True,True,Zooplankton,0,0,-1,0,-9999,ff10f2e3,35,0.25,0,0,,,0,0,1139.6,9,-9999,-1,-1,0,0.2,0,16.33333,-1</Row>
+    <Row>-1,1,-1,0,0,18,0,,-9999,0,0,-9999,0,0,0,11,True,True,Phytoplankton,0,0,-1,0,-9999,ff0537f0,120,-9999,0,0,,,0,0,0,10,-9999,-1,-1,1,0,0,0.3,-1</Row>
+  </Table>
+  <Table Name="EcopathGroupCatchSample" Columns="Discards:System.Single,FleetID:System.Int64,GroupID:System.Int64,Landing:System.Single,SampleID:System.Int64" Num="0" />
+  <Table Name="EcopathGroupPedigree" Columns="GroupID:System.Int64,LevelID:System.Int64,VarName:System.String" Num="69">
+    <Row>2,8,PBInput</Row>
+    <Row>2,16,QBInput</Row>
+    <Row>3,8,PBInput</Row>
+    <Row>3,16,QBInput</Row>
+    <Row>4,6,BiomassAreaInput</Row>
+    <Row>4,10,PBInput</Row>
+    <Row>4,18,QBInput</Row>
+    <Row>5,6,BiomassAreaInput</Row>
+    <Row>5,10,PBInput</Row>
+    <Row>5,18,QBInput</Row>
+    <Row>6,2,BiomassAreaInput</Row>
+    <Row>6,10,PBInput</Row>
+    <Row>6,18,QBInput</Row>
+    <Row>7,5,BiomassAreaInput</Row>
+    <Row>7,10,PBInput</Row>
+    <Row>7,18,QBInput</Row>
+    <Row>8,6,BiomassAreaInput</Row>
+    <Row>8,10,PBInput</Row>
+    <Row>8,15,QBInput</Row>
+    <Row>9,8,PBInput</Row>
+    <Row>9,15,QBInput</Row>
+    <Row>10,8,PBInput</Row>
+    <Row>10,15,QBInput</Row>
+  </Table>
+  <Table Name="EcopathGroupSample" Columns="BiomAcc:System.Single,BiomAccRate:System.Single,Biomass:System.Single,ConsBiom:System.Single,EcoEfficiency:System.Single,GroupID:System.Int64,ImpVar:System.Single,ProdBiom:System.Single,SampleID:System.Int64" Num="0" />
+  <Table Name="EcopathGroupTaxon" Columns="EcopathGroupID:System.Int64,PropCatch:System.Single,Proportion:System.Single,TaxonID:System.Int64" Num="0" />
+  <Table Name="EcopathModel" Columns="Area:System.Single,AreaName:System.String,Author:System.String,CodeEcobase:System.String,Contact:System.String,Country:System.String,DateEnd:System.Int64,DateStart:System.Int64,Description:System.String,EcoSimVulMultAll:System.Int64,EcosystemType:System.String,FirstYear:System.Int64,GroupDigits:System.Byte,LastSaved:System.Single,LastSavedVersion:System.String,MaxLat:System.Single,MaxLon:System.Single,MinLat:System.Single,MinLon:System.Single,ModelID:System.Int64,MonetaryUnit:System.String,Name:System.String,NumDigits:System.Int32,NumYears:System.Single,PublicationDOI:System.String,PublicationRef:System.String,PublicationURI:System.String,StepsPerYear:System.Int64,UnitCurrency:System.Int64,UnitCurrencyCustom:System.String,UnitMonetary:System.String,UnitTime:System.Int64,UnitTimeCustom:System.String,WithSeason:System.Boolean" Num="34">
+    <Row>1,,VC-PC\VC,,,,,,,0,,0,0,45301.55,6.7.0.18558,0,0,0,0,1,,Anchovy Bay,3,1,,,,12,5,,EUR,1,,False</Row>
+  </Table>
+  <Table Name="EcopathPSD" Columns="ClimateType:System.Int32,FirstWeightClass:System.Single,ModelID:System.Int64,MortalityType:System.Int64,NumAgeSteps:System.Int64,NumWeightClasses:System.Int64" Num="6">
+    <Row>1,0.125,1,0,101,25</Row>
+  </Table>
+  <Table Name="EcopathSample" Columns="Generated:System.Single,Hash:System.String,Rating:System.Single,SampleID:System.Int64,Source:System.String,SS:System.Single" Num="0" />
+  <Table Name="EcopathStanzaTaxon" Columns="StanzaID:System.Int64,TaxonID:System.Int64" Num="0" />
+  <Table Name="EcopathTaxon" Columns="ClassName:System.String,CodeAphia:System.String,CodeAquaMaps:System.String,CodeFAO:System.String,CodeFB:System.Int64,CodeLCID:System.String,CodeOBIS:System.Int64,CodeSAUP:System.Int64,CodeSLB:System.Int64,CommonName:System.String,ConservationStatus:System.Int64,EcologyType:System.Int64,ExploitationStatus:System.Int64,Exploited:System.Byte,FamilyName:System.String,GenusName:System.String,LastUpdated:System.Double,MaxLength:System.Single,MeanLength:System.Single,MeanLifeSpan:System.Single,MeanWeight:System.Single,OccurrenceStatus:System.Int64,OrderName:System.String,OrganismType:System.Int64,SourceKey:System.String,SourceName:System.String,SpeciesName:System.String,TaxonID:System.Int64,vbgfK:System.Single,VulnerabiltyIndex:System.Int32,Winf:System.Single" Num="0" />
+  <Table Name="EcosimModel" Columns="ForcePoints:System.Int64,ModelID:System.Int64" Num="2">
+    <Row>1200,1</Row>
+  </Table>
+  <Table Name="EcosimScenario" Columns="Author:System.String,Contact:System.String,Description:System.String,Discount:System.Single,DoInteg:System.Boolean,EquilibriumStepSize:System.Single,EquilScaleMax:System.Single,ForagingTimeLowerLimit:System.Single,LastSaved:System.Single,LastSavedVersion:System.String,NudgeEnd:System.Single,NudgeFactor:System.Single,NudgeStart:System.Single,NutBaseFreeProp:System.Single,NutForcingShapeID:System.Int64,NutPBmax:System.Single,ScenarioID:System.Int64,ScenarioName:System.String,sorwt:System.Single,StepSize:System.Single,SystemRecovery:System.Single,TotalTime:System.Int64,UseNudge:System.Boolean,UseVarPQ:System.Boolean" Num="24">
+    <Row>VC-PC\VC,,Created: 2/26/2011 12:18 PM,5,True,0.003,3,0.1,46128.7,6.7.0.18858,1.5,0.5,1,0.1,-9999,1.5,2,Scene 1,0.5,100,1,41,True,True</Row>
+  </Table>
+  <Table Name="EcosimScenarioArena" Columns="PeatArena:System.Single,PredID:System.Int64,PredSharedID:System.Int64,PreyID:System.Int64,ScenarioID:System.Int64,Sequence:System.Int64" Num="0" />
+  <Table Name="EcosimScenarioCapacityDrivers" Columns="DriverID:System.Int64,GroupID:System.Int64,ResponseID:System.Int64,ScenarioID:System.Int64,Target:System.Int64" Num="15">
+    <Row>33,14,23,2,115</Row>
+    <Row>33,15,34,2,115</Row>
+    <Row>33,17,24,2,115</Row>
+  </Table>
+  <Table Name="EcosimScenarioFleet" Columns="CapBaseGrowth:System.Single,CapDepreciate:System.Single,CatchRefLower:System.Single,CatchRefUpper:System.Single,CV:System.Single,EcopathFleetID:System.Int64,EffortConversionFactor:System.Single,EffortRefLower:System.Single,EffortRefUpper:System.Single,Epower:System.Single,FishRateShapeID:System.Int64,FleetID:System.Int64,MaxEffort:System.Single,MSYEvaluateFleet:System.Boolean,PCapBase:System.Single,QIncrease:System.Single,QuotaType:System.Int32,ScenarioID:System.Int64" Num="90">
+    <Row>0.2,0.06,0.00225,0.009,0.3,1,1,0.5,2,3,28,6,-9999,True,0.5,0.03,3,2</Row>
+    <Row>0.2,0.06,0.325,1.3,0.3,2,1,0.5,2,3,29,7,-9999,True,0.5,0.03,3,2</Row>
+    <Row>0.2,0.06,0.8,3.2,0.3,3,1,0.5,2,3,30,8,-9999,True,0.5,0.03,3,2</Row>
+    <Row>0.2,0.06,0.1,0.4,0.3,4,1,0.5,2,3,31,9,-9999,True,0.5,0.03,3,2</Row>
+    <Row>0.2,0.06,0.015,0.06,0.3,5,1,0.5,2,3,32,10,-9999,True,0.5,0.03,3,2</Row>
+  </Table>
+  <Table Name="EcosimScenarioFleetYear" Columns="CV:System.Single,FleetID:System.Int64,ScenarioID:System.Int64,TimeYear:System.Int64" Num="820">
+    <Row>0.3,6,2,1</Row>
+    <Row>0.3,6,2,2</Row>
+    <Row>0.3,6,2,3</Row>
+    <Row>0.3,6,2,4</Row>
+    <Row>0.3,6,2,5</Row>
+    <Row>0.3,6,2,6</Row>
+    <Row>0.3,6,2,7</Row>
+    <Row>0.3,6,2,8</Row>
+    <Row>0.3,6,2,9</Row>
+    <Row>0.3,6,2,10</Row>
+    <Row>0.3,6,2,11</Row>
+    <Row>0.3,6,2,12</Row>
+    <Row>0.3,6,2,13</Row>
+    <Row>0.3,6,2,14</Row>
+    <Row>0.3,6,2,15</Row>
+    <Row>0.3,6,2,16</Row>
+    <Row>0.3,6,2,17</Row>
+    <Row>0.3,6,2,18</Row>
+    <Row>0.3,6,2,19</Row>
+    <Row>0.3,6,2,20</Row>
+    <Row>0.3,6,2,21</Row>
+    <Row>0.3,6,2,22</Row>
+    <Row>0.3,6,2,23</Row>
+    <Row>0.3,6,2,24</Row>
+    <Row>0.3,6,2,25</Row>
+    <Row>0.3,6,2,26</Row>
+    <Row>0.3,6,2,27</Row>
+    <Row>0.3,6,2,28</Row>
+    <Row>0.3,6,2,29</Row>
+    <Row>0.3,6,2,30</Row>
+    <Row>0.3,6,2,31</Row>
+    <Row>0.3,6,2,32</Row>
+    <Row>0.3,6,2,33</Row>
+    <Row>0.3,6,2,34</Row>
+    <Row>0.3,6,2,35</Row>
+    <Row>0.3,6,2,36</Row>
+    <Row>0.3,6,2,37</Row>
+    <Row>0.3,6,2,38</Row>
+    <Row>0.3,6,2,39</Row>
+    <Row>0.3,6,2,40</Row>
+    <Row>0.3,6,2,41</Row>
+    <Row>0.3,7,2,1</Row>
+    <Row>0.3,7,2,2</Row>
+    <Row>0.3,7,2,3</Row>
+    <Row>0.3,7,2,4</Row>
+    <Row>0.3,7,2,5</Row>
+    <Row>0.3,7,2,6</Row>
+    <Row>0.3,7,2,7</Row>
+    <Row>0.3,7,2,8</Row>
+    <Row>0.3,7,2,9</Row>
+    <Row>0.3,7,2,10</Row>
+    <Row>0.3,7,2,11</Row>
+    <Row>0.3,7,2,12</Row>
+    <Row>0.3,7,2,13</Row>
+    <Row>0.3,7,2,14</Row>
+    <Row>0.3,7,2,15</Row>
+    <Row>0.3,7,2,16</Row>
+    <Row>0.3,7,2,17</Row>
+    <Row>0.3,7,2,18</Row>
+    <Row>0.3,7,2,19</Row>
+    <Row>0.3,7,2,20</Row>
+    <Row>0.3,7,2,21</Row>
+    <Row>0.3,7,2,22</Row>
+    <Row>0.3,7,2,23</Row>
+    <Row>0.3,7,2,24</Row>
+    <Row>0.3,7,2,25</Row>
+    <Row>0.3,7,2,26</Row>
+    <Row>0.3,7,2,27</Row>
+    <Row>0.3,7,2,28</Row>
+    <Row>0.3,7,2,29</Row>
+    <Row>0.3,7,2,30</Row>
+    <Row>0.3,7,2,31</Row>
+    <Row>0.3,7,2,32</Row>
+    <Row>0.3,7,2,33</Row>
+    <Row>0.3,7,2,34</Row>
+    <Row>0.3,7,2,35</Row>
+    <Row>0.3,7,2,36</Row>
+    <Row>0.3,7,2,37</Row>
+    <Row>0.3,7,2,38</Row>
+    <Row>0.3,7,2,39</Row>
+    <Row>0.3,7,2,40</Row>
+    <Row>0.3,7,2,41</Row>
+    <Row>0.3,8,2,1</Row>
+    <Row>0.3,8,2,2</Row>
+    <Row>0.3,8,2,3</Row>
+    <Row>0.3,8,2,4</Row>
+    <Row>0.3,8,2,5</Row>
+    <Row>0.3,8,2,6</Row>
+    <Row>0.3,8,2,7</Row>
+    <Row>0.3,8,2,8</Row>
+    <Row>0.3,8,2,9</Row>
+    <Row>0.3,8,2,10</Row>
+    <Row>0.3,8,2,11</Row>
+    <Row>0.3,8,2,12</Row>
+    <Row>0.3,8,2,13</Row>
+    <Row>0.3,8,2,14</Row>
+    <Row>0.3,8,2,15</Row>
+    <Row>0.3,8,2,16</Row>
+    <Row>0.3,8,2,17</Row>
+    <Row>0.3,8,2,18</Row>
+    <Row>0.3,8,2,19</Row>
+    <Row>0.3,8,2,20</Row>
+    <Row>0.3,8,2,21</Row>
+    <Row>0.3,8,2,22</Row>
+    <Row>0.3,8,2,23</Row>
+    <Row>0.3,8,2,24</Row>
+    <Row>0.3,8,2,25</Row>
+    <Row>0.3,8,2,26</Row>
+    <Row>0.3,8,2,27</Row>
+    <Row>0.3,8,2,28</Row>
+    <Row>0.3,8,2,29</Row>
+    <Row>0.3,8,2,30</Row>
+    <Row>0.3,8,2,31</Row>
+    <Row>0.3,8,2,32</Row>
+    <Row>0.3,8,2,33</Row>
+    <Row>0.3,8,2,34</Row>
+    <Row>0.3,8,2,35</Row>
+    <Row>0.3,8,2,36</Row>
+    <Row>0.3,8,2,37</Row>
+    <Row>0.3,8,2,38</Row>
+    <Row>0.3,8,2,39</Row>
+    <Row>0.3,8,2,40</Row>
+    <Row>0.3,8,2,41</Row>
+    <Row>0.3,9,2,1</Row>
+    <Row>0.3,9,2,2</Row>
+    <Row>0.3,9,2,3</Row>
+    <Row>0.3,9,2,4</Row>
+    <Row>0.3,9,2,5</Row>
+    <Row>0.3,9,2,6</Row>
+    <Row>0.3,9,2,7</Row>
+    <Row>0.3,9,2,8</Row>
+    <Row>0.3,9,2,9</Row>
+    <Row>0.3,9,2,10</Row>
+    <Row>0.3,9,2,11</Row>
+    <Row>0.3,9,2,12</Row>
+    <Row>0.3,9,2,13</Row>
+    <Row>0.3,9,2,14</Row>
+    <Row>0.3,9,2,15</Row>
+    <Row>0.3,9,2,16</Row>
+    <Row>0.3,9,2,17</Row>
+    <Row>0.3,9,2,18</Row>
+    <Row>0.3,9,2,19</Row>
+    <Row>0.3,9,2,20</Row>
+    <Row>0.3,9,2,21</Row>
+    <Row>0.3,9,2,22</Row>
+    <Row>0.3,9,2,23</Row>
+    <Row>0.3,9,2,24</Row>
+    <Row>0.3,9,2,25</Row>
+    <Row>0.3,9,2,26</Row>
+    <Row>0.3,9,2,27</Row>
+    <Row>0.3,9,2,28</Row>
+    <Row>0.3,9,2,29</Row>
+    <Row>0.3,9,2,30</Row>
+    <Row>0.3,9,2,31</Row>
+    <Row>0.3,9,2,32</Row>
+    <Row>0.3,9,2,33</Row>
+    <Row>0.3,9,2,34</Row>
+    <Row>0.3,9,2,35</Row>
+    <Row>0.3,9,2,36</Row>
+    <Row>0.3,9,2,37</Row>
+    <Row>0.3,9,2,38</Row>
+    <Row>0.3,9,2,39</Row>
+    <Row>0.3,9,2,40</Row>
+    <Row>0.3,9,2,41</Row>
+    <Row>0.3,10,2,1</Row>
+    <Row>0.3,10,2,2</Row>
+    <Row>0.3,10,2,3</Row>
+    <Row>0.3,10,2,4</Row>
+    <Row>0.3,10,2,5</Row>
+    <Row>0.3,10,2,6</Row>
+    <Row>0.3,10,2,7</Row>
+    <Row>0.3,10,2,8</Row>
+    <Row>0.3,10,2,9</Row>
+    <Row>0.3,10,2,10</Row>
+    <Row>0.3,10,2,11</Row>
+    <Row>0.3,10,2,12</Row>
+    <Row>0.3,10,2,13</Row>
+    <Row>0.3,10,2,14</Row>
+    <Row>0.3,10,2,15</Row>
+    <Row>0.3,10,2,16</Row>
+    <Row>0.3,10,2,17</Row>
+    <Row>0.3,10,2,18</Row>
+    <Row>0.3,10,2,19</Row>
+    <Row>0.3,10,2,20</Row>
+    <Row>0.3,10,2,21</Row>
+    <Row>0.3,10,2,22</Row>
+    <Row>0.3,10,2,23</Row>
+    <Row>0.3,10,2,24</Row>
+    <Row>0.3,10,2,25</Row>
+    <Row>0.3,10,2,26</Row>
+    <Row>0.3,10,2,27</Row>
+    <Row>0.3,10,2,28</Row>
+    <Row>0.3,10,2,29</Row>
+    <Row>0.3,10,2,30</Row>
+    <Row>0.3,10,2,31</Row>
+    <Row>0.3,10,2,32</Row>
+    <Row>0.3,10,2,33</Row>
+    <Row>0.3,10,2,34</Row>
+    <Row>0.3,10,2,35</Row>
+    <Row>0.3,10,2,36</Row>
+    <Row>0.3,10,2,37</Row>
+    <Row>0.3,10,2,38</Row>
+    <Row>0.3,10,2,39</Row>
+    <Row>0.3,10,2,40</Row>
+    <Row>0.3,10,2,41</Row>
+  </Table>
+  <Table Name="EcosimScenarioForcingMatrix" Columns="PredID:System.Int64,PreyID:System.Int64,ScenarioID:System.Int64,vulnerability:System.Single" Num="116">
+    <Row>12,14,2,1.111108</Row>
+    <Row>13,14,2,22.6695</Row>
+    <Row>15,14,2,1.000014</Row>
+    <Row>12,15,2,1.111108</Row>
+    <Row>13,15,2,22.6695</Row>
+    <Row>14,15,2,1.504435</Row>
+    <Row>15,15,2,1.000014</Row>
+    <Row>12,16,2,1.111108</Row>
+    <Row>16,16,2,1.000033</Row>
+    <Row>12,17,2,1.111108</Row>
+    <Row>14,17,2,1.504435</Row>
+    <Row>15,17,2,1.000014</Row>
+    <Row>16,17,2,1.000033</Row>
+    <Row>13,18,2,22.6695</Row>
+    <Row>14,18,2,1.504435</Row>
+    <Row>15,18,2,1.000014</Row>
+    <Row>12,19,2,1.111108</Row>
+    <Row>13,19,2,22.6695</Row>
+    <Row>14,19,2,1.504435</Row>
+    <Row>15,19,2,1.000014</Row>
+    <Row>18,19,2,100</Row>
+    <Row>19,19,2,1.137262</Row>
+    <Row>16,20,2,1.000033</Row>
+    <Row>17,20,2,1</Row>
+    <Row>19,20,2,1.137262</Row>
+    <Row>19,21,2,1.137262</Row>
+    <Row>20,21,2,87.42155</Row>
+    <Row>19,22,2,1.137262</Row>
+    <Row>20,22,2,87.42155</Row>
+  </Table>
+  <Table Name="EcosimScenarioGroup" Columns="AdditivePredMort:System.Single,Bbase:System.Single,BiomassCV:System.Single,BiomassRefLower:System.Single,BiomassRefUpper:System.Single,Blim:System.Single,CatchRefLower:System.Single,CatchRefUpper:System.Single,CmCo:System.Single,EcopathGroupID:System.Int64,FishMortMax:System.Single,FishMortShapeID:System.Int64,FishRateMax:System.Single,FixedEscapement:System.Single,FixedF:System.Single,Fopt:System.Single,FtimeAdjust:System.Single,FtimeMax:System.Single,GroupID:System.Int64,Kalwt:System.Single,LowerRisk:System.Single,MoPred:System.Single,Pbmaxs:System.Single,QmQo:System.Single,RecruitmentCV:System.Single,RHalfB0Ratio:System.Single,RiskTime:System.Single,RStockRatio:System.Single,ScenarioID:System.Int64,Show:System.Boolean,SwitchPower:System.Single,UpperRisk:System.Single" Num="352">
+    <Row>1,0,0.2,0,0,0,-9999,-9999,1000,1,1000,28,1,0,0,0,0.5,1,22,-9999,0.5,1,2,1,0.8,0.2,0,-∞,2,True,0,2</Row>
+    <Row>1,0,0.2,0,0,0,-9999,-9999,1000,2,1000,28,1,0,0,0,0.5,2,12,-9999,0.5,1,2,1,0.8,0.2,0,0.04877058,2,True,0,2</Row>
+    <Row>1,0.02,0.2,0,0.1101493,0,0.00225,0.009,1000,3,1000,28,1,0,0,0.1,0.5,2,13,-9999,0.5,1,2,1,0.8,0.2,0,0.1426422,2,True,0,2</Row>
+    <Row>1,3.301199,0.2,1.6506,3.301199,1.6506,0.225,0.9,1000,4,1000,28,1,0,0,0.4,0.5,2,14,-9999,0.5,1,2,1,0.8,0.2,0,0.266553,2,True,0,2</Row>
+    <Row>1,1.933542,0.2,0.9667709,1.933542,0.9667709,0.1,0.4,1000,5,1000,28,1,0,0,0.0418565,0.5,2,15,-9999,0.5,1,2,1,0.8,0.2,0,0.4406612,2,True,0,2</Row>
+    <Row>1,1.496916,0.2,0.7484579,1.496916,0.7484579,0.2,0.8,1000,6,1000,28,1,0,0,0.1022495,0.5,2,16,-9999,0.5,1,2,1,0.8,0.2,0,0.5148675,2,True,0,2</Row>
+    <Row>1,6.894431,0.2,3.447215,6.894431,3.447215,0.7,2.8,1000,7,1000,28,1,0,0,0.08200904,0.5,2,17,-9999,0.5,1,2,1,0.8,0.2,0,0.6829672,2,True,0,2</Row>
+    <Row>1,0.05723863,0.2,0.02861931,0.05723863,0.02861931,0.015,0.06,1000,8,1000,28,1,0,0,0.2523682,0.5,2,18,-9999,0.5,1,2,1,0.8,0.2,0,0.950213,2,True,0,2</Row>
+    <Row>1,0,0.2,0,0,0,-9999,-9999,1000,9,1000,28,1,0,0,0,0.5,2,19,-9999,0.5,1,2,1,0.8,0.2,0,0.950213,2,True,0,2</Row>
+    <Row>1,0,0.2,0,0,0,-9999,-9999,1000,10,1000,28,1,0,0,0,0.5,2,20,-9999,0.5,1,2,1,0.8,0.2,0,1,2,True,0,2</Row>
+    <Row>1,0,0.2,0,0,0,-9999,-9999,1000,11,1000,28,1,0,0,0,0.5,1,21,-9999,0.5,1,2,1,0.8,0.2,0,1,2,True,0,2</Row>
+  </Table>
+  <Table Name="EcosimScenarioGroupYear" Columns="CVBiom:System.Single,GroupID:System.Int64,ScenarioID:System.Int64,TimeYear:System.Int64" Num="1804">
+    <Row>0.2,12,2,1</Row>
+    <Row>0.2,12,2,2</Row>
+    <Row>0.2,12,2,3</Row>
+    <Row>0.2,12,2,4</Row>
+    <Row>0.2,12,2,5</Row>
+    <Row>0.2,12,2,6</Row>
+    <Row>0.2,12,2,7</Row>
+    <Row>0.2,12,2,8</Row>
+    <Row>0.2,12,2,9</Row>
+    <Row>0.2,12,2,10</Row>
+    <Row>0.2,12,2,11</Row>
+    <Row>0.2,12,2,12</Row>
+    <Row>0.2,12,2,13</Row>
+    <Row>0.2,12,2,14</Row>
+    <Row>0.2,12,2,15</Row>
+    <Row>0.2,12,2,16</Row>
+    <Row>0.2,12,2,17</Row>
+    <Row>0.2,12,2,18</Row>
+    <Row>0.2,12,2,19</Row>
+    <Row>0.2,12,2,20</Row>
+    <Row>0.2,12,2,21</Row>
+    <Row>0.2,12,2,22</Row>
+    <Row>0.2,12,2,23</Row>
+    <Row>0.2,12,2,24</Row>
+    <Row>0.2,12,2,25</Row>
+    <Row>0.2,12,2,26</Row>
+    <Row>0.2,12,2,27</Row>
+    <Row>0.2,12,2,28</Row>
+    <Row>0.2,12,2,29</Row>
+    <Row>0.2,12,2,30</Row>
+    <Row>0.2,12,2,31</Row>
+    <Row>0.2,12,2,32</Row>
+    <Row>0.2,12,2,33</Row>
+    <Row>0.2,12,2,34</Row>
+    <Row>0.2,12,2,35</Row>
+    <Row>0.2,12,2,36</Row>
+    <Row>0.2,12,2,37</Row>
+    <Row>0.2,12,2,38</Row>
+    <Row>0.2,12,2,39</Row>
+    <Row>0.2,12,2,40</Row>
+    <Row>0.2,12,2,41</Row>
+    <Row>0.3,13,2,1</Row>
+    <Row>0.3,13,2,2</Row>
+    <Row>0.3,13,2,3</Row>
+    <Row>0.3,13,2,4</Row>
+    <Row>0.3,13,2,5</Row>
+    <Row>0.3,13,2,6</Row>
+    <Row>0.3,13,2,7</Row>
+    <Row>0.3,13,2,8</Row>
+    <Row>0.3,13,2,9</Row>
+    <Row>0.3,13,2,10</Row>
+    <Row>0.3,13,2,11</Row>
+    <Row>0.3,13,2,12</Row>
+    <Row>0.3,13,2,13</Row>
+    <Row>0.3,13,2,14</Row>
+    <Row>0.3,13,2,15</Row>
+    <Row>0.3,13,2,16</Row>
+    <Row>0.3,13,2,17</Row>
+    <Row>0.3,13,2,18</Row>
+    <Row>0.3,13,2,19</Row>
+    <Row>0.3,13,2,20</Row>
+    <Row>0.3,13,2,21</Row>
+    <Row>0.3,13,2,22</Row>
+    <Row>0.3,13,2,23</Row>
+    <Row>0.3,13,2,24</Row>
+    <Row>0.3,13,2,25</Row>
+    <Row>0.3,13,2,26</Row>
+    <Row>0.3,13,2,27</Row>
+    <Row>0.3,13,2,28</Row>
+    <Row>0.3,13,2,29</Row>
+    <Row>0.3,13,2,30</Row>
+    <Row>0.3,13,2,31</Row>
+    <Row>0.3,13,2,32</Row>
+    <Row>0.3,13,2,33</Row>
+    <Row>0.3,13,2,34</Row>
+    <Row>0.3,13,2,35</Row>
+    <Row>0.3,13,2,36</Row>
+    <Row>0.3,13,2,37</Row>
+    <Row>0.2,13,2,38</Row>
+    <Row>0.2,13,2,39</Row>
+    <Row>0.2,13,2,40</Row>
+    <Row>0.2,13,2,41</Row>
+    <Row>0.3,14,2,1</Row>
+    <Row>0.3,14,2,2</Row>
+    <Row>0.3,14,2,3</Row>
+    <Row>0.3,14,2,4</Row>
+    <Row>0.3,14,2,5</Row>
+    <Row>0.3,14,2,6</Row>
+    <Row>0.3,14,2,7</Row>
+    <Row>0.3,14,2,8</Row>
+    <Row>0.3,14,2,9</Row>
+    <Row>0.3,14,2,10</Row>
+    <Row>0.3,14,2,11</Row>
+    <Row>0.3,14,2,12</Row>
+    <Row>0.3,14,2,13</Row>
+    <Row>0.3,14,2,14</Row>
+    <Row>0.3,14,2,15</Row>
+    <Row>0.3,14,2,16</Row>
+    <Row>0.3,14,2,17</Row>
+    <Row>0.3,14,2,18</Row>
+    <Row>0.3,14,2,19</Row>
+    <Row>0.3,14,2,20</Row>
+    <Row>0.3,14,2,21</Row>
+    <Row>0.3,14,2,22</Row>
+    <Row>0.3,14,2,23</Row>
+    <Row>0.3,14,2,24</Row>
+    <Row>0.3,14,2,25</Row>
+    <Row>0.3,14,2,26</Row>
+    <Row>0.3,14,2,27</Row>
+    <Row>0.3,14,2,28</Row>
+    <Row>0.3,14,2,29</Row>
+    <Row>0.3,14,2,30</Row>
+    <Row>0.3,14,2,31</Row>
+    <Row>0.3,14,2,32</Row>
+    <Row>0.3,14,2,33</Row>
+    <Row>0.3,14,2,34</Row>
+    <Row>0.3,14,2,35</Row>
+    <Row>0.3,14,2,36</Row>
+    <Row>0.3,14,2,37</Row>
+    <Row>0.2,14,2,38</Row>
+    <Row>0.2,14,2,39</Row>
+    <Row>0.2,14,2,40</Row>
+    <Row>0.2,14,2,41</Row>
+    <Row>0.3,15,2,1</Row>
+    <Row>0.3,15,2,2</Row>
+    <Row>0.3,15,2,3</Row>
+    <Row>0.3,15,2,4</Row>
+    <Row>0.3,15,2,5</Row>
+    <Row>0.3,15,2,6</Row>
+    <Row>0.3,15,2,7</Row>
+    <Row>0.3,15,2,8</Row>
+    <Row>0.3,15,2,9</Row>
+    <Row>0.3,15,2,10</Row>
+    <Row>0.3,15,2,11</Row>
+    <Row>0.3,15,2,12</Row>
+    <Row>0.3,15,2,13</Row>
+    <Row>0.3,15,2,14</Row>
+    <Row>0.3,15,2,15</Row>
+    <Row>0.3,15,2,16</Row>
+    <Row>0.3,15,2,17</Row>
+    <Row>0.3,15,2,18</Row>
+    <Row>0.3,15,2,19</Row>
+    <Row>0.3,15,2,20</Row>
+    <Row>0.3,15,2,21</Row>
+    <Row>0.3,15,2,22</Row>
+    <Row>0.3,15,2,23</Row>
+    <Row>0.3,15,2,24</Row>
+    <Row>0.3,15,2,25</Row>
+    <Row>0.3,15,2,26</Row>
+    <Row>0.3,15,2,27</Row>
+    <Row>0.3,15,2,28</Row>
+    <Row>0.3,15,2,29</Row>
+    <Row>0.3,15,2,30</Row>
+    <Row>0.3,15,2,31</Row>
+    <Row>0.3,15,2,32</Row>
+    <Row>0.3,15,2,33</Row>
+    <Row>0.3,15,2,34</Row>
+    <Row>0.3,15,2,35</Row>
+    <Row>0.3,15,2,36</Row>
+    <Row>0.3,15,2,37</Row>
+    <Row>0.2,15,2,38</Row>
+    <Row>0.2,15,2,39</Row>
+    <Row>0.2,15,2,40</Row>
+    <Row>0.2,15,2,41</Row>
+    <Row>0.3,16,2,1</Row>
+    <Row>0.3,16,2,2</Row>
+    <Row>0.3,16,2,3</Row>
+    <Row>0.3,16,2,4</Row>
+    <Row>0.3,16,2,5</Row>
+    <Row>0.3,16,2,6</Row>
+    <Row>0.3,16,2,7</Row>
+    <Row>0.3,16,2,8</Row>
+    <Row>0.3,16,2,9</Row>
+    <Row>0.3,16,2,10</Row>
+    <Row>0.3,16,2,11</Row>
+    <Row>0.3,16,2,12</Row>
+    <Row>0.3,16,2,13</Row>
+    <Row>0.3,16,2,14</Row>
+    <Row>0.3,16,2,15</Row>
+    <Row>0.3,16,2,16</Row>
+    <Row>0.3,16,2,17</Row>
+    <Row>0.3,16,2,18</Row>
+    <Row>0.3,16,2,19</Row>
+    <Row>0.3,16,2,20</Row>
+    <Row>0.3,16,2,21</Row>
+    <Row>0.3,16,2,22</Row>
+    <Row>0.3,16,2,23</Row>
+    <Row>0.3,16,2,24</Row>
+    <Row>0.3,16,2,25</Row>
+    <Row>0.3,16,2,26</Row>
+    <Row>0.3,16,2,27</Row>
+    <Row>0.3,16,2,28</Row>
+    <Row>0.3,16,2,29</Row>
+    <Row>0.3,16,2,30</Row>
+    <Row>0.3,16,2,31</Row>
+    <Row>0.3,16,2,32</Row>
+    <Row>0.3,16,2,33</Row>
+    <Row>0.3,16,2,34</Row>
+    <Row>0.3,16,2,35</Row>
+    <Row>0.3,16,2,36</Row>
+    <Row>0.3,16,2,37</Row>
+    <Row>0.2,16,2,38</Row>
+    <Row>0.2,16,2,39</Row>
+    <Row>0.2,16,2,40</Row>
+    <Row>0.2,16,2,41</Row>
+    <Row>0.3,17,2,1</Row>
+    <Row>0.3,17,2,2</Row>
+    <Row>0.3,17,2,3</Row>
+    <Row>0.3,17,2,4</Row>
+    <Row>0.3,17,2,5</Row>
+    <Row>0.3,17,2,6</Row>
+    <Row>0.3,17,2,7</Row>
+    <Row>0.3,17,2,8</Row>
+    <Row>0.3,17,2,9</Row>
+    <Row>0.3,17,2,10</Row>
+    <Row>0.3,17,2,11</Row>
+    <Row>0.3,17,2,12</Row>
+    <Row>0.3,17,2,13</Row>
+    <Row>0.3,17,2,14</Row>
+    <Row>0.3,17,2,15</Row>
+    <Row>0.3,17,2,16</Row>
+    <Row>0.3,17,2,17</Row>
+    <Row>0.3,17,2,18</Row>
+    <Row>0.3,17,2,19</Row>
+    <Row>0.3,17,2,20</Row>
+    <Row>0.3,17,2,21</Row>
+    <Row>0.3,17,2,22</Row>
+    <Row>0.3,17,2,23</Row>
+    <Row>0.3,17,2,24</Row>
+    <Row>0.3,17,2,25</Row>
+    <Row>0.3,17,2,26</Row>
+    <Row>0.3,17,2,27</Row>
+    <Row>0.3,17,2,28</Row>
+    <Row>0.3,17,2,29</Row>
+    <Row>0.3,17,2,30</Row>
+    <Row>0.3,17,2,31</Row>
+    <Row>0.3,17,2,32</Row>
+    <Row>0.3,17,2,33</Row>
+    <Row>0.3,17,2,34</Row>
+    <Row>0.3,17,2,35</Row>
+    <Row>0.3,17,2,36</Row>
+    <Row>0.3,17,2,37</Row>
+    <Row>0.2,17,2,38</Row>
+    <Row>0.2,17,2,39</Row>
+    <Row>0.2,17,2,40</Row>
+    <Row>0.2,17,2,41</Row>
+    <Row>0.3,18,2,1</Row>
+    <Row>0.3,18,2,2</Row>
+    <Row>0.3,18,2,3</Row>
+    <Row>0.3,18,2,4</Row>
+    <Row>0.3,18,2,5</Row>
+    <Row>0.3,18,2,6</Row>
+    <Row>0.3,18,2,7</Row>
+    <Row>0.3,18,2,8</Row>
+    <Row>0.3,18,2,9</Row>
+    <Row>0.3,18,2,10</Row>
+    <Row>0.3,18,2,11</Row>
+    <Row>0.3,18,2,12</Row>
+    <Row>0.3,18,2,13</Row>
+    <Row>0.3,18,2,14</Row>
+    <Row>0.3,18,2,15</Row>
+    <Row>0.3,18,2,16</Row>
+    <Row>0.3,18,2,17</Row>
+    <Row>0.3,18,2,18</Row>
+    <Row>0.3,18,2,19</Row>
+    <Row>0.3,18,2,20</Row>
+    <Row>0.3,18,2,21</Row>
+    <Row>0.3,18,2,22</Row>
+    <Row>0.3,18,2,23</Row>
+    <Row>0.3,18,2,24</Row>
+    <Row>0.3,18,2,25</Row>
+    <Row>0.3,18,2,26</Row>
+    <Row>0.3,18,2,27</Row>
+    <Row>0.3,18,2,28</Row>
+    <Row>0.3,18,2,29</Row>
+    <Row>0.3,18,2,30</Row>
+    <Row>0.3,18,2,31</Row>
+    <Row>0.3,18,2,32</Row>
+    <Row>0.3,18,2,33</Row>
+    <Row>0.3,18,2,34</Row>
+    <Row>0.3,18,2,35</Row>
+    <Row>0.3,18,2,36</Row>
+    <Row>0.3,18,2,37</Row>
+    <Row>0.2,18,2,38</Row>
+    <Row>0.2,18,2,39</Row>
+    <Row>0.2,18,2,40</Row>
+    <Row>0.2,18,2,41</Row>
+    <Row>0.2,19,2,1</Row>
+    <Row>0.2,19,2,2</Row>
+    <Row>0.2,19,2,3</Row>
+    <Row>0.2,19,2,4</Row>
+    <Row>0.2,19,2,5</Row>
+    <Row>0.2,19,2,6</Row>
+    <Row>0.2,19,2,7</Row>
+    <Row>0.2,19,2,8</Row>
+    <Row>0.2,19,2,9</Row>
+    <Row>0.2,19,2,10</Row>
+    <Row>0.2,19,2,11</Row>
+    <Row>0.2,19,2,12</Row>
+    <Row>0.2,19,2,13</Row>
+    <Row>0.2,19,2,14</Row>
+    <Row>0.2,19,2,15</Row>
+    <Row>0.2,19,2,16</Row>
+    <Row>0.2,19,2,17</Row>
+    <Row>0.2,19,2,18</Row>
+    <Row>0.2,19,2,19</Row>
+    <Row>0.2,19,2,20</Row>
+    <Row>0.2,19,2,21</Row>
+    <Row>0.2,19,2,22</Row>
+    <Row>0.2,19,2,23</Row>
+    <Row>0.2,19,2,24</Row>
+    <Row>0.2,19,2,25</Row>
+    <Row>0.2,19,2,26</Row>
+    <Row>0.2,19,2,27</Row>
+    <Row>0.2,19,2,28</Row>
+    <Row>0.2,19,2,29</Row>
+    <Row>0.2,19,2,30</Row>
+    <Row>0.2,19,2,31</Row>
+    <Row>0.2,19,2,32</Row>
+    <Row>0.2,19,2,33</Row>
+    <Row>0.2,19,2,34</Row>
+    <Row>0.2,19,2,35</Row>
+    <Row>0.2,19,2,36</Row>
+    <Row>0.2,19,2,37</Row>
+    <Row>0.2,19,2,38</Row>
+    <Row>0.2,19,2,39</Row>
+    <Row>0.2,19,2,40</Row>
+    <Row>0.2,19,2,41</Row>
+    <Row>0.2,20,2,1</Row>
+    <Row>0.2,20,2,2</Row>
+    <Row>0.2,20,2,3</Row>
+    <Row>0.2,20,2,4</Row>
+    <Row>0.2,20,2,5</Row>
+    <Row>0.2,20,2,6</Row>
+    <Row>0.2,20,2,7</Row>
+    <Row>0.2,20,2,8</Row>
+    <Row>0.2,20,2,9</Row>
+    <Row>0.2,20,2,10</Row>
+    <Row>0.2,20,2,11</Row>
+    <Row>0.2,20,2,12</Row>
+    <Row>0.2,20,2,13</Row>
+    <Row>0.2,20,2,14</Row>
+    <Row>0.2,20,2,15</Row>
+    <Row>0.2,20,2,16</Row>
+    <Row>0.2,20,2,17</Row>
+    <Row>0.2,20,2,18</Row>
+    <Row>0.2,20,2,19</Row>
+    <Row>0.2,20,2,20</Row>
+    <Row>0.2,20,2,21</Row>
+    <Row>0.2,20,2,22</Row>
+    <Row>0.2,20,2,23</Row>
+    <Row>0.2,20,2,24</Row>
+    <Row>0.2,20,2,25</Row>
+    <Row>0.2,20,2,26</Row>
+    <Row>0.2,20,2,27</Row>
+    <Row>0.2,20,2,28</Row>
+    <Row>0.2,20,2,29</Row>
+    <Row>0.2,20,2,30</Row>
+    <Row>0.2,20,2,31</Row>
+    <Row>0.2,20,2,32</Row>
+    <Row>0.2,20,2,33</Row>
+    <Row>0.2,20,2,34</Row>
+    <Row>0.2,20,2,35</Row>
+    <Row>0.2,20,2,36</Row>
+    <Row>0.2,20,2,37</Row>
+    <Row>0.2,20,2,38</Row>
+    <Row>0.2,20,2,39</Row>
+    <Row>0.2,20,2,40</Row>
+    <Row>0.2,20,2,41</Row>
+    <Row>0.2,21,2,1</Row>
+    <Row>0.2,21,2,2</Row>
+    <Row>0.2,21,2,3</Row>
+    <Row>0.2,21,2,4</Row>
+    <Row>0.2,21,2,5</Row>
+    <Row>0.2,21,2,6</Row>
+    <Row>0.2,21,2,7</Row>
+    <Row>0.2,21,2,8</Row>
+    <Row>0.2,21,2,9</Row>
+    <Row>0.2,21,2,10</Row>
+    <Row>0.2,21,2,11</Row>
+    <Row>0.2,21,2,12</Row>
+    <Row>0.2,21,2,13</Row>
+    <Row>0.2,21,2,14</Row>
+    <Row>0.2,21,2,15</Row>
+    <Row>0.2,21,2,16</Row>
+    <Row>0.2,21,2,17</Row>
+    <Row>0.2,21,2,18</Row>
+    <Row>0.2,21,2,19</Row>
+    <Row>0.2,21,2,20</Row>
+    <Row>0.2,21,2,21</Row>
+    <Row>0.2,21,2,22</Row>
+    <Row>0.2,21,2,23</Row>
+    <Row>0.2,21,2,24</Row>
+    <Row>0.2,21,2,25</Row>
+    <Row>0.2,21,2,26</Row>
+    <Row>0.2,21,2,27</Row>
+    <Row>0.2,21,2,28</Row>
+    <Row>0.2,21,2,29</Row>
+    <Row>0.2,21,2,30</Row>
+    <Row>0.2,21,2,31</Row>
+    <Row>0.2,21,2,32</Row>
+    <Row>0.2,21,2,33</Row>
+    <Row>0.2,21,2,34</Row>
+    <Row>0.2,21,2,35</Row>
+    <Row>0.2,21,2,36</Row>
+    <Row>0.2,21,2,37</Row>
+    <Row>0.2,21,2,38</Row>
+    <Row>0.2,21,2,39</Row>
+    <Row>0.2,21,2,40</Row>
+    <Row>0.2,21,2,41</Row>
+    <Row>0.2,22,2,1</Row>
+    <Row>0.2,22,2,2</Row>
+    <Row>0.2,22,2,3</Row>
+    <Row>0.2,22,2,4</Row>
+    <Row>0.2,22,2,5</Row>
+    <Row>0.2,22,2,6</Row>
+    <Row>0.2,22,2,7</Row>
+    <Row>0.2,22,2,8</Row>
+    <Row>0.2,22,2,9</Row>
+    <Row>0.2,22,2,10</Row>
+    <Row>0.2,22,2,11</Row>
+    <Row>0.2,22,2,12</Row>
+    <Row>0.2,22,2,13</Row>
+    <Row>0.2,22,2,14</Row>
+    <Row>0.2,22,2,15</Row>
+    <Row>0.2,22,2,16</Row>
+    <Row>0.2,22,2,17</Row>
+    <Row>0.2,22,2,18</Row>
+    <Row>0.2,22,2,19</Row>
+    <Row>0.2,22,2,20</Row>
+    <Row>0.2,22,2,21</Row>
+    <Row>0.2,22,2,22</Row>
+    <Row>0.2,22,2,23</Row>
+    <Row>0.2,22,2,24</Row>
+    <Row>0.2,22,2,25</Row>
+    <Row>0.2,22,2,26</Row>
+    <Row>0.2,22,2,27</Row>
+    <Row>0.2,22,2,28</Row>
+    <Row>0.2,22,2,29</Row>
+    <Row>0.2,22,2,30</Row>
+    <Row>0.2,22,2,31</Row>
+    <Row>0.2,22,2,32</Row>
+    <Row>0.2,22,2,33</Row>
+    <Row>0.2,22,2,34</Row>
+    <Row>0.2,22,2,35</Row>
+    <Row>0.2,22,2,36</Row>
+    <Row>0.2,22,2,37</Row>
+    <Row>0.2,22,2,38</Row>
+    <Row>0.2,22,2,39</Row>
+    <Row>0.2,22,2,40</Row>
+    <Row>0.2,22,2,41</Row>
+  </Table>
+  <Table Name="EcosimScenarioLandingsShape" Columns="FleetID:System.Int64,FunctionType:System.Int32,GroupID:System.Int64,ScenarioID:System.Int64,ShapeID:System.Int64" Num="0" />
+  <Table Name="EcosimScenarioMSE" Columns="AssessMethod:System.Int64,AssessPower:System.Single,MaxEffort:System.Single,NTrials:System.Int32,ScenarioID:System.Int64,StartIndex:System.Int32" Num="6">
+    <Row>1,1,200,10,2,2</Row>
+  </Table>
+  <Table Name="EcosimScenarioPredPreyShape" Columns="FunctionType:System.Int32,PredID:System.Int64,PreyID:System.Int64,ScenarioID:System.Int64,ShapeID:System.Int64" Num="10">
+    <Row>1,16,17,2,18</Row>
+    <Row>6,21,21,2,17</Row>
+  </Table>
+  <Table Name="EcosimScenarioQuota" Columns="EcosimGroupID:System.Int64,FleetID:System.Int64,Fweight:System.Single,Quota:System.Single,QuotaShare:System.Single,ScenarioID:System.Int64" Num="330">
+    <Row>12,1,0,0,0,2</Row>
+    <Row>12,2,0,0,0,2</Row>
+    <Row>12,3,0,0,0,2</Row>
+    <Row>12,4,0,0,0,2</Row>
+    <Row>12,5,0,0,0,2</Row>
+    <Row>13,1,0,0,1,2</Row>
+    <Row>13,2,0,0,0,2</Row>
+    <Row>13,3,0,0,0,2</Row>
+    <Row>13,4,0,0,0,2</Row>
+    <Row>13,5,0,0,0,2</Row>
+    <Row>14,1,0,0,0,2</Row>
+    <Row>14,2,0,0,1,2</Row>
+    <Row>14,3,0,0,0,2</Row>
+    <Row>14,4,0,0,0,2</Row>
+    <Row>14,5,0,0,0,2</Row>
+    <Row>15,1,0,0,0,2</Row>
+    <Row>15,2,0,0,1,2</Row>
+    <Row>15,3,0,0,0,2</Row>
+    <Row>15,4,0,0,0,2</Row>
+    <Row>15,5,0,0,0,2</Row>
+    <Row>16,1,0,0,0,2</Row>
+    <Row>16,2,0,0,0,2</Row>
+    <Row>16,3,0,0,1,2</Row>
+    <Row>16,4,0,0,0,2</Row>
+    <Row>16,5,0,0,0,2</Row>
+    <Row>17,1,0,0,0,2</Row>
+    <Row>17,2,0,0,0,2</Row>
+    <Row>17,3,0,0,0.8571429,2</Row>
+    <Row>17,4,0,0,0.1428571,2</Row>
+    <Row>17,5,0,0,0,2</Row>
+    <Row>18,1,0,0,0,2</Row>
+    <Row>18,2,0,0,0,2</Row>
+    <Row>18,3,0,0,0,2</Row>
+    <Row>18,4,0,0,0,2</Row>
+    <Row>18,5,0,0,1,2</Row>
+    <Row>19,1,0,0,0,2</Row>
+    <Row>19,2,0,0,0,2</Row>
+    <Row>19,3,0,0,0,2</Row>
+    <Row>19,4,0,0,0,2</Row>
+    <Row>19,5,0,0,0,2</Row>
+    <Row>20,1,0,0,0,2</Row>
+    <Row>20,2,0,0,0,2</Row>
+    <Row>20,3,0,0,0,2</Row>
+    <Row>20,4,0,0,0,2</Row>
+    <Row>20,5,0,0,0,2</Row>
+    <Row>21,1,0,0,0,2</Row>
+    <Row>21,2,0,0,0,2</Row>
+    <Row>21,3,0,0,0,2</Row>
+    <Row>21,4,0,0,0,2</Row>
+    <Row>21,5,0,0,0,2</Row>
+    <Row>22,1,0,0,0,2</Row>
+    <Row>22,2,0,0,0,2</Row>
+    <Row>22,3,0,0,0,2</Row>
+    <Row>22,4,0,0,0,2</Row>
+    <Row>22,5,0,0,0,2</Row>
+  </Table>
+  <Table Name="EcosimScenarioShapeMedWeightsFleet" Columns="FleetID:System.Int64,MedWeights:System.Single,ScenarioID:System.Int64,ShapeID:System.Int64" Num="0" />
+  <Table Name="EcosimScenarioshapeMedWeightsGroup" Columns="GroupID:System.Int64,MedWeights:System.Single,ScenarioID:System.Int64,ShapeID:System.Int64" Num="4">
+    <Row>13,1,2,18</Row>
+  </Table>
+  <Table Name="EcosimScenarioshapeMedWeightsLandings" Columns="FleetID:System.Int64,GroupID:System.Int64,MedWeights:System.Single,ScenarioID:System.Int64,ShapeID:System.Int64" Num="0" />
+  <Table Name="EcosimShape" Columns="IsSeasonal:System.Boolean,ShapeID:System.Int64,ShapeType:System.Int64" Num="93">
+    <Row>False,1,12</Row>
+    <Row>False,2,12</Row>
+    <Row>False,3,12</Row>
+    <Row>False,4,12</Row>
+    <Row>False,5,12</Row>
+    <Row>False,6,12</Row>
+    <Row>False,7,12</Row>
+    <Row>False,8,12</Row>
+    <Row>False,9,12</Row>
+    <Row>False,10,12</Row>
+    <Row>False,11,12</Row>
+    <Row>False,12,11</Row>
+    <Row>False,13,11</Row>
+    <Row>False,14,11</Row>
+    <Row>False,15,11</Row>
+    <Row>False,16,11</Row>
+    <Row>False,17,8</Row>
+    <Row>False,18,10</Row>
+    <Row>False,19,12</Row>
+    <Row>False,20,12</Row>
+    <Row>False,21,12</Row>
+    <Row>False,22,12</Row>
+    <Row>False,23,99</Row>
+    <Row>False,24,99</Row>
+    <Row>False,28,11</Row>
+    <Row>False,29,11</Row>
+    <Row>False,30,11</Row>
+    <Row>False,31,11</Row>
+    <Row>False,32,11</Row>
+    <Row>False,33,8</Row>
+    <Row>False,34,99</Row>
+  </Table>
+  <Table Name="EcosimShapeEggProd" Columns="FunctionParams:System.String,FunctionType:System.Int32,ShapeID:System.Int64,Title:System.String,zMaxScale:System.Single,zScale:System.String" Num="0" />
+  <Table Name="EcosimShapeFishMort" Columns="ShapeID:System.Int64,Title:System.String,zScale:System.String" Num="33">
+    <Row>1,Fish Mortality Shape 1,0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</Row>
+    <Row>2,Fish Mortality Shape 2,0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.07389162 0.05541872 0.05541872 0.05541872 0.05541872 0.05541872 0.05541872 0.05541872 0.05541872 0.05541872 0.05541872 0.05541872 0.05541872 0.03694581 0.03694581 0.03694581 0.03694581 0.03694581 0.03694581 0.03694581 0.03694581 0.03694581 0.03694581 0.03694581 0.03694581 0.01847291 0.01847291 0.01847291 0.01847291 0.01847291 0.01847291 0.01847291 0.01847291 0.01847291 0.01847291 0.01847291 0.01847291 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</Row>
+    <Row>3,Fish Mortality Shape 3,0.15 0.15 0.15 0.15 0.15 0.15 0.15 0.15 0.15 0.15 0.15 0.15 0.1575 0.1575 0.1575 0.1575 0.1575 0.1575 0.1575 0.1575 0.1575 0.1575 0.1575 0.1575 0.16545 0.16545 0.16545 0.16545 0.16545 0.16545 0.16545 0.16545 0.16545 0.16545 0.16545 0.16545 0.1737 0.1737 0.1737 0.1737 0.1737 0.1737 0.1737 0.1737 0.1737 0.1737 0.1737 0.1737 0.1824 0.1824 0.1824 0.1824 0.1824 0.1824 0.1824 0.1824 0.1824 0.1824 0.1824 0.1824 0.1914 0.1914 0.1914 0.1914 0.1914 0.1914 0.1914 0.1914 0.1914 0.1914 0.1914 0.1914 0.201 0.201 0.201 0.201 0.201 0.201 0.201 0.201 0.201 0.201 0.201 0.201 0.21105 0.21105 0.21105 0.21105 0.21105 0.21105 0.21105 0.21105 0.21105 0.21105 0.21105 0.21105 0.22155 0.22155 0.22155 0.22155 0.22155 0.22155 0.22155 0.22155 0.22155 0.22155 0.22155 0.22155 0.23265 0.23265 0.23265 0.23265 0.23265 0.23265 0.23265 0.23265 0.23265 0.23265 0.23265 0.23265 0.24435 0.24435 0.24435 0.24435 0.24435 0.24435 0.24435 0.24435 0.24435 0.24435 0.24435 0.24435 0.2565 0.2565 0.2565 0.2565 0.2565 0.2565 0.2565 0.2565 0.2565 0.2565 0.2565 0.2565 0.2694 0.2694 0.2694 0.2694 0.2694 0.2694 0.2694 0.2694 0.2694 0.2694 0.2694 0.2694 0.2829 0.2829 0.2829 0.2829 0.2829 0.2829 0.2829 0.2829 0.2829 0.2829 0.2829 0.2829 0.297 0.297 0.297 0.297 0.297 0.297 0.297 0.297 0.297 0.297 0.297 0.297 0.31185 0.31185 0.31185 0.31185 0.31185 0.31185 0.31185 0.31185 0.31185 0.31185 0.31185 0.31185 0.32745 0.32745 0.32745 0.32745 0.32745 0.32745 0.32745 0.32745 0.32745 0.32745 0.32745 0.32745 0.3438 0.3438 0.3438 0.3438 0.3438 0.3438 0.3438 0.3438 0.3438 0.3438 0.3438 0.3438 0.36105 0.36105 0.36105 0.36105 0.36105 0.36105 0.36105 0.36105 0.36105 0.36105 0.36105 0.36105 0.37905 0.37905 0.37905 0.37905 0.37905 0.37905 0.37905 0.37905 0.37905 0.37905 0.37905 0.37905 0.3865499 0.3865499 0.3865499 0.3865499 0.3865499 0.3865499 0.3865499 0.3865499 0.3865499 0.3865499 0.3865499 0.3865499 0.39435 0.39435 0.39435 0.39435 0.39435 0.39435 0.39435 0.39435 0.39435 0.39435 0.39435 0.39435 0.4023 0.4023 0.4023 0.4023 0.4023 0.4023 0.4023 0.4023 0.4023 0.4023 0.4023 0.4023 0.4102499 0.4102499 0.4102499 0.4102499 0.4102499 0.4102499 0.4102499 0.4102499 0.4102499 0.4102499 0.4102499 0.4102499 0.4185 0.4185 0.4185 0.4185 0.4185 0.4185 0.4185 0.4185 0.4185 0.4185 0.4185 0.4185 0.4269 0.4269 0.4269 0.4269 0.4269 0.4269 0.4269 0.4269 0.4269 0.4269 0.4269 0.4269 0.43545 0.43545 0.43545 0.43545 0.43545 0.43545 0.43545 0.43545 0.43545 0.43545 0.43545 0.43545 0.44415 0.44415 0.44415 0.44415 0.44415 0.44415 0.44415 0.44415 0.44415 0.44415 0.44415 0.44415 0.453 0.453 0.453 0.453 0.453 0.453 0.453 0.453 0.453 0.453 0.453 0.453 0.462 0.462 0.462 0.462 0.462 0.462 0.462 0.462 0.462 0.462 0.462 0.462 0.4713 0.4713 0.4713 0.4713 0.4713 0.4713 0.4713 0.4713 0.4713 0.4713 0.4713 0.4713 0.48075 0.48075 0.48075 0.48075 0.48075 0.48075 0.48075 0.48075 0.48075 0.48075 0.48075 0.48075 0.49035 0.49035 0.49035 0.49035 0.49035 0.49035 0.49035 0.49035 0.49035 0.49035 0.49035 0.49035 0.5001 0.5001 0.5001 0.5001 0.5001 0.5001 0.5001 0.5001 0.5001 0.5001 0.5001 0.5001 0.51015 0.51015 0.51015 0.51015 0.51015 0.51015 0.51015 0.51015 0.51015 0.51015 0.51015 0.51015 0.52035 0.52035 0.52035 0.52035 0.52035 0.52035 0.52035 0.52035 0.52035 0.52035 0.52035 0.52035 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.525 0.5325 0.5325 0.5325 0.5325 0.5325 0.5325 0.5325 0.5325 0.5325 0.5325 0.5325 0.5325 0.54 0.54 0.54 0.54 0.54 0.54 0.54 0.54 0.54 0.54 0.54 0.54 0.5475 0.5475 0.5475 0.5475 0.5475 0.5475 0.5475 0.5475 0.5475 0.5475 0.5475 0.5475</Row>
+    <Row>4,Fish Mortality Shape 4,0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1111111 0.1166667 0.1166667 0.1166667 0.1166667 0.1166667 0.1166667 0.1166667 0.1166667 0.1166667 0.1166667 0.1166667 0.1166667 0.1225556 0.1225556 0.1225556 0.1225556 0.1225556 0.1225556 0.1225556 0.1225556 0.1225556 0.1225556 0.1225556 0.1225556 0.1286667 0.1286667 0.1286667 0.1286667 0.1286667 0.1286667 0.1286667 0.1286667 0.1286667 0.1286667 0.1286667 0.1286667 0.1351111 0.1351111 0.1351111 0.1351111 0.1351111 0.1351111 0.1351111 0.1351111 0.1351111 0.1351111 0.1351111 0.1351111 0.1417778 0.1417778 0.1417778 0.1417778 0.1417778 0.1417778 0.1417778 0.1417778 0.1417778 0.1417778 0.1417778 0.1417778 0.1488889 0.1488889 0.1488889 0.1488889 0.1488889 0.1488889 0.1488889 0.1488889 0.1488889 0.1488889 0.1488889 0.1488889 0.1563333 0.1563333 0.1563333 0.1563333 0.1563333 0.1563333 0.1563333 0.1563333 0.1563333 0.1563333 0.1563333 0.1563333 0.1641111 0.1641111 0.1641111 0.1641111 0.1641111 0.1641111 0.1641111 0.1641111 0.1641111 0.1641111 0.1641111 0.1641111 0.1723333 0.1723333 0.1723333 0.1723333 0.1723333 0.1723333 0.1723333 0.1723333 0.1723333 0.1723333 0.1723333 0.1723333 0.181 0.181 0.181 0.181 0.181 0.181 0.181 0.181 0.181 0.181 0.181 0.181 0.19 0.19 0.19 0.19 0.19 0.19 0.19 0.19 0.19 0.19 0.19 0.19 0.1995556 0.1995556 0.1995556 0.1995556 0.1995556 0.1995556 0.1995556 0.1995556 0.1995556 0.1995556 0.1995556 0.1995556 0.2095556 0.2095556 0.2095556 0.2095556 0.2095556 0.2095556 0.2095556 0.2095556 0.2095556 0.2095556 0.2095556 0.2095556 0.22 0.22 0.22 0.22 0.22 0.22 0.22 0.22 0.22 0.22 0.22 0.22 0.231 0.231 0.231 0.231 0.231 0.231 0.231 0.231 0.231 0.231 0.231 0.231 0.2425556 0.2425556 0.2425556 0.2425556 0.2425556 0.2425556 0.2425556 0.2425556 0.2425556 0.2425556 0.2425556 0.2425556 0.2546667 0.2546667 0.2546667 0.2546667 0.2546667 0.2546667 0.2546667 0.2546667 0.2546667 0.2546667 0.2546667 0.2546667 0.2674445 0.2674445 0.2674445 0.2674445 0.2674445 0.2674445 0.2674445 0.2674445 0.2674445 0.2674445 0.2674445 0.2674445 0.2807778 0.2807778 0.2807778 0.2807778 0.2807778 0.2807778 0.2807778 0.2807778 0.2807778 0.2807778 0.2807778 0.2807778 0.2863334 0.2863334 0.2863334 0.2863334 0.2863334 0.2863334 0.2863334 0.2863334 0.2863334 0.2863334 0.2863334 0.2863334 0.2921111 0.2921111 0.2921111 0.2921111 0.2921111 0.2921111 0.2921111 0.2921111 0.2921111 0.2921111 0.2921111 0.2921111 0.298 0.298 0.298 0.298 0.298 0.298 0.298 0.298 0.298 0.298 0.298 0.298 0.3038889 0.3038889 0.3038889 0.3038889 0.3038889 0.3038889 0.3038889 0.3038889 0.3038889 0.3038889 0.3038889 0.3038889 0.31 0.31 0.31 0.31 0.31 0.31 0.31 0.31 0.31 0.31 0.31 0.31 0.3162223 0.3162223 0.3162223 0.3162223 0.3162223 0.3162223 0.3162223 0.3162223 0.3162223 0.3162223 0.3162223 0.3162223 0.3225556 0.3225556 0.3225556 0.3225556 0.3225556 0.3225556 0.3225556 0.3225556 0.3225556 0.3225556 0.3225556 0.3225556 0.329 0.329 0.329 0.329 0.329 0.329 0.329 0.329 0.329 0.329 0.329 0.329 0.3355556 0.3355556 0.3355556 0.3355556 0.3355556 0.3355556 0.3355556 0.3355556 0.3355556 0.3355556 0.3355556 0.3355556 0.3422222 0.3422222 0.3422222 0.3422222 0.3422222 0.3422222 0.3422222 0.3422222 0.3422222 0.3422222 0.3422222 0.3422222 0.3491111 0.3491111 0.3491111 0.3491111 0.3491111 0.3491111 0.3491111 0.3491111 0.3491111 0.3491111 0.3491111 0.3491111 0.3561111 0.3561111 0.3561111 0.3561111 0.3561111 0.3561111 0.3561111 0.3561111 0.3561111 0.3561111 0.3561111 0.3561111 0.3632222 0.3632222 0.3632222 0.3632222 0.3632222 0.3632222 0.3632222 0.3632222 0.3632222 0.3632222 0.3632222 0.3632222 0.3704445 0.3704445 0.3704445 0.3704445 0.3704445 0.3704445 0.3704445 0.3704445 0.3704445 0.3704445 0.3704445 0.3704445 0.3778889 0.3778889 0.3778889 0.3778889 0.3778889 0.3778889 0.3778889 0.3778889 0.3778889 0.3778889 0.3778889 0.3778889 0.3854445 0.3854445 0.3854445 0.3854445 0.3854445 0.3854445 0.3854445 0.3854445 0.3854445 0.3854445 0.3854445 0.3854445 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3888889 0.3944445 0.3944445 0.3944445 0.3944445 0.3944445 0.3944445 0.3944445 0.3944445 0.3944445 0.3944445 0.3944445 0.3944445 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4055556 0.4055556 0.4055556 0.4055556 0.4055556 0.4055556 0.4055556 0.4055556 0.4055556 0.4055556 0.4055556 0.4055556</Row>
+    <Row>5,Fish Mortality Shape 5,0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333 0.3333333</Row>
+    <Row>6,Fish Mortality Shape 6,0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2</Row>
+    <Row>7,Fish Mortality Shape 7,0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625 0.625</Row>
+    <Row>8,Fish Mortality Shape 8,0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</Row>
+    <Row>9,Fish Mortality Shape 9,0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</Row>
+    <Row>10,Fish Mortality Shape 10,0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</Row>
+    <Row>11,Fish Mortality Shape 11,0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</Row>
+  </Table>
+  <Table Name="EcosimShapeFishRate" Columns="ShapeID:System.Int64,Title:System.String,zScale:System.String" Num="30">
+    <Row>12,Sealers,1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</Row>
+    <Row>13,Trawlers,1 1 1 1 1 1 1 1 1 1 1 1 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.98 1.98 1.98 1.98 1.98 1.98 1.98 1.98 1.98 1.98 1.98 1.98 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.961 2.961 2.961 2.961 2.961 2.961 2.961 2.961 2.961 2.961 2.961 2.961 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.65 3.65 3.65 3.65 3.65 3.65 3.65 3.65 3.65 3.65 3.65 3.65</Row>
+    <Row>14,Seiners,1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</Row>
+    <Row>15,Bait boats,1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</Row>
+    <Row>16,Shrimpers,1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</Row>
+    <Row>28,Sealers,1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.75 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</Row>
+    <Row>29,Trawlers,1 1 1 1 1 1 1 1 1 1 1 1 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.05 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.103 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.158 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.216 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.276 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.34 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.407 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.477 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.551 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.629 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.71 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.796 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.886 1.98 1.98 1.98 1.98 1.98 1.98 1.98 1.98 1.98 1.98 1.98 1.98 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.079 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.183 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.292 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.407 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.527 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.577 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.629 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.682 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.735 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.79 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.846 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.903 2.961 2.961 2.961 2.961 2.961 2.961 2.961 2.961 2.961 2.961 2.961 2.961 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.02 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.08 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.142 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.205 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.269 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.334 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.401 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.469 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.5 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.55 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.6 3.65 3.65 3.65 3.65 3.65 3.65 3.65 3.65 3.65 3.65 3.65 3.65</Row>
+    <Row>30,Seiners,1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</Row>
+    <Row>31,Bait boats,1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</Row>
+    <Row>32,Shrimpers,1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</Row>
+  </Table>
+  <Table Name="EcosimShapeMediation" Columns="FunctionParams:System.String,FunctionType:System.Int32,IMedBase:System.Int32,ShapeID:System.Int64,Title:System.String,XAxisMax:System.Single,XAxisMin:System.Single,zScale:System.String" Num="32">
+    <Row>0 1 0.5 0.9 15.53155 1 0,10,600,18,Seal-Mackerel-Anchovy,1,0,0.0004238215 0.0004293403 0.0004349309 0.0004405943 0.0004463314 0.0004521432 0.0004580306 0.0004639946 0.0004700363 0.0004761565 0.0004823565 0.0004886371 0.0004949995 0.0005014446 0.0005079737 0.0005145877 0.0005212877 0.000528075 0.0005349506 0.0005419157 0.0005489714 0.0005561189 0.0005633594 0.0005706942 0.0005781244 0.0005856512 0.000593276 0.000601 0.0006088245 0.0006167509 0.0006247803 0.0006329142 0.000641154 0.0006495009 0.0006579564 0.000666522 0.0006751989 0.0006839888 0.000692893 0.000701913 0.0007110504 0.0007203066 0.0007296833 0.0007391819 0.0007488041 0.0007585514 0.0007684255 0.000778428 0.0007885607 0.0007988251 0.0008092231 0.0008197562 0.0008304264 0.0008412353 0.0008521848 0.0008632768 0.0008745129 0.0008858952 0.0008974254 0.0009091056 0.0009209377 0.0009329236 0.0009450654 0.0009573651 0.0009698247 0.0009824462 0.0009952319 0.001008184 0.001021304 0.001034595 0.001048059 0.001061697 0.001075513 0.001089509 0.001103686 0.001118048 0.001132596 0.001147334 0.001162263 0.001177386 0.001192705 0.001208224 0.001223944 0.001239869 0.001256001 0.001272342 0.001288895 0.001305664 0.001322651 0.001339858 0.001357289 0.001374946 0.001392832 0.001410951 0.001429306 0.001447898 0.001466732 0.001485811 0.001505138 0.001524716 0.001544548 0.001564637 0.001584987 0.001605602 0.001626484 0.001647638 0.001669066 0.001690772 0.00171276 0.001735034 0.001757596 0.001780452 0.001803604 0.001827057 0.001850814 0.00187488 0.001899258 0.001923952 0.001948966 0.001974306 0.001999974 0.002025974 0.002052313 0.002078993 0.002106019 0.002133396 0.002161128 0.002189219 0.002217675 0.0022465 0.002275699 0.002305276 0.002335237 0.002365587 0.002396329 0.002427471 0.002459016 0.00249097 0.002523338 0.002556126 0.002589338 0.002622981 0.00265706 0.002691581 0.002726549 0.00276197 0.002797849 0.002834194 0.002871009 0.002908301 0.002946076 0.002984341 0.0030231 0.003062362 0.003102132 0.003142416 0.003183223 0.003224557 0.003266426 0.003308838 0.003351798 0.003395313 0.003439392 0.003484041 0.003529268 0.00357508 0.003621484 0.003668488 0.0037161 0.003764328 0.003813179 0.003862662 0.003912785 0.003963555 0.004014981 0.004067072 0.004119835 0.004173281 0.004227417 0.004282251 0.004337795 0.004394055 0.004451043 0.004508765 0.004567233 0.004626455 0.004686442 0.004747203 0.004808748 0.004871086 0.004934229 0.004998187 0.005062969 0.005128586 0.00519505 0.00526237 0.005330557 0.005399624 0.005469581 0.005540439 0.005612209 0.005684905 0.005758536 0.005833115 0.005908655 0.005985166 0.006062663 0.006141157 0.006220661 0.006301187 0.006382749 0.00646536 0.006549033 0.006633782 0.00671962 0.006806561 0.00689462 0.006983809 0.007074144 0.007165639 0.007258309 0.007352168 0.007447232 0.007543516 0.007641035 0.007739805 0.007839842 0.007941161 0.008043779 0.008147712 0.008252977 0.008359591 0.00846757 0.008576931 0.008687693 0.008799872 0.008913487 0.009028555 0.009145095 0.009263126 0.009382665 0.009503732 0.009626347 0.009750526 0.009876293 0.01000367 0.01013266 0.01026331 0.01039562 0.01052962 0.01066532 0.01080276 0.01094195 0.01108291 0.01122567 0.01137024 0.01151666 0.01166494 0.0118151 0.01196718 0.01212118 0.01227715 0.0124351 0.01259505 0.01275703 0.01292107 0.01308719 0.01325542 0.01342578 0.0135983 0.01377301 0.01394993 0.01412909 0.01431051 0.01449424 0.01468028 0.01486868 0.01505946 0.01525265 0.01544827 0.01564637 0.01584697 0.01605009 0.01625578 0.01646406 0.01667496 0.01688852 0.01710477 0.01732373 0.01754545 0.01776995 0.01799728 0.01822745 0.01846052 0.01869651 0.01893546 0.01917741 0.01942238 0.01967042 0.01992156 0.02017584 0.02043331 0.02069398 0.02095792 0.02122514 0.0214957 0.02176963 0.02204697 0.02232777 0.02261206 0.02289988 0.02319128 0.0234863 0.02378498 0.02408737 0.0243935 0.02470342 0.02501719 0.02533483 0.0256564 0.02598195 0.02631151 0.02664514 0.02698288 0.02732478 0.0276709 0.02802127 0.02837594 0.02873498 0.02909842 0.02946632 0.02983872 0.03021569 0.03059727 0.03098351 0.03137447 0.0317702 0.03217076 0.0325762 0.03298658 0.03340194 0.03382235 0.03424787 0.03467855 0.03511444 0.03555562 0.03600213 0.03645404 0.03691139 0.03737427 0.03784272 0.03831682 0.03879661 0.03928216 0.03977354 0.04027081 0.04077403 0.04128326 0.04179858 0.04232005 0.04284774 0.04338171 0.04392202 0.04446875 0.04502197 0.04558174 0.04614814 0.04672122 0.04730107 0.04788776 0.04848135 0.04908193 0.04968955 0.0503043 0.05092624 0.05155546 0.05219202 0.05283601 0.05348749 0.05414655 0.05481326 0.05548769 0.05616993 0.05686006 0.05755814 0.05826427 0.05897852 0.05970097 0.0604317 0.06117079 0.06191832 0.06267438 0.06343906 0.06421241 0.06499454 0.06578553 0.06658547 0.06739442 0.06821249 0.06903975 0.06987628 0.07072219 0.07157755 0.07244245 0.07331697 0.0742012 0.07509524 0.07599917 0.07691307 0.07783703 0.07877114 0.07971551 0.08067019 0.0816353 0.08261091 0.08359712 0.08459403 0.08560171 0.08662026 0.08764976 0.08869031 0.089742 0.09080492 0.09187916 0.0929648 0.09406195 0.09517068 0.0962911 0.09742328 0.09856733 0.09972332 0.1008914 0.1020715 0.1032639 0.1044686 0.1056857 0.1069153 0.1081574 0.1094122 0.1106798 0.1119602 0.1132535 0.1145599 0.1158793 0.117212 0.1185579 0.1199171 0.1212898 0.122676 0.1240759 0.1254894 0.1269166 0.1283578 0.1298129 0.1312819 0.1327651 0.1342624 0.135774 0.1372999 0.1388402 0.1403949 0.1419642 0.1435481 0.1451467 0.14676 0.1483882 0.1500312 0.1516892 0.1533622 0.1550503 0.1567536 0.158472 0.1602057 0.1619547 0.1637191 0.1654989 0.1672942 0.169105 0.1709314 0.1727734 0.1746311 0.1765045 0.1783936 0.1802986 0.1822194 0.184156 0.1861085 0.188077 0.1900614 0.1920618 0.1940783 0.1961107 0.1981592 0.2002238 0.2023045 0.2044012 0.206514 0.208643 0.2107881 0.2129493 0.2151266 0.2173201 0.2195296 0.2217553 0.223997 0.2262548 0.2285287 0.2308186 0.2331245 0.2354464 0.2377842 0.240138 0.2425077 0.2448932 0.2472945 0.2497116 0.2521443 0.2545928 0.2570568 0.2595364 0.2620315 0.264542 0.2670678 0.2696089 0.2721653 0.2747367 0.2773232 0.2799246 0.2825409 0.2851719 0.2878177 0.290478 0.2931527 0.2958418 0.2985452 0.3012627 0.3039943 0.3067397 0.3094989 0.3122717 0.315058 0.3178577 0.3206707 0.3234967 0.3263357 0.3291874 0.3320518 0.3349287 0.3378179 0.3407193 0.3436326 0.3465577 0.3494945 0.3524428 0.3554024 0.358373 0.3613545 0.3643468 0.3673496 0.3703627 0.373386 0.3764192 0.379462 0.3825144 0.3855762 0.3886469 0.3917266 0.3948149 0.3979116 0.4010165 0.4041294 0.40725 0.4103781 0.4135135 0.4166559 0.419805 0.4229608 0.4261228 0.4292909 0.4324648 0.4356442 0.438829 0.4420187 0.4452133 0.4484124 0.4516158 0.4548232 0.4580344 0.4612491 0.4644669 0.4676878 0.4709113 0.4741372 0.4773653 0.4805954 0.483827 0.48706 0.490294 0.4935289 0.4967644 0.5000001 0.5032358 0.5064712 0.509706 0.5129401 0.5161731 0.5194047 0.5226347 0.5258629 0.5290888 0.5323123 0.5355332 0.5387511 0.5419657 0.5451769 0.5483842 0.5515876 0.5547867 0.5579813 0.5611711 0.5643559 0.5675353 0.5707092 0.5738773 0.5770393 0.5801951 0.5833442 0.5864866 0.589622 0.5927501 0.5958707 0.5989836 0.6020885 0.6051852 0.6082735 0.6113532 0.6144239 0.6174856 0.6205381 0.6235809 0.6266141 0.6296374 0.6326505 0.6356533 0.6386455 0.6416271 0.6445978 0.6475573 0.6505055 0.6534423 0.6563675 0.6592808 0.6621822 0.6650714 0.6679482 0.6708127 0.6736644 0.6765034 0.6793294 0.6821423 0.6849421 0.6877284 0.6905012 0.6932604 0.6960058 0.6987373 0.7014549 0.7041582 0.7068474 0.7095221 0.7121824 0.7148281 0.7174592 0.7200755 0.7226769 0.7252634 0.7278348 0.7303911 0.7329323 0.7354581 0.7379686 0.7404636 0.7429432 0.7454073 0.7478557 0.7502885 0.7527056 0.7551069 0.7574924 0.7598621 0.7622159 0.7645537 0.7668756 0.7691815 0.7714714 0.7737452 0.7760031 0.7782448 0.7804704 0.78268 0.7848734 0.7870508 0.789212 0.791357 0.793486 0.7955989 0.7976956 0.7997763 0.8018408 0.8038893 0.8059218 0.8079382 0.8099386 0.811923 0.8138915 0.8158441 0.8177807 0.8197015 0.8216064 0.8234956 0.8253689 0.8272266 0.8290687 0.8308951 0.8327059 0.8345011 0.8362809 0.8380454 0.8397943 0.8415281 0.8432465 0.8449497 0.8466378 0.8483108 0.8499688 0.8516119 0.85324 0.8548533 0.8564519 0.8580359 0.8596051 0.8611599 0.8627002 0.864226 0.8657376 0.8672349 0.8687181 0.8701872 0.8716422 0.8730834 0.8745106 0.8759242 0.877324 0.8787102 0.8800829 0.8814422 0.8827881 0.8841207 0.8854402 0.8867465 0.8880398 0.8893203 0.8905878 0.8918426 0.8930848 0.8943143 0.8955314 0.8967361 0.8979285 0.8991086 0.9002767 0.9014327 0.9025767 0.9037089 0.9048293 0.9059381 0.9070352 0.9081209 0.9091951 0.9102581 0.9113097 0.9123503 0.9133798 0.9143983 0.915406 0.9164029 0.9173891 0.9183647 0.9193298 0.9202845 0.9212289 0.922163 0.9230869 0.9240009 0.9249048 0.9257988 0.9266831 0.9275576 0.9284225 0.9292778 0.9301237 0.9309603 0.9317876 0.9326056 0.9334146 0.9342145 0.9350055 0.9357876 0.936561 0.9373257 0.9380817 0.9388292 0.9395683 0.940299 0.9410215 0.9417357 0.9424419 0.94314 0.9438301 0.9445123 0.9451867 0.9458535 0.9465125 0.947164 0.947808 0.9484445 0.9490738 0.9496957 0.9503105 0.9509181 0.9515187 0.9521123 0.9526989 0.9532788 0.9538519 0.9544183 0.954978 0.9555312 0.956078 0.9566183 0.9571522 0.95768 0.9582014 0.9587168 0.959226 0.9597292 0.9602265 0.9607179 0.9612034 0.9616832 0.9621573 0.9626257 0.9630886 0.963546 0.9639979 0.9644444 0.9648856 0.9653215 0.9657521 0.9661776 0.9665981 0.9670134 0.9674238 0.9678292 0.9682298 0.9686255 0.9690165 0.9694027 0.9697843 0.9701613 0.9705337 0.9709016 0.971265 0.9716241 0.9719787 0.9723291 0.9726752 0.9730172 0.9733549 0.9736885 0.974018 0.9743436 0.9746652 0.9749828 0.9752966 0.9756065 0.9759126 0.976215 0.9765137 0.9768087 0.9771001 0.977388 0.9776722 0.977953 0.9782304 0.9785043 0.9787748 0.9790421 0.979306 0.9795667 0.9798242 0.9800785 0.9803296 0.9805776 0.9808226 0.9810646 0.9813035 0.9815395 0.9817725 0.9820027 0.9822301 0.9824545 0.9826763 0.9828953 0.9831115 0.9833251 0.9835359 0.9837442 0.9839499 0.984153 0.9843537 0.9845517 0.9847474 0.9849405 0.9851313 0.9853197 0.9855058 0.9856895 0.9858709 0.9860501 0.986227 0.9864017 0.9865742 0.9867446 0.9869128 0.9870789 0.987243 0.9874049 0.9875649 0.9877229 0.9878788 0.9880328 0.9881849 0.9883351 0.9884834 0.9886298 0.9887744 0.9889171 0.9890581 0.9891973 0.9893347 0.9894704 0.9896044 0.9897367 0.9898673 0.9899963 0.9901237 0.9902495 0.9903737 0.9904963 0.9906173 0.9907369 0.9908549 0.9909714 0.9910865 0.9912001 0.9913123 0.9914231 0.9915324 0.9916404 0.991747 0.9918523 0.9919562 0.9920588 0.9921601 0.9922602 0.992359 0.9924565 0.9925528 0.9926478 0.9927417 0.9928344 0.9929259 0.9930162 0.9931054 0.9931934 0.9932804 0.9933662 0.9934509 0.9935346 0.9936172 0.9936988 0.9937794 0.9938589 0.9939373 0.9940149 0.9940913 0.9941669 0.9942415 0.9943151 0.9943878 0.9944596 0.9945304 0.9946004 0.9946694 0.9947376 0.994805 0.9948714 0.9949371 0.9950018 0.9950657 0.9951289 0.9951913 0.9952528 0.9953136 0.9953735 0.9954328 0.9954913 0.995549 0.9956059 0.9956622 0.9957178 0.9957726 0.9958267 0.9958802 0.9959329 0.995985 0.9960365 0.9960872 0.9961373 0.9961868 0.9962357 0.9962839 0.9963315 0.9963785 0.9964249 0.9964707 0.996516 0.9965606 0.9966047 0.9966482 0.9966912 0.9967335 0.9967754 0.9968168 0.9968576 0.9968979 0.9969376 0.9969769 0.9970157 0.9970539 0.9970917 0.997129 0.9971658 0.9972022 0.997238 0.9972734 0.9973084 0.9973429 0.997377 0.9974107 0.9974439 0.9974766 0.997509 0.997541 0.9975725 0.9976037 0.9976344 0.9976647 0.9976947 0.9977243 0.9977535 0.9977823 0.9978108 0.9978389 0.9978666 0.997894 0.997921 0.9979477 0.997974 0.998 0.9980257 0.998051 0.998076 0.9981008 0.9981251 0.9981492 0.9981729 0.9981964 0.9982195 0.9982424 0.998265 0.9982873 0.9983093 0.998331 0.9983523 0.9983735 0.9983944 0.998415 0.9984354 0.9984555 0.9984753 0.9984949 0.9985142 0.9985332 0.9985521 0.9985707 0.998589 0.9986072 0.998625 0.9986427 0.9986601 0.9986774 0.9986944 0.9987111 0.9987277 0.998744 0.9987601 0.9987761 0.9987918 0.9988073 0.9988226 0.9988377 0.9988527 0.9988674 0.9988819 0.9988963 0.9989105 0.9989245 0.9989383 0.998952 0.9989654 0.9989787 0.9989918 0.9990048 0.9990175 0.9990302 0.9990426 0.9990549 0.9990671 0.999079 0.9990909 0.9991026 0.9991141 0.9991255 0.9991367 0.9991478 0.9991587 0.9991696 0.9991803 0.9991907 0.9992012 0.9992114 0.9992216 0.9992316 0.9992415 0.9992512 0.9992608 0.9992703 0.9992797 0.999289 0.9992981 0.9993071 0.999316 0.9993248 0.9993335 0.999342 0.9993505 0.9993588 0.9993671 0.9993752 0.9993833 0.9993912 0.999399 0.9994067 0.9994143 0.9994219 0.9994293 0.9994366 0.9994439 0.999451 0.9994581 0.999465 0.9994719 0.9994787 0.9994854 0.999492 0.9994985 0.999505 0.9995114 0.9995176 0.9995238 0.99953 0.999536 0.999542 0.9995478 0.9995537 0.9995594 0.9995651 0.9995707</Row>
+    <Row>-9999,0,306,23,Temp cold,30,10,0.5409903 0.5544516 0.5618314 0.5692841 0.57681 0.5844094 0.5920827 0.59983 0.6076517 0.615548 0.6235192 0.6315656 0.6396874 0.6478848 0.6561581 0.6645076 0.6729333 0.6814356 0.6900147 0.6986707 0.707404 0.7162144 0.7251024 0.7340682 0.7431116 0.7522331 0.7614327 0.7707106 0.7800668 0.7895016 0.7990149 0.8086069 0.8182778 0.8280274 0.8378561 0.8477636 0.8577502 0.8678159 0.8779607 0.8881846 0.8984876 0.9088698 0.9193311 0.9298714 0.9404908 0.9511892 0.9619665 0.9728227 0.9837577 0.9947714 1.005864 1.017034 1.028284 1.039611 1.051016 1.0625 1.074061 1.085699 1.097415 1.109208 1.121078 1.133025 1.145048 1.157147 1.169322 1.181573 1.193899 1.2063 1.218775 1.231325 1.243949 1.256646 1.269417 1.28226 1.295176 1.308164 1.321223 1.334353 1.347554 1.360825 1.374165 1.387575 1.401053 1.4146 1.428213 1.441894 1.455641 1.469454 1.483332 1.497275 1.511281 1.525351 1.539483 1.553677 1.567932 1.582248 1.596623 1.611058 1.625551 1.640101 1.654708 1.66937 1.684088 1.69886 1.713686 1.728564 1.743494 1.758474 1.773505 1.788584 1.803712 1.818886 1.834107 1.849373 1.864683 1.880036 1.895432 1.910868 1.926345 1.941861 1.957414 1.973005 1.988631 2.004292 2.019987 2.035714 2.051472 2.067261 2.083078 2.098923 2.114794 2.130692 2.146612 2.162556 2.178522 2.194508 2.210512 2.226535 2.242574 2.258628 2.274696 2.290777 2.306869 2.32297 2.33908 2.355197 2.37132 2.387446 2.403576 2.419707 2.435838 2.451968 2.468095 2.484217 2.500334 2.516443 2.532544 2.548634 2.564713 2.580778 2.596829 2.612863 2.628879 2.644876 2.660852 2.676806 2.692736 2.70864 2.724517 2.740365 2.756182 2.771968 2.787721 2.803438 2.819119 2.834761 2.850363 2.865925 2.881442 2.896915 2.912342 2.927721 2.94305 2.958328 2.973553 2.988724 3.003839 3.018895 3.033893 3.048829 3.063703 3.078513 3.093256 3.107932 3.122539 3.137075 3.151539 3.165929 3.180243 3.19448 3.208638 3.222716 3.236711 3.250623 3.264449 3.278188 3.29184 3.305401 3.31887 3.332246 3.345527 3.358712 3.371799 3.384787 3.397674 3.410458 3.423138 3.435713 3.44818 3.460539 3.472788 3.484925 3.496949 3.508859 3.520653 3.53233 3.543888 3.555325 3.566641 3.577834 3.588903 3.599846 3.610662 3.621349 3.631906 3.642333 3.652627 3.662787 3.672812 3.682701 3.692453 3.702066 3.711539 3.72087 3.73006 3.739106 3.748007 3.756763 3.765372 3.773832 3.782144 3.790305 3.798316 3.806173 3.813878 3.821429 3.828824 3.836063 3.843145 3.850069 3.856834 3.863439 3.869883 3.876166 3.882287 3.888244 3.894037 3.899666 3.90513 3.910427 3.915557 3.92052 3.925315 3.929941 3.934397 3.938684 3.9428 3.946744 3.950517 3.954118 3.957547 3.960802 3.963884 3.966792 3.969526 3.972085 3.974468 3.976677 3.97871 3.980567 3.982248 3.983753 3.985081 3.986233 3.987207 3.988005 3.988625 3.989068 3.989334 3.989423 3.989334 3.989068 3.988625 3.988005 3.987207 3.986233 3.985081 3.983753 3.982248 3.980567 3.97871 3.976677 3.974468 3.972085 3.969526 3.966792 3.963884 3.960802 3.957547 3.954118 3.950517 3.946744 3.9428 3.938684 3.934397 3.929941 3.925315 3.92052 3.915557 3.910427 3.90513 3.899666 3.894037 3.888244 3.882287 3.876166 3.869883 3.863439 3.856834 3.850069 3.843145 3.836063 3.828824 3.821429 3.813878 3.806173 3.798316 3.790305 3.782144 3.773832 3.765372 3.756763 3.748007 3.739106 3.73006 3.72087 3.711539 3.702066 3.692453 3.682701 3.672812 3.662787 3.652627 3.642333 3.631906 3.621349 3.610662 3.599846 3.588903 3.577834 3.566641 3.555325 3.543888 3.53233 3.520653 3.508859 3.496949 3.484925 3.472788 3.460539 3.44818 3.435713 3.423138 3.410458 3.397674 3.384787 3.371799 3.358712 3.345527 3.332246 3.31887 3.305401 3.29184 3.278188 3.264449 3.250623 3.236711 3.222716 3.208638 3.19448 3.180243 3.165929 3.151539 3.137075 3.122539 3.107932 3.093256 3.078513 3.063703 3.048829 3.033893 3.018895 3.003839 2.988724 2.973553 2.958328 2.94305 2.927721 2.912342 2.896915 2.881442 2.865925 2.850363 2.834761 2.819119 2.803438 2.787721 2.771968 2.756182 2.740365 2.724517 2.70864 2.692736 2.676806 2.660852 2.644876 2.628879 2.612863 2.596829 2.580778 2.564713 2.548634 2.532544 2.516443 2.500334 2.484217 2.468095 2.451968 2.435838 2.419707 2.403576 2.387446 2.37132 2.355197 2.33908 2.32297 2.306869 2.290777 2.274696 2.258628 2.242574 2.226535 2.210512 2.194508 2.178522 2.162556 2.146612 2.130692 2.114794 2.098923 2.083078 2.067261 2.051472 2.035714 2.019987 2.004292 1.988631 1.973005 1.957414 1.941861 1.926345 1.910868 1.895432 1.880036 1.864683 1.849373 1.834107 1.818886 1.803712 1.788584 1.773505 1.758474 1.743494 1.728564 1.713686 1.69886 1.684088 1.66937 1.654708 1.640101 1.625551 1.611058 1.596623 1.582248 1.567932 1.553677 1.539483 1.525351 1.511281 1.497275 1.483332 1.469454 1.455641 1.441894 1.428213 1.4146 1.401053 1.387575 1.374165 1.360825 1.347554 1.334353 1.321223 1.308164 1.295176 1.28226 1.269417 1.256646 1.243949 1.231325 1.218775 1.2063 1.193899 1.181573 1.169322 1.157147 1.145048 1.133025 1.121078 1.109208 1.097415 1.085699 1.074061 1.0625 1.051016 1.039611 1.028284 1.017034 1.005864 0.9947714 0.9837577 0.9728227 0.9619665 0.9511892 0.9404908 0.9298714 0.9193311 0.9088698 0.8984876 0.8881846 0.8779607 0.8678159 0.8577502 0.8477636 0.8378561 0.8280274 0.8182778 0.8086069 0.7990149 0.7895016 0.7800668 0.7707106 0.7614327 0.7522331 0.7431116 0.7340682 0.7251024 0.7162144 0.707404 0.6986707 0.6900147 0.6814356 0.6729333 0.6645076 0.6561581 0.6478848 0.6396874 0.6315656 0.6235192 0.615548 0.6076517 0.59983 0.5920827 0.5844094 0.57681 0.5692841 0.5618314 0.5544516 0.5471445 0.5399097 0.5327468 0.5256556 0.5186357 0.5116869 0.5048087 0.4980009 0.491263 0.4845947 0.4779958 0.4714657 0.4650041 0.4586108 0.4522852 0.4460271 0.439836 0.4337115 0.4276533 0.4216611 0.4157343 0.4098726 0.4040755 0.3983428 0.3926739 0.3870686 0.3815262 0.3760466 0.3706291 0.3652735 0.3599792 0.3547459 0.3495732 0.3444606 0.3394076 0.3344139 0.3294791 0.3246027 0.3197842 0.3150232 0.3103193 0.3056721 0.3010811 0.2965458 0.2920659 0.2876409 0.2832704 0.2789538 0.2746908 0.270481 0.2663238 0.2622189 0.2581657 0.254164 0.2502131 0.2463127 0.2424623 0.2386615 0.2349098 0.2312069 0.2275522 0.2239453 0.2203858 0.2168732 0.2134071 0.2099871 0.2066128 0.2032836 0.1999991 0.196759 0.1935628 0.19041 0.1873002 0.1842331 0.1812081 0.1782249 0.175283 0.172382 0.1695215 0.166701 0.1639202 0.1611786 0.1584758 0.1558114 0.153185 0.1505962 0.1480445 0.1455296 0.1430511 0.1406085 0.1382015 0.1358297 0.1334926 0.13119 0.1289213 0.1266862 0.1244843 0.1223153 0.1201787 0.1180742 0.1160014 0.1139599 0.1119493 0.1099694 0.1080196 0.1060997 0.1042093 0.1023481 0.1005156 0.09871154 0.09693555 0.09518728 0.09346639 0.09177253 0.09010535 0.08846454 0.08684975 0.08526064 0.08369689 0.08215817 0.08064415 0.07915451 0.07768894 0.07624712 0.07482872 0.07343345 0.07206099 0.07071105 0.06938331 0.06807747 0.06679324 0.06553032 0.06428842 0.06306726 0.06186655 0.060686 0.05952532 0.05838426 0.05726252 0.05615984 0.05507594 0.05401056 0.05296344 0.05193431 0.05092291 0.04992899 0.0489523 0.04799257 0.04704957 0.04612306 0.04521277 0.04431848 0.04343995 0.04257695 0.04172923 0.04089657 0.04007875 0.03927553 0.03848671 0.03771205 0.03695134 0.03620436 0.03547091 0.03475077 0.03404374 0.03334962 0.03266819 0.03199927 0.03134264 0.03069813 0.03006554 0.02944467 0.02883534 0.02823737 0.02765057 0.02707476 0.02650976 0.0259554 0.0254115 0.02487789 0.02435441 0.02384088 0.02333714 0.02284304 0.02235839 0.02188306 0.02141689 0.02095971 0.02051138 0.02007174 0.01964066 0.01921798 0.01880356 0.01839726 0.01799894 0.01760846 0.01722569 0.01685049 0.01648273 0.01612227 0.015769 0.01542279 0.01508351 0.01475103 0.01442524 0.01410602 0.01379325 0.01348682 0.01318661 0.01289251 0.0126044 0.01232219 0.01204576 0.01177501 0.01150983 0.01125013 0.0109958 0.01074673 0.01050285 0.01026404 0.01003021 0.00980128 0.009577146 0.009357722 0.009142918 0.008932649 0.008726827 0.008525369 0.008328191 0.008135212 0.007946352 0.007761531 0.007580672 0.007403698 0.007230534 0.007061107 0.006895343 0.006733172 0.006574522 0.006419325 0.006267513 0.006119019 0.005973778 0.005831726 0.005692798 0.005556933 0.005424069 0.005294147 0.005167107 0.005042891 0.004921443 0.004802707 0.004686626 0.004573148 0.004462219 0.004353788 0.004247803 0.004144213 0.00404297 0.003944025 0.003847331 0.00375284 0.003660508 0.003570288 0.003482137 0.003396012 0.00331187 0.003229669 0.003149368 0.003070927 0.002994307 0.002919469 0.002846375 0.002774988 0.00270527 0.002637187 0.002570704 0.002505784 0.002442396 0.002380506 0.00232008 0.002261088 0.002203498 0.00214728 0.002092403 0.002038837 0.001986555 0.001935527 0.001885726 0.001837125 0.001789697 0.001743416 0.001698256 0.001654192 0.001611201 0.001569256 0.001528336 0.001488417 0.001449476 0.001411491 0.00137444 0.001338302 0.001303057 0.001268683 0.001235162 0.001202472 0.001170596 0.001139514 0.001109208 0.00107966 0.001050853 0.001022768 0.00099539 0.000968702 0.000942688 0.000917331 0.000892617 0.00086853 0.000845055 0.000822178 0.000799885 0.000778162 0.000756995 0.000736372 0.000716278 0.000696702 0.00067763 0.000659051 0.000640954 0.000623325 0.000606154 0.000589431 0.000573143 0.00055728 0.000541833 0.00052679 0.000512142 0.000497879 0.000483992 0.000470471 0.000457308 0.000444493 0.000432018 0.000419875 0.000408055 0.00039655 0.000385352 0.000374454 0.000363848 0.000353526 0.000343482 0.000333709 0.000324199 0.000314946 0.000305944 0.000297186 0.000288665 0.000280377 0.000272314 0.000264472 0.000256844 0.000249425 0.000242209 0.000235192 0.000228368 0.000221732 0.000215279 0.000209005 0.000202904 0.000196973 0.000191207 0.000185601 0.000180152 0.000174855 0.000169706 0.000164702 0.000159837 0.00015511 0.000150516 0.000146051 0.000141713 0.000137497 0.000133401 0.000129421 0.000125554 0.000121797 0.000118148 0.000114602 0.000111159 0.000107813 0.000104564 0.000101409 9.83437E-05 9.53672E-05 9.24767E-05 8.96699E-05 8.69443E-05 8.42979E-05 8.17284E-05 7.92337E-05 7.68117E-05 7.44605E-05 7.2178E-05 6.99623E-05 6.78117E-05 6.57243E-05 6.36983E-05 6.17319E-05 5.98237E-05 5.79718E-05 5.61748E-05 5.44311E-05 5.27391E-05 5.10975E-05 4.95047E-05 4.79595E-05 4.64605E-05 4.50063E-05 4.35956E-05 4.22274E-05 4.09002E-05 3.9613E-05 3.83646E-05 3.71539E-05 3.59798E-05 3.48412E-05 3.37372E-05 3.26667E-05 3.16288E-05 3.06225E-05 2.96469E-05 2.87011E-05 2.77842E-05 2.68954E-05 2.6034E-05 2.51989E-05 2.43896E-05 2.36052E-05 2.28451E-05 2.21084E-05 2.13945E-05 2.07028E-05 2.00325E-05 1.93831E-05 1.87539E-05 1.81443E-05 1.75538E-05 1.69817E-05 1.64275E-05 1.58907E-05 1.53708E-05 1.48672E-05 1.43795E-05 1.39071E-05 1.34497E-05 1.30067E-05 1.25778E-05 1.21625E-05 1.17604E-05 1.1371E-05 1.09941E-05 1.06292E-05 1.02759E-05 9.93394E-06 9.60293E-06 9.28254E-06 8.97244E-06 8.67231E-06 8.38185E-06 8.10075E-06 7.82874E-06 7.56552E-06 7.31083E-06 7.0644E-06 6.82597E-06 6.5953E-06 6.37214E-06 6.15625E-06 5.94742E-06 5.74541E-06 5.55002E-06 5.36104E-06 5.17826E-06 5.00149E-06 4.83053E-06 4.66522E-06 4.50536E-06 4.35079E-06 4.20133E-06 4.05683E-06 3.91712E-06 3.78206E-06 3.65149E-06 3.52527E-06 3.40326E-06 3.28533E-06 3.17135E-06 3.06118E-06 2.95471E-06 2.85182E-06 2.75239E-06 2.6563E-06 2.56346E-06 2.47375E-06 2.38707E-06 2.30333E-06 2.22243E-06 2.14428E-06 2.06878E-06 1.99585E-06 1.9254E-06 1.85736E-06 1.79165E-06 1.72818E-06 1.66689E-06 1.6077E-06 1.55054E-06 1.49535E-06 1.44205E-06 1.3906E-06 1.34092E-06 1.29296E-06 1.24666E-06 1.20196E-06 1.15882E-06 1.11717E-06 1.07698E-06 1.03818E-06 1.00074E-06 9.645991E-07 9.29726E-07 8.96074E-07 8.63602E-07 8.3227E-07 8.02039E-07 7.72871E-07 7.44731E-07 7.17584E-07 6.91396E-07 6.66134E-07 6.41766E-07 6.18262E-07 5.95593E-07 5.73729E-07 5.52643E-07 5.32309E-07 5.127E-07 4.93791E-07 4.75559E-07 4.57979E-07 4.4103E-07 4.24689E-07 4.08935E-07 3.93749E-07 3.79109E-07 3.64997E-07 3.51396E-07 3.38285E-07 3.2565E-07 3.13473E-07 3.01737E-07 2.90428E-07 2.79531E-07 2.6903E-07 2.58913E-07 2.49164E-07 2.39772E-07 2.30724E-07 2.22008E-07 2.13611E-07 2.05523E-07 1.97732E-07 1.90228E-07 1.83001E-07 1.7604E-07 1.69337E-07 1.62882E-07 1.56665E-07 1.5068E-07 1.44916E-07 1.39367E-07 1.34025E-07 1.28881E-07 1.23929E-07 1.19163E-07 1.14574E-07 1.10158E-07 1.05907E-07 1.01815E-07 9.78771E-08 9.40873E-08 9.04403E-08 8.69308E-08 8.35538E-08 8.03043E-08 7.71778E-08 7.41698E-08 7.12758E-08 6.84917E-08 6.58134E-08 6.3237E-08 6.07588E-08</Row>
+    <Row>-9999,0,599,24,Temp warm,30,10,0.001343666 0.001411491 0.001449476 0.001488417 0.001528336 0.001569256 0.001611201 0.001654192 0.001698256 0.001743416 0.001789697 0.001837125 0.001885726 0.001935527 0.001986555 0.002038837 0.002092403 0.00214728 0.002203498 0.002261088 0.00232008 0.002380506 0.002442396 0.002505784 0.002570704 0.002637187 0.00270527 0.002774988 0.002846375 0.002919469 0.002994307 0.003070927 0.003149368 0.003229669 0.00331187 0.003396012 0.003482137 0.003570288 0.003660508 0.00375284 0.003847331 0.003944025 0.00404297 0.004144213 0.004247803 0.004353788 0.004462219 0.004573148 0.004686626 0.004802707 0.004921443 0.005042891 0.005167107 0.005294147 0.005424069 0.005556933 0.005692798 0.005831726 0.005973778 0.006119019 0.006267513 0.006419325 0.006574522 0.006733172 0.006895343 0.007061107 0.007230534 0.007403698 0.007580672 0.007761531 0.007946352 0.008135212 0.008328191 0.008525369 0.008726827 0.008932649 0.009142918 0.009357722 0.009577146 0.00980128 0.01003021 0.01026404 0.01050285 0.01074673 0.0109958 0.01125013 0.01150983 0.01177501 0.01204576 0.01232219 0.0126044 0.01289251 0.01318661 0.01348682 0.01379325 0.01410602 0.01442524 0.01475103 0.01508351 0.01542279 0.015769 0.01612227 0.01648273 0.01685049 0.01722569 0.01760846 0.01799894 0.01839726 0.01880356 0.01921798 0.01964066 0.02007174 0.02051138 0.02095971 0.02141689 0.02188306 0.02235839 0.02284304 0.02333714 0.02384088 0.02435441 0.02487789 0.0254115 0.0259554 0.02650976 0.02707476 0.02765057 0.02823737 0.02883534 0.02944467 0.03006554 0.03069813 0.03134264 0.03199927 0.03266819 0.03334962 0.03404374 0.03475077 0.03547091 0.03620436 0.03695134 0.03771205 0.03848671 0.03927553 0.04007875 0.04089657 0.04172923 0.04257695 0.04343995 0.04431848 0.04521277 0.04612306 0.04704957 0.04799257 0.0489523 0.04992899 0.05092291 0.05193431 0.05296344 0.05401056 0.05507594 0.05615984 0.05726252 0.05838426 0.05952532 0.060686 0.06186655 0.06306726 0.06428842 0.06553032 0.06679324 0.06807747 0.06938331 0.07071105 0.07206099 0.07343345 0.07482872 0.07624712 0.07768894 0.07915451 0.08064415 0.08215817 0.08369689 0.08526064 0.08684975 0.08846454 0.09010535 0.09177253 0.09346639 0.09518728 0.09693555 0.09871154 0.1005156 0.1023481 0.1042093 0.1060997 0.1080196 0.1099694 0.1119493 0.1139599 0.1160014 0.1180742 0.1201787 0.1223153 0.1244843 0.1266862 0.1289213 0.13119 0.1334926 0.1358297 0.1382015 0.1406085 0.1430511 0.1455296 0.1480445 0.1505962 0.153185 0.1558114 0.1584758 0.1611786 0.1639202 0.166701 0.1695215 0.172382 0.175283 0.1782249 0.1812081 0.1842331 0.1873002 0.19041 0.1935628 0.196759 0.1999991 0.2032836 0.2066128 0.2099871 0.2134071 0.2168732 0.2203858 0.2239453 0.2275522 0.2312069 0.2349098 0.2386615 0.2424623 0.2463127 0.2502131 0.254164 0.2581657 0.2622189 0.2663238 0.270481 0.2746908 0.2789538 0.2832704 0.2876409 0.2920659 0.2965458 0.3010811 0.3056721 0.3103193 0.3150232 0.3197842 0.3246027 0.3294791 0.3344139 0.3394076 0.3444606 0.3495732 0.3547459 0.3599792 0.3652735 0.3706291 0.3760466 0.3815262 0.3870686 0.3926739 0.3983428 0.4040755 0.4098726 0.4157343 0.4216611 0.4276533 0.4337115 0.439836 0.4460271 0.4522852 0.4586108 0.4650041 0.4714657 0.4779958 0.4845947 0.491263 0.4980009 0.5048087 0.5116869 0.5186357 0.5256556 0.5327468 0.5399097 0.5471445 0.5544516 0.5618314 0.5692841 0.57681 0.5844094 0.5920827 0.59983 0.6076517 0.615548 0.6235192 0.6315656 0.6396874 0.6478848 0.6561581 0.6645076 0.6729333 0.6814356 0.6900147 0.6986707 0.707404 0.7162144 0.7251024 0.7340682 0.7431116 0.7522331 0.7614327 0.7707106 0.7800668 0.7895016 0.7990149 0.8086069 0.8182778 0.8280274 0.8378561 0.8477636 0.8577502 0.8678159 0.8779607 0.8881846 0.8984876 0.9088698 0.9193311 0.9298714 0.9404908 0.9511892 0.9619665 0.9728227 0.9837577 0.9947714 1.005864 1.017034 1.028284 1.039611 1.051016 1.0625 1.074061 1.085699 1.097415 1.109208 1.121078 1.133025 1.145048 1.157147 1.169322 1.181573 1.193899 1.2063 1.218775 1.231325 1.243949 1.256646 1.269417 1.28226 1.295176 1.308164 1.321223 1.334353 1.347554 1.360825 1.374165 1.387575 1.401053 1.4146 1.428213 1.441894 1.455641 1.469454 1.483332 1.497275 1.511281 1.525351 1.539483 1.553677 1.567932 1.582248 1.596623 1.611058 1.625551 1.640101 1.654708 1.66937 1.684088 1.69886 1.713686 1.728564 1.743494 1.758474 1.773505 1.788584 1.803712 1.818886 1.834107 1.849373 1.864683 1.880036 1.895432 1.910868 1.926345 1.941861 1.957414 1.973005 1.988631 2.004292 2.019987 2.035714 2.051472 2.067261 2.083078 2.098923 2.114794 2.130692 2.146612 2.162556 2.178522 2.194508 2.210512 2.226535 2.242574 2.258628 2.274696 2.290777 2.306869 2.32297 2.33908 2.355197 2.37132 2.387446 2.403576 2.419707 2.435838 2.451968 2.468095 2.484217 2.500334 2.516443 2.532544 2.548634 2.564713 2.580778 2.596829 2.612863 2.628879 2.644876 2.660852 2.676806 2.692736 2.70864 2.724517 2.740365 2.756182 2.771968 2.787721 2.803438 2.819119 2.834761 2.850363 2.865925 2.881442 2.896915 2.912342 2.927721 2.94305 2.958328 2.973553 2.988724 3.003839 3.018895 3.033893 3.048829 3.063703 3.078513 3.093256 3.107932 3.122539 3.137075 3.151539 3.165929 3.180243 3.19448 3.208638 3.222716 3.236711 3.250623 3.264449 3.278188 3.29184 3.305401 3.31887 3.332246 3.345527 3.358712 3.371799 3.384787 3.397674 3.410458 3.423138 3.435713 3.44818 3.460539 3.472788 3.484925 3.496949 3.508859 3.520653 3.53233 3.543888 3.555325 3.566641 3.577834 3.588903 3.599846 3.610662 3.621349 3.631906 3.642333 3.652627 3.662787 3.672812 3.682701 3.692453 3.702066 3.711539 3.72087 3.73006 3.739106 3.748007 3.756763 3.765372 3.773832 3.782144 3.790305 3.798316 3.806173 3.813878 3.821429 3.828824 3.836063 3.843145 3.850069 3.856834 3.863439 3.869883 3.876166 3.882287 3.888244 3.894037 3.899666 3.90513 3.910427 3.915557 3.92052 3.925315 3.929941 3.934397 3.938684 3.9428 3.946744 3.950517 3.954118 3.957547 3.960802 3.963884 3.966792 3.969526 3.972085 3.974468 3.976677 3.97871 3.980567 3.982248 3.983753 3.985081 3.986233 3.987207 3.988005 3.988625 3.989068 3.989334 3.989423 3.989334 3.989068 3.988625 3.988005 3.987207 3.986233 3.985081 3.983753 3.982248 3.980567 3.97871 3.976677 3.974468 3.972085 3.969526 3.966792 3.963884 3.960802 3.957547 3.954118 3.950517 3.946744 3.9428 3.938684 3.934397 3.929941 3.925315 3.92052 3.915557 3.910427 3.90513 3.899666 3.894037 3.888244 3.882287 3.876166 3.869883 3.863439 3.856834 3.850069 3.843145 3.836063 3.828824 3.821429 3.813878 3.806173 3.798316 3.790305 3.782144 3.773832 3.765372 3.756763 3.748007 3.739106 3.73006 3.72087 3.711539 3.702066 3.692453 3.682701 3.672812 3.662787 3.652627 3.642333 3.631906 3.621349 3.610662 3.599846 3.588903 3.577834 3.566641 3.555325 3.543888 3.53233 3.520653 3.508859 3.496949 3.484925 3.472788 3.460539 3.44818 3.435713 3.423138 3.410458 3.397674 3.384787 3.371799 3.358712 3.345527 3.332246 3.31887 3.305401 3.29184 3.278188 3.264449 3.250623 3.236711 3.222716 3.208638 3.19448 3.180243 3.165929 3.151539 3.137075 3.122539 3.107932 3.093256 3.078513 3.063703 3.048829 3.033893 3.018895 3.003839 2.988724 2.973553 2.958328 2.94305 2.927721 2.912342 2.896915 2.881442 2.865925 2.850363 2.834761 2.819119 2.803438 2.787721 2.771968 2.756182 2.740365 2.724517 2.70864 2.692736 2.676806 2.660852 2.644876 2.628879 2.612863 2.596829 2.580778 2.564713 2.548634 2.532544 2.516443 2.500334 2.484217 2.468095 2.451968 2.435838 2.419707 2.403576 2.387446 2.37132 2.355197 2.33908 2.32297 2.306869 2.290777 2.274696 2.258628 2.242574 2.226535 2.210512 2.194508 2.178522 2.162556 2.146612 2.130692 2.114794 2.098923 2.083078 2.067261 2.051472 2.035714 2.019987 2.004292 1.988631 1.973005 1.957414 1.941861 1.926345 1.910868 1.895432 1.880036 1.864683 1.849373 1.834107 1.818886 1.803712 1.788584 1.773505 1.758474 1.743494 1.728564 1.713686 1.69886 1.684088 1.66937 1.654708 1.640101 1.625551 1.611058 1.596623 1.582248 1.567932 1.553677 1.539483 1.525351 1.511281 1.497275 1.483332 1.469454 1.455641 1.441894 1.428213 1.4146 1.401053 1.387575 1.374165 1.360825 1.347554 1.334353 1.321223 1.308164 1.295176 1.28226 1.269417 1.256646 1.243949 1.231325 1.218775 1.2063 1.193899 1.181573 1.169322 1.157147 1.145048 1.133025 1.121078 1.109208 1.097415 1.085699 1.074061 1.0625 1.051016 1.039611 1.028284 1.017034 1.005864 0.9947714 0.9837577 0.9728227 0.9619665 0.9511892 0.9404908 0.9298714 0.9193311 0.9088698 0.8984876 0.8881846 0.8779607 0.8678159 0.8577502 0.8477636 0.8378561 0.8280274 0.8182778 0.8086069 0.7990149 0.7895016 0.7800668 0.7707106 0.7614327 0.7522331 0.7431116 0.7340682 0.7251024 0.7162144 0.707404 0.6986707 0.6900147 0.6814356 0.6729333 0.6645076 0.6561581 0.6478848 0.6396874 0.6315656 0.6235192 0.615548 0.6076517 0.59983 0.5920827 0.5844094 0.57681 0.5692841 0.5618314 0.5544516 0.5471445 0.5399097 0.5327468 0.5256556 0.5186357 0.5116869 0.5048087 0.4980009 0.491263 0.4845947 0.4779958 0.4714657 0.4650041 0.4586108 0.4522852 0.4460271 0.439836 0.4337115 0.4276533 0.4216611 0.4157343 0.4098726 0.4040755 0.3983428 0.3926739 0.3870686 0.3815262 0.3760466 0.3706291 0.3652735 0.3599792 0.3547459 0.3495732 0.3444606 0.3394076 0.3344139 0.3294791 0.3246027 0.3197842 0.3150232 0.3103193 0.3056721 0.3010811 0.2965458 0.2920659 0.2876409 0.2832704 0.2789538 0.2746908 0.270481 0.2663238 0.2622189 0.2581657 0.254164 0.2502131 0.2463127 0.2424623 0.2386615 0.2349098 0.2312069 0.2275522 0.2239453 0.2203858 0.2168732 0.2134071 0.2099871 0.2066128 0.2032836 0.1999991 0.196759 0.1935628 0.19041 0.1873002 0.1842331 0.1812081 0.1782249 0.175283 0.172382 0.1695215 0.166701 0.1639202 0.1611786 0.1584758 0.1558114 0.153185 0.1505962 0.1480445 0.1455296 0.1430511 0.1406085 0.1382015 0.1358297 0.1334926 0.13119 0.1289213 0.1266862 0.1244843 0.1223153 0.1201787 0.1180742 0.1160014 0.1139599 0.1119493 0.1099694 0.1080196 0.1060997 0.1042093 0.1023481 0.1005156 0.09871154 0.09693555 0.09518728 0.09346639 0.09177253 0.09010535 0.08846454 0.08684975 0.08526064 0.08369689 0.08215817 0.08064415 0.07915451 0.07768894 0.07624712 0.07482872 0.07343345 0.07206099 0.07071105 0.06938331 0.06807747 0.06679324 0.06553032 0.06428842 0.06306726 0.06186655 0.060686 0.05952532 0.05838426 0.05726252 0.05615984 0.05507594 0.05401056 0.05296344 0.05193431 0.05092291 0.04992899 0.0489523 0.04799257 0.04704957 0.04612306 0.04521277 0.04431848 0.04343995 0.04257695 0.04172923 0.04089657 0.04007875 0.03927553 0.03848671 0.03771205 0.03695134 0.03620436 0.03547091 0.03475077 0.03404374 0.03334962 0.03266819 0.03199927 0.03134264 0.03069813 0.03006554 0.02944467 0.02883534 0.02823737 0.02765057 0.02707476 0.02650976 0.0259554 0.0254115 0.02487789 0.02435441 0.02384088 0.02333714 0.02284304 0.02235839 0.02188306 0.02141689 0.02095971 0.02051138 0.02007174 0.01964066 0.01921798 0.01880356 0.01839726 0.01799894 0.01760846 0.01722569 0.01685049 0.01648273 0.01612227 0.015769 0.01542279 0.01508351 0.01475103 0.01442524 0.01410602 0.01379325 0.01348682 0.01318661 0.01289251 0.0126044 0.01232219 0.01204576 0.01177501 0.01150983 0.01125013 0.0109958 0.01074673 0.01050285 0.01026404 0.01003021 0.00980128 0.009577146 0.009357722 0.009142918 0.008932649 0.008726827 0.008525369 0.008328191 0.008135212 0.007946352 0.007761531 0.007580672 0.007403698 0.007230534 0.007061107 0.006895343 0.006733172 0.006574522 0.006419325 0.006267513 0.006119019 0.005973778 0.005831726 0.005692798 0.005556933 0.005424069 0.005294147 0.005167107 0.005042891 0.004921443 0.004802707 0.004686626 0.004573148 0.004462219 0.004353788 0.004247803 0.004144213 0.00404297 0.003944025 0.003847331 0.00375284 0.003660508 0.003570288 0.003482137 0.003396012 0.00331187 0.003229669 0.003149368 0.003070927 0.002994307 0.002919469 0.002846375 0.002774988 0.00270527 0.002637187 0.002570704 0.002505784 0.002442396 0.002380506 0.00232008 0.002261088 0.002203498 0.00214728 0.002092403 0.002038837 0.001986555 0.001935527 0.001885726 0.001837125 0.001789697 0.001743416 0.001698256 0.001654192 0.001611201 0.001569256 0.001528336 0.001488417 0.001449476 0.001411491 0.00137444 0.001338302</Row>
+    <Row>10 15 16 19 0,9,400,34,T whiting,19,10,0.0015 0.003 0.0045 0.006 0.0075 0.009 0.0105 0.012 0.0135 0.015 0.0165 0.018 0.0195 0.021 0.0225 0.024 0.0255 0.027 0.0285 0.03 0.0315 0.033 0.0345 0.036 0.0375 0.039 0.0405 0.042 0.0435 0.045 0.0465 0.048 0.0495 0.051 0.0525 0.054 0.0555 0.057 0.0585 0.06 0.0615 0.063 0.0645 0.066 0.0675 0.069 0.0705 0.072 0.0735 0.075 0.0765 0.078 0.0795 0.081 0.0825 0.084 0.08549999 0.087 0.0885 0.09 0.0915 0.09299999 0.0945 0.096 0.0975 0.099 0.1005 0.102 0.1035 0.105 0.1065 0.108 0.1095 0.111 0.1125 0.114 0.1155 0.117 0.1185 0.12 0.1215 0.123 0.1245 0.126 0.1275 0.129 0.1305 0.132 0.1335 0.135 0.1365 0.138 0.1395 0.141 0.1425 0.144 0.1455 0.147 0.1485 0.15 0.1515 0.153 0.1545 0.156 0.1575 0.159 0.1605 0.162 0.1635 0.165 0.1665 0.168 0.1695 0.171 0.1725 0.174 0.1755 0.177 0.1785 0.18 0.1815 0.183 0.1845 0.186 0.1875 0.189 0.1905 0.192 0.1935 0.195 0.1965 0.198 0.1995 0.201 0.2025 0.204 0.2055 0.207 0.2085 0.21 0.2115 0.213 0.2145 0.216 0.2175 0.219 0.2205 0.222 0.2235 0.225 0.2265 0.228 0.2295 0.231 0.2325 0.234 0.2355 0.237 0.2385 0.24 0.2415 0.243 0.2445 0.246 0.2475 0.249 0.2505 0.252 0.2535 0.255 0.2565 0.258 0.2595 0.261 0.2625 0.264 0.2655 0.267 0.2685 0.27 0.2715 0.273 0.2745 0.276 0.2775 0.279 0.2805 0.282 0.2835 0.285 0.2865 0.288 0.2895 0.291 0.2925 0.294 0.2955 0.297 0.2985 0.3 0.3015 0.303 0.3045 0.306 0.3075 0.309 0.3105 0.312 0.3135 0.315 0.3165 0.318 0.3195 0.321 0.3225 0.324 0.3255 0.327 0.3285 0.33 0.3315 0.333 0.3345 0.336 0.3375 0.339 0.3405 0.342 0.3435 0.345 0.3465 0.348 0.3495 0.351 0.3525 0.354 0.3555 0.357 0.3585 0.36 0.3615 0.363 0.3645 0.366 0.3675 0.369 0.3705 0.372 0.3735 0.375 0.3765 0.378 0.3795 0.381 0.3825 0.384 0.3855 0.387 0.3885 0.39 0.3915 0.393 0.3945 0.396 0.3975 0.399 0.4005 0.402 0.4035 0.405 0.4065 0.408 0.4095 0.411 0.4125 0.414 0.4155 0.417 0.4185 0.42 0.4215 0.423 0.4245 0.426 0.4275 0.429 0.4305 0.432 0.4335 0.435 0.4365 0.438 0.4395 0.441 0.4425 0.444 0.4455 0.447 0.4485 0.45 0.4515 0.453 0.4545 0.456 0.4575 0.459 0.4605 0.462 0.4635 0.465 0.4665 0.468 0.4695 0.471 0.4725 0.474 0.4755 0.477 0.4785 0.48 0.4815 0.483 0.4845 0.486 0.4875 0.489 0.4905 0.492 0.4935 0.495 0.4965 0.498 0.4995 0.501 0.5025 0.504 0.5055 0.507 0.5085 0.51 0.5115 0.513 0.5145 0.516 0.5175 0.519 0.5205 0.522 0.5235 0.525 0.5265 0.528 0.5295 0.531 0.5325 0.534 0.5355 0.537 0.5385 0.54 0.5415 0.543 0.5445 0.546 0.5475 0.549 0.5505 0.552 0.5535 0.555 0.5565 0.558 0.5595 0.561 0.5625 0.564 0.5655 0.567 0.5685 0.57 0.5715 0.573 0.5745 0.576 0.5775 0.579 0.5805 0.582 0.5835 0.585 0.5865 0.588 0.5895 0.591 0.5925 0.594 0.5955 0.597 0.5985 0.6 0.6015 0.603 0.6045 0.606 0.6075 0.609 0.6105 0.612 0.6135 0.615 0.6165 0.618 0.6195 0.621 0.6225 0.624 0.6255 0.627 0.6285 0.63 0.6315 0.633 0.6345 0.636 0.6375 0.639 0.6405 0.642 0.6435 0.645 0.6465 0.648 0.6495 0.651 0.6525 0.654 0.6555 0.657 0.6585 0.66 0.6615 0.663 0.6645 0.666 0.6675 0.669 0.6705 0.672 0.6735 0.675 0.6765 0.678 0.6795 0.681 0.6825 0.684 0.6855 0.687 0.6885 0.69 0.6915 0.693 0.6945 0.696 0.6975 0.699 0.7005 0.702 0.7035 0.705 0.7065 0.708 0.7095 0.711 0.7125 0.714 0.7155 0.717 0.7185 0.72 0.7215 0.723 0.7245 0.726 0.7275 0.729 0.7305 0.732 0.7335 0.735 0.7365 0.738 0.7395 0.741 0.7425 0.744 0.7455 0.747 0.7485 0.75 0.7515 0.753 0.7545 0.756 0.7575 0.759 0.7605 0.762 0.7635 0.765 0.7665 0.768 0.7695 0.771 0.7725 0.774 0.7755 0.777 0.7785 0.78 0.7815 0.783 0.7845 0.786 0.7875 0.789 0.7905 0.792 0.7935 0.795 0.7965 0.798 0.7995 0.801 0.8025 0.804 0.8055 0.807 0.8085 0.81 0.8115 0.813 0.8145 0.816 0.8175 0.819 0.8205 0.822 0.8235 0.825 0.8265 0.828 0.8295 0.831 0.8325 0.834 0.8355 0.837 0.8385 0.84 0.8415 0.843 0.8445 0.846 0.8475 0.849 0.8505 0.852 0.8535 0.855 0.8565 0.858 0.8595 0.861 0.8625 0.864 0.8655 0.867 0.8685 0.87 0.8715 0.873 0.8745 0.876 0.8775 0.879 0.8805 0.882 0.8835 0.885 0.8865 0.888 0.8895 0.891 0.8925 0.894 0.8955 0.897 0.8985 0.9 0.9015 0.903 0.9045 0.906 0.9075 0.909 0.9105 0.912 0.9135 0.915 0.9165 0.918 0.9195 0.921 0.9225 0.924 0.9255 0.927 0.9285 0.93 0.9315 0.933 0.9345 0.936 0.9375 0.939 0.9405 0.942 0.9435 0.945 0.9465 0.948 0.9495 0.951 0.9525 0.954 0.9555 0.957 0.9585 0.96 0.9615 0.963 0.9645 0.966 0.9675 0.969 0.9705 0.972 0.9735 0.975 0.9765 0.978 0.9795 0.981 0.9825 0.984 0.9855 0.987 0.9885 0.9899999 0.9915 0.993 0.9945 0.996 0.9975 0.999 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.9975 0.995 0.9925 0.99 0.9875 0.985 0.9825 0.98 0.9775 0.975 0.9725 0.97 0.9675 0.965 0.9625 0.96 0.9575 0.955 0.9525 0.95 0.9475 0.945 0.9425 0.94 0.9375 0.935 0.9325 0.93 0.9275 0.925 0.9225 0.92 0.9175 0.915 0.9125 0.91 0.9075 0.905 0.9025 0.9 0.8975 0.895 0.8925 0.89 0.8875 0.885 0.8825 0.88 0.8775 0.875 0.8725 0.87 0.8675 0.865 0.8625 0.86 0.8575 0.855 0.8525 0.85 0.8475 0.845 0.8425 0.84 0.8375 0.835 0.8325 0.83 0.8275 0.825 0.8225 0.82 0.8175 0.815 0.8125 0.81 0.8075 0.805 0.8025 0.8 0.7975 0.795 0.7925 0.79 0.7875 0.785 0.7825 0.78 0.7775 0.775 0.7725 0.77 0.7675 0.765 0.7625 0.76 0.7575 0.755 0.7525 0.75 0.7475 0.745 0.7425 0.74 0.7375 0.735 0.7325 0.73 0.7275 0.725 0.7225 0.72 0.7175 0.715 0.7125 0.71 0.7075 0.705 0.7025 0.7 0.6975 0.695 0.6925 0.69 0.6875 0.685 0.6825 0.68 0.6775 0.675 0.6725 0.67 0.6675 0.665 0.6625 0.66 0.6575 0.655 0.6525 0.65 0.6475 0.645 0.6425 0.64 0.6375 0.635 0.6325 0.63 0.6275 0.625 0.6225 0.62 0.6175 0.615 0.6125 0.61 0.6075 0.605 0.6025 0.6 0.5975 0.595 0.5925 0.59 0.5875 0.585 0.5825 0.58 0.5775 0.575 0.5725 0.57 0.5675 0.565 0.5625 0.56 0.5575 0.555 0.5525 0.55 0.5475 0.545 0.5425 0.54 0.5375 0.535 0.5325 0.53 0.5275 0.525 0.5225 0.52 0.5175 0.515 0.5125 0.51 0.5075 0.505 0.5025 0.5 0.4975 0.495 0.4925 0.49 0.4875 0.485 0.4825 0.48 0.4775 0.475 0.4725 0.47 0.4675 0.465 0.4625 0.46 0.4575 0.455 0.4525 0.45 0.4475 0.445 0.4425 0.44 0.4375 0.435 0.4325 0.43 0.4275 0.425 0.4225 0.42 0.4175 0.415 0.4125 0.41 0.4075 0.405 0.4025 0.4 0.3975 0.395 0.3925 0.39 0.3875 0.385 0.3825 0.38 0.3775 0.375 0.3725 0.37 0.3675 0.365 0.3625 0.36 0.3575 0.355 0.3525 0.35 0.3475 0.345 0.3425 0.34 0.3375 0.335 0.3325 0.33 0.3275 0.325 0.3225 0.32 0.3175 0.315 0.3125 0.31 0.3075 0.305 0.3025 0.3 0.2975 0.295 0.2925 0.29 0.2875 0.285 0.2825 0.28 0.2775 0.275 0.2725 0.27 0.2675 0.265 0.2625 0.26 0.2575 0.255 0.2525 0.25 0.2475 0.245 0.2425 0.24 0.2375 0.235 0.2325 0.23 0.2275 0.225 0.2225 0.22 0.2175 0.215 0.2125 0.21 0.2075 0.205 0.2025 0.2 0.1975 0.195 0.1925 0.19 0.1875 0.185 0.1825 0.18 0.1775 0.175 0.1725 0.17 0.1675 0.165 0.1625 0.16 0.1575 0.155 0.1525 0.15 0.1475 0.145 0.1425 0.14 0.1375 0.135 0.1325 0.13 0.1275 0.125 0.1225 0.12 0.1175 0.115 0.1125 0.11 0.1075 0.105 0.1025 0.1 0.09750002 0.09500002 0.09250002 0.09000002 0.08750002 0.08500002 0.08250002 0.08000002 0.07750002 0.07500002 0.07250002 0.07000002 0.06750002 0.06500002 0.06250002 0.06000002 0.05750002 0.05500002 0.05250002 0.05000002 0.04750002 0.04500002 0.04250002 0.04000002 0.03750002 0.03500002 0.03250002 0.03000002 0.02750002 0.02500002 0.02250002 0.02000002 0.01750002 0.01500002 0.01250002 0.01000002 0.007500022 0.005000022 0.002500022 0</Row>
+  </Table>
+  <Table Name="EcosimShapeTime" Columns="ApplicationType:System.Int64,FunctionParams:System.String,FunctionType:System.Int64,ShapeID:System.Int64,Title:System.String,zMaxScale:System.Single,zScale:System.String" Num="14">
+    <Row>0,0,0,17,PP anomaly,1,0.3132663 0.3134941 0.31417 0.3152832 0.3168225 0.3187769 0.3211356 0.3238873 0.3270212 0.3305262 0.3343913 0.3386055 0.3431577 0.3480371 0.3532325 0.358733 0.3645275 0.370605 0.3769546 0.3835652 0.3904257 0.3975253 0.4048528 0.4123973 0.4201477 0.4280932 0.4362225 0.4445248 0.4529889 0.461604 0.4703589 0.4792428 0.4882445 0.4973531 0.5065575 0.5158467 0.5252098 0.5346357 0.5441135 0.553632 0.5631803 0.5727473 0.5823221 0.5918937 0.6014511 0.6109831 0.6204789 0.6299274 0.6393176 0.6486385 0.657879 0.6670282 0.676075 0.6850086 0.6938178 0.7024915 0.711019 0.7193889 0.7275906 0.7356127 0.7434444 0.7510748 0.7584926 0.765687 0.7726469 0.7793614 0.7858193 0.7920097 0.7979217 0.803544 0.8088659 0.8138798 0.8185924 0.8230141 0.8271551 0.8310257 0.8346363 0.8379972 0.8411186 0.8440107 0.8466841 0.8491489 0.8514154 0.8534939 0.8553948 0.8571283 0.8587047 0.8601343 0.8614275 0.8625944 0.8636455 0.8645909 0.8654411 0.8662063 0.8668969 0.867523 0.8680949 0.8686231 0.8691178 0.8695893 0.8700478 0.8705038 0.8709674 0.8714491 0.871959 0.8725075 0.8731048 0.8737614 0.8744874 0.8752932 0.876189 0.8771852 0.8782921 0.87952 0.880879 0.8823797 0.8840322 0.8858469 0.887834 0.8900039 0.8923668 0.894933 0.897713 0.9007168 0.9039549 0.9074375 0.911175 0.9151776 0.9194556 0.9240193 0.9288791 0.9340452 0.9395279 0.9453375 0.9514843 0.9579787 0.9648309 0.9720511 0.9796498 0.9876372 0.9960237 1.004815 1.013998 1.023557 1.033474 1.043732 1.054315 1.065205 1.076385 1.087838 1.099548 1.111497 1.123668 1.136045 1.148609 1.161345 1.174235 1.187263 1.200411 1.213661 1.226999 1.240405 1.253863 1.267357 1.280869 1.294382 1.30788 1.321344 1.334759 1.348107 1.361371 1.374535 1.38758 1.400491 1.41325 1.42584 1.438244 1.450445 1.462427 1.474171 1.485662 1.496882 1.507814 1.518441 1.528747 1.538713 1.548324 1.557561 1.566409 1.57485 1.582867 1.590443 1.597562 1.604205 1.610356 1.615999 1.621116 1.625689 1.629703 1.63314 1.635983 1.638215 1.639818 1.640778 1.641075 1.640693 1.639615 1.637824 1.635303 1.632036 1.628004 1.623198 1.61763 1.611322 1.604293 1.596564 1.588153 1.579082 1.569371 1.559039 1.548107 1.536595 1.524522 1.51191 1.498777 1.485144 1.471032 1.45646 1.441447 1.426015 1.410184 1.393973 1.377402 1.360492 1.343263 1.325735 1.307927 1.28986 1.271554 1.253029 1.234306 1.215403 1.196342 1.177142 1.157823 1.138406 1.11891 1.099356 1.079763 1.060153 1.040544 1.020957 1.001411 0.9819283 0.9625273 0.9432284 0.9240518 0.9050175 0.8861456 0.8674561 0.8489691 0.8307047 0.812683 0.794924 0.7774478 0.7602745 0.7434242 0.7269168 0.7107725 0.6950114 0.6796536 0.664719 0.6502278 0.6362 0.6226558 0.6096151 0.5970982 0.585125 0.5737156 0.5628899 0.5526683 0.5430707 0.5341127 0.5257921 0.5181023 0.5110366 0.5045882 0.4987506 0.4935172 0.4888811 0.4848357 0.4813744 0.4784905 0.4761774 0.4744282 0.4732365 0.4725956 0.4724986 0.4729391 0.4739103 0.4754055 0.4774181 0.4799415 0.4829689 0.4864936 0.4905091 0.4950085 0.4999854 0.505433 0.5113446 0.5177135 0.5245332 0.5317969 0.5394979 0.5476296 0.5561853 0.5651584 0.5745422 0.58433 0.5945151 0.605091 0.6160508 0.6273879 0.6390958 0.6511676 0.6635967 0.6763766 0.6895004 0.7029616 0.7167533 0.7308691 0.7453023 0.760046 0.7750938 0.7904388 0.8060746 0.8219942 0.8381912 0.8546588 0.8713904 0.8883793 0.9056188 0.9231023 0.9408232 0.9587746 0.9769499 0.9953427 1.013946 1.032753 1.051758 1.070953 1.090332 1.109887 1.129609 1.149484 1.169501 1.189649 1.209916 1.23029 1.25076 1.271313 1.291939 1.312625 1.333361 1.354133 1.374931 1.395743 1.416558 1.437362 1.458146 1.478897 1.499603 1.520253 1.540836 1.561339 1.581751 1.602059 1.622254 1.642322 1.662253 1.682034 1.701654 1.721101 1.740363 1.759429 1.778288 1.796927 1.815334 1.833499 1.85141 1.869054 1.88642 1.903497 1.920272 1.936735 1.952873 1.968674 1.984128 1.999223 2.013946 2.028286 2.042231 2.05577 2.068892 2.081583 2.093834 2.105632 2.116965 2.127821 2.13819 2.148059 2.157417 2.166251 2.174552 2.182306 2.189502 2.196128 2.202173 2.207625 2.212472 2.216703 2.220306 2.223274 2.22562 2.227359 2.22851 2.229089 2.229112 2.228598 2.227563 2.226023 2.223996 2.221499 2.218549 2.215162 2.211355 2.207146 2.202551 2.197588 2.192273 2.186623 2.180655 2.174386 2.167833 2.161013 2.153943 2.14664 2.13912 2.131401 2.1235 2.115433 2.107218 2.09887 2.090409 2.081849 2.073209 2.064505 2.055754 2.046973 2.038179 2.029388 2.020619 2.011887 2.003211 1.994605 1.986088 1.977677 1.969388 1.961239 1.953245 1.945425 1.937796 1.930373 1.923174 1.916216 1.909517 1.903092 1.896958 1.891134 1.885635 1.880479 1.875682 1.871262 1.867235 1.863618 1.860429 1.857684 1.8554 1.853594 1.852283 1.851484 1.851214 2.073574</Row>
+    <Row>,-9999,0,33,T bottom,1,17.1 17.1 17.1 17.1 17.1 17.1 17.1 17.1 17.1 17.1 17.1 17.1 17 17 17 17 17 17 17 17 17 17 17 17 16.9 16.9 16.9 16.9 16.9 16.9 16.9 16.9 16.9 16.9 16.9 16.9 16.7 16.7 16.7 16.7 16.7 16.7 16.7 16.7 16.7 16.7 16.7 16.7 17 17 17 17 17 17 17 17 17 17 17 17 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.3 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.4 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16.1 16 16 16 16 16 16 16 16 16 16 16 16 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.2 16.5 16.5 16.5 16.5 16.5 16.5 16.5 16.5 16.5 16.5 16.5 16.5 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.6 16.8 16.8 16.8 16.8 16.8 16.8 16.8 16.8 16.8 16.8 16.8 16.8 17 17 17 17 17 17 17 17 17 17 17 17 17.2 17.2 17.2 17.2 17.2 17.2 17.2 17.2 17.2 17.2 17.2 17.2 17.6 17.6 17.6 17.6 17.6 17.6 17.6 17.6 17.6 17.6 17.6 17.6 17.8 17.8 17.8 17.8 17.8 17.8 17.8 17.8 17.8 17.8 17.8 17.8 18 18 18 18 18 18 18 18 18 18 18 18 18.2 18.2 18.2 18.2 18.2 18.2 18.2 18.2 18.2 18.2 18.2 18.2 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18 18 18 18 18 18 18 18 18 18 18 18 18.9 18.9 18.9 18.9 18.9 18.9 18.9 18.9 18.9 18.9 18.9 18.9 19 19 19 19 19 19 19 19 19 19 19 19 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19 19 19 19 19 19 19 19 19 19 19 19 19.3 19.3 19.3 19.3 19.3 19.3 19.3 19.3 19.3 19.3 19.3 19.3 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19.2 19 19 19 19 19 19 19 19 19 19 19 19 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.5 18.5 18.5 18.5 18.5 18.5 18.5 18.5 18.5 18.5 18.5 18.5 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.7 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18.6 18</Row>
+  </Table>
+  <Table Name="EcosimStanzaShape" Columns="EggprodShapeID:System.Int64,HatchCodeShapeID:System.Int64,StanzaID:System.Int64" Num="0" />
+  <Table Name="EcosimTimeSeries" Columns="CV:System.Single,DatasetID:System.Int64,DatName:System.String,DatType:System.Int32,Sequence:System.Int64,TimeSeriesID:System.Int64,TimeValues:System.String,WtType:System.Single" Num="48">
+    <Row>0,2,Sealers,3,7,7,1 1 1 0.75 0.5 0.25 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0,0</Row>
+    <Row>0,2,Seal B,0,8,8,1 0 0 0 0 0.8 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 4,1</Row>
+    <Row>0,2,Trawlers,3,9,9,1 1.05 1.103 1.158 1.216 1.276 1.34 1.407 1.477 1.551 1.629 1.71 1.796 1.886 1.98 2.079 2.183 2.292 2.407 2.527 2.577 2.629 2.682 2.735 2.79 2.846 2.903 2.961 3.02 3.08 3.142 3.205 3.269 3.334 3.401 3.469 3.5 3.5 3.55 3.6 3.65,0</Row>
+    <Row>0,2,Cod B,0,10,10,10 0 0 0 0 0 0 0 6 0 0 0 0 0 0 0 0 0 0 4 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 1 0 0 0 0 0,1</Row>
+    <Row>0,2,Whiting B,0,11,11,1 0 0 0 0 0 0 0 0.8 0 0 0 0 0 0 0 0 0 0 0.7 0 0 0 0 0 0 0 0.6 0 0 0 0 0 0 0 0.4 0 0 0 0 0,1</Row>
+    <Row>0,2,Shrimp C,6,12,12,0.3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 2.4,1</Row>
+  </Table>
+  <Table Name="EcosimTimeSeriesDataset" Columns="Author:System.String,Contact:System.String,DataInterval:System.Int64,DatasetID:System.Int64,DatasetName:System.String,Description:System.String,FirstYear:System.Int64,NumPoints:System.Int64" Num="8">
+    <Row>VC-PC\VC,,0,2,anchovy_bay_timeseries,,1970,41</Row>
+  </Table>
+  <Table Name="EcosimTimeSeriesFleet" Columns="FleetID:System.Int64,GroupID:System.Int64,TimeSeriesID:System.Int64" Num="6">
+    <Row>1,0,7</Row>
+    <Row>2,0,9</Row>
+  </Table>
+  <Table Name="EcosimTimeSeriesGroup" Columns="GroupID:System.Int64,TimeSeriesID:System.Int64,VariableName:System.String" Num="12">
+    <Row>3,8,</Row>
+    <Row>4,10,</Row>
+    <Row>5,11,</Row>
+    <Row>8,12,</Row>
+  </Table>
+  <Table Name="EcospaceScenario" Columns="AdjustSpace:System.Boolean,AssumeSquareCells:System.Boolean,Author:System.String,CellAreaMap:System.String,CellLength:System.Single,CellSize:System.Single,Contact:System.String,CoordinateSystemWKT:System.String,DepthAMap:System.String,DepthMap:System.String,Description:System.String,EcosimScenarioID:System.Int64,EffortDistrThreshold:System.Single,EffortZoneMap:System.String,ExclusionMap:System.String,FirstPenaltyMonth:System.Single,FitResponseType:System.Byte,FlowMap:System.String,IFDPower:System.Single,Incol:System.Int64,Inrow:System.Int64,LastSaved:System.Single,LastSavedVersion:System.String,MinLat:System.Single,MinLon:System.Single,ModelType:System.Int32,NoFishWeight:System.Single,NumEffortZones:System.Int64,NumPacketsMultiplier:System.Single,NumRegions:System.Int64,NumThreads:System.Int32,PenaltyPower:System.Single,PredictEffort:System.Boolean,Q10DriverMap:System.String,RegionMap:System.String,RelCinMap:System.String,RelPPMap:System.String,ScenarioID:System.Int64,ScenarioName:System.String,SpinupYears:System.Int64,TimeStep:System.Single,Tolerance:System.Single,TotalTime:System.Single,UseEffortDistrThreshold:System.Int32,UseExact:System.Boolean,UsePenaltySearch:System.Byte,UseSpinup:System.Byte" Num="0" />
+  <Table Name="EcospaceScenarioCapacityDrivers" Columns="GroupID:System.Int64,ScenarioID:System.Int64,ShapeID:System.Int64,Target:System.Int64,VarDBID:System.Int64" Num="0" />
+  <Table Name="EcospaceScenarioDataConnection" Columns="ConverterCfg:System.String,ConverterTypeName:System.String,CustomDateEnd:System.String,CustomDateStart:System.String,DatasetCfg:System.String,DatasetGUID:System.String,DatasetTypeName:System.String,LayerID:System.Int64,Scale:System.Single,ScaleType:System.Byte,ScenarioID:System.Int64,Sequence:System.Int64,VarName:System.String" Num="0" />
+  <Table Name="EcospaceScenarioDataConnectionDisabled" Columns="LayerID:System.Int64,ScenarioID:System.Int64,Varname:System.String" Num="0" />
+  <Table Name="EcospaceScenarioDriverDisabled" Columns="LayerID:System.Int64,ScenarioID:System.Int64,Target:System.Int64" Num="0" />
+  <Table Name="EcospaceScenarioDriverLayer" Columns="LayerDescription:System.String,LayerID:System.Int64,LayerMAP:System.String,LayerName:System.String,LayerUnits:System.String,ScenarioID:System.Int64,Sequence:System.Int64" Num="0" />
+  <Table Name="EcospaceScenarioFleet" Columns="EcopathFleetID:System.Int64,EffPower:System.Single,FleetID:System.Int64,PortMap:System.String,SailCostMap:System.String,ScenarioID:System.Int64,SEMult:System.Single" Num="0" />
+  <Table Name="EcospaceScenarioGroup" Columns="BarrierAvoidanceWeight:System.Single,CapacityCalType:System.Int32,CapacityMap:System.String,EcopathGroupID:System.Int64,FTarget:System.Single,GroupID:System.Int64,InMigAreaMovement:System.Single,IsAdvected:System.Boolean,IsMigratory:System.Boolean,KMoveFit:System.Single,Mvel:System.Single,OtherMortMap:System.String,RelMoveBad:System.Single,RelVulBad:System.Single,ScenarioID:System.Int64" Num="0" />
+  <Table Name="EcospaceScenarioGroupHabitat" Columns="GroupID:System.Int64,HabitatID:System.Int64,Preference:System.Single,ScenarioID:System.Int64" Num="0" />
+  <Table Name="EcospaceScenarioGroupMigration" Columns="GroupID:System.Int64,Map:System.String,MonthID:System.Byte,ScenarioID:System.Int64" Num="0" />
+  <Table Name="EcospaceScenarioHabitat" Columns="HabitatID:System.Int64,HabitatMap:System.String,HabitatName:System.String,ScenarioID:System.Int64,Sequence:System.Int64" Num="0" />
+  <Table Name="EcospaceScenarioHabitatFishery" Columns="FleetID:System.Int64,HabitatID:System.Int64,ScenarioID:System.Int64" Num="0" />
+  <Table Name="EcospaceScenarioMonth" Columns="AdvectionXVelMap:System.String,AdvectionYVelMap:System.String,MonthID:System.Byte,ScenarioID:System.Int64,UpwellingMap:System.String,WindXVelMap:System.String,WindYVelMap:System.String" Num="0" />
+  <Table Name="EcospaceScenarioMPA" Columns="MPAID:System.Int64,MPAMap:System.String,MPAmonth:System.String,MPAname:System.String,ScenarioID:System.Int64,Sequence:System.Int64" Num="0" />
+  <Table Name="EcospaceScenarioMPAFishery" Columns="FleetID:System.Int64,MPAID:System.Int64,ScenarioID:System.Int64" Num="0" />
+  <Table Name="EcospaceScenarioWeightLayer" Columns="Description:System.String,LayerID:System.Int64,LayerMap:System.String,Name:System.String,ScenarioID:System.Int64,Sequence:System.Int64,Weight:System.Single" Num="0" />
+  <Table Name="EcotracerScenario" Columns="Author:System.String,Cdecay:System.Single,Cinflow:System.Single,ConForcingShapeID:System.Int64,Contact:System.String,Coutflow:System.Single,Czero:System.Single,Description:System.String,LastSaved:System.Single,LastSavedVersion:System.String,ScenarioID:System.Int64,ScenarioName:System.String" Num="0" />
+  <Table Name="EcotracerScenarioGroup" Columns="CassimProp:System.Single,Cdecay:System.Single,Cenv:System.Single,Cimmig:System.Single,CmetabolismRate:System.Single,Czero:System.Single,EcopathGroupID:System.Int64,ScenarioID:System.Int64" Num="0" />
+  <Table Name="Pedigree" Columns="Confidence:System.Single,Description:System.String,IndexValue:System.Single,LevelColor:System.Int64,LevelID:System.Int64,LevelName:System.String,Sequence:System.Int32,VarName:System.String" Num="272">
+    <Row>80,,0,0,1,Estimated by Ecopath,17,BiomassAreaInput</Row>
+    <Row>70,,0.1,0,2,From other model,18,BiomassAreaInput</Row>
+    <Row>60,,0.2,0,3,Guesstimate,19,BiomassAreaInput</Row>
+    <Row>50,"May include methods like remote sensing, etc.",0.7,0,4,Approximate or indirect method,20,BiomassAreaInput</Row>
+    <Row>40,,0.7,0,5,"Sampling/locally, low precision",21,BiomassAreaInput</Row>
+    <Row>20,,1,0,6,"Sampling/locally, high precision",22,BiomassAreaInput</Row>
+    <Row>80,,0,0,7,Estimated by Ecopath,9,PBInput</Row>
+    <Row>70,,0.2,0,8,Guesstimate,10,PBInput</Row>
+    <Row>60,,0.2,0,9,From other model,11,PBInput</Row>
+    <Row>50,,0.5,0,10,Empirical relationship,12,PBInput</Row>
+    <Row>40,,0.6,0,11,"Similar species, similar system, low precision",13,PBInput</Row>
+    <Row>30,,0.7,0,12,"Similar species, same system, low precision",14,PBInput</Row>
+    <Row>20,,0.8,0,13,"Same species, similar system, high precision",15,PBInput</Row>
+    <Row>10,,0.9,0,14,"Same species, same system, high precision",16,PBInput</Row>
+    <Row>80,,0,0,15,Estimated by Ecopath,1,QBInput</Row>
+    <Row>70,,0.2,0,16,Guesstimate,2,QBInput</Row>
+    <Row>60,,0.2,0,17,From other model,3,QBInput</Row>
+    <Row>50,,0.5,0,18,Empirical relationship,4,QBInput</Row>
+    <Row>40,,0.6,0,19,"Similar species, similar system, low precision",5,QBInput</Row>
+    <Row>30,,0.7,0,20,"Similar species, same system, low precision",6,QBInput</Row>
+    <Row>20,,0.8,0,21,"Same species, similar system, high precision",7,QBInput</Row>
+    <Row>10,,0.9,0,22,"Same species, same system, high precision",8,QBInput</Row>
+    <Row>80,General knowledge of related group/species,0,,23,General knowledge of related group/species,23,DietComp</Row>
+    <Row>80,From other model,0,,24,From other model,24,DietComp</Row>
+    <Row>60,General knowledge for same group/species,0.2,,25,General knowledge for same group/species,25,DietComp</Row>
+    <Row>50,Qualitative diet composition study,0.5,,26,Qualitative diet composition study,26,DietComp</Row>
+    <Row>30,Quantitative but limited diet composition study,0.7,,27,Quantitative but limited diet composition study,27,DietComp</Row>
+    <Row>10,"Quantitative, detailed, diet composition study",1,,28,"Quantitative, detailed, diet composition study",28,DietComp</Row>
+    <Row>70,Guesstimate,0.1,,29,Guesstimate,29,TCatchInput</Row>
+    <Row>70,From other model,0.1,,30,From other model,30,TCatchInput</Row>
+    <Row>80,FAO statistics,0.2,,31,FAO statistics,31,TCatchInput</Row>
+    <Row>50,National statistics,0.5,,32,National statistics,32,TCatchInput</Row>
+    <Row>30,"Local study, low precision/incomplete",0.7,,33,"Local study, low precision/incomplete",33,TCatchInput</Row>
+    <Row>10,"Local study, high precision/complete",1,,34,"Local study, high precision/complete",34,TCatchInput</Row>
+  </Table>
+  <Table Name="Quote" Columns="ID:System.Int64,Quote:System.String,Source:System.String" Num="0" />
+  <Table Name="Stanza" Columns="BABsplit:System.Single,EggAtSpawn:System.Byte,FixedFecundity:System.Boolean,HatchCode:System.Int64,LeadingCB:System.Int32,LeadingLifeStage:System.Int64,RecPower:System.Single,RecStanza:System.Int64,StanzaID:System.Int64,StanzaName:System.String,WmatWinf:System.Single" Num="0" />
+  <Table Name="StanzaLifeStage" Columns="AgeStart:System.Int32,GroupID:System.Int64,Mortality:System.Single,Sequence:System.Int64,SpawnProp:System.Single,StanzaID:System.Int64,vbK:System.Single" Num="0" />
+  <Table Name="UpdateLog" Columns="Date:System.String,EwEVersion:System.String,Remark:System.String,Version:System.Single" Num="356">
+    <Row>1/18/2011,,Release,6.101003</Row>
+    <Row>2/25/2011,,"Replaced Ecospace IDH_UL, IDH_SS fields with proper geospatial fields.",6.101004</Row>
+    <Row>3/6/2011,,Added Ecopath other mort field.,6.101005</Row>
+    <Row>3/6/2011,,Verified pedigree table.,6.101006</Row>
+    <Row>8/19/2013,,Added taxon stanza ID.,6.10101</Row>
+    <Row>8/19/2013,,Added landings mediation.,6.101011</Row>
+    <Row>8/19/2013,,"Added Ecospace stanza, habitat preference and capacity fields",6.12</Row>
+    <Row>8/19/2013,,Optimized Ecospace map storage structure for speedy saving and loading,6.120001</Row>
+    <Row>8/19/2013,,"Max forcing time remembered in model; Added capacity map tables; Applied fix to Stanza table",6.120002</Row>
+    <Row>8/19/2013,6.3.7836.0,"Added ewe version to updatelog, scenarios",6.120003</Row>
+    <Row>8/19/2013,6.3.7836.0,Restructured taxonomy codes,6.120004</Row>
+    <Row>8/19/2013,6.3.7836.0,"Fixed PK in Capacity driver map storage; needs to include shape",6.120005</Row>
+    <Row>8/19/2013,6.3.7836.0,Discontinued regions as separate objects.,6.120006</Row>
+    <Row>8/19/2013,6.3.7836.0,Added storage for external spatial data.,6.120007</Row>
+    <Row>8/19/2013,6.3.7836.0,"Added Ecosim effort conversion factor; Added taxon growth parameters",6.120008</Row>
+    <Row>8/19/2013,6.3.7836.0,Added Ecospace cell size for spatial referencing,6.120009</Row>
+    <Row>8/19/2013,6.3.7836.0,Added timeseries CV,6.12001</Row>
+    <Row>8/19/2013,6.3.7836.0,Added MSE max effort,6.120011</Row>
+    <Row>8/19/2013,6.3.7836.0,Added data adapters scale,6.120012</Row>
+    <Row>8/19/2013,6.3.7836.0,Added stanza.leadingQB,6.120013</Row>
+    <Row>8/27/2014,6.4.10992.0,Added Ecospace effort multiplier and distribution flags,6.400001</Row>
+    <Row>8/27/2014,6.4.10992.0,Fixed Capacity Drivers group linkages,6.400002</Row>
+    <Row>8/27/2014,6.4.10992.0,Added model exclusion map layer,6.400003</Row>
+    <Row>8/27/2014,6.4.10992.0,Fixed capacity map constraints,6.400004</Row>
+    <Row>1/3/2017,6.5.10929.0,Validated exclusion maps,6.500001</Row>
+    <Row>1/3/2017,6.5.10929.0,Re-checked capacity maps,6.500002</Row>
+    <Row>1/3/2017,6.5.10929.0,Enable multiple connections for a single dataset layer,6.500003</Row>
+    <Row>1/3/2017,6.5.10929.0,Reworked storage of Ecospace external data connections,6.500004</Row>
+    <Row>1/3/2017,6.5.10929.0,Enabled monthly time series,6.500005</Row>
+    <Row>1/3/2017,6.5.10929.0,Cleaned up Ecospace driver tables,6.500006</Row>
+    <Row>1/9/2017,6.5.14040.0,Added flag to use square cells in Ecospace,6.500007</Row>
+    <Row>1/9/2017,6.5.14040.0,"Added WKT support, removed CellSize field",6.500008</Row>
+    <Row>1/9/2017,6.5.14040.0,Added capacity calculation types per group,6.500009</Row>
+    <Row>1/9/2017,6.5.14040.0,"Changed shape fn type to long, added taxon exploitation status",6.50001</Row>
+    <Row>1/9/2017,6.5.14040.0,Lower foraging time limit for Ecosim can be altered,6.500011</Row>
+    <Row>1/9/2017,6.5.14040.0,"Added Ecospace monthly maps, flow map, and removed stored advection maps",6.500012</Row>
+    <Row>1/9/2017,6.5.14040.0,Added EcoBase metadata fields,6.500013</Row>
+    <Row>1/9/2017,6.5.14040.0,Discontinued EcospaceScenarioHabitatChange,6.500014</Row>
+    <Row>1/9/2017,6.5.14040.0,Added publication metadata fields,6.500015</Row>
+    <Row>1/9/2017,6.5.14040.0,Fixed possible taxon table errors,6.500016</Row>
+    <Row>1/9/2017,6.5.14040.0,Increased taxon table key field sizes,6.500017</Row>
+    <Row>1/9/2017,6.5.14040.0,Added EcoBase reference field,6.500019</Row>
+    <Row>1/9/2017,6.5.14040.0,Updated to new migration maps,6.50002</Row>
+    <Row>1/9/2017,6.5.14040.0,Added settings to auxillary data,6.500021</Row>
+    <Row>1/9/2017,6.5.14040.0,Removed discontinued migration fields,6.500022</Row>
+    <Row>1/9/2017,6.5.14040.0,Addes Ecopath sample tables,6.500023</Row>
+    <Row>1/9/2017,6.5.14040.0,Updated shape functions,6.500024</Row>
+    <Row>1/9/2017,6.5.14040.0,"Added Ecospace migration area movement, Ecosim environmental driver table",6.500025</Row>
+    <Row>1/9/2017,6.5.14040.0,Added imported diets to samples,6.500026</Row>
+    <Row>1/9/2017,6.5.14040.0,"Updated Ecosim environmental drivers, discontinued obsolete fields",6.500027</Row>
+    <Row>2/10/2019,6.6.15985.0,Updated Ecotracer,6.501001</Row>
+    <Row>2/10/2019,6.6.15985.0,"Advection, upwelling stored by month",6.501002</Row>
+    <Row>2/10/2019,6.6.15985.0,Added biomass accumulation rate to samples,6.600001</Row>
+    <Row>2/10/2019,6.6.15985.0,"Added second pool code to fleet time series, fixed samples",6.600002</Row>
+    <Row>2/10/2019,6.6.15985.0,Re-checked capacity maps,6.600003</Row>
+    <Row>2/10/2019,6.6.15985.0,Updated capacity calculation types,6.600004</Row>
+    <Row>2/10/2019,6.6.15985.0,Released fleet time series FK constraints,6.600005</Row>
+    <Row>2/10/2019,6.6.15985.0,Added units to env. driver layers,6.600006</Row>
+    <Row>2/10/2019,6.6.15985.0,Validated Ecospace MPAs,6.600007</Row>
+    <Row>2/10/2019,6.6.15985.0,Added Ecosim catchability forcing,6.600008</Row>
+    <Row>2/10/2019,6.6.15985.0,Cleaned up pedigree table structure,6.600009</Row>
+    <Row>2/10/2019,6.6.15985.0,"Added ecospace fitness response type, stanza spawn proportion",6.600012</Row>
+    <Row>2/10/2019,6.6.15985.0,Added ecospace other mort driver layer,6.600013</Row>
+    <Row>2/10/2019,6.6.15985.0,Brought back shared foraging arenas,6.600014</Row>
+    <Row>2/10/2019,6.6.15985.0,"Removed EatEffBad, added KMoveFit",6.600015</Row>
+    <Row>2/10/2019,6.6.15985.0,Ecosim catchabilities have enough room,6.600016</Row>
+    <Row>2/10/2019,6.6.15985.0,SS stored with Ecosamples,6.600017</Row>
+    <Row>2/10/2019,6.6.15985.0,Ensured default pedigree levels,6.600018</Row>
+    <Row>2/10/2019,6.6.15985.0,"Added AquaMaps, OBIS, and WoRMS taxonomic code fields",6.600019</Row>
+    <Row>2/10/2019,6.6.15985.0,Added Q10 driver map,6.60002</Row>
+    <Row>9/30/2023,6.6.8.18072,Fixed importance layer primary key for some models,6.600021</Row>
+    <Row>9/30/2023,6.6.8.18072,Fixed potential ecospace connection storage problem,6.600022</Row>
+    <Row>9/30/2023,6.6.8.18072,Fixed potential pedigree saving problem,6.600023</Row>
+    <Row>9/30/2023,6.6.8.18072,Fixed potential ecosim saving problem,6.600025</Row>
+    <Row>9/30/2023,6.6.8.18072,Fixed potential ecosampler saving problem - reprise,6.600026</Row>
+    <Row>1/10/2024,6.7.0.18558,Added additive proportion of predation mortality,6.700001</Row>
+    <Row>1/10/2024,6.7.0.18558,Added other mortality saving,6.700002</Row>
+    <Row>1/10/2024,6.7.0.18558,Added Ecosim shared arena sequence,6.700003</Row>
+    <Row>1/10/2024,6.7.0.18558,"Remember Ecosim and Ecospace capacity driver settings; Ecospace spin-up settings",6.700004</Row>
+    <Row>1/10/2024,6.7.0.18558,Added stanza recruitment linkage,6.700005</Row>
+    <Row>1/10/2024,6.7.0.18558,Made capacity &amp; mortality driver handling robust in Ecosim and Ecospace,6.700006</Row>
+    <Row>1/10/2024,6.7.0.18558,"Added disabled ext connections, per layer",6.700007</Row>
+    <Row>1/10/2024,6.7.0.18558,Added applied data range to ext connections,6.700008</Row>
+    <Row>1/10/2024,6.7.0.18558,Fixed potential ecosampler saving problem - reprise,6.700009</Row>
+    <Row>1/10/2024,6.7.0.18558,Added fleet nominal effort,6.70001</Row>
+    <Row>1/10/2024,6.7.0.18558,Catchabilities now driven through time series,6.700011</Row>
+    <Row>1/10/2024,6.7.0.18558,"External data can now start and end at a specific date, not at a year",6.700012</Row>
+    <Row>1/10/2024,6.7.0.18558,Added effort zones and cell area maps,6.700013</Row>
+    <Row>1/10/2024,6.7.0.18558,Added effort attraction model,6.700014</Row>
+  </Table>
+</EwEModel>

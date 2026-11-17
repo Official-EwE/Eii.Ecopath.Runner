@@ -47,7 +47,7 @@ Describe how logging is configured
 
 ## Create documentation
 Describe how the documentation is created. (by executing the EwERunConsole with a "--docs" parameter) Describe how the documentation is connected to the code, and how it is generated from the code.
-## TestData files
+## Testdata files
 List the test data files and what they are used for. and how they are connected via the json files
 
 ## Configuration files
