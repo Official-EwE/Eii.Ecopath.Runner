@@ -85,15 +85,16 @@ jobs:
             -o ~Documentation/automation-commands.pdf
 
       - name: Publish console
-        run: >
-          dotnet publish Eii.Ecopath.Runner.Console/EwERunConsole.csproj
-          --configuration Release
-          --runtime win-x64
-          --self-contained false
-          --output publish/EwERunConsole
-          /p:Version=${{ steps.gitversion.outputs.semVer }}
-          /p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }}
-          /p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }}
+        run: |
+          rm -rf publish/EwERunConsole
+          dotnet publish Eii.Ecopath.Runner.Console/EwERunConsole.csproj \
+            --configuration Release \
+            --runtime win-x64 \
+            --self-contained false \
+            --output publish/EwERunConsole \
+            /p:Version=${{ steps.gitversion.outputs.semVer }} \
+            /p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
+            /p:FileVersion=${{ steps.gitversion.outputs.assemblySemFileVer }}
         shell: bash
 
       - name: Create ZIP
