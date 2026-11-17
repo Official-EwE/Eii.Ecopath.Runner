@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Eii.Ecopath.Runner.Datamodel.Utilities;
+using System.Text.Json.Serialization;
 
 namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
 {
@@ -17,21 +18,21 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
         /// </summary>
         // --------------------------------------------------------------------
         [JsonIgnore]
-        public string WorkFolder { get; set; } = "";
+        public string WorkFolder { get; set; } = string.Empty;
 
         // --------------------------------------------------------------------
         /// <summary>
         /// The name of the model.eiixml file to load.
         /// </summary>
         // --------------------------------------------------------------------
-        public string ModelFile { get; set; } = "";
+        public string ModelFile { get; set; } = string.Empty;
 
         // --------------------------------------------------------------------
         /// <summary>
         /// The file to load external spatial temporal data from.
         /// </summary>
         // --------------------------------------------------------------------
-        public string ExtDataConfigFile { get; set; } = "";
+        public string ExtDataConfigFile { get; set; } = string.Empty;
 
         // --------------------------------------------------------------------
         /// <summary>Flag that controls if saved output will be accompanied by 
@@ -42,31 +43,35 @@ namespace Eii.Ecopath.Runner.Datamodel.RunInstructions
 
         // --------------------------------------------------------------------
         /// <summary>
-        /// One-based index of the Ecosim scenario to load.
+        /// One-based index or the name of the Ecosim scenario to load.
         /// </summary>
         // --------------------------------------------------------------------
-        public int EcosimScenario { get; set; } = -1;
+        [JsonConverter(typeof(JsonStringOrNumberConverter))]
+        public string EcosimScenario { get; set; } = string.Empty;
 
         // --------------------------------------------------------------------
         /// <summary>
-        /// One-based index of the Ecosim time series dataset to load.
+        /// One-based index or the name of the Ecosim time series dataset to load.
         /// </summary>
         // --------------------------------------------------------------------
-        public int EcosimTimeseries { get; set; } = -1;
+        [JsonConverter(typeof(JsonStringOrNumberConverter))]
+        public string EcosimTimeseries { get; set; } = string.Empty;
 
         // --------------------------------------------------------------------
         /// <summary>
-        /// One-based index of the Ecospace scenario to load.
+        /// One-based index or the name of the Ecospace scenario to load.
         /// </summary>
         // --------------------------------------------------------------------
-        public int EcospaceScenario { get; set; } = -1;
+        [JsonConverter(typeof(JsonStringOrNumberConverter))]
+        public string EcospaceScenario { get; set; } = string.Empty;
 
         // --------------------------------------------------------------------
         /// <summary>
-        /// One-based index of the Ecotracer scenario to load.
+        /// One-based index or the name of the Ecotracer scenario to load.
         /// </summary>
         // --------------------------------------------------------------------
-        public int EcotracerScenario { get; set; } = -1;
+        [JsonConverter(typeof(JsonStringOrNumberConverter))]
+        public string EcotracerScenario { get; set; } = string.Empty;
 
         // --------------------------------------------------------------------
         /// <summary>
