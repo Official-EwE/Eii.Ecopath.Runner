@@ -31,14 +31,14 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
         int nGroups { get; }
         int nFleets { get; }
-        int nMPAs { get; }
-        int nHabitats { get; }
-        int nEnvironmentalDriverLayers { get; }
         int nEcosimScenarios { get; }
+        int nEcosimTimeSeriesDatasets { get; }
         int nEcospaceScenarios { get; }
         int nEcosimYears { get; }
         int nEcospaceYears { get; }
-
+        int nMPAs { get; }
+        int nHabitats { get; }
+        int nEnvironmentalDriverLayers { get; }
         #endregion // Counts
 
         #region Model parameters and structures
@@ -47,8 +47,9 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         cEcoSimModelParameters EcosimModelParameters { get; }
         cEcospaceModelParameters EcospaceModelParameters { get; }
         cEcospaceBasemap EcospaceBasemap { get; }
-        cEcospaceDataStructures EcospaceDataStructures { get; }
+        cEcopathDataStructures EcopathDataStructures { get; }
         cEcosimDatastructures EcosimDataStructures { get; }
+        cEcospaceDataStructures EcospaceDataStructures { get; }
         cSpatialDataConnectionManager SpatialDataConnectionManager { get; }
 
         #endregion // Model parameters and structures

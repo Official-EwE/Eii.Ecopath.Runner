@@ -1,6 +1,4 @@
 ﻿using EwECore;
-using EwECore.Common;
-using EwECore.Plugins;
 using EwECore.SpatialData;
 
 namespace Eii.Ecopath.Runner.Services.Runtime
@@ -60,13 +58,14 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
         public int nGroups => Core.nGroups;
         public int nFleets => Core.nFleets;
-        public int nMPAs => Core.nMPAs;
-        public int nHabitats => Core.nHabitats;
-        public int nEnvironmentalDriverLayers => Core.nEnvironmentalDriverLayers;
         public int nEcosimScenarios => Core.nEcosimScenarios;
+        public int nEcosimTimeSeriesDatasets => Core.nTimeSeriesDatasets;
         public int nEcospaceScenarios => Core.nEcospaceScenarios;
         public int nEcosimYears => Core.nEcosimYears;
         public int nEcospaceYears => Core.nEcospaceYears;
+        public int nMPAs => Core.nMPAs;
+        public int nHabitats => Core.nHabitats;
+        public int nEnvironmentalDriverLayers => Core.nEnvironmentalDriverLayers;
 
         #endregion // Counts
 
@@ -76,8 +75,9 @@ namespace Eii.Ecopath.Runner.Services.Runtime
         public cEcoSimModelParameters EcosimModelParameters => Core.EcosimModelParameters;
         public cEcospaceModelParameters EcospaceModelParameters => Core.EcospaceModelParameters;
         public cEcospaceBasemap EcospaceBasemap => Core.EcospaceBasemap;
-        public cEcospaceDataStructures EcospaceDataStructures => Core.EcospaceDataStructures;
+        public cEcopathDataStructures EcopathDataStructures => Core.EcopathDataStructures;
         public cEcosimDatastructures EcosimDataStructures => Core.EcosimDataStructures;
+        public cEcospaceDataStructures EcospaceDataStructures => Core.EcospaceDataStructures;
         public cSpatialDataConnectionManager SpatialDataConnectionManager => Core.SpatialDataConnectionManager;
 
         #endregion // Model parameters and structures
