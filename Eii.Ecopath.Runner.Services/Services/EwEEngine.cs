@@ -348,12 +348,18 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
         #endregion // Internal implementation
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="names"></param>
+        /// <returns>-1 if the scenario cannot be resolved</returns>
         private int ResolveScenario(string identifier, string[] names)
         {
-            if (identifier == null)
-                return 0;
+            if (string.IsNullOrWhiteSpace(identifier))
+                return -1;
 
-            for (int i = 0; i < names.Length; i++)
+            for (int i = 1; i < names.Length; i++)
             {
                 if (string.CompareOrdinal(names[i], identifier) == 0)
                     return i;
@@ -364,30 +370,26 @@ namespace Eii.Ecopath.Runner.Services.Runtime
 
             Console.WriteLine("! Failed to resolve scenario identifier '{0}'", identifier);
             _logger.LogWarning("Failed to resolve scenario identifier '{Identifier}'", identifier);
-            return 0;
+            return -1;
         }
 
-        private int ResolveTimeSeries(object? identifier)
+        private int ResolveTimeSeries(string identifier)
         {
-            if (identifier == null)
-                return 0;
+            if (string.IsNullOrWhiteSpace(identifier))
+                return -1;
 
-            if (identifier.GetType() == typeof(int))
-                return (int)identifier;
-
-            if (identifier.GetType() == typeof(string))
+            for (int i = 1; i < _coreService.nEcosimTimeSeriesDatasets; i++)
             {
-                string name = (string)identifier;
-                for (int i = 0; i < _coreService.nEcosimTimeSeriesDatasets; i++)
-                {
-                    if (string.CompareOrdinal(_coreService.GetTimeSeriesDatasetName(i), name) == 0)
-                        return i;
-                }
+                if (string.CompareOrdinal(_coreService.GetTimeSeriesDatasetName(i), identifier) == 0)
+                    return i;
             }
 
-            Console.WriteLine("! Failed to resolve scenario identifier '{0}'", identifier);
-            _logger.LogWarning("Failed to resolve scenario identifier '{Identifier}'", identifier);
-            return 0;
+            if (int.TryParse(identifier, out int iDataset))
+                return iDataset;
+
+            Console.WriteLine("! Failed to resolve dataset identifier '{0}'", identifier);
+            _logger.LogWarning("Failed to resolve dataset identifier '{Identifier}'", identifier);
+            return -1;
         }
     }
 
