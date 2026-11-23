@@ -20,8 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eii.Ecopath.Runner.Datamode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eii.Ecopath.Runner.Services", "Eii.Ecopath.Runner.Services\Eii.Ecopath.Runner.Services.csproj", "{6A682D84-76A8-4EFE-A81D-B11865295F20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunApi", "Eii.Ecopath.Runner.Api\EwERunApi.csproj", "{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunConsole", "Eii.Ecopath.Runner.Console\EwERunConsole.csproj", "{2A08D724-A260-4E97-2BE4-AB8444F828C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EwERunProcess", "Eii.Ecopath.Runner.RunProcess\EwERunProcess.csproj", "{AFDDB58C-0904-4F54-ADC1-312630563D90}"
@@ -64,18 +62,6 @@ Global
 		{6A682D84-76A8-4EFE-A81D-B11865295F20}.Release|x64.Build.0 = Release|Any CPU
 		{6A682D84-76A8-4EFE-A81D-B11865295F20}.Release|x86.ActiveCfg = Release|Any CPU
 		{6A682D84-76A8-4EFE-A81D-B11865295F20}.Release|x86.Build.0 = Release|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Debug|x64.Build.0 = Debug|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Debug|x86.Build.0 = Debug|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Release|x64.ActiveCfg = Release|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Release|x64.Build.0 = Release|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Release|x86.ActiveCfg = Release|Any CPU
-		{B24B7F42-AE0D-5D0C-8A24-19C16F16EFE2}.Release|x86.Build.0 = Release|Any CPU
 		{2A08D724-A260-4E97-2BE4-AB8444F828C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A08D724-A260-4E97-2BE4-AB8444F828C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A08D724-A260-4E97-2BE4-AB8444F828C7}.Debug|x64.ActiveCfg = Debug|x64

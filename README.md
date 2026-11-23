@@ -9,7 +9,6 @@ Ecotracer in scripted environments.
 | Project | Description |
 |---|---|
 | `Eii.Ecopath.Runner.Console` | CLI executable (`EwERunConsole`) |
-| `Eii.Ecopath.Runner.Api` | ASP.NET Core Web API (`EwERunApi`) |
 | `Eii.Ecopath.Runner.RunProcess` | Containerised batch runner (`EwERunProcess`) |
 | `Eii.Ecopath.Runner.Services` | Runtime engine, modifiers, automation node tree |
 | `Eii.Ecopath.Runner.Datamodel` | Plain data containers deserialised from JSON |
@@ -43,25 +42,6 @@ flowchart TD
     J --> K["Done"]
     G -- No --> K
     I -- No --> K
-```
-
----
-
-# Eii.Ecopath.Runner.Api
-
-ASP.NET Core Web API wrapper. Accepts the same JSON run-info as a `POST /eweRun` body and
-delegates to `EwEEngine`.
-
-## Build and push Docker image
-
-Set the required token once as a persistent user environment variable:
-```powershell
-[System.Environment]::SetEnvironmentVariable('DOCKER_BUILD_GITHUB_TOKEN', 'your-token', 'User')
-```
-
-Then run the build-push script:
-```powershell
-.\Eii.Ecopath.Runner.Api\tools\build-push-docker.ps1
 ```
 
 ---

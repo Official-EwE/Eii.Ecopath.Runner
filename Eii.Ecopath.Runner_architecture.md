@@ -6,9 +6,9 @@ Eii.Ecopath.Runner is a headless, JSON-driven automation runner for the
 single JSON "run-info" document, it loads an EwE model and sequentially executes Ecopath,
 Ecosim, Ecospace (and Ecotracer) without the EwE desktop GUI, injecting scheduled parameter
 changes at specific dates or time steps and writing result files (CSV, ASC maps, logs) to an
-output folder. The same engine is exposed in three shapes: a CLI (`EwERunConsole`), a Web API
-(`EwERunApi`) and a containerised batch job (`EwERunProcess`) that syncs its input and output
-with S3-compatible blob storage.
+output folder. The same engine is exposed in two shapes: a CLI (`EwERunConsole`) and a
+containerised batch job (`EwERunProcess`) that syncs its input and output with S3-compatible blob
+storage.
 
 The system is written in **C# 14** on **.NET 10 (`net10.0`)** and is developed with
 **Microsoft Visual Studio 2026**. Linux container images are built with Docker, either from
@@ -53,13 +53,12 @@ attribution. It contains:
 | Binary | Project | Description |
 |---|---|---|
 | `EwERunConsole.exe` | `Eii.Ecopath.Runner.Console` | CLI. `--info <runinfo.json> --output <folder>` runs a model; `--docs` writes `~Documentation/automation-commands.md`. Exit code 0 = success, 1 = failure. Published as a framework-dependent `win-x64` ZIP on GitHub Releases. |
-| `EwERunApi.dll` | `Eii.Ecopath.Runner.Api` | ASP.NET Core Web API exposing `POST /eweRun` and `GET /healthz`. Packaged as Docker image `ghcr.io/official-ewe/eiiecopathrunnerapi:latest`. |
 | `EwERunProcess.dll` | `Eii.Ecopath.Runner.RunProcess` | Generic-host console app launched as a Kubernetes Job; configured via environment variables and a mounted `runinfo.json`. Packaged as Docker image `ghcr.io/official-ewe/eiiecopathrunnerrunprocess:latest`. |
 | `Eii.Ecopath.Runner.Services.dll` | `Eii.Ecopath.Runner.Services` | Class library: engine, modifier services, automation node tree, documentation generator. |
 | `Eii.Ecopath.Runner.Datamodel.dll` | `Eii.Ecopath.Runner.Datamodel` | Class library: JSON data contracts and utilities (`ConsoleCopy`, `JsonStrictConverter`). |
 
 ## Service architecture
-The solution is layered: thin host projects (Console, Api, RunProcess) handle I/O and process
+The solution is layered: thin host projects (Console and RunProcess) handle I/O and process
 lifetime, while all modelling logic lives in the shared `Eii.Ecopath.Runner.Services` library and
 all data contracts in `Eii.Ecopath.Runner.Datamodel`. Each host builds a
 `Microsoft.Extensions.DependencyInjection` container that registers `ICoreService`/`CoreService`
@@ -78,7 +77,6 @@ Kubernetes cluster with inputs and outputs in object storage.
 flowchart TD
     subgraph Hosts["Host projects"]
         CLI["EwERunConsole<br/>(CLI, Serilog, CommandLineParser)"]
-        API["EwERunApi<br/>(ASP.NET Core, POST /eweRun)"]
         RP["EwERunProcess<br/>(Generic Host, Kubernetes Job)"]
     end
 
@@ -104,17 +102,13 @@ flowchart TD
     end
 
     JSON["runinfo.json"] --> CLI
-    JSON --> API
     JSON -->|"ConfigMap mounted at /etc/config"| RP
 
     CLI --> ENG
-    API --> ENG
     RP --> ENG
     CLI --> DM
-    API --> DM
     RP --> DM
     CLI --> UTIL
-    API --> UTIL
 
     ENG --> CS
     ENG --> MODS
@@ -146,23 +140,6 @@ flowchart LR
     ENG -->|"true / false"| EXIT["Exit code 0 / 1"]
 ```
 
-#### Host: EwERunApi (`Eii.Ecopath.Runner.Api`)
-
-```mermaid
-flowchart LR
-    CLIENT["HTTP client<br/>(Postman, Process API)"] -->|"POST /eweRun?inputFolder=&outputFolder=<br/>body: EwERunInstructions"| KESTREL["ASP.NET Core<br/>Kestrel · port 53150 (Docker)"]
-    CLIENT -->|"GET /healthz"| HC["Health checks"]
-    KESTREL --> CTRL["EwERunController.Post"]
-    CTRL -->|"resolve RunConfigFile / OutputFolder<br/>relative to AppContext.BaseDirectory"| INSTR["EwERunInstructions"]
-    INSTR --> ENG["EwEEngine.Run()<br/>(DI, singleton CoreService)"]
-    ENG --> CORE["cCore<br/>Ecopath → Ecosim → Ecospace"]
-    CORE --> OUT["&lt;outputFolder&gt;/<br/>CSV · ASC · EwERunConsole_log.txt"]
-    CTRL --> TEE["ConsoleCopy"]
-    ENG -->|"true"| OK["200 OK 'Run completed'"]
-    ENG -->|"false"| ERR["500 Problem 'Run errors encountered'"]
-    DOCKER["Docker image<br/>ghcr.io/official-ewe/eiiecopathrunnerapi"] -.hosts.-> KESTREL
-```
-
 #### Host: EwERunProcess (`Eii.Ecopath.Runner.RunProcess`)
 
 ```mermaid
@@ -189,8 +166,8 @@ flowchart TD
 
 ```mermaid
 sequenceDiagram
-    participant U as Caller (CLI / HTTP client / K8s Job)
-    participant H as Host (Program.cs / EwERunController / EwERunProcessService)
+    participant U as Caller (CLI / K8s Job)
+    participant H as Host (Program.cs / EwERunProcessService)
     participant B as IBlobStore (RunProcess only)
     participant E as EwEEngine
     participant C as CoreService / cCore
@@ -225,14 +202,13 @@ sequenceDiagram
     opt RunProcess
         H->>B: UploadDirectoryOrIgnoreAsync(output)
     end
-    H-->>U: exit code 0/1 · HTTP 200/500 · job completes
+    H-->>U: exit code 0/1 · job completes
 ```
 
 ### Key design decisions / trade-offs
-- **One engine, three hosts.** All orchestration lives in `EwEEngine`; hosts only differ in
-  how they obtain the instructions and where files live. Trade-off: the engine still assumes
-  file-system paths (`RunConfigFile`, `OutputFolder`), so the API and RunProcess hosts have to
-  synthesise a `RunConfigFile` path from the model file to make relative paths resolve.
+- **One engine, two hosts.** All orchestration lives in `EwEEngine`; hosts only differ in
+  how they obtain the instructions and where files live. The RunProcess host synthesises a
+  `RunConfigFile` path from the model file so relative paths resolve.
 - **Fail-fast boolean pipeline.** Each stage returns `bool` and the pipeline stops at the first
   `false`. Simple and predictable, but detailed failure causes are only in the logs, not in a
   structured result.
@@ -242,21 +218,17 @@ sequenceDiagram
   against the node tree, allowing new parameters to be exposed without changing the JSON schema;
   `AutomationDocumentation` reflects over the same tree so documentation never drifts.
 - **Singleton `CoreService`.** The EwE core is not thread-safe, so a single `cCore` is shared
-  per process; the API is therefore effectively single-run-at-a-time.
+  per process.
 - **Blob store abstraction in RunProcess.** `IBlobStore` falls back to `LocalBlobStore` when no
   `AWS_ACCESS_KEY_ID` is present, allowing identical local and in-cluster execution.
 - **`ConsoleCopy` for run logs.** Console output is teed to `EwERunConsole_log.txt` in the
-  Console and API hosts; it is deliberately not used in RunProcess because it is unreliable in
-  Kubernetes.
+  Console host; it is deliberately not used in RunProcess because it is unreliable in Kubernetes.
 
 ## Error handling
 - **Console:** `Program.ParseInstructions` validates arguments, output folder, run-info presence
   and JSON parsing. `JsonException` and other exceptions are caught, written to the console
   prefixed with `!`, and `Main` returns exit code `1`. Engine failures (`Run()` returning
   `false`) print `! Run errors encountered` and also yield exit code `1`.
-- **API:** Missing `inputFolder`/`outputFolder` query parameters throw `ArgumentException`
-  (→ HTTP 400 via the ASP.NET pipeline). An engine failure returns `Problem("Run errors
-  encountered")` (HTTP 500); success returns `200 OK`.
 - **RunProcess:** Missing environment variables, missing run-info file, JSON errors and a missing
   model file in the blob store throw `InvalidOperationException` / `FileNotFoundException`,
   terminating the process so the Kubernetes Job is marked failed. Engine failures are logged;
@@ -271,9 +243,6 @@ sequenceDiagram
 - **Console:** Serilog with a rolling daily file sink under
   `%LOCALAPPDATA%\EwERunConsole\Logs\log-<date>.txt` at `Verbose` level. In addition the
   console output of a run is teed by `ConsoleCopy` into `<output>\EwERunConsole_log.txt`.
-- **API:** Default ASP.NET Core logging configured by `appsettings.json`
-  (`Default: Information`, `Microsoft.AspNetCore: Warning`). Run console output is teed into
-  `<output>\EwERunConsole_log.txt` via `ConsoleCopy`.
 - **RunProcess:** Console logger (`systemd` formatter, simple single-line with timestamps) and
   Debug logger; levels can be overridden by a `Logging` section in `appsettings.json`. All
   environment variables are logged at start-up for diagnostics.
@@ -318,9 +287,8 @@ flowchart LR
 
 ## Testdata files
 Test data lives in `Eii.Ecopath.Runner.Console/Testdata/` (copied to the output directory on
-build) with a smaller copy in `Eii.Ecopath.Runner.Api/Testdata/` and an invalid-JSON case in
-`Eii.Ecopath.Runner.Console.Tests/Testdata/`. A run-info JSON is the entry point; every other
-file is referenced from it, relative to the JSON's folder.
+build) with an invalid-JSON case in `Eii.Ecopath.Runner.Console.Tests/Testdata/`. A run-info JSON
+is the entry point; every other file is referenced from it, relative to the JSON's folder.
 
 | Folder / file | Purpose | Referenced from |
 |---|---|---|
@@ -336,7 +304,6 @@ file is referenced from it, relative to the JSON's folder.
 | `VLIZ/VLIZ_runinfo.json` + `SBNS_1991_2023_V17_TechnicalReport_ewe.eiixml` | Southern Bight North Sea model (VLIZ), Ecopath + Ecosim only | `VLIZ` profile |
 | `Andy/R0001_0000.json` + `anchovy_bay_ecosim_ex.eiixml` | Ecosim-only run with explicit per-fleet monthly effort series (`ecosim.effort[#].set`) | `Andy` profile |
 | `example_runinfo.json` | Annotated template for new run-info files | documentation |
-| `Api/Testdata/AnchovyBay/*` (`.eiixml`, `AnchovyBay_extdata.xml`, `MPA_test.asc`) | Input set for the `POST /eweRun` sample request | `EwERunApi.http` |
 | `Console.Tests/Testdata/AnchovyBay/AnchovyBay_InvalidJson.json` | Malformed JSON to assert the failure path (exit code 1) | `EwERunConsoleFailureTests` |
 
 ```mermaid
@@ -356,10 +323,8 @@ flowchart LR
 | `<name>_runinfo.json` | The run-info document mapped onto `EwERunInstructions`. Top-level keys `Configuration`, `EcopathRun`, `EcosimRun`, `EcospaceRun`, `EcotracerRun`. Paths are relative to the JSON file; scenario indices are 1-based, `-1` skips a model. |
 | `*_extdata.xml` (optional) | STDF spatial-temporal dataset configuration referenced by `Configuration.ExtDataConfigFile`. |
 | `NuGet.config` | Package source mapping: `Eii.*` packages come only from the private `github-Official-EwE` feed, everything else from nuget.org. |
-| `Eii.Ecopath.Runner.Api/appsettings*.json` | ASP.NET Core logging and host settings. |
 | `*/Properties/launchSettings.json` | Visual Studio launch profiles, including Docker profiles (use `containerRunArguments` for bind mounts). |
 | `.runsettings` | Test run settings; can set `EWE_DEBUG_BREAK=1` to attach a debugger to the child `EwERunConsole.exe` during integration tests. |
-| `Eii.Ecopath.Runner.Api/EwERunApi.http` | Sample HTTP requests for the API. |
 | Environment variables (RunProcess) | `RUN_INFO_PATH`, `INPUT_DIRECTORY`, `OUTPUT_DIRECTORY`, `AWS_BUCKET_NAME`, `AWS_S3_ENDPOINT`, `AWS_DEFAULT_REGION`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`. |
 | `.zenodo.json` | Zenodo release metadata (see above). |
 | `.github/copilot-instructions.md` | Coding conventions for AI-assisted development. |
@@ -390,14 +355,12 @@ packages used during restore.
 **Manual Docker builds** remain available through the per-project scripts
 `tools/build-push-docker.ps1` (also callable through the MSBuild target `BuildPushDockerImage`).
 Each script builds the multi-stage Dockerfile from the solution root and pushes to GitHub
-Container Registry. The API script passes `DOCKER_BUILD_GITHUB_TOKEN` as `--build-arg GITHUB_TOKEN`.
-The RunProcess script and release workflow use a required BuildKit secret named `GITHUB_TOKEN`
-for private NuGet restore, without storing credentials in image layers. Subsequent build and
-publish steps use `--no-restore`.
+Container Registry. The RunProcess script and release workflow use a required BuildKit secret named
+`GITHUB_TOKEN` for private NuGet restore, without storing credentials in image layers. Subsequent
+build and publish steps use `--no-restore`.
 
 | Project | Image |
 |---|---|
-| `Eii.Ecopath.Runner.Api` | `ghcr.io/official-ewe/eiiecopathrunnerapi:latest` (base `mcr.microsoft.com/dotnet/aspnet:10.0`, port 53150) |
 | `Eii.Ecopath.Runner.RunProcess` | `ghcr.io/official-ewe/eiiecopathrunnerrunprocess:latest` (base `mcr.microsoft.com/dotnet/runtime:10.0`) |
 
 ## Technology stack
@@ -411,8 +374,7 @@ publish steps use `--no-restore`.
 | `CommandLineParser` 2.9.1 | CLI argument parsing (Console) |
 | `Serilog`, `Serilog.Extensions.Logging`, `Serilog.Sinks.File` | Rolling file logging (Console) |
 | `Microsoft.Extensions.Logging` / `Hosting` / `DependencyInjection` | Logging abstraction, generic host and DI container |
-| `Microsoft.AspNetCore.OpenApi`, `Microsoft.OpenApi` | OpenAPI document generation (API, development only) |
-| `Microsoft.VisualStudio.Azure.Containers.Tools.Targets` | Visual Studio Docker tooling (API, RunProcess) |
+| `Microsoft.VisualStudio.Azure.Containers.Tools.Targets` | Visual Studio Docker tooling (RunProcess) |
 | `System.Text.Json` (BCL) | Run-info deserialisation with custom strict converter |
 | `xUnit`, `FluentAssertions` 6.6.0, `Moq` 4.18.0 | Test frameworks |
 
@@ -436,12 +398,6 @@ Eii.Ecopath.Runner/
 │   ├── CommandLineParmOptions.cs
 │   ├── Properties/launchSettings.json   # Per-model and --docs launch profiles
 │   └── Testdata/                        # AnchovyBay/, VLIZ/, Andy/, example_runinfo.json
-├── Eii.Ecopath.Runner.Api/              # EwERunApi.csproj
-│   ├── Program.cs                       # Minimal ASP.NET Core host
-│   ├── Controllers/EwERunController.cs  # POST /eweRun
-│   ├── Dockerfile
-│   ├── EwERunApi.http
-│   └── tools/build-push-docker.ps1
 ├── Eii.Ecopath.Runner.RunProcess/       # EwERunProcess.csproj
 │   ├── Program.cs                       # Generic host, IBlobStore selection
 │   ├── EwERunProcessService.cs          # download → run → upload
@@ -500,24 +456,5 @@ to the **Start** button:
 | `Documentation` | `--docs` | Generates `~Documentation/automation-commands.md` and exits |
 
 Outputs appear under `Testoutput\<model>\<runinfo name>\` in the build output directory, together
-with `EwERunConsole_log.txt`. Other hosts have their own profiles: the API has a Kestrel and a Docker
-profile, and RunProcess has a Docker profile that bind-mounts a local `testconfig/` folder to
-`/etc/config` via `containerRunArguments`.
-
-### Manual testing with Postman
-Start `EwERunApi` (locally on `http://localhost:5013`, or in Docker on port 53150) and send:
-
-```
-POST {{host}}/eweRun?inputFolder=Testdata\AnchovyBay&outputFolder=Testoutput\AnchovyBay
-Content-Type: application/json
-
-{ "Configuration": { "ModelFile": "AnchovyBay.eiixml", "EcosimScenario": 1,
-  "EcospaceScenario": 1, "RunYears": 50, ... }, "EcospaceRun": { ... } }
-```
-
-`inputFolder` and `outputFolder` are resolved relative to the application base directory; the
-body is the same run-info JSON used by the CLI. Expect `200 OK` with "Run completed" or
-`500` with "Run errors encountered"; results and `EwERunConsole_log.txt` appear in the output
-folder. `GET /healthz` verifies liveness. A ready-made request is in
-`Eii.Ecopath.Runner.Api/EwERunApi.http`, which can be imported into Postman or executed
-directly from Visual Studio.
+with `EwERunConsole_log.txt`. RunProcess has a Docker profile that bind-mounts a local `testconfig/`
+folder to `/etc/config` via `containerRunArguments`.

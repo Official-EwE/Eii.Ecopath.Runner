@@ -5,14 +5,14 @@ Eii.Ecopath.Runner is a headless, JSON-driven runner for the EwE (Ecopath with E
 ecosystem modelling platform. It automates sequential runs of Ecopath, Ecosim, Ecospace and
 Ecotracer without the GUI. It is available in two forms:
 - **EwERunConsole** — a command-line executable driven by a JSON configuration file.
-- **EwERunApi** — an ASP.NET Core Web API that accepts the same configuration as a POST body.
+- **EwERunProcess** — a containerised batch runner launched as a Kubernetes Job.
 
 ## Solution structure
 
 | Project | Description |
 |---|---|
 | `Eii.Ecopath.Runner.Console` | CLI entry point (`EwERunConsole.csproj`) |
-| `Eii.Ecopath.Runner.Api` | ASP.NET Core Web API wrapper (`EwERunApi.csproj`) |
+| `Eii.Ecopath.Runner.RunProcess` | Containerised batch runner (`EwERunProcess.csproj`) |
 | `Eii.Ecopath.Runner.Services` | Runtime engine, modifiers, and automation node tree |
 | `Eii.Ecopath.Runner.Datamodel` | Plain data containers deserialised from JSON |
 | `Eii.Ecopath.Runner.Console.Tests` | Integration tests for `EwERunConsole` |
@@ -28,7 +28,6 @@ Ecotracer without the GUI. It is available in two forms:
   - `CommandLineParser` 2.9.1 — CLI argument parsing (Console only)
   - `Serilog` + sinks — file logging (Console only)
   - `Microsoft.Extensions.Logging` 10.x — logging abstraction
-  - `Microsoft.AspNetCore.OpenApi` 10.x — OpenAPI support (API only)
 
 ## Code conventions
 - Class names use standard PascalCase with no prefix (e.g. `EwEEngine`, `RuntimeModifier`).
@@ -47,10 +46,6 @@ Ecotracer without the GUI. It is available in two forms:
   run-info file, and delegates to `EwEEngine`.
 - `CommandLineParmOptions.cs` — defines the CLI flags (`--info`, `--output`, `--showtree`,
   `--docs`). `--info` is optional; `--docs` can be used standalone.
-
-### API entry point
-- `EwERunController.cs` — single `POST /eweRun` endpoint; accepts `EwERunInstructions` as a
-  JSON body, resolves paths, and delegates to `EwEEngine`.
 
 ### Datamodel (`Eii.Ecopath.Runner.Datamodel`)
 Plain data containers deserialised from JSON via `System.Text.Json`:
@@ -122,20 +117,9 @@ Plain data containers deserialised from JSON via `System.Text.Json`:
 - `Program.Main` returns exit code `0` on success and `1` on failure (standard Unix convention).
 - See https://github.com/Official-EwE/.github/blob/master/profile/gitversion.md
 
-## Docker (API project)
-- The API project (`EwERunApi`) is published as a Docker image to `ghcr.io/official-ewe/`.
-- The build-and-push script is at `Eii.Ecopath.Runner.Api/tools/build-push-docker.ps1`.
-- The script requires a **persistent user-level environment variable** `DOCKER_BUILD_GITHUB_TOKEN`
-  set to a GitHub Personal Access Token (PAT) with `read:packages` scope (to pull the private
-  NuGet feed during the Docker build) and `write:packages` scope (to push the image to GHCR).
-- Set the variable once on your machine before running the script:
-  ```powershell
-  [System.Environment]::SetEnvironmentVariable('DOCKER_BUILD_GITHUB_TOKEN', 'your-token', 'User')
-  ```
-- The token is passed to the Docker build as `--build-arg GITHUB_TOKEN` and is also used to
-  authenticate `docker login ghcr.io` before pushing.
-- Never commit the token value to source control.
-- For Docker launch profiles in Visual Studio, use `containerRunArguments` to pass extra `docker run` arguments (such as volume bind mounts), NOT `additionalDockerRunArguments`.
+## Docker
+- For the RunProcess Docker launch profile in Visual Studio, use `containerRunArguments` to pass
+  extra `docker run` arguments (such as volume bind mounts), NOT `additionalDockerRunArguments`.
 
 ## What to avoid
 - Do not use `this.` unless resolving a name collision.
